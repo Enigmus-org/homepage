@@ -5,8 +5,8 @@
       "url": "/"
     },
     {
-      "name": "About",
-      "url": "/about"
+      "name": "Text to Image",
+      "url": "/text-to-image-ai"
     },
     {
       "name": "Elements",
@@ -34,8 +34,8 @@
       "url": "/"
     },
     {
-      "name": "About",
-      "url": "/about"
+      "name": "Text to Image",
+      "url": "/text-to-image-ai"
     },
     {
       "name": "Contact",

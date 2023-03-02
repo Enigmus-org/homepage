@@ -2,7 +2,7 @@
 title: About The Author
 image: /images/author.png
 description: "meta description"
-layout: about
+layout: text2image
 education:
   title: Formal Education
   degrees:

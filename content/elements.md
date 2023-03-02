@@ -99,7 +99,7 @@ Some text to show that the reference links can follow later.
     <a class="nav-link" href="/">Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="about/">About</a>
+    <a class="nav-link" href="about/">Text2Image</a>
   </li>
 </ul>`}
 </Code>

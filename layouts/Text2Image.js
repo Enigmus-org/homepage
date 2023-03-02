@@ -3,7 +3,7 @@ import shortcodes from "@shortcodes/all";
 import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
 
-const About = ({ data }) => {
+const Text2Image = ({ data }) => {
   const { frontmatter, mdxContent } = data;
   const { title, image, education, experience } = frontmatter;
 
@@ -65,4 +65,4 @@ const About = ({ data }) => {
   );
 };
 
-export default About;
+export default Text2Image;
