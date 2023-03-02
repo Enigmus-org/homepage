@@ -10,11 +10,11 @@ banner:
     rel: ""
 
 featured_posts:
-  enable: true
+  enable: false
   title: Featured Posts
 
 promotion:
-  enable: true
+  enable: false
   image: /images/promotion.png
   link: "#"
 
