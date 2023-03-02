@@ -1,13 +1,13 @@
 {
   "site": {
-    "title": "Geeky Nextjs",
+    "title": "Splashhh - Generative AI for image creation and manipulation",
     "base_url": "/",
     "favicon": "/images/favicon.png",
     "logo": "/images/logo.png",
     "logo_white": "/images/logo-light.png",
-    "logo_width": "150",
-    "logo_height": "39",
-    "logo_text": "Geeky"
+    "logo_width": "80",
+    "logo_height": "80",
+    "logo_text": "Splashhh"
   },
   "settings": {
     "theme_switcher": true,
@@ -18,13 +18,13 @@
   },
   "params": {
     "tag_manager_id": "",
-    "footer_content": "Lorem ipsum dolor sit amt, conse adip iscing. donec iaculis tempasus laoreet. Libero ullam rgscper.",
-    "copyright": "Designed and Developed By [Statichunt](https://statichunt.com/)"
+    "footer_content": "Splashhh - Experience the power of AI-assisted creativity with stable diffusion, a cutting-edge image generation and manipulation tool.",
+    "copyright": "Designed and Developed By [Splashhh.cc](https://Splashhh.cc/)"
   },
   "metadata": {
-    "meta_author": "Statichunt",
+    "meta_author": "Splashhh",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Geeky Nextjs Personal Blog Template"
+    "meta_description": "Genrative art using Stable diffusion and other ML and AI models"
   },
   "widgets": {
     "about": {

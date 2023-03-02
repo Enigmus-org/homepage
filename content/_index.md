@@ -1,12 +1,12 @@
 ---
 banner:
   title: Welcome **!**
-  title_small: "to John Bravo's Blog"
-  content: Are Developer and recently started your own business Already made website to ensure presence wants to develop.
-  image: /images/banner-author.png
+  title_small: "to **Splashhh** home page"
+  content: Unleash Your Creativity with Advanced Generative AI - Experience the Next Frontier of Image Creation and Manipulation with Stable Diffusion.
+  image: /images/splashhh-landing2.webp
   button:
-    label: Know About Me
-    link: /about
+    label: Launch App
+    link: https://sd.splashhh.cc
     rel: ""
 
 featured_posts:
