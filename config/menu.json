@@ -9,12 +9,12 @@
       "url": "/text-to-image-ai"
     },
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "Image to Image",
+      "url": "/image-to-image-ai"
     },
     {
-      "name": "Contact",
-      "url": "/contact"
+      "name": "Upscale",
+      "url": "/upscale-ai"
     },
     {
       "name": "Pages",
