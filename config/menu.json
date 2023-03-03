@@ -38,12 +38,20 @@
       "url": "/text-to-image-ai"
     },
     {
-      "name": "Contact",
-      "url": "/contact"
+      "name": "Image to Image",
+      "url": "/image-to-image-ai"
+    },
+    {
+      "name": "Upscale",
+      "url": "/upscale-ai"
     },
     {
       "name": "Privacy Policy",
-      "url": "#"
+      "url": "/privacy-policy"
+    },
+    {
+      "name": "Terms of Service",
+      "url": "/terms-of-usage"
     }
   ]
 }
