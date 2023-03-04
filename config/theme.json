@@ -33,7 +33,7 @@
     "font_family": {
       "primary": "Merriweather Sans:wght@400;700",
       "primary_type": "sans-serif",
-      "secondary": "Raleway:wght@400",
+      "secondary": "Open Sans:wght@300",
       "secondary_type": "sans-serif"
     },
     "font_size": {

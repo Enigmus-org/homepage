@@ -1,7 +1,7 @@
 ---
 banner:
   title: Welcome **!**
-  title_small: "to **Splashhh** home page"
+  title_small: "to **Splashhh**"
   content: Unleash Your Creativity with Advanced Generative AI - Experience the Next Frontier of Image Creation and Manipulation with Stable Diffusion.
   image: /images/splashhh-landing2.webp
   button:
