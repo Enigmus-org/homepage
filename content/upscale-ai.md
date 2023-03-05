@@ -1,7 +1,7 @@
 ---
 title: Upscale images using ML generative models
-image: /images/upscale.webp
-description: "meta description"
+image: /images/upscale2.webp
+description: "The upscale feature is a functionality in many generative models that allows the user to increase the resolution of an image, often referred to as super-resolution."
 layout: text2image
 
 
