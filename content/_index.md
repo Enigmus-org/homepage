@@ -1,12 +1,12 @@
 ---
 banner:
-  title: Welcome **!**
-  title_small: "to **Splashhh**"
-  content: Unleash Your Creativity with Advanced Generative AI - Experience the Next Frontier of Image Creation and Manipulation with Stable Diffusion.
-  image: /images/splashhh-landing2.webp
+  title: "ENIGMUS"
+  title_small: "**Private** AI, **locally**"
+  content: Enigmus empowers you with cutting-edge AI capabilities while ensuring your data remains private and secure by processing everything locally on your device.
+  image: /images/chat_1280.jpg
   button:
-    label: Launch App
-    link: https://sd.splashhh.cc
+    label: Download Page
+    link: Image to Image
     rel: ""
 
 featured_posts:

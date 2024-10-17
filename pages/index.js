@@ -60,9 +60,11 @@ const Home = ({
             <div className="col-9 lg:col-6">
               <ImageFallback
                 className="mx-auto object-contain"
+                // css for border-radius: 10%
+                style={{ borderRadius: "10%" }}
                 src={banner.image}
                 width={400}
-                height={449}
+                height={400}
                 priority={true}
                 alt="Banner Image"
               />
