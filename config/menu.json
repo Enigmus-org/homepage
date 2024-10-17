@@ -5,16 +5,16 @@
       "url": "/"
     },
     {
-      "name": "Text to Image",
-      "url": "/text-to-image-ai"
+      "name": "Download",
+      "url": "/download"
     },
     {
-      "name": "Image to Image",
-      "url": "/image-to-image-ai"
+      "name": "AI and Privacy",
+      "url": "/ai-and-privacy"
     },
     {
-      "name": "Upscale",
-      "url": "/upscale-ai"
+      "name": "Technology",
+      "url": "/technology"
     },
     {
       "name": "Pages",
@@ -34,16 +34,16 @@
       "url": "/"
     },
     {
-      "name": "Text to Image",
-      "url": "/text-to-image-ai"
+      "name": "Download",
+      "url": "/download"
     },
     {
-      "name": "Image to Image",
-      "url": "/image-to-image-ai"
+      "name": "AI and Privacy",
+      "url": "/ai-and-privacy"
     },
     {
-      "name": "Upscale",
-      "url": "/upscale-ai"
+      "name": "Technology",
+      "url": "/technology"
     },
     {
       "name": "Privacy Policy",
