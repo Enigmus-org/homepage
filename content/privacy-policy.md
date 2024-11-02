@@ -6,9 +6,9 @@ layout: default
 
 ---
 
-Effective Date: 01/01/2023
+Effective Date: 01/01/2024
 
-Splashhh ("us", "we", or "our") operates the Splashhh website and apps (the "Service").
+Enigmus ("us", "we", or "our") operates the Enigmus AI website and apps (the "Service").
 
 This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. We take your privacy seriously and will only use your personal data in accordance with this Privacy Policy.
 

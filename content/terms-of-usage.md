@@ -5,9 +5,9 @@ layout: default
 
 ---
 
-Effective Date: 01/01/2023
+Effective Date: 01/01/2024
 
-Please read these Terms of Use ("Terms", "Terms of Use") carefully before using the Splashhh website and apps (the "Service") operated by Splashhh ("us", "we", or "our").
+Please read these Terms of Use ("Terms", "Terms of Use") carefully before using the Enigmus website and apps (the "Service") operated by Enigmus ("us", "we", or "our").
 
 Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.
 
