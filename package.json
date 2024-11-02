@@ -3,11 +3,11 @@
   "description": "Enigmus AI Homepage",
   "version": "0.1",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "dev": "node lib/jsonGenerator.js && next dev",
     "build": "node lib/jsonGenerator.js && next build",
-    "export": "node lib/jsonGenerator.js && next build && next export && touch out/.nojekyll",
+    "export": "node lib/jsonGenerator.js && next build && next export && touch out/.nojekyll && echo 'enigmus.cc' > out/CNAME",
     "lint": "next lint",
     "start": "next start"
   },
