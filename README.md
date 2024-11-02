@@ -1,6 +1,6 @@
-<h1 align=center>Splashhhh - homepage and blog</h1>
+<h1 align=center>Enigmus - homepage and blog</h1>
 <h2 align="center"> 
-<a target="_blank" href="https://splashhh.cc" rel="nofollow">Launch site</a> 
+<a target="_blank" href="https://enigmus.cc" rel="nofollow">Launch site</a> 
 </h2>
 
 <p align=center>
@@ -17,7 +17,7 @@
     <img src="https://img.shields.io/github/contributors/statichunt/geeky-nextjs" alt="contributors"></a>
 </p>
 
-![splashhh](./public/images/splashhh-landing2.webp)
+![Enigmus](./public/images/enigmus-open-graph.png)
 
 ## Key Features
 
@@ -70,6 +70,6 @@ npm run build
 <!-- licence -->
 ## License
 
-Copyright (c) 2022 - Present, Developed by Splashhh.cc
+Copyright (c) 2024 - Present, Developed by Enigmus.cc
 
 **Code License:** Released under the [MIT](https://github.com/statichunt/geeky-nextjs/blob/main/LICENSE) license.
