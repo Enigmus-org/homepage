@@ -1,6 +1,6 @@
 ---
 title: AI and Privacy concerns
-image: /images/image-to-image1.webp
+image: /images/ai-and-privacy.webp
 description: "Ensuring that individual privacy rights are safeguarded while utilizing AI-driven technologies."
 layout: text2image
 

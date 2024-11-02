@@ -1,9 +1,10 @@
 ---
-title: Download Enigmus
-image: /images/image2text1.webp
-description: "Using text-to-image AI to generate images from text descriptions users can input a written description of an image, and the AI model will generate a corresponding image that closely matches the description"
+title: Enigmus AI - Download
+image: /images/download.webp
+description: "Download ENIGMUS, the open-source solution for running a private LLC locally. Enjoy complete data privacy, easy local deployment, and customizable features tailored to your needs. Join our community to enhance and expand ENIGMUS's
+capabilities. Download now!"
 layout: text2image
 ---
 
-### Download Enigmus - Private AI, Localy
-dd 
+### Download Enigmus - Private AI, Locally
+Coming soon
