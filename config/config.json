@@ -18,7 +18,7 @@
   },
   "params": {
     "tag_manager_id": "",
-    "footer_content": "Discover Enigmus: private AI for Mac, iPhone, and iPad. Powered by Apple's MLX framework, all processing happens locally on your device—your data never leaves your hands.",
+    "footer_content": "Enigmus: private AI for Mac, iPhone, and iPad. Powered by Apple's MLX framework, all processing happens locally on-device—data never leaves the hardware.",
     "copyright": "Designed and Developed By [Enigmus.cc](https://Enigmus.cc/)"
   },
   "metadata": {
@@ -29,7 +29,7 @@
   "widgets": {
     "about": {
       "enable": true,
-      "content": "Enigmus brings private AI to Mac, iPhone, and iPad. Built on Apple's MLX framework, we deliver powerful AI that runs entirely on your device."
+      "content": "Enigmus brings private AI to Mac, iPhone, and iPad. Built on Apple's MLX framework, Enigmus delivers powerful AI that runs entirely on-device."
     },
     "featured_posts": {
       "enable": false,

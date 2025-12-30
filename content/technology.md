@@ -1,7 +1,7 @@
 ---
 title: Technology for Private AI on Apple Devices
 image: /images/ai-technology-review.webp
-description: "Enigmus brings powerful AI to your Mac, iPhone, and iPad using Apple's MLX framework. By leveraging Apple Silicon's unified memory architecture and Metal GPU acceleration, Enigmus delivers fast, private AI that never sends your data to the cloud. Experience state-of-the-art language models running entirely on your device."
+description: "Enigmus delivers powerful AI on Mac, iPhone, and iPad using Apple's MLX framework. By leveraging Apple Silicon's unified memory architecture and Metal GPU acceleration, all processing happens locally—data never leaves the device."
 layout: text2image
 
 
@@ -9,13 +9,13 @@ layout: text2image
 
 # Private AI, Powered by Apple Silicon
 
-Enigmus is built exclusively for Apple platforms, leveraging **MLX**—Apple's machine learning framework—to deliver powerful AI capabilities on your Mac, iPhone, and iPad. By running entirely on-device, your data never leaves your hardware.
+Enigmus is built exclusively for Apple platforms, leveraging **MLX**—Apple's machine learning framework—to deliver powerful AI capabilities on Mac, iPhone, and iPad. By running entirely on-device, data never leaves the hardware.
 
 ## Why Apple Silicon?
 
 Apple's M-series chips (M1, M2, M3, M4, and M5) revolutionized what's possible for on-device AI. The key innovation is **unified memory architecture**—CPU, GPU, and Neural Engine all share the same memory pool, eliminating the data transfer bottlenecks that plague traditional systems.
 
-This means large language models can run efficiently without expensive dedicated GPUs. Your MacBook, iMac, or even iPhone becomes a powerful AI workstation.
+This means large language models can run efficiently without expensive dedicated GPUs. A MacBook, iMac, or iPhone becomes a capable AI workstation.
 
 ## MLX: Apple's ML Framework
 
@@ -30,9 +30,9 @@ MLX is Apple's array framework for machine learning, purpose-built for Apple Sil
 
 ### On-Device Benefits
 
-Running AI locally on your Apple device means:
+Running AI locally on Apple devices provides:
 
-- **Complete Privacy**: Your conversations and data never leave your device
+- **Complete Privacy**: Conversations and data never leave the device
 - **No API Costs**: No per-token fees or subscription requirements
 - **Offline Capable**: Works without internet once the model is downloaded
 - **Low Latency**: Instant responses without network round-trips
@@ -81,14 +81,14 @@ Enigmus brings on-device AI to mobile:
 
 ## The Privacy Advantage
 
-Unlike cloud-based AI services, Enigmus processes everything locally. When you ask a question, draft an email, or analyze a document:
+Unlike cloud-based AI services, Enigmus processes everything locally. When asking a question, drafting an email, or analyzing a document:
 
-1. Your input stays on your device
-2. The AI model runs on your Apple Silicon
+1. Input stays on the device
+2. The AI model runs on Apple Silicon
 3. The response is generated locally
-4. Nothing is ever uploaded to external servers
+4. Nothing is uploaded to external servers
 
-This is AI the way it should be: powerful, private, and entirely under your control.
+This architecture ensures privacy by design—data remains on the device at all times.
 
 ---
 
@@ -124,14 +124,14 @@ The M5 chips with Neural Accelerators provide the fastest inference thanks to de
 <details>
 <summary><strong>Can I run Enigmus on iPhone or iPad?</strong></summary>
 
-Yes! Enigmus supports **iOS 18+** on devices with sufficient hardware:
+Yes. Enigmus supports **iOS 18+** on devices with sufficient hardware:
 
 - **iPhone 15 Pro** or newer (A17 Pro chip or later)
 - **iPad Pro** with M-series chips
 
-You'll need to run on a real device—iOS Simulators don't support the Metal GPU features MLX requires. For larger models, enable the "Increased Memory Limit" entitlement in your device settings.
+A real device is required—iOS Simulators don't support the Metal GPU features MLX requires. For larger models, the "Increased Memory Limit" entitlement must be enabled in device settings.
 
-The Qwen3-4B model with 4-bit quantization runs well on these devices, providing capable AI assistance on the go.
+The Qwen3-4B model with 4-bit quantization runs well on these devices, providing capable AI assistance on mobile.
 
 *Sources: [MLX Swift on iOS](https://medium.com/@cetinibrahim/mlx-swift-run-llms-in-ios-apps-8f89c1123588) · [GitHub - ml-explore/mlx-swift](https://github.com/ml-explore/mlx-swift)*
 
@@ -145,7 +145,7 @@ GPT-OSS is OpenAI's first **open-weight model family** since GPT-2, released in 
 - **gpt-oss-20b**: 21 billion parameters, fits in 16GB memory
 - **gpt-oss-120b**: 117 billion parameters for high-end systems
 
-Both use a mixture-of-experts (MoE) architecture with 4-bit quantization (MXFP4). The gpt-oss-120b matches or exceeds OpenAI's o4-mini on benchmarks for coding, math, and tool use—but runs entirely on your device with no API costs or data sharing.
+Both use a mixture-of-experts (MoE) architecture with 4-bit quantization (MXFP4). The gpt-oss-120b matches or exceeds OpenAI's o4-mini on benchmarks for coding, math, and tool use—running entirely on-device with no API costs or data sharing.
 
 *Sources: [Introducing GPT-OSS | OpenAI](https://openai.com/index/introducing-gpt-oss/) · [GPT-OSS Model Card](https://openai.com/index/gpt-oss-model-card/) · [GitHub - openai/gpt-oss](https://github.com/openai/gpt-oss)*
 
@@ -171,14 +171,14 @@ The smaller Qwen3-4B and Qwen3-8B models are ideal for iPhone and iPad, while la
 <details>
 <summary><strong>Is my data really private with Enigmus?</strong></summary>
 
-**Yes, completely.** Enigmus processes everything on your device using Apple's MLX framework. Here's what that means:
+**Yes, completely.** Enigmus processes everything on-device using Apple's MLX framework. Here's what that means:
 
-1. **No cloud connection required**: Once you download a model, Enigmus works entirely offline
-2. **No data transmission**: Your prompts, documents, and conversations never leave your Mac, iPhone, or iPad
-3. **No telemetry**: We don't collect usage data, analytics, or any information about your interactions
-4. **You own your data**: Everything stays in your local storage under your control
+1. **No cloud connection required**: Once a model is downloaded, Enigmus works entirely offline
+2. **No data transmission**: Prompts, documents, and conversations never leave the Mac, iPhone, or iPad
+3. **No telemetry**: No usage data, analytics, or interaction information is collected
+4. **Local ownership**: Everything stays in local storage under user control
 
-This is fundamentally different from cloud AI services like ChatGPT or Claude, which process your data on remote servers. With Enigmus, privacy isn't a policy—it's architecture.
+This is fundamentally different from cloud AI services like ChatGPT or Claude, which process data on remote servers. With Enigmus, privacy isn't a policy—it's architecture.
 
 *Sources: [MLX Unified Memory Model](https://ml-explore.github.io/mlx/build/html/unified_memory.html) · [On-device ML with MLX Swift](https://www.swift.org/blog/mlx-swift/)*
 

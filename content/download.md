@@ -9,7 +9,7 @@ layout: text2image
 
 **Coming soon to macOS and iOS**
 
-Enigmus is built exclusively for Apple platforms, leveraging MLX and Apple Silicon to deliver powerful, private AI on your Mac, iPhone, and iPad.
+Enigmus is built exclusively for Apple platforms, leveraging MLX and Apple Silicon to deliver powerful, private AI on Mac, iPhone, and iPad.
 
 #### Requirements
 

@@ -105,3 +105,17 @@ When creating commits, do NOT include:
 - `Co-Authored-By: Claude ...` lines
 
 Just write clean, descriptive commit messages.
+
+## Writing Style
+
+All content should follow these guidelines:
+
+- **No direct reader address**: Avoid "you/your" constructions. Use neutral third-person or passive voice instead.
+  - ❌ "Your data never leaves your device"
+  - ✅ "Data never leaves the device"
+- **No sales language**: Don't use promotional phrases like "Discover", "Experience", or "Get started today"
+- **No first-person company voice**: Avoid "we deliver", "our product". Use the product name instead.
+  - ❌ "We deliver powerful AI"
+  - ✅ "Enigmus delivers powerful AI"
+- **Editorial/informational tone**: Write as if for a technical publication, not marketing copy
+- **Keep technical accuracy**: Maintain all factual content, only adjust the voice
