@@ -2,7 +2,7 @@
 banner:
   title: "ENIGMUS"
   title_small: "**Private** AI, **locally**"
-  content: Enigmus empowers you with cutting-edge AI capabilities while ensuring your data remains **private** and **secure** by processing everything **locally** on your device. <br /> <br /> Enigmus is **free** and **open-source**.
+  content: Enigmus brings powerful AI to your **Mac**, **iPhone**, and **iPad**—powered by Apple's MLX framework. Your data stays **private** and **secure** by processing everything **locally** on your Apple device. <br /> <br /> Enigmus is **free** and **built for privacy**.
   image: /images/chat_1280.jpg
   button:
     label: Download (coming soon)

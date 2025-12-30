@@ -1,54 +1,185 @@
 ---
-title: Technology for a Locally running LLC
+title: Technology for Private AI on Apple Devices
 image: /images/ai-technology-review.webp
-description: "Learn about the technological aspects of running AI on the edge. Edge AI processes data locally on devices rather than relying on centralized cloud servers, reducing latency and bandwidth usage. This approach enhances data privacy by keeping information on the device, allows for real-time processing, and improves reliability by minimizing dependency on network connectivity. Explore how edge AI enables efficient and secure data handling directly at the source."
+description: "Enigmus brings powerful AI to your Mac, iPhone, and iPad using Apple's MLX framework. By leveraging Apple Silicon's unified memory architecture and Metal GPU acceleration, Enigmus delivers fast, private AI that never sends your data to the cloud. Experience state-of-the-art language models running entirely on your device."
 layout: text2image
 
 
 ---
 
-# Understanding the Technology Behind LLaMA 3 LLC Models
+# Private AI, Powered by Apple Silicon
 
-### Transformer Architecture and Self-Attention Mechanisms
+Enigmus is built exclusively for Apple platforms, leveraging **MLX**—Apple's machine learning framework—to deliver powerful AI capabilities on your Mac, iPhone, and iPad. By running entirely on-device, your data never leaves your hardware.
 
-The LLaMA 3 LLC models are a game-changer in NLP, leveraging the power of the transformer architecture. As a programmer, you'll appreciate the elegance of self-attention mechanisms, which allow the model to dynamically weigh the importance
-of words in a sentence. This is a huge step up from the old-school RNNs and LSTMs, which struggled with long-range dependencies. LLaMA 3 optimizes these attention mechanisms with sparse attention techniques, cutting down on unnecessary
-computations and focusing only on the most relevant parts of the input. This means you get high performance without the need for a supercomputer, which is a win for both developers and users.
+## Why Apple Silicon?
 
-### Advanced Training Techniques and Data Curation
+Apple's M-series chips (M1, M2, M3, M4, and M5) revolutionized what's possible for on-device AI. The key innovation is **unified memory architecture**—CPU, GPU, and Neural Engine all share the same memory pool, eliminating the data transfer bottlenecks that plague traditional systems.
 
-From a developer's perspective, the training process of LLaMA 3 is a masterclass in efficiency. The models are trained on a massive, diverse dataset, covering multiple languages and dialects, which is crucial for building robust
-multilingual applications. Techniques like mixed-precision training and gradient checkpointing are employed to keep memory usage in check and speed up training times. Plus, the use of unsupervised and semi-supervised learning means the
-model can learn from unlabelled data, reducing the dependency on expensive labeled datasets. This is a big deal for developers looking to deploy models in the real world, where labeled data can be scarce.
+This means large language models can run efficiently without expensive dedicated GPUs. Your MacBook, iMac, or even iPhone becomes a powerful AI workstation.
 
-### Deployment, Scalability, and Community Collaboration
+## MLX: Apple's ML Framework
 
-When it comes to deployment, LLaMA 3 models are designed with scalability in mind. Their modular architecture makes them easy to integrate into various environments, whether you're deploying in the cloud or on edge devices. Techniques like
-model distillation and quantization help create leaner models that don't sacrifice accuracy, which is perfect for real-time applications where latency is a concern. And let's not forget the open-source nature of the LLaMA project, which
-fosters a collaborative environment for developers and researchers alike. This community-driven approach not only accelerates innovation but also ensures that the technology remains accessible and adaptable to future needs.
+MLX is Apple's array framework for machine learning, purpose-built for Apple Silicon. At WWDC 2025, Apple signaled MLX as a strategic component of their AI ecosystem, with deep integration into macOS and iOS.
 
-## Introduction to llama.cpp: Democratizing Access to Language Models
+### Key Advantages
 
-[//]: # (<p align="center">)
+- **Unified Memory**: Arrays live in shared memory—operations run on CPU, GPU, or Neural Engine without data copying
+- **Metal GPU Acceleration**: Purpose-built for Apple's Metal framework, maximizing performance on Apple hardware
+- **Native Swift Support**: First-class Swift API makes it perfect for iOS and macOS app development
+- **Neural Engine Integration**: On M5 chips, MLX leverages dedicated Neural Accelerators for matrix operations
 
-[//]: # (  <img src="/images/ai-technology-review.webp" alt="AI Technology Review" />)
+### On-Device Benefits
 
-[//]: # (</p>)
-The llama.cpp project is an innovative open-source initiative designed to democratize access to advanced language models by enabling their execution on consumer-grade hardware. Developed in C++, this project focuses on optimizing the
-performance of LLaMA models, allowing them to run efficiently on standard CPUs without the need for expensive GPUs or cloud-based resources. By leveraging cutting-edge techniques such as quantization and multi-threading, llama.cpp ensures
-that these powerful models can be utilized on a wide range of devices, from personal laptops to desktop computers. This accessibility opens up new possibilities for developers and researchers, facilitating experimentation and integration
-of LLaMA models into diverse applications, all while maintaining high performance and low resource consumption.
+Running AI locally on your Apple device means:
 
-### Efficient Model Execution on Consumer Hardware
+- **Complete Privacy**: Your conversations and data never leave your device
+- **No API Costs**: No per-token fees or subscription requirements
+- **Offline Capable**: Works without internet once the model is downloaded
+- **Low Latency**: Instant responses without network round-trips
 
-The llama.cpp project is a testament to the power of optimization, enabling the execution of LLaMA models on consumer-grade hardware without sacrificing performance. At its core, the project leverages highly optimized C++ code to minimize
-computational overhead and maximize throughput. By focusing on CPU-based execution, llama.cpp circumvents the need for expensive GPU resources, making it accessible to a wider range of users. The project employs advanced techniques such as
-quantization, which reduces the precision of model weights, thereby decreasing memory usage and speeding up inference times. This approach allows the models to run efficiently on standard consumer CPUs, including those found in laptops and
-desktops, without the need for specialized hardware.
+## Supported Models
 
-### Cross-Platform Compatibility and Optimization Techniques
+Enigmus supports leading models optimized for Apple Silicon:
 
-Another key feature of llama.cpp is its cross-platform compatibility, which ensures that the models can be executed on various operating systems, including Windows, macOS, and Linux. This is achieved through the use of portable C++
-libraries and careful management of system resources. The project also incorporates multi-threading and SIMD (Single Instruction, Multiple Data) instructions to take full advantage of modern CPU architectures, further enhancing
-performance. These optimizations are crucial for maintaining low latency and high throughput, even on hardware with limited computational power. For developers and researchers, llama.cpp provides a flexible and efficient framework for
-experimenting with LLaMA models, enabling the exploration of NLP applications without the constraints of high-end infrastructure.
+### GPT-OSS by OpenAI
+
+OpenAI's first open-weight models since GPT-2, released August 2025:
+
+- **gpt-oss-20b**: 21B parameters, runs within 16GB memory—ideal for M1/M2/M3 Macs
+- **gpt-oss-120b**: 117B parameters for high-memory configurations
+
+Both use mixture-of-experts (MoE) architecture with 4-bit quantization, delivering excellent performance on Apple Silicon.
+
+### Qwen3 by Alibaba
+
+Alibaba's hybrid reasoning models, released April 2025:
+
+- **Qwen3-4B / Qwen3-8B**: Perfect for iPhone and iPad with efficient memory usage
+- **Qwen3-14B / Qwen3-32B**: Full-featured models for Mac
+- **Qwen3-30B-A3B**: Sparse MoE variant—32B-class performance with only 3B parameters active
+
+Qwen3 features hybrid reasoning (toggle between fast and deep thinking), 128K context window, and support for 119 languages.
+
+## Performance on Apple Devices
+
+### Mac (Apple Silicon)
+
+On M1 and newer Macs, Enigmus delivers responsive AI interactions:
+
+- **M1/M2 (8GB)**: Qwen3-4B runs smoothly for everyday tasks
+- **M1/M2 Pro (16GB+)**: GPT-OSS-20b and Qwen3-14B for advanced use cases
+- **M3/M4 Max (64GB+)**: Run the largest models including Qwen3-32B
+- **M5 with Neural Accelerators**: Optimized matrix operations for fastest inference
+
+### iPhone & iPad (iOS 18+)
+
+Enigmus brings on-device AI to mobile:
+
+- **iPhone 15 Pro / iPad Pro**: Run Qwen3-4B with 4-bit quantization
+- **Increased Memory Entitlement**: Enables larger models on capable devices
+- **Metal GPU Required**: Real device needed (simulators not supported)
+
+## The Privacy Advantage
+
+Unlike cloud-based AI services, Enigmus processes everything locally. When you ask a question, draft an email, or analyze a document:
+
+1. Your input stays on your device
+2. The AI model runs on your Apple Silicon
+3. The response is generated locally
+4. Nothing is ever uploaded to external servers
+
+This is AI the way it should be: powerful, private, and entirely under your control.
+
+---
+
+## Frequently Asked Questions
+
+<details>
+<summary><strong>What is MLX and why does Enigmus use it?</strong></summary>
+
+MLX is Apple's open-source machine learning framework, designed specifically for Apple Silicon. Unlike other ML frameworks, MLX uses a **unified memory model** where arrays live in shared memory—allowing operations to run on CPU, GPU, or Neural Engine without copying data between them. This makes it exceptionally efficient for running large language models on Mac, iPhone, and iPad.
+
+At WWDC 2025, Apple announced deeper MLX integration into macOS and iOS, signaling it as a core component of their AI strategy.
+
+*Sources: [Apple MLX Open Source](https://opensource.apple.com/projects/mlx/) · [GitHub - ml-explore/mlx](https://github.com/ml-explore/mlx) · [WWDC 2025 MLX Session](https://developer.apple.com/videos/play/wwdc2025/298/)*
+
+</details>
+
+<details>
+<summary><strong>What's the minimum Mac configuration to run Enigmus?</strong></summary>
+
+Enigmus requires **any Mac with Apple Silicon** (M1 or newer) running **macOS 14 Sonoma** or later. The experience scales with your hardware:
+
+- **8GB RAM**: Run smaller models like Qwen3-4B for everyday tasks
+- **16GB RAM**: Run mid-size models like GPT-OSS-20b or Qwen3-14B
+- **32GB+ RAM**: Run larger models with better context handling
+- **64GB+ RAM**: Run the largest available models like Qwen3-32B
+
+The M5 chips with Neural Accelerators provide the fastest inference thanks to dedicated matrix multiplication hardware.
+
+*Sources: [MLX Documentation](https://ml-explore.github.io/mlx/build/html/index.html) · [Apple M5 Neural Accelerators](https://machinelearning.apple.com/research/exploring-llms-mlx-m5)*
+
+</details>
+
+<details>
+<summary><strong>Can I run Enigmus on iPhone or iPad?</strong></summary>
+
+Yes! Enigmus supports **iOS 18+** on devices with sufficient hardware:
+
+- **iPhone 15 Pro** or newer (A17 Pro chip or later)
+- **iPad Pro** with M-series chips
+
+You'll need to run on a real device—iOS Simulators don't support the Metal GPU features MLX requires. For larger models, enable the "Increased Memory Limit" entitlement in your device settings.
+
+The Qwen3-4B model with 4-bit quantization runs well on these devices, providing capable AI assistance on the go.
+
+*Sources: [MLX Swift on iOS](https://medium.com/@cetinibrahim/mlx-swift-run-llms-in-ios-apps-8f89c1123588) · [GitHub - ml-explore/mlx-swift](https://github.com/ml-explore/mlx-swift)*
+
+</details>
+
+<details>
+<summary><strong>What is GPT-OSS and how does it compare to ChatGPT?</strong></summary>
+
+GPT-OSS is OpenAI's first **open-weight model family** since GPT-2, released in August 2025. It includes two variants:
+
+- **gpt-oss-20b**: 21 billion parameters, fits in 16GB memory
+- **gpt-oss-120b**: 117 billion parameters for high-end systems
+
+Both use a mixture-of-experts (MoE) architecture with 4-bit quantization (MXFP4). The gpt-oss-120b matches or exceeds OpenAI's o4-mini on benchmarks for coding, math, and tool use—but runs entirely on your device with no API costs or data sharing.
+
+*Sources: [Introducing GPT-OSS | OpenAI](https://openai.com/index/introducing-gpt-oss/) · [GPT-OSS Model Card](https://openai.com/index/gpt-oss-model-card/) · [GitHub - openai/gpt-oss](https://github.com/openai/gpt-oss)*
+
+</details>
+
+<details>
+<summary><strong>What makes Qwen3 special for local AI?</strong></summary>
+
+Qwen3, released by Alibaba in April 2025, offers several advantages for local deployment:
+
+- **Hybrid reasoning**: Toggle between fast responses and deep thinking mode
+- **Efficient variants**: The Qwen3-30B-A3B uses only 3B active parameters while delivering 32B-class performance
+- **Massive context**: 128K token context window (1M tokens in Qwen3-2507)
+- **Multilingual**: Supports 119 languages and dialects
+- **Size range**: From 0.6B (ultra-light) to 32B (full-featured)
+
+The smaller Qwen3-4B and Qwen3-8B models are ideal for iPhone and iPad, while larger variants shine on Mac.
+
+*Sources: [Alibaba Qwen3 Announcement](https://techcrunch.com/2025/04/28/alibaba-unveils-qwen-3-a-family-of-hybrid-ai-reasoning-models/) · [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/Qwen3) · [Qwen on Hugging Face](https://huggingface.co/Qwen)*
+
+</details>
+
+<details>
+<summary><strong>Is my data really private with Enigmus?</strong></summary>
+
+**Yes, completely.** Enigmus processes everything on your device using Apple's MLX framework. Here's what that means:
+
+1. **No cloud connection required**: Once you download a model, Enigmus works entirely offline
+2. **No data transmission**: Your prompts, documents, and conversations never leave your Mac, iPhone, or iPad
+3. **No telemetry**: We don't collect usage data, analytics, or any information about your interactions
+4. **You own your data**: Everything stays in your local storage under your control
+
+This is fundamentally different from cloud AI services like ChatGPT or Claude, which process your data on remote servers. With Enigmus, privacy isn't a policy—it's architecture.
+
+*Sources: [MLX Unified Memory Model](https://ml-explore.github.io/mlx/build/html/unified_memory.html) · [On-device ML with MLX Swift](https://www.swift.org/blog/mlx-swift/)*
+
+</details>

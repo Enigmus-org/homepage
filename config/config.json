@@ -18,18 +18,18 @@
   },
   "params": {
     "tag_manager_id": "",
-    "footer_content": "Discover Enigmus: the AI solution that prioritizes your privacy by performing all data processing locally, ensuring your information stays secure and confidential.",
+    "footer_content": "Discover Enigmus: private AI for Mac, iPhone, and iPad. Powered by Apple's MLX framework, all processing happens locally on your device—your data never leaves your hands.",
     "copyright": "Designed and Developed By [Enigmus.cc](https://Enigmus.cc/)"
   },
   "metadata": {
     "meta_author": "Enigmus",
     "meta_image": "/images/enigmus-open-graph.png",
-    "meta_description": "Private AI, Locally"
+    "meta_description": "Private AI for Mac, iPhone, and iPad. Powered by MLX."
   },
   "widgets": {
     "about": {
       "enable": true,
-      "content": "Enigmus AI is a forward-thinking company dedicated to developing innovative AI solutions that prioritize ethical practices and safeguard user privacy."
+      "content": "Enigmus brings private AI to Mac, iPhone, and iPad. Built on Apple's MLX framework, we deliver powerful AI that runs entirely on your device."
     },
     "featured_posts": {
       "enable": false,

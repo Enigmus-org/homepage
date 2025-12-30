@@ -221,3 +221,65 @@ footer .socials {
 #disqus_thread {
   color-scheme: none;
 }
+
+// FAQ Accordion Styles
+.content {
+  details {
+    @apply mb-4 rounded-lg border border-border bg-theme-light/50 dark:border-darkmode-border dark:bg-darkmode-theme-dark/50;
+
+    summary {
+      @apply cursor-pointer list-none px-5 py-4 font-semibold text-dark transition-colors hover:text-primary dark:text-darkmode-light dark:hover:text-primary;
+
+      &::-webkit-details-marker {
+        @apply hidden;
+      }
+
+      &::before {
+        content: '▸';
+        @apply mr-3 inline-block text-primary transition-transform duration-200;
+      }
+
+      strong {
+        @apply font-semibold;
+      }
+    }
+
+    &[open] {
+      summary {
+        @apply border-b border-border pb-4 dark:border-darkmode-border;
+
+        &::before {
+          @apply rotate-90;
+        }
+      }
+
+      > *:not(summary) {
+        @apply px-5 py-4;
+      }
+
+      > p:first-of-type {
+        @apply pt-4;
+      }
+
+      > p:last-of-type {
+        @apply pb-4;
+      }
+    }
+
+    p {
+      @apply my-2;
+    }
+
+    ul, ol {
+      @apply my-3 ml-4;
+    }
+
+    em {
+      @apply block mt-4 pt-4 border-t border-border/50 text-sm text-text/70 dark:border-darkmode-border/50 dark:text-darkmode-light/70;
+
+      a {
+        @apply text-primary/80 hover:text-primary;
+      }
+    }
+  }
+}
