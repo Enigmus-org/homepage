@@ -97,3 +97,11 @@ To build and visually test the static site:
    ```bash
    pkill -f "python3 -m http.server 3456"
    ```
+
+## Git Commits
+
+When creating commits, do NOT include:
+- `🤖 Generated with [Claude Code](https://claude.com/claude-code)`
+- `Co-Authored-By: Claude ...` lines
+
+Just write clean, descriptive commit messages.
