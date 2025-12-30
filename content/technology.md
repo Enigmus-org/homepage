@@ -54,7 +54,7 @@ Both use mixture-of-experts (MoE) architecture with 4-bit quantization, deliveri
 
 Alibaba's hybrid reasoning models, released April 2025:
 
-- **Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B**: Compact models for iPhone and iPad with efficient memory usage
+- **Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B / Qwen3-8B**: Models for iPhone and iPad, with Qwen3-8B for high-memory devices
 - **Qwen3-14B / Qwen3-32B**: Full-featured models for Mac
 - **Qwen3-30B-A3B**: Sparse MoE variant—32B-class performance with only 3B parameters active
 
@@ -75,7 +75,7 @@ On M1 and newer Macs, Enigmus delivers responsive AI interactions:
 
 Enigmus brings on-device AI to mobile:
 
-- **iPhone 13+ / iPad**: Run Qwen3-0.6B, Qwen3-1.7B, or Qwen3-4B with quantization
+- **iPhone 13+ / iPad**: Run Qwen3-0.6B, Qwen3-1.7B, Qwen3-4B, or Qwen3-8B (high-memory devices)
 - **Increased Memory Entitlement**: Enables larger models on capable devices
 - **Metal GPU Required**: Real device needed (simulators not supported)
 
@@ -131,7 +131,7 @@ Yes. Enigmus supports **iOS 18+** on devices with sufficient hardware:
 
 A real device is required—iOS Simulators don't support the Metal GPU features MLX requires. For larger models, the "Increased Memory Limit" entitlement must be enabled in device settings.
 
-The Qwen3-0.6B and Qwen3-1.7B models run well on these devices, with Qwen3-4B available on devices with more memory.
+The Qwen3-0.6B and Qwen3-1.7B models run well on all supported devices, with Qwen3-4B and Qwen3-8B available on high-memory devices.
 
 *Sources: [MLX Swift on iOS](https://medium.com/@cetinibrahim/mlx-swift-run-llms-in-ios-apps-8f89c1123588) · [GitHub - ml-explore/mlx-swift](https://github.com/ml-explore/mlx-swift)*
 
@@ -162,7 +162,7 @@ Qwen3, released by Alibaba in April 2025, offers several advantages for local de
 - **Multilingual**: Supports 119 languages and dialects
 - **Size range**: From 0.6B (ultra-light) to 32B (full-featured)
 
-The compact Qwen3-0.6B and Qwen3-1.7B models are ideal for iPhone and iPad, while larger variants shine on Mac.
+The compact Qwen3-0.6B and Qwen3-1.7B models work on all supported iOS devices, Qwen3-4B and Qwen3-8B on high-memory devices, while larger variants shine on Mac.
 
 *Sources: [Alibaba Qwen3 Announcement](https://techcrunch.com/2025/04/28/alibaba-unveils-qwen-3-a-family-of-hybrid-ai-reasoning-models/) · [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/Qwen3) · [Qwen on Hugging Face](https://huggingface.co/Qwen)*
 
