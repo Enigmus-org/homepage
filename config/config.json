@@ -29,7 +29,7 @@
   "widgets": {
     "about": {
       "enable": true,
-      "content": "Enigmus brings private AI to Mac, iPhone, and iPad. Built on Apple's MLX framework, Enigmus delivers powerful AI that runs entirely on-device."
+      "content": "Enigmus brings private AI to Mac, iPhone, and iPad. Built on Apple's MLX framework, all processing runs entirely on-device."
     },
     "featured_posts": {
       "enable": false,

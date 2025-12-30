@@ -38,6 +38,6 @@ This isn't about having something to hide. It's about the principle that thought
 
 ## Privacy-First AI
 
-Powerful AI and strong privacy aren't mutually exclusive. On-device processing through frameworks like Apple's MLX demonstrates that sophisticated language models can run entirely locally, respecting the boundary between private digital life and external servers.
+AI capability and strong privacy aren't mutually exclusive. On-device processing through frameworks like Apple's MLX demonstrates that language models can run entirely locally, respecting the boundary between private digital life and external servers.
 
 The future of AI should enhance human capability without compromising human autonomy.

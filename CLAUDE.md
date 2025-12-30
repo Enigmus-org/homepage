@@ -115,7 +115,8 @@ All content should follow these guidelines:
   - ✅ "Data never leaves the device"
 - **No sales language**: Don't use promotional phrases like "Discover", "Experience", or "Get started today"
 - **No first-person company voice**: Avoid "we deliver", "our product". Use the product name instead.
-  - ❌ "We deliver powerful AI"
-  - ✅ "Enigmus delivers powerful AI"
+  - ❌ "We deliver private AI"
+  - ✅ "Enigmus delivers private AI"
+- **No overpromising**: Avoid "powerful AI" - local AI prioritizes privacy over raw capability. Use "private AI" or "on-device AI" instead.
 - **Editorial/informational tone**: Write as if for a technical publication, not marketing copy
 - **Keep technical accuracy**: Maintain all factual content, only adjust the voice
