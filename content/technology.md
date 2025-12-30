@@ -54,7 +54,7 @@ Both use mixture-of-experts (MoE) architecture with 4-bit quantization, deliveri
 
 Alibaba's hybrid reasoning models, released April 2025:
 
-- **Qwen3-4B / Qwen3-8B**: Perfect for iPhone and iPad with efficient memory usage
+- **Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B**: Compact models for iPhone and iPad with efficient memory usage
 - **Qwen3-14B / Qwen3-32B**: Full-featured models for Mac
 - **Qwen3-30B-A3B**: Sparse MoE variant—32B-class performance with only 3B parameters active
 
@@ -66,7 +66,7 @@ Qwen3 features hybrid reasoning (toggle between fast and deep thinking), 128K co
 
 On M1 and newer Macs, Enigmus delivers responsive AI interactions:
 
-- **M1/M2 (8GB)**: Qwen3-4B runs smoothly for everyday tasks
+- **M1/M2 (8GB)**: Qwen3-0.6B and Qwen3-1.7B run smoothly for everyday tasks
 - **M1/M2 Pro (16GB+)**: GPT-OSS-20b and Qwen3-14B for advanced use cases
 - **M3/M4 Max (64GB+)**: Run the largest models including Qwen3-32B
 - **M5 with Neural Accelerators**: Optimized matrix operations for fastest inference
@@ -75,7 +75,7 @@ On M1 and newer Macs, Enigmus delivers responsive AI interactions:
 
 Enigmus brings on-device AI to mobile:
 
-- **iPhone 15 Pro / iPad Pro**: Run Qwen3-4B with 4-bit quantization
+- **iPhone 13+ / iPad**: Run Qwen3-0.6B, Qwen3-1.7B, or Qwen3-4B with quantization
 - **Increased Memory Entitlement**: Enables larger models on capable devices
 - **Metal GPU Required**: Real device needed (simulators not supported)
 
@@ -110,7 +110,7 @@ At WWDC 2025, Apple announced deeper MLX integration into macOS and iOS, signali
 
 Enigmus requires **any Mac with Apple Silicon** (M1 or newer) running **macOS 14 Sonoma** or later. The experience scales with your hardware:
 
-- **8GB RAM**: Run smaller models like Qwen3-4B for everyday tasks
+- **8GB RAM**: Run compact models like Qwen3-0.6B or Qwen3-1.7B for everyday tasks
 - **16GB RAM**: Run mid-size models like GPT-OSS-20b or Qwen3-14B
 - **32GB+ RAM**: Run larger models with better context handling
 - **64GB+ RAM**: Run the largest available models like Qwen3-32B
@@ -126,12 +126,12 @@ The M5 chips with Neural Accelerators provide the fastest inference thanks to de
 
 Yes. Enigmus supports **iOS 18+** on devices with sufficient hardware:
 
-- **iPhone 15 Pro** or newer (A17 Pro chip or later)
-- **iPad Pro** with M-series chips
+- **iPhone 13** or newer (A15 chip or later)
+- **iPad** with A15 chip or later
 
 A real device is required—iOS Simulators don't support the Metal GPU features MLX requires. For larger models, the "Increased Memory Limit" entitlement must be enabled in device settings.
 
-The Qwen3-4B model with 4-bit quantization runs well on these devices, providing capable AI assistance on mobile.
+The Qwen3-0.6B and Qwen3-1.7B models run well on these devices, with Qwen3-4B available on devices with more memory.
 
 *Sources: [MLX Swift on iOS](https://medium.com/@cetinibrahim/mlx-swift-run-llms-in-ios-apps-8f89c1123588) · [GitHub - ml-explore/mlx-swift](https://github.com/ml-explore/mlx-swift)*
 
@@ -162,7 +162,7 @@ Qwen3, released by Alibaba in April 2025, offers several advantages for local de
 - **Multilingual**: Supports 119 languages and dialects
 - **Size range**: From 0.6B (ultra-light) to 32B (full-featured)
 
-The smaller Qwen3-4B and Qwen3-8B models are ideal for iPhone and iPad, while larger variants shine on Mac.
+The compact Qwen3-0.6B and Qwen3-1.7B models are ideal for iPhone and iPad, while larger variants shine on Mac.
 
 *Sources: [Alibaba Qwen3 Announcement](https://techcrunch.com/2025/04/28/alibaba-unveils-qwen-3-a-family-of-hybrid-ai-reasoning-models/) · [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/Qwen3) · [Qwen on Hugging Face](https://huggingface.co/Qwen)*
 

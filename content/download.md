@@ -20,5 +20,5 @@ Enigmus is built exclusively for Apple platforms, leveraging MLX and Apple Silic
 
 **iPhone & iPad**
 - iOS 18 or later
-- iPhone 15 Pro or newer / iPad Pro with M-series chip
+- iPhone 13 or newer / iPad with A15 chip or later
 - Metal GPU support required
