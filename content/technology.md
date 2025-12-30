@@ -57,6 +57,7 @@ Alibaba's hybrid reasoning models, released April 2025:
 - **Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B / Qwen3-8B**: Models for iPhone and iPad, with Qwen3-8B for high-memory devices
 - **Qwen3-14B / Qwen3-32B**: Full-featured models for Mac
 - **Qwen3-30B-A3B**: Sparse MoE variant—32B-class performance with only 3B parameters active
+- **Qwen3-Next-80B / Qwen3-235B-A22B**: Large models for high-memory Macs (64GB+)
 
 Qwen3 features hybrid reasoning (toggle between fast and deep thinking), 128K context window, and support for 119 languages.
 
@@ -68,7 +69,8 @@ On M1 and newer Macs, Enigmus delivers responsive AI interactions:
 
 - **M1/M2 (8GB)**: Qwen3-0.6B and Qwen3-1.7B run smoothly for everyday tasks
 - **M1/M2 Pro (16GB+)**: GPT-OSS-20b and Qwen3-14B for advanced use cases
-- **M3/M4 Max (64GB+)**: Run the largest models including Qwen3-32B
+- **M3/M4 Max (64GB+)**: Run large models including Qwen3-32B, Qwen3-Next-80B
+- **M3/M4 Max (128GB+)**: Run the largest models including Qwen3-235B-A22B
 - **M5 with Neural Accelerators**: Optimized matrix operations for fastest inference
 
 ### iPhone & iPad (iOS 18+)
@@ -113,7 +115,8 @@ Enigmus requires **any Mac with Apple Silicon** (M1 or newer) running **macOS 14
 - **8GB RAM**: Run compact models like Qwen3-0.6B or Qwen3-1.7B for everyday tasks
 - **16GB RAM**: Run mid-size models like GPT-OSS-20b or Qwen3-14B
 - **32GB+ RAM**: Run larger models with better context handling
-- **64GB+ RAM**: Run the largest available models like Qwen3-32B
+- **64GB+ RAM**: Run large models like Qwen3-32B, Qwen3-Next-80B
+- **128GB+ RAM**: Run the largest models like Qwen3-235B-A22B
 
 The M5 chips with Neural Accelerators provide the fastest inference thanks to dedicated matrix multiplication hardware.
 
