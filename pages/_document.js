@@ -10,8 +10,14 @@ const Document = () => {
       <Head>
         {/* favicon */}
         <link rel="shortcut icon" href={favicon} />
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+
         {/* theme meta */}
-        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-TileColor" content="#1FA3FB" />
+        <meta name="msapplication-TileImage" content="/web-app-manifest-192x192.png" />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
@@ -22,6 +28,10 @@ const Document = () => {
           media="(prefers-color-scheme: dark)"
           content="#000"
         />
+
+        {/* SEO */}
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
       </Head>
       <body>
         <Main />

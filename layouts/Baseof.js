@@ -14,7 +14,7 @@ const Base = ({
   canonical,
   children,
 }) => {
-  const { meta_image, meta_author, meta_description } = config.metadata;
+  const { meta_image, meta_author, meta_description, meta_keywords, twitter_site, site_name } = config.metadata;
   const { base_url } = config.site;
   const router = useRouter();
 
@@ -43,6 +43,9 @@ const Base = ({
         {/* author from config.json */}
         <meta name="author" content={meta_author} />
 
+        {/* keywords */}
+        {meta_keywords && <meta name="keywords" content={meta_keywords} />}
+
         {/* og-title */}
         <meta
           property="og:title"
@@ -61,6 +64,10 @@ const Base = ({
           property="og:url"
           content={`${base_url}/${router.asPath.replace("/", "")}`}
         />
+        {site_name && <meta property="og:site_name" content={site_name} />}
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
         {/* twitter-title */}
         <meta
@@ -88,6 +95,7 @@ const Base = ({
           content={`${base_url}${image ? image : meta_image}`}
         />
         <meta name="twitter:card" content="summary_large_image" />
+        {twitter_site && <meta name="twitter:site" content={twitter_site} />}
       </Head>
       <Header />
       {/* main site */}

@@ -24,7 +24,10 @@
   "metadata": {
     "meta_author": "Enigmus",
     "meta_image": "/images/enigmus-open-graph.png",
-    "meta_description": "Private AI for Mac, iPhone, and iPad. Powered by MLX."
+    "meta_description": "Enigmus brings private, local AI to Mac, iPhone, and iPad. Powered by Apple's MLX framework, all processing runs on-device. No cloud, no data sharing.",
+    "meta_keywords": "local ai, private ai, enigmus, local ai for ios, local ai for macos, on-device ai, mlx, apple silicon ai, offline ai",
+    "twitter_site": "@enigmus_ai",
+    "site_name": "Enigmus"
   },
   "widgets": {
     "about": {
