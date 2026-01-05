@@ -17,7 +17,7 @@ TEMP_DIR=$(mktemp -d)
 
 # Copy out/ contents to temp directory
 echo "Copying build output..."
-cp -r out/* "$TEMP_DIR/"
+cp -r out/. "$TEMP_DIR/"
 
 # Switch to gh-pages branch (create if doesn't exist)
 if git show-ref --verify --quiet refs/heads/gh-pages; then
