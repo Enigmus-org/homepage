@@ -27,11 +27,11 @@ else
     git rm -rf .
 fi
 
-# Remove all existing files (except .git)
-find . -maxdepth 1 ! -name '.git' ! -name '.' -exec rm -rf {} +
+# Remove all existing files (except .git and out/)
+find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name 'out' -exec rm -rf {} +
 
 # Copy new content from temp directory
-cp -r "$TEMP_DIR"/* .
+cp -r "$TEMP_DIR"/. .
 
 # Clean up temp directory
 rm -rf "$TEMP_DIR"
