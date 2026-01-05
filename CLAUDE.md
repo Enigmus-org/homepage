@@ -98,6 +98,12 @@ To build and visually test the static site:
    pkill -f "python3 -m http.server 3456"
    ```
 
+## File Permissions
+
+When creating new files, set permissions so other users can read/copy them:
+- Regular files: `chmod 644` (rw-r--r--)
+- Executable scripts: `chmod 755` (rwxr-xr-x)
+
 ## Git Commits
 
 When creating commits, do NOT include:
