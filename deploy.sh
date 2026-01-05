@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 
-# Export the static site
-echo "Exporting static site..."
-npm run export
+# Confirm export was run
+read -p "Have you run 'npm run export'? (y/n) " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Please run 'npm run export' first."
+    exit 1
+fi
 
 # Store the current branch
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
