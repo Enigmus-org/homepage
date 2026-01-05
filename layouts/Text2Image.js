@@ -10,8 +10,7 @@ const Text2Image = ({ data }) => {
   return (
     <section className="section ">
       <div className="container text-center">
-        {markdownify(title, "h1", "h1 text-center lg:text-[55px] mt-12")}
-        <br/>
+        {markdownify(title, "h1", "sr-only")}
         {image && (
           <div className="mb-8">
             <Image
