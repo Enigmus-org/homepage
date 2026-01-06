@@ -89,8 +89,8 @@
       @apply text-dark dark:text-darkmode-light;
     }
 
-    span {
-      @apply font-normal text-light dark:text-darkmode-text lg:text-[55px];
+    > span {
+      @apply font-normal text-dark dark:text-darkmode-light lg:text-[55px];
     }
   }
 }

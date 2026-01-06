@@ -1,7 +1,7 @@
 ---
 banner:
   title: "Enigmus"
-  title_small: "**Private** AI, locally"
+  title_small: "Private <span class=\"text-primary\">AI</span>, locally"
   content: Private AI for **Mac**, **iPhone**, and **iPad**—powered by Apple's MLX framework. All data stays **private** and **secure** through **local** processing on-device. <br /> <br /> **Free** and **built for privacy**.
   image: /images/chat_1280.jpg
   button:
