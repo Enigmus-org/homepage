@@ -9,7 +9,7 @@
         "theme_dark": "#1a202c"
       },
       "text_color": {
-        "default": "#333",
+        "default": "#494949",
         "dark": "#111",
         "light": "#6e6e73"
       }
@@ -38,7 +38,7 @@
     },
     "font_size": {
       "base": "18",
-      "scale": "1.200"
+      "scale": "1.150"
     }
   }
 }

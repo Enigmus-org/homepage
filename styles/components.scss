@@ -82,15 +82,15 @@
 .banner {
   &-title {
     h1 {
-      @apply font-bold leading-[1] lg:text-[72px];
+      @apply font-semibold leading-[1] text-primary lg:text-[72px];
     }
 
     strong {
-      @apply text-primary;
+      @apply text-dark dark:text-darkmode-light;
     }
 
     span {
-      @apply font-normal font-bold text-dark dark:text-darkmode-light lg:text-[55px];
+      @apply font-normal text-light dark:text-darkmode-text lg:text-[55px];
     }
   }
 }
