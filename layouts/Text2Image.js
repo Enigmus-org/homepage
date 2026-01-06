@@ -25,7 +25,7 @@ const Text2Image = ({ data }) => {
         )}
 
 
-        <div className="content text-left">
+        <div className="content text-left mx-auto">
           <MDXRemote {...mdxContent} components={shortcodes} />
         </div>
       </div>
