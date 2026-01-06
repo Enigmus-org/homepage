@@ -2,16 +2,13 @@ import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import dateFormat from "@lib/utils/dateFormat";
 import { markdownify } from "@lib/utils/textConverter";
-import { DiscussionEmbed } from "disqus-react";
 import { MDXRemote } from "next-mdx-remote";
-import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
 import Post from "./partials/Post";
 import Sidebar from "./partials/Sidebar";
 import shortcodes from "./shortcodes/all";
-const { disqus } = config;
 const { meta_author } = config.metadata;
 
 const PostSingle = ({
@@ -25,8 +22,6 @@ const PostSingle = ({
 }) => {
   let { description, title, date, image, categories } = frontmatter;
   description = description ? description : content.slice(0, 120);
-
-  const { theme } = useTheme();
 
   return (
     <Base title={title} description={description}>
@@ -81,15 +76,6 @@ const PostSingle = ({
                   <MDXRemote {...mdxContent} components={shortcodes} />
                 </div>
               </article>
-              <div className="mt-16">
-                {disqus.enable && (
-                  <DiscussionEmbed
-                    key={theme}
-                    shortname={disqus.shortname}
-                    config={config.disqus.settings}
-                  />
-                )}
-              </div>
             </div>
             <Sidebar
               posts={posts.filter((post) => post.slug !== slug)}
