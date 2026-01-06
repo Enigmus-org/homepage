@@ -40,7 +40,7 @@ npm run lint     # ESLint
 - `/config/` - Site configuration (config.json, menu.json, theme.json, social.json)
 
 ### Configuration
-- `/config/config.json` - Site metadata, pagination (6 posts), widget settings, Disqus config
+- `/config/config.json` - Site metadata, pagination (6 posts), widget settings
 - `/config/menu.json` - Navigation structure (main/footer menus)
 - `/config/theme.json` - Colors and typography
 - `next.config.js` - Has `output: 'export'` for static generation
@@ -69,34 +69,25 @@ Content here...
 
 ## Visual Testing
 
-To build and visually test the static site:
+To visually test the site during development:
 
-1. **Build the static site**:
+1. **Start the development server**:
    ```bash
-   npm run build
+   npm run dev
    ```
+   This starts the Next.js dev server on port 3000 with hot reloading.
 
-2. **Start a local server** to serve the `/out` directory:
-   ```bash
-   cd /Users/pako/repo/enigmus-homepage/out && python3 -m http.server 3456 &
-   ```
-
-3. **Open the site** using Playwright MCP:
-   - Use `mcp__playwright__browser_navigate` to navigate to `http://localhost:3456`
+2. **Open the site** using Playwright MCP:
+   - Use `mcp__playwright__browser_navigate` to navigate to `http://localhost:3000`
    - Use `mcp__playwright__browser_snapshot` to get the page accessibility tree
    - Use `mcp__playwright__browser_take_screenshot` with `fullPage: true` for a visual screenshot
 
-4. **Test other pages** by navigating to paths like:
+3. **Test other pages** by navigating to paths like:
    - `/download` - Download page
    - `/ai-and-privacy` - AI and Privacy page
    - `/technology` - Technology page
    - `/posts` - Blog listing
    - `/posts/privacy-in-ai-matters` - Individual blog post
-
-5. **Stop the server** when done:
-   ```bash
-   pkill -f "python3 -m http.server 3456"
-   ```
 
 ## File Permissions
 
