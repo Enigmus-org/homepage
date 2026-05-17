@@ -1,100 +1,55 @@
 ---
 title: Privacy Policy
-image: /images/author.png
-description: "meta description"
+description: "Privacy policy for the Enigmus app and website"
 layout: default
 
 ---
 
-Effective Date: 01/01/2024
+Effective Date: 2026-05-17
 
-Enigmus ("us", "we", or "our") operates the Enigmus AI website and apps (the "Service").
+Enigmus ("we", "us", "our") is operated by RevoBolic LLC. This Privacy Policy explains what information the Enigmus app and the enigmus.cc website handle, and what we do — and do not do — with it.
 
-This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. We take your privacy seriously and will only use your personal data in accordance with this Privacy Policy.
+The short version: **Enigmus runs entirely on your device. We do not collect, transmit, store, or sell your conversations or personal information. Enigmus has no user accounts and no servers that receive your data.**
 
-### Information Collection and Use
+### The Enigmus App
 
-We collect several types of information for various purposes to provide and improve our Service to you.
+**On-device processing.** All chat inference runs locally on your iPhone, iPad, or Mac using Apple's MLX framework. Your prompts, the model's responses, and your conversation history never leave your device.
 
-Types of Data Collected:
+**No accounts.** Enigmus does not require sign-up, sign-in, or any personal information to use.
 
-Personal Data: While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:
+**No analytics or telemetry.** Enigmus does not include any analytics SDK, crash reporting service, advertising identifier, or telemetry of any kind. We have no way to observe how you use the app.
 
-- Email address
-- First name and last name
-- Phone number
-- Address, State, Province, ZIP/Postal code, City
-- Cookies and Usage Data
+**Local storage on your device.** The app stores the following on your device only:
 
- 
-Usage Data: We may also collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.
+- Conversation history (chat threads and messages), via Apple's SwiftData
+- App preferences (theme, tint color, font, haptics), via UserDefaults
+- Downloaded language models, in the app's Application Support directory (excluded from iCloud backup)
 
-Cookies Data: We use cookies and similar tracking technologies to track the activity on our Service and hold certain information.
+You can delete this data at any time by clearing chat threads in the app, uninstalling Enigmus, or resetting onboarding (which removes downloaded models).
 
-### Use of Data
+**Model downloads.** A default language model is bundled with the app. If you choose to download additional models, the app fetches them directly from the public [Hugging Face](https://huggingface.co) MLX Community repositories. When you initiate a download, Hugging Face will receive a standard HTTPS request from your device (including your IP address) as required for any web download. We do not control or receive this data. Review Hugging Face's privacy policy for their practices. No download happens unless you tap to start one.
 
-We use the collected data for various purposes:
+**Permissions.** Enigmus does not request access to your photos, contacts, location, camera, microphone, or files outside its own sandbox. The app's PrivacyInfo manifest declares the use of `UserDefaults` (for settings) and the `DiskSpace` API (to check available space before downloading a model) — both are local operations with no external transmission.
 
-To provide and maintain our Service
-To notify you about changes to our Service
-To allow you to participate in interactive features of our Service
-To provide customer support
-To gather analysis or valuable information so that we can improve our Service
-To monitor the usage of our Service
-To detect, prevent and address technical issues
-Transfer of Data
+### The Enigmus Website (enigmus.cc)
 
-Your information, including Personal Data, may be transferred to — and maintained on — computers located outside of your state, province, country, or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.
+The website is a static informational site. It does not use cookies, analytics, advertising trackers, fingerprinting, or any third-party scripts that collect visitor data. Standard web server logs (such as IP addresses for incoming requests) may be retained by our hosting provider for operational and security purposes; we do not actively use, share, or correlate this data.
 
-If you are located outside the United States and choose to provide information to us, please note that we transfer the data, including Personal Data, to the United States and process it there.
+### Children
 
-Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.
+Enigmus is not directed at children under 13 and we do not knowingly collect any information from anyone. Because the app runs entirely on-device with no accounts, no data is transmitted to us regardless of the user's age.
 
-### Disclosure of Data
+### Third Parties
 
-We may disclose your Personal Data in the good faith belief that such action is necessary to:
+We do not share, sell, or transfer any user data to third parties, because we do not have any user data. The only third-party interactions are:
 
-Comply with a legal obligation
-Protect and defend our rights or property
-Prevent or investigate possible wrongdoing in connection with the Service
-Protect the personal safety of users of the Service or the public
-Protect against legal liability
-Security of Data
+- Apple (App Store distribution, system services such as iCloud backup if enabled — covered by Apple's privacy practices)
+- Hugging Face (only if you initiate a model download — covered by Hugging Face's privacy policy)
 
-The security of your data is important to us, but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
+### Changes to This Policy
 
-### Service Providers
+If this policy changes, the updated version will be posted at this URL with a new effective date.
 
-We may employ third party companies and individuals to facilitate our Service ("Service Providers"), to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.
+### Contact
 
-These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
-
-### Links to Other Sites
-
-Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
-
-We have no control over and assume no responsibility for the content, privacy policies, or practices of any third party sites or services.
-
-### Children's Privacy
-
-Our Service does not address anyone under the age of 18 ("Children").
-
-We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your child has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.
-
-### Changes to This Privacy Policy
-
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
-
-We will let you know via email and/or a prominent notice on our Service, prior to the change becoming effective and update the "effective date" at the top of this Privacy Policy.
-
-You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
-
-### Contact Us
-
-If you have any questions about this Privacy Policy, please contact us:
-
-By email: TBD
-
-By visiting this page on our website: TBD
-
-By mail: TBD
+For privacy-related questions, contact us at: **privacy@enigmus.cc**
