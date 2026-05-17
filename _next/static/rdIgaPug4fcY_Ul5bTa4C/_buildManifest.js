@@ -6,7 +6,7 @@ self.__BUILD_MANIFEST = {
     "static/chunks/1175086ya2nml.js"
   ],
   "/[regular]": [
-    "static/chunks/0i65pup66zm8..js"
+    "static/chunks/02ypdzj.8x3rc.js"
   ],
   "/_error": [
     "static/chunks/0-wtiure~.gxc.js"
@@ -24,7 +24,7 @@ self.__BUILD_MANIFEST = {
     "static/chunks/0spjl-wc8d.pg.js"
   ],
   "/posts/[single]": [
-    "static/chunks/0oeb3d.y7fjr_.js"
+    "static/chunks/0fnrq2wi6ymum.js"
   ],
   "/search": [
     "static/chunks/0619359n9r4b7.js"
