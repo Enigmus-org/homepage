@@ -52,4 +52,4 @@ If this policy changes, the updated version will be posted at this URL with a ne
 
 ### Contact
 
-For privacy-related questions, contact us at: **privacy@enigmus.cc**
+For privacy-related questions, contact us at: **hello@enigmus.cc**
