@@ -52,4 +52,4 @@ If this policy changes, the updated version will be posted at this URL with a ne
 
 ### Contact
 
-For privacy-related questions, contact us at: **hello@enigmus.cc**
+For privacy-related questions, contact us at <RevealEmail d="113,110,117,117,120,73,110,119,114,112,118,126,124,55,108,108" o="9" />

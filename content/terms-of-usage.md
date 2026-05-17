@@ -85,7 +85,7 @@ Any dispute, claim, or controversy arising out of or relating to these Terms or 
 
 If any portion of this section is found unenforceable, the unenforceable portion shall be severed and the remainder shall continue to apply, except that if the class-action waiver is found unenforceable, the entire arbitration section shall be void and the Dispute shall be resolved in the courts identified in the Governing Law section.
 
-You may opt out of arbitration by sending a written opt-out notice to **hello@enigmus.cc** within thirty (30) days of first accepting these Terms. The notice must include your name and a clear statement that you wish to opt out of arbitration.
+You may opt out of arbitration by sending a written opt-out notice to the address shown below within thirty (30) days of first accepting these Terms. The notice must include your name and a clear statement that you wish to opt out of arbitration.
 
 ### Miscellaneous
 
@@ -107,4 +107,4 @@ We may update these Terms from time to time. The updated version will be posted 
 
 ### Contact
 
-Questions about these Terms: **hello@enigmus.cc**
+Questions about these Terms (and arbitration opt-out notices): <RevealEmail d="113,110,117,117,120,73,110,119,114,112,118,126,124,55,108,108" o="9" />
