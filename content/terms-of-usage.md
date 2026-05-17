@@ -1,161 +1,110 @@
 ---
 title: Terms of Use
-description: "Terms of Use"
+description: "Terms of use for the Enigmus app and website"
 layout: default
 
 ---
 
-Effective Date: 01/01/2024
+Effective Date: 2026-05-17
 
-Please read these Terms of Use ("Terms", "Terms of Use") carefully before using the Enigmus website and apps (the "Service") operated by Enigmus ("us", "we", or "our").
+These Terms of Use ("Terms") govern your use of the Enigmus app and the enigmus.cc website (together, the "Service"), provided by RevoBolic LLC ("we", "us", "our"). By installing, opening, or otherwise using the Service, you agree to these Terms. If you do not agree, do not use the Service.
 
-Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.
+The Service is provided **free of charge**. The protective terms below reflect that you are receiving the Service at no cost and assuming the corresponding risk.
 
-By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you may not access the Service.
+### License
 
-### Content
+Enigmus is proprietary software licensed, not sold. We grant you a personal, limited, non-exclusive, non-transferable, non-sublicensable, **revocable** license to install and use the app on Apple devices that you own or control, solely for personal, non-commercial use, and subject to these Terms and Apple's Licensed Application End User License Agreement.
 
-Our Service allows you to create and manipulate images using generative AI algorithms. You are solely responsible for any content, images, or other materials that you upload, post, or otherwise make available through the Service ("Content").
+You may not, in whole or in part: (a) copy, distribute, sublicense, rent, lease, lend, sell, or transfer the Service; (b) modify, adapt, translate, or create derivative works; (c) reverse engineer, decompile, or disassemble the Service except where, and only to the extent that, applicable law expressly permits despite this limitation; (d) remove or alter any proprietary notices; (e) use the Service to develop a competing product; or (f) use the Service in violation of any applicable law.
 
-You retain all rights in, and are solely responsible for, the Content that you create and manipulate through the Service. We do not claim ownership of any Content that you create or manipulate using our Service.
+### Revocation; Modification; Discontinuation
 
-By uploading, posting, or otherwise making available Content through the Service, you grant us a non-exclusive, transferable, sub-licensable, royalty-free, worldwide license to use, copy, modify, create derivative works based on, distribute, publicly display, publicly perform, and otherwise exploit in any manner such Content in all formats and distribution channels now known or hereafter devised (including in connection with the Service and our business and on third-party sites and services), without further notice to or consent from you, and without the requirement of payment to you or any other person or entity.
+We may suspend, revoke, or terminate your license to use the Service **at any time, for any reason or no reason, with or without notice and without liability** to you. We may also modify, update, replace, withdraw, or discontinue the Service (or any part or feature of it) at any time without notice and without obligation to provide any replacement, refund, or compensation. Upon termination, you must cease all use of the Service and delete all copies in your possession.
 
-You represent and warrant that: (i) the Content is yours (you own it) or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your Content on or through the Service does not violate the privacy rights, publicity rights, copyrights, contract rights, or any other rights of any person.
+### AI Output Disclaimer; No Reliance
 
-### Accounts
+Enigmus runs language models locally on your device. Model outputs are generated automatically and may be **inaccurate, incomplete, biased, fabricated, offensive, or otherwise inappropriate**. Outputs do not represent our views and are not reviewed by us.
 
-When you create an account with us, you must provide accurate and complete information. You are responsible for maintaining the confidentiality of your account login information and are fully responsible for all activities that occur under your account.
+**Do not rely on model output for medical, legal, financial, safety-critical, professional, or any consequential decisions.** You are solely responsible for evaluating the accuracy, suitability, and consequences of any output and for any action you take based on it. You assume all risk arising from your use of model outputs.
 
-We reserve the right to suspend or terminate your account at any time without prior notice or liability for any reason, including, but not limited to, if we determine that you have violated these Terms or any applicable law.
+### Acceptable Use
 
-### Prohibited Uses
+You agree not to use the Service to (a) violate any law or third-party right; (b) generate content that is illegal, harassing, defamatory, hateful, threatening, or that depicts the sexual exploitation of minors; (c) infringe intellectual property rights; (d) attempt to disrupt, circumvent, or compromise the security of the Service or any device, network, or system; (e) use the Service in any embargoed country or in violation of any export-control or sanctions law; or (f) use the Service in any high-risk activity where failure could result in death, personal injury, or environmental damage.
 
-You may use the Service only for lawful purposes and in accordance with these Terms. You agree not to use the Service:
+### Third-Party Components and Services
 
-In any way that violates any applicable federal, state, local, or international law or regulation (including, without limitation, any laws regarding the export of data or software to and from the United States or other countries).
-For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way by exposing them to inappropriate content or otherwise.
-To transmit, or procure the sending of, any advertising or promotional material, including any "junk mail," "chain letter," "spam," or any other similar solicitation.
-To impersonate or attempt to impersonate the Company, a Company employee, another user, or any other person or entity (including, without limitation, by using email addresses or screen names associated with any of the foregoing).
-To engage in any other conduct that restricts or inhibits anyone's use or enjoyment of the Service, or which, as determined by us, may harm the Company or users of the Service or expose them to liability.
-Intellectual Property
+The Service incorporates Apple's MLX framework and other open-source components. If you choose to download additional language models, the app fetches them from third-party repositories such as Hugging Face. Your use of any third-party service is governed by that service's own terms and privacy practices, and we make no representations or warranties about those services. We are not responsible for any third-party content, model weights, or behavior.
 
-The Service and its entire contents, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof), are owned by the Company, its licensors, or other providers of such material and are protected by United States and international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
+### Assumption of Risk
 
-These Terms permit you to use the Service for your personal, non-commercial use only. You must not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Service, except as follows:
+You acknowledge that the Service is experimental in nature, that on-device machine-learning output is non-deterministic, and that **you use the Service at your own risk**. You are responsible for your device, your data, your backups, and any consequences of running the Service on your hardware (including but not limited to thermal stress, battery wear, storage consumption, and data loss).
 
-Your computer may temporarily store copies of such materials in RAM incidental to your accessing and viewing those materials.
-You may store files that are automatically cached by your Web browser for display enhancement purposes.
-You may print or download one copy of a reasonable number of pages of the Service for your own personal, non-commercial use and not for further reproduction, publication, or distribution.
-If we provide desktop, mobile, or other applications for download, you may download a single copy to your computer or mobile device solely for your own personal, non-commercial use, and not for further reproduction, publication, or distribution. If we provide social media features with certain content, you may take such actions as are enabled by such features.
+### AS-IS; NO WARRANTY
 
-You must not:
+THE SERVICE IS PROVIDED **"AS IS" AND "AS AVAILABLE"**, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, ACCURACY, QUIET ENJOYMENT, AND ANY WARRANTIES ARISING FROM COURSE OF DEALING OR USAGE OF TRADE.
 
-Modify copies of any materials from this site.
-Use any illustrations, photographs, video or audio sequences, or any graphics separately from the accompanying text.
-Delete or alter any copyright, trademark, or other proprietary rights notices from copies of materials from this site.
-If you print, copy, modify, download, or otherwise use or provide any other person with access to any part of the Service in breach of the Terms, your right to use the Service will stop immediately, and you must, at our option, return or destroy any copies of the materials you have made. Any unauthorized use may also violate applicable laws, including without limitation copyright and trademark laws and applicable communications regulations and statutes.
+WE DO NOT WARRANT THAT (a) THE SERVICE WILL MEET YOUR REQUIREMENTS; (b) THE SERVICE WILL BE UNINTERRUPTED, TIMELY, SECURE, OR ERROR-FREE; (c) ANY MODEL OUTPUT WILL BE ACCURATE, RELIABLE, OR APPROPRIATE FOR ANY PURPOSE; OR (d) ANY DEFECTS WILL BE CORRECTED. NO ADVICE OR INFORMATION OBTAINED FROM US OR THROUGH THE SERVICE SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED HEREIN.
 
-### Disclaimer of Warranties
+Some jurisdictions do not allow the exclusion of certain warranties; in such jurisdictions, the foregoing exclusions apply to the fullest extent permitted by law.
 
-The Service is provided "AS IS" and "AS AVAILABLE" without any representations or warranties, express or implied. We do not warrant that the Service will be uninterrupted, timely, secure, or error-free, or that any defects will be corrected. We do not warrant that the results that may be obtained from the use of the Service will be accurate or reliable.
+### LIMITATION OF LIABILITY
 
-We expressly disclaim all warranties of any kind, whether express or implied, including, but not limited to, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL REVOBOLIC LLC, ITS AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, SUPPLIERS, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR RELATING TO YOUR USE OF OR INABILITY TO USE THE SERVICE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
-### Limitation of Liability
+BECAUSE THE SERVICE IS PROVIDED FREE OF CHARGE, OUR TOTAL CUMULATIVE LIABILITY ARISING OUT OF OR RELATING TO THESE TERMS OR THE SERVICE, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, OR OTHERWISE, SHALL NOT EXCEED **U.S. $25 (TWENTY-FIVE U.S. DOLLARS)**.
 
-In no event shall the Company, its directors, officers, employees, affiliates, agents, contractors, suppliers, licensors, or service providers be liable for any direct, indirect, incidental, consequential, special, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service, (ii) any conduct or content of any third party on the Service, (iii) any content obtained from the Service, or (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.
+THESE LIMITATIONS APPLY EVEN IF ANY LIMITED REMEDY FAILS OF ITS ESSENTIAL PURPOSE. Some jurisdictions do not allow the limitation of liability for incidental or consequential damages; in such jurisdictions our liability is limited to the greatest extent permitted by law.
 
 ### Indemnification
 
-You agree to indemnify, defend, and hold harmless the Company, its directors, officers, employees, affiliates, agents, contractors, licensors, and service providers from any and all claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys ' fees) arising out of or relating to your violation of these Terms or your use of the Service, including, but not limited to:
+You agree to indemnify, defend, and hold harmless RevoBolic LLC, its affiliates, and their respective officers, directors, employees, and agents from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or relating to (a) your use or misuse of the Service; (b) your violation of these Terms; (c) your violation of any law or third-party right; or (d) any content or output you generate, share, or rely upon.
 
-Your use of any content available on the Service, including any content that you upload, create, modify, distribute, or otherwise make available through the Service.
-Your violation of any third-party right, including without limitation any intellectual property, privacy, or publicity right.
-Your violation of any law, rule, or regulation.
-Any claim or damage that arises from your use of any information, data, or material from the Service.
-We reserve the right to assume the exclusive defense and control of any matter otherwise subject to indemnification by you, in which event you will cooperate with us in asserting any available defenses.
+### Apple-Specific Terms
 
-### Termination
+You acknowledge that these Terms are between you and RevoBolic LLC, and not with Apple Inc. ("Apple"). Apple is not responsible for the Service or its content. Apple has no obligation to provide any maintenance or support services for the Service. In the event of any failure of the Service to conform to any applicable warranty, you may notify Apple, and Apple will refund any purchase price (if any) for the app to you; to the maximum extent permitted by applicable law, Apple has no other warranty obligation with respect to the Service. Any product-liability, intellectual-property-infringement, or other claims arising from your use of the Service are between you and RevoBolic LLC, not Apple. You represent that you are not located in a country subject to a U.S. Government embargo or designated as a "terrorist supporting" country, and that you are not on any U.S. Government list of prohibited or restricted parties. **Apple and its subsidiaries are third-party beneficiaries of these Terms** and, upon your acceptance of these Terms, will have the right (and will be deemed to have accepted the right) to enforce these Terms against you as a third-party beneficiary.
 
-We may terminate or suspend your access to all or any part of the Service at any time, with or without cause, with or without notice, effective immediately. If you wish to terminate these Terms, you may discontinue using the Service.
+### Export Compliance
 
-All provisions of these Terms, which by their nature should survive termination, shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.
+You may not use, export, re-export, import, or transfer the Service except as authorized by U.S. law, the laws of the jurisdiction in which you obtained the Service, and any other applicable laws. In particular, the Service may not be exported or re-exported (a) into any U.S.-embargoed country, or (b) to anyone on a U.S. Government list of prohibited or restricted parties.
 
-### Governing Law and Jurisdiction
+### Trademarks
 
-These Terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.
+"Enigmus", "RevoBolic", and any associated logos are trademarks of RevoBolic LLC. These Terms do not grant you any right to use our trademarks, trade names, service marks, or logos without our prior written consent.
 
-Any legal suit, action, or proceeding arising out of, or related to, these Terms or the Service shall be instituted exclusively in the federal courts of the United States or the courts of the State of California in each case located in San Francisco County. You waive any and all objections to the exercise of jurisdiction over you by such courts and to venue in such courts.
+### Governing Law; Venue
 
-### Entire Agreement
+These Terms are governed by and construed under the laws of the **State of Wyoming, USA**, without regard to its conflict-of-laws principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply. Subject to the arbitration section below, you agree to the exclusive jurisdiction and venue of the state and federal courts located in Wyoming for any dispute that is not subject to arbitration.
 
-These Terms and our Privacy Policy constitute the sole and entire agreement between you and the Company regarding the Service and supersede all prior and contemporaneous understandings, agreements, representations, and warranties, both written and oral, regarding the Service.
+### Binding Arbitration; Class Action Waiver
 
-### No Waiver
+**Please read this section carefully — it affects your legal rights.**
 
-Our failure to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision.
+Any dispute, claim, or controversy arising out of or relating to these Terms or the Service (a "Dispute") shall be resolved by **binding individual arbitration** administered by the American Arbitration Association (AAA) under its Consumer Arbitration Rules, rather than in court, except that you or we may bring an individual claim in small-claims court if it qualifies. The arbitration shall be conducted in Wyoming or, at your election, by telephone or written submissions. The arbitrator's decision shall be final and binding. Judgment on the award may be entered in any court of competent jurisdiction.
 
-If any provision of these Terms is held to be invalid or unenforceable by a court or other tribunal of competent jurisdiction, the remaining provisions of these Terms will remain in full force and effect.
+**You and we each waive any right to a jury trial.** **You and we each agree that any Dispute shall be brought solely in an individual capacity, and not as a plaintiff or class member in any purported class, collective, consolidated, or representative proceeding.** The arbitrator may not consolidate more than one person's claims and may not preside over any form of representative or class proceeding.
 
-### Assignment
+If any portion of this section is found unenforceable, the unenforceable portion shall be severed and the remainder shall continue to apply, except that if the class-action waiver is found unenforceable, the entire arbitration section shall be void and the Dispute shall be resolved in the courts identified in the Governing Law section.
 
-These Terms and any rights and licenses granted hereunder, may not be transferred or assigned by you, but may be assigned by us without restriction or notification.
+You may opt out of arbitration by sending a written opt-out notice to **support@enigmus.cc** within thirty (30) days of first accepting these Terms. The notice must include your name and a clear statement that you wish to opt out of arbitration.
 
-### Force Majeure
+### Miscellaneous
 
-We shall not be liable for any failure to perform our obligations hereunder where such failure results from any cause beyond our reasonable control, including, without limitation, mechanical, electronic, or communications failure or degradation.
+**Entire Agreement.** These Terms, together with our Privacy Policy and Apple's Licensed Application End User License Agreement, constitute the entire agreement between you and us regarding the Service and supersede any prior agreements.
 
-### No Agency
+**Severability.** If any provision of these Terms is held to be unenforceable, that provision shall be modified to the minimum extent necessary to make it enforceable, or, if it cannot be modified, severed; the remaining provisions shall remain in full force and effect.
 
-No agency, partnership, joint venture, or employment relationship is created as a result of these Terms, and you may not make any representations on our behalf.
+**No Waiver.** Our failure to enforce any right or provision of these Terms shall not be a waiver of that right or provision.
 
-### Headings
+**Assignment.** You may not assign or transfer these Terms, by operation of law or otherwise, without our prior written consent. Any attempted assignment without consent is void. We may assign these Terms freely, in whole or in part.
 
-The section titles in these Terms are for convenience only and have no legal or contractual effect.
+**Force Majeure.** We shall not be liable for any delay or failure to perform resulting from causes beyond our reasonable control.
 
-### Survival
+**No Third-Party Beneficiaries.** Except for Apple as set out above, there are no third-party beneficiaries of these Terms.
 
-All provisions of these Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.
+### Changes
 
-### User-Generated Content
+We may update these Terms from time to time. The updated version will be posted at this URL with a new effective date. Material changes will be reflected by an updated effective date. Your continued use of the Service after changes become effective constitutes your acceptance of the updated Terms.
 
-The Service may allow you to submit, upload, publish, or otherwise make available content, including but not limited to text, images, audio, video, and other materials ("User Content"). You retain ownership of any intellectual property rights that you hold in the User Content, but you grant us a non-exclusive, royalty-free, transferable, sub-licensable, worldwide license to use, reproduce, distribute, prepare derivative works of, display, and perform your User Content in connection with the Service and our business, including without limitation for promoting and redistributing part or all of the Service (and derivative works thereof) in any media formats and through any media channels.
+### Contact
 
-You represent and warrant that you have all rights, licenses, consents, and releases that are necessary to grant to us the license above and that the User Content and your use of the Service will not infringe or violate any third-party rights, including without limitation any intellectual property, privacy, or publicity rights. We reserve the right to remove any User Content from the Service at any time and for any reason, including without limitation if it violates these Terms or our policies.
-
-### Links to Third-Party Websites or Resources
-
-The Service may contain links to third-party websites or resources. We provide these links only as a convenience and are not responsible for the content, products, or services on or available from those websites or resources or links displayed on such websites. You acknowledge sole responsibility for and assume all risk arising from your use of any third-party websites or resources.
-
-### Disclaimer of Warranties
-
-The Service is provided "as is," without warranty of any kind, either express or implied, including without limitation any warranty for information, services, uninterrupted access, or products provided through or in connection with the Service, including without limitation the software licensed to you and the results obtained through the Service. Specifically, we disclaim any and all warranties, including without limitation: 1) Any warranties concerning the availability, accuracy, usefulness, or content of information, products, or services; and 2) Any warranties of title, warranty of non-infringement, warranties of merchantability, or fitness for a particular purpose. This disclaimer of liability applies to any damages or injury caused by any failure of performance, error, omission, interruption, deletion, defect, delay in operation or transmission, computer virus, communication line failure, theft, or destruction or unauthorized access to, alteration of, or use of record, whether for breach of contract, tortious behavior, negligence, or under any other cause of action.
-
-### Limitation of Liability
-
-To the fullest extent permitted by applicable law, in no event shall the Company, its affiliates, officers, directors, employees, agents, licensors, or service providers be liable for any direct, indirect, incidental, consequential, special, punitive, or exemplary damages, including without limitation damages for loss of profits, revenue, data, use, goodwill, or other intangible losses arising out of or relating to your use of the Service, whether based on warranty, contract, tort, negligence, strict liability, or any other legal theory, even if the Company has been advised of the possibility of such damages.
-
-Some jurisdictions do not allow the exclusion or limitation of liability for consequential or incidental damages, so the above limitation may not apply to you.
-
-### Waiver and Severability
-
-Our failure to enforce any right or provision of these Terms will not be deemed a waiver of such right or provision. If any provision of these Terms is held to be invalid or unenforceable by a court or other tribunal of competent jurisdiction, the remaining provisions of these Terms will remain in full force and effect.
-
-These Terms constitute the entire agreement between you and us regarding the Service and supersede all prior or contemporaneous understandings or agreements, whether written or oral, regarding the Service.
-
-### Governing Law and Dispute Resolution
-
-These Terms and any action related thereto will be governed by the laws of the State of [insert state], without regard to its conflict of law provisions. Any dispute arising from or relating to these Terms or the Service shall be resolved in accordance with the dispute resolution provisions outlined in our Privacy Policy.
-
-### Changes to These Terms
-
-We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
-
-By continuing to access or use the Service after any revisions become effective, you agree to be bound by the updated Terms. If you do not agree to the new Terms, you are no longer authorized to use the Service.
-
-### Contact Us
-
-If you have any questions about these Terms, please contact us at TBD.
-
-
+Questions about these Terms: **support@enigmus.cc**
