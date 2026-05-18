@@ -5,7 +5,7 @@ __turbopack_load_page_chunks__("/posts/[single]", [
   "static/chunks/10q5-h4x9svgy.js",
   "static/chunks/0holq5uq.k4ou.js",
   "static/chunks/0s0wrajdvy~h5.js",
-  "static/chunks/0aw52xyoa._m7.js",
+  "static/chunks/03e3ekp15su1x.js",
   "static/chunks/003-p3wkxv~--.css",
-  "static/chunks/turbopack-17m5w7fmc2of8.js"
+  "static/chunks/turbopack-0ous_cob2xtc6.js"
 ])
