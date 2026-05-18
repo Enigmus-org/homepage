@@ -7,8 +7,6 @@ layout: default
 
 Enigmus is private, on-device AI for iPhone, iPad, and Mac. The assets below are free to use for editorial, review, or press coverage of the app. Please don't modify the marks (no recolors, distortions, or added elements).
 
-For press inquiries: <RevealEmail d="113,110,117,117,120,73,110,119,114,112,118,126,124,55,108,108" o="9" />
-
 ### App icon
 
 The full Enigmus app icon — white lock with chat-bubble keyhole on a blue gradient, iOS-style rounded square.

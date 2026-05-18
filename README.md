@@ -44,9 +44,11 @@ npm run lint
 # Production build
 npm run build
 
-# Static export (outputs to /out for GitHub Pages)
+# Static export to /out (consumed by Netlify build + the deploy.sh GitHub Pages fallback)
 npm run export
 ```
+
+**Production hosting:** Netlify, fronted by Cloudflare (custom domain `enigmus.cc`). Netlify auto-builds on push to `main`. The `deploy.sh` script also publishes to a `gh-pages` branch as a backup path.
 
 ## Project Structure
 
@@ -54,10 +56,43 @@ npm run export
 /content/        # Markdown content (pages and blog posts)
 /config/         # Site configuration (menu, theme, social)
 /pages/          # Next.js routes
-/layouts/        # Page layouts and components
+/layouts/        # Page layouts and shortcode components
 /lib/            # Content parsing utilities
-/public/         # Static assets
+/public/         # Static assets (favicon, logos, press kit, OG images)
+/public/press/   # Press kit assets, served at /press/*
 ```
+
+See [CLAUDE.md](CLAUDE.md) for content pipeline internals (`[regular].js` routing, layouts, frontmatter, taxonomy parsing).
+
+## Published Pages
+
+| URL | Source | Purpose |
+|---|---|---|
+| `/` | `pages/index.js` | Landing page |
+| `/download` | `content/download.md` | Download / availability |
+| `/ai-and-privacy` | `content/ai-and-privacy.md` | Privacy positioning |
+| `/technology` | `content/technology.md` | Technical overview |
+| `/contact` | `content/contact.md` | Contact form (`layout: contact`) |
+| `/privacy-policy` | `content/privacy-policy.md` | Privacy policy — covers both app and site |
+| `/terms-of-usage` | `content/terms-of-usage.md` | Terms of Use — AS-IS disclaimer, AI output caveats, Wyoming jurisdiction, binding arbitration with 30-day opt-out |
+| `/press-kit` | `content/press-kit.md` | Brand assets and press resources |
+| `/posts/<slug>` | `content/posts/*.md` | Blog posts |
+| `/categories/<cat>` | derived | Category listings |
+
+To add a new regular page: drop a markdown file in `content/` with title/description/layout frontmatter — it routes automatically via `pages/[regular].js`.
+
+## Press Kit
+
+Public-facing brand assets live in `public/press/` and are listed (with previews and download links) on [/press-kit](https://enigmus.cc/press-kit).
+
+**Naming convention:** prefix every file with its source dimension in pixels, e.g. `1024-app-icon.png`, `586-lock-mark.svg`. This keeps the file's size obvious in the URL and in `content/press-kit.md` listings.
+
+**Adding new assets:**
+1. Drop file in `public/press/` with `{size}-{name}.{ext}`
+2. Add a row in `content/press-kit.md` with a preview and download link
+3. Commit + push → Netlify rebuilds → asset available at `https://enigmus.cc/press/<filename>`
+
+Do not commit Photoshop / Illustrator / Sketch source files (`.psd`, `.ai`, `.sketch`) to `public/press/` — those are private working files and should stay in the `enigmus-assets/` working folder.
 
 ## Color Guide
 
