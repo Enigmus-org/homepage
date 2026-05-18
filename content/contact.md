@@ -1,20 +1,9 @@
 ---
-title: "Let’s, Talk </br> About You"
-description: "meta description"
-phone: "+211234565523"
-mail: "info@email.com"
-location: "9567 Turner Trace Apt. BC C3G8A4"
-form_action: "#"
+title: "the Enigmus team would love your feedback and suggestions"
+description: "press, security disclosures, or just to say hi."
 layout: "contact"
-addresses:
-  - icon: FaUserAlt
-    content: +211234565523
-    link: tel:+211234565523
-  - icon: FaMapMarkerAlt
-    content: info@email.com
-    link: mailto:info@email.com
-  - icon: FaLocation
-    content: 9567 Turner Trace Apt. BC C3G8A4
+email_d: "113,110,117,117,120,73,110,119,114,112,118,126,124,55,108,108"
+email_o: "9"
 
 draft: false
 ---
