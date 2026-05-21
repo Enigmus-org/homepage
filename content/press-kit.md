@@ -9,11 +9,18 @@ Enigmus is private, on-device AI for iPhone, iPad, and Mac. The assets below are
 
 ### App icon
 
-The full Enigmus app icon — white lock with chat-bubble keyhole on a blue gradient, iOS-style rounded square.
+The full Enigmus app icon — white lock with chat-bubble keyhole on a blue gradient, iOS-style rounded square. Transparent outside the rounded square so it sits cleanly on any background.
 
-![Enigmus app icon](/press/1024-app-icon.png)
+![Enigmus app icon](/press/enigmus-app-icon-512.png)
 
-- **PNG (1024×1024)** — [/press/1024-app-icon.png](/press/1024-app-icon.png)
+- **PNG (1024×1024, transparent)** — [/press/enigmus-app-icon-1024.png](/press/enigmus-app-icon-1024.png)
+- **PNG (512×512, transparent)** — [/press/enigmus-app-icon-512.png](/press/enigmus-app-icon-512.png)
+- **PNG (256×256, transparent)** — [/press/enigmus-app-icon-256.png](/press/enigmus-app-icon-256.png)
+- **PNG (128×128, transparent)** — [/press/enigmus-app-icon-128.png](/press/enigmus-app-icon-128.png)
+- **PNG (64×64, transparent)** — [/press/enigmus-app-icon-64.png](/press/enigmus-app-icon-64.png)
+- **PNG (32×32, transparent)** — [/press/enigmus-app-icon-32.png](/press/enigmus-app-icon-32.png)
+- **PNG (16×16, transparent)** — [/press/enigmus-app-icon-16.png](/press/enigmus-app-icon-16.png)
+- **PNG (1024×1024, opaque, legacy)** — [/press/1024-app-icon.png](/press/1024-app-icon.png)
 
 ### Lock mark
 
