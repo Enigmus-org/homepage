@@ -14,6 +14,8 @@
 
 Homepage and blog for Enigmus AI - a privacy-focused AI platform that runs locally on user devices.
 
+The Enigmus app is **live on the App Store for iPhone and iPad** ([App Store listing](https://apps.apple.com/us/app/enigmus/id6771532268)); the Mac version is coming soon. App Store marketing copy lives in [docs/app-store-listing.md](docs/app-store-listing.md).
+
 ## Key Features
 
 - Static site generation with Next.js
@@ -60,6 +62,7 @@ npm run export
 /lib/            # Content parsing utilities
 /public/         # Static assets (favicon, logos, press kit, OG images)
 /public/press/   # Press kit assets, served at /press/*
+/docs/           # Internal reference docs (App Store listing copy, not published)
 ```
 
 See [CLAUDE.md](CLAUDE.md) for content pipeline internals (`[regular].js` routing, layouts, frontmatter, taxonomy parsing).

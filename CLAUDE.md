@@ -8,6 +8,8 @@ Enigmus homepage and blog - a Next.js static site for a privacy-focused AI compa
 
 **Live site**: https://enigmus.cc
 
+**App status**: The Enigmus app launched on the App Store for iPhone and iPad ([App Store listing](https://apps.apple.com/us/app/enigmus/id6771532268)). The Mac version is still coming soon. The homepage download button and `content/download.md` link directly to the App Store. App Store marketing copy is kept in `docs/app-store-listing.md` (App Store voice, exempt from the site writing style below).
+
 ## Commands
 
 ```bash

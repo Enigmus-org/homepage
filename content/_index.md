@@ -5,9 +5,9 @@ banner:
   content: Private AI for **Mac**, **iPhone**, and **iPad**—powered by Apple's MLX framework. All data stays **private** and **secure** through **local** processing on-device. <br /> <br /> **Free** and **built for privacy**.
   image: /images/chat_1280.jpg
   button:
-    label: Download (coming soon)
-    link: download
-    rel: ""
+    label: Download on the App Store (iOS)
+    link: https://apps.apple.com/us/app/enigmus/id6771532268
+    rel: "noopener noreferrer"
 
 featured_posts:
   enable: false
