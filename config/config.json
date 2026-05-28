@@ -27,7 +27,8 @@
     "meta_description": "Enigmus brings private, local AI to Mac, iPhone, and iPad. Powered by Apple's MLX framework, all processing runs on-device. No cloud, no data sharing.",
     "meta_keywords": "local ai, private ai, enigmus, local ai for ios, local ai for macos, on-device ai, mlx, apple silicon ai, offline ai",
     "twitter_site": "@enigmus_ai",
-    "site_name": "Enigmus"
+    "site_name": "Enigmus",
+    "apple_app_id": "6771532268"
   },
   "widgets": {
     "about": {

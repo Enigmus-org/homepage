@@ -14,7 +14,7 @@ const Base = ({
   canonical,
   children,
 }) => {
-  const { meta_image, meta_author, meta_description, meta_keywords, twitter_site, site_name } = config.metadata;
+  const { meta_image, meta_author, meta_description, meta_keywords, twitter_site, site_name, apple_app_id } = config.metadata;
   const { base_url } = config.site;
   const router = useRouter();
 
@@ -30,6 +30,11 @@ const Base = ({
 
         {/* canonical url */}
         {canonical && <link rel="canonical" href={canonical} itemProp="url" />}
+
+        {/* iOS Smart App Banner (shows in Safari on iOS) */}
+        {apple_app_id && (
+          <meta name="apple-itunes-app" content={`app-id=${apple_app_id}`} />
+        )}
 
         {/* noindex robots */}
         {noindex && <meta name="robots" content="noindex,nofollow" />}
