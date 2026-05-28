@@ -97,6 +97,30 @@ Public-facing brand assets live in `public/press/` and are listed (with previews
 
 Do not commit Photoshop / Illustrator / Sketch source files (`.psd`, `.ai`, `.sketch`) to `public/press/` — those are private working files and should stay in the `enigmus-assets/` working folder.
 
+## Launch Post Screenshots
+
+App screenshots used in the [Enigmus 1.0 launch post](content/posts/enigmus-1-0-launch.md). Originals are the framed iPhone mockups in `../enigmus-assets/Enigmus-screenshots-iphone/` (1242×2688 PNG); the published versions were converted to webp and resized to 720px wide with `cwebp -q 82 -resize 720 0 <src>.png -o public/images/<name>.webp`.
+
+| Image | Source | Feature shown |
+|---|---|---|
+| [launch-privacy.webp](public/images/launch-privacy.webp) | `ios_1_2.png` | Onboarding — private / local-only / open-weights principles |
+| [launch-chat.webp](public/images/launch-chat.webp) | `ios_1_3.png` | Multi-turn chat, streaming, works offline |
+| [launch-models.webp](public/images/launch-models.webp) | `ios_1_4.png` | RAM-aware model installer (Qwen3 from Hugging Face) |
+| [launch-benchmark.webp](public/images/launch-benchmark.webp) | `ios_1_5.png` | Per-model benchmark — load time, memory, tokens/sec |
+| [launch-math.webp](public/images/launch-math.webp) | `ios_1_6.png` | Markdown, code, and LaTeX math rendering |
+| [launch-dark-mode.webp](public/images/launch-dark-mode.webp) | `ios_1_7.png` | Dark mode / adaptive layout |
+
+The post hero is [launch-hero.webp](public/images/launch-hero.webp) — the white lock mark ([586-lock-mark-white.png](public/press/586-lock-mark-white.png)) centered on a brand-blue (`#4FB9FC`→`#0872E3`) gradient, generated at 1280×640 with:
+
+```bash
+magick -size 1280x640 -define gradient:angle=135 gradient:'#4FB9FC'-'#0872E3' bg.png
+magick public/press/586-lock-mark-white.png -resize 384x384 lock.png
+magick bg.png lock.png -gravity center -composite hero.png
+cwebp -q 88 hero.png -o public/images/launch-hero.webp
+```
+
+The `[single].js` layout forces a 2:1 header, so the hero is landscape and the portrait screenshots are only used inline in the post body.
+
 ## Color Guide
 
 ### Brand Blues (from logo)
