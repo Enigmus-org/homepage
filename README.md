@@ -14,7 +14,7 @@
 
 Homepage and blog for Enigmus AI - a privacy-focused AI platform that runs locally on user devices.
 
-The Enigmus app is **live on the App Store for iPhone and iPad** ([App Store listing](https://apps.apple.com/us/app/enigmus/id6771532268)); the Mac version is coming soon. App Store marketing copy lives in [docs/app-store-listing.md](docs/app-store-listing.md).
+The Enigmus app is **live on the App Store for iPhone, iPad, and Mac** ([App Store listing](https://apps.apple.com/us/app/enigmus/id6771532268), [Mac App Store](https://apps.apple.com/us/app/enigmus/id6771532268?platform=mac)). App Store marketing copy lives in [docs/app-store-listing.md](docs/app-store-listing.md).
 
 ## Key Features
 
