@@ -8,6 +8,10 @@ banner:
     label: Download on the App Store (iOS)
     link: https://apps.apple.com/us/app/enigmus/id6771532268
     rel: "noopener noreferrer"
+  button_mac:
+    label: Download on the Mac App Store
+    link: https://apps.apple.com/us/app/enigmus/id6771532268?platform=mac
+    rel: "noopener noreferrer"
 
 featured_posts:
   enable: false

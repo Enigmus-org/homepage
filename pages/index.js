@@ -31,7 +31,7 @@ const Home = ({
   return (
     <Base>
       {/* Banner */}
-      <section className="section banner relative pb-0">
+      <section className="section banner relative pb-[15px]">
         <ImageFallback
           className="absolute bottom-0 left-0 z-[-1] w-full"
           src={"/images/banner-bg-shape.svg"}
@@ -49,13 +49,25 @@ const Home = ({
                 {markdownify(banner.title_small, "span")}
               </div>
               {markdownify(banner.content, "p", "mt-4")}
-              <Link
-                className="btn btn-primary mt-6"
-                href={banner.button.link}
-                rel={banner.button.rel}
-              >
-                {banner.button.label}
-              </Link>
+              <div className="mt-6 flex flex-col items-center gap-4 lg:items-start">
+                <Link
+                  className="btn btn-primary"
+                  href={banner.button.link}
+                  rel={banner.button.rel}
+                >
+                  {banner.button.label}
+                </Link>
+                {banner.button_mac && (
+                  <Link
+                    className="btn btn-primary"
+                    style={{ backgroundColor: "#6C5CE7" }}
+                    href={banner.button_mac.link}
+                    rel={banner.button_mac.rel}
+                  >
+                    {banner.button_mac.label}
+                  </Link>
+                )}
+              </div>
             </div>
             <div className="col-9 lg:col-6">
               <ImageFallback
