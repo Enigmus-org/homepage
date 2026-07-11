@@ -1,15 +1,11 @@
 ---
 title: Technology for Private AI on Apple Devices
-image: /images/ai-technology-review.webp
 description: "Enigmus delivers private, on-device AI for Mac, iPhone, and iPad using Apple's MLX framework. By leveraging Apple Silicon's unified memory architecture and Metal GPU acceleration, all processing happens locally—data never leaves the device."
-layout: text2image
-
-
+layout: aurora-article
+heading: Private AI, Powered by
+heading_accent: Apple Silicon
+intro: Enigmus is built exclusively for Apple platforms, leveraging MLX—Apple's machine learning framework—to deliver private AI on Mac, iPhone, and iPad. By running entirely on-device, data never leaves the hardware.
 ---
-
-# Private AI, Powered by Apple Silicon
-
-Enigmus is built exclusively for Apple platforms, leveraging **MLX**—Apple's machine learning framework—to deliver private AI on Mac, iPhone, and iPad. By running entirely on-device, data never leaves the hardware.
 
 ## Why Apple Silicon?
 
@@ -110,7 +106,7 @@ At WWDC 2025, Apple announced deeper MLX integration into macOS and iOS, signali
 <details>
 <summary><strong>What's the minimum Mac configuration to run Enigmus?</strong></summary>
 
-Enigmus requires **any Mac with Apple Silicon** (M1 or newer) running **macOS 14 Sonoma** or later. The experience scales with your hardware:
+Enigmus requires **any Mac with Apple Silicon** (M1 or newer) running **macOS 14 Sonoma** or later. The experience scales with the hardware:
 
 - **8GB RAM**: Run compact models like Qwen3-0.6B or Qwen3-1.7B for everyday tasks
 - **16GB RAM**: Run mid-size models like GPT-OSS-20b or Qwen3-14B
@@ -125,7 +121,7 @@ The M5 chips with Neural Accelerators provide the fastest inference thanks to de
 </details>
 
 <details>
-<summary><strong>Can I run Enigmus on iPhone or iPad?</strong></summary>
+<summary><strong>Does Enigmus run on iPhone and iPad?</strong></summary>
 
 Yes. Enigmus supports **iOS 18+** on devices with sufficient hardware:
 
@@ -172,7 +168,7 @@ The compact Qwen3-0.6B and Qwen3-1.7B models work on all supported iOS devices, 
 </details>
 
 <details>
-<summary><strong>Is my data really private with Enigmus?</strong></summary>
+<summary><strong>Does data stay private with Enigmus?</strong></summary>
 
 **Yes, completely.** Enigmus processes everything on-device using Apple's MLX framework. Here's what that means:
 
