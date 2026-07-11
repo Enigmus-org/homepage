@@ -1,8 +1,8 @@
 ---
 title: Privacy Policy
 description: "Privacy policy for the Enigmus app and website"
-layout: default
-
+layout: aurora-article
+heading: Privacy Policy
 ---
 
 Effective Date: 2026-05-17

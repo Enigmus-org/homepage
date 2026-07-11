@@ -1,8 +1,8 @@
 ---
 title: Terms of Use
 description: "Terms of use for the Enigmus app and website"
-layout: default
-
+layout: aurora-article
+heading: Terms of Use
 ---
 
 Effective Date: 2026-05-17
