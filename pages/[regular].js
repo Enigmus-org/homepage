@@ -3,58 +3,31 @@ import AuroraArticle from "@layouts/AuroraArticle";
 import AuroraBase from "@layouts/AuroraBase";
 import AuroraContact from "@layouts/AuroraContact";
 import AuroraDownload from "@layouts/AuroraDownload";
-import Text2Image from "@layouts/Text2Image";
-import Base from "@layouts/Baseof";
-import Contact from "@layouts/Contact";
-import Default from "@layouts/Default";
 import { getRegularPage, getSinglePage } from "@lib/contentParser";
 
-// for all regular pages
+const layouts = {
+  "aurora-download": AuroraDownload,
+  "aurora-contact": AuroraContact,
+  404: NotFound,
+};
+
+// for all regular pages — aurora-article is the default layout
 const RegularPages = ({ data }) => {
-  const { title, meta_title, description, image, noindex, canonical, layout } =
+  const { title, meta_title, description, noindex, canonical, layout } =
     data.frontmatter;
   const { content } = data;
-
-  // Aurora-redesigned pages use the aurora shell instead of the old chrome
-  const auroraLayouts = {
-    "aurora-download": AuroraDownload,
-    "aurora-article": AuroraArticle,
-    "aurora-contact": AuroraContact,
-  };
-  const AuroraLayout = auroraLayouts[layout];
-  if (AuroraLayout) {
-    return (
-      <AuroraBase
-        title={title}
-        description={description ? description : content.slice(0, 120)}
-        meta_title={meta_title}
-        noindex={noindex}
-        canonical={canonical}
-      >
-        <AuroraLayout data={data} />
-      </AuroraBase>
-    );
-  }
+  const Layout = layouts[layout] || AuroraArticle;
 
   return (
-    <Base
+    <AuroraBase
       title={title}
       description={description ? description : content.slice(0, 120)}
       meta_title={meta_title}
-      image={image}
       noindex={noindex}
       canonical={canonical}
     >
-      {layout === "404" ? (
-        <NotFound data={data} />
-      ) : layout === "text2image" ? (
-        <Text2Image data={data} />
-      ) : layout === "contact" ? (
-        <Contact data={data} />
-      ) : (
-        <Default data={data} />
-      )}
-    </Base>
+      <Layout data={data} />
+    </AuroraBase>
   );
 };
 export default RegularPages;

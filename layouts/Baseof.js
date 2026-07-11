@@ -1,10 +1,9 @@
 import config from "@config/config.json";
 import { plainify } from "@lib/utils/textConverter";
-import Footer from "@partials/Footer";
-import Header from "@partials/Header";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+// SEO head + main wrapper; page chrome (nav/footer) comes from AuroraBase.
 const Base = ({
   title,
   meta_title,
@@ -12,8 +11,6 @@ const Base = ({
   image,
   noindex,
   canonical,
-  hideHeader,
-  hideFooter,
   children,
 }) => {
   const { meta_image, meta_author, meta_description, meta_keywords, twitter_site, site_name, apple_app_id } = config.metadata;
@@ -104,10 +101,8 @@ const Base = ({
         <meta name="twitter:card" content="summary_large_image" />
         {twitter_site && <meta name="twitter:site" content={twitter_site} />}
       </Head>
-      {!hideHeader && <Header />}
       {/* main site */}
       <main>{children}</main>
-      {!hideFooter && <Footer />}
     </>
   );
 };

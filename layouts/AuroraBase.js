@@ -7,7 +7,7 @@ import AuroraNav from "@layouts/components/aurora/Nav";
 // aurora background, glass nav, and footer. AuroraField clips its own blobs,
 // so no overflow-hidden here — it would cut off the nav's mobile sheet.
 const AuroraBase = ({ children, ...seo }) => (
-  <Base hideHeader hideFooter {...seo}>
+  <Base {...seo}>
     <section className="relative bg-[var(--bg)] font-sans text-[var(--text)]">
       <AuroraField />
       <div className="relative z-10">

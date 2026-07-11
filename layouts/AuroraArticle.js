@@ -6,7 +6,8 @@ import { MDXRemote } from "next-mdx-remote";
 // .aurora-content typography layer (styles/aurora.scss). Rendered inside
 // AuroraBase by pages/[regular].js.
 const AuroraArticle = ({ data }) => {
-  const { heading, heading_accent, intro } = data.frontmatter;
+  const { heading = data.frontmatter.title, heading_accent, intro } =
+    data.frontmatter;
   return (
     <section className="relative px-[22px] pb-10 pt-[34px] md:px-14 md:pb-16 md:pt-[70px]">
       <div className="mx-auto max-w-[760px]">
