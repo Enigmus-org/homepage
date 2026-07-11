@@ -39,9 +39,13 @@ Enigmus runs open-weight models quantized to 4-bit precision, which puts memory 
 
 ### Gemma 4 by Google
 
-Google's open-weight Gemma family, in MLX-quantized builds:
+Google's open-weight family, released March 2026 under the Apache 2.0 license:
 
-- **Gemma 4 31B**: the flagship of the family—at 4-bit it needs roughly 16GB for weights, making it a natural fit for Macs with 32GB+ unified memory
+- **Gemma 4 E2B / E4B**: "effective-parameter" models that use Per-Layer Embeddings for efficiency—built for edge deployment, ideal for iPhone and iPad
+- **Gemma 4 26B A4B**: sparse MoE with only 4B parameters active per token—26B-class quality at small-model speed, for 16GB+ Macs
+- **Gemma 4 31B**: the dense flagship—roughly 16GB of weights at 4-bit, a natural fit for Macs with 32GB+ unified memory
+
+Gemma 4 is multimodal (text and image input), supports a 256K-token context window, and covers 140+ languages.
 
 ### GPT-OSS by OpenAI
 
@@ -62,6 +66,12 @@ Alibaba's hybrid reasoning models, released April 2025:
 - **Qwen3-Next-80B / Qwen3-235B-A22B**: Large models for high-memory Macs (64GB+)
 
 Qwen3 features hybrid reasoning (toggle between fast and deep thinking), 128K context window, and support for 119 languages.
+
+## Fully Offline After Model Download
+
+A default model ships inside the app bundle, so Enigmus works offline from first launch. Additional models are fetched once—static weight files from the public Hugging Face MLX Community repositories—and stored locally. From that point no network connection is required: tokenization, inference, and decoding all run in-process, and nothing in the pipeline has a server to call.
+
+Airplane mode is a valid operating environment—chats behave identically with networking disabled. The only network activity Enigmus initiates is a model download, and only when one is explicitly requested.
 
 ## Performance on Apple Devices
 
