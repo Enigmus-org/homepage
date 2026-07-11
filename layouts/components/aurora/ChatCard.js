@@ -38,9 +38,9 @@ const ChatCard = () => (
         <span className="hidden h-[11px] w-[11px] rounded-full bg-[#28c840] md:block" />
         <span className="font-mono text-[11.5px] font-medium text-[var(--text-faint)] md:ml-3 md:text-[12.5px]">
           <span className="hidden md:inline">
-            Enigmus · Llama&nbsp;3.2&nbsp;3B · on-device
+            Enigmus · Gemma&nbsp;4&nbsp;31B · on-device
           </span>
-          <span className="md:hidden">Llama 3.2 3B</span>
+          <span className="md:hidden">Gemma 4 31B</span>
         </span>
         <span className="ml-auto inline-flex items-center gap-1.5 font-mono text-[10.5px] font-medium text-[#5FCB7F] md:text-[11px]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#28c840]" />
@@ -50,20 +50,18 @@ const ChatCard = () => (
       {/* messages */}
       <div className="flex flex-col gap-3 px-[15px] py-[18px] md:gap-4 md:px-6 md:py-[26px]">
         <div className="max-w-[82%] self-end rounded-[15px_15px_4px_15px] bg-brand-btn px-3.5 py-[11px] text-[13.5px] leading-[1.45] text-white md:max-w-[74%] md:rounded-[16px_16px_4px_16px] md:px-[17px] md:py-[13px] md:text-[15px] md:leading-[1.5]">
-          <span className="hidden md:inline">
-            Summarize this NDA clause — but keep it fully private.
-          </span>
-          <span className="md:hidden">Summarize this NDA — keep it private.</span>
+          <span className="hidden md:inline">Summarize this NDA clause.</span>
+          <span className="md:hidden">Summarize this NDA.</span>
         </div>
         <div className="max-w-[90%] self-start rounded-[15px_15px_15px_4px] border border-[var(--border)] bg-[var(--surface-solid)] px-[15px] py-3 text-[13.5px] leading-[1.55] text-[var(--text-muted)] dark:text-[#DCE2EE] md:max-w-[80%] md:rounded-[16px_16px_16px_4px] md:px-[18px] md:py-3.5 md:text-[15px] md:leading-[1.62]">
           <span className="hidden md:inline">
-            Nothing left your device to answer this. In short: both parties
-            agree to keep shared information confidential for 3 years, with
-            standard carve-outs for anything already public.
+            In short: both parties agree to keep shared information
+            confidential for 3 years, with standard carve-outs for anything
+            already public.
           </span>
           <span className="md:hidden">
-            Nothing left your device. Both parties keep shared info
-            confidential for 3 years, with standard carve-outs.
+            Both parties keep shared info confidential for 3 years, with
+            standard carve-outs.
           </span>
           {/* typing caret */}
           <span
