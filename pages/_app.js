@@ -1,5 +1,5 @@
 import config from "@config/config.json";
-import { ibmPlexMono, instrumentSans, sora, spaceGrotesk } from "@lib/fonts";
+import { ibmPlexMono, sora } from "@lib/fonts";
 import { JsonContext } from "context/state";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
@@ -45,12 +45,14 @@ const App = ({ Component, pageProps }) => {
       <style jsx global>{`
         :root {
           --font-sora: ${sora.style.fontFamily};
-          --font-space-grotesk: ${spaceGrotesk.style.fontFamily};
-          --font-instrument-sans: ${instrumentSans.style.fontFamily};
           --font-ibm-plex-mono: ${ibmPlexMono.style.fontFamily};
         }
       `}</style>
-      <ThemeProvider attribute="class" defaultTheme={default_theme}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme={default_theme}
+        enableSystem
+      >
         <Component {...pageProps} />
       </ThemeProvider>
     </JsonContext>

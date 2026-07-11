@@ -109,10 +109,11 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
-        // Aurora Glass fonts — CSS variables set in pages/_app.js from lib/fonts.js
+        // Aurora Glass fonts — reduced set: Sora doubles as display + heading,
+        // body reuses the site's Inter Variable (see lib/fonts.js)
         display: ["var(--font-sora)", "system-ui", "sans-serif"],
-        heading: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
-        sans: ["var(--font-instrument-sans)", "system-ui", "sans-serif"],
+        heading: ["var(--font-sora)", "system-ui", "sans-serif"],
+        sans: ["'Inter Variable'", "system-ui", "sans-serif"],
         mono: ["var(--font-ibm-plex-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: {
