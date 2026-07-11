@@ -9,19 +9,19 @@ intro: Enigmus is built exclusively for Apple platforms, leveraging MLX—Apple'
 
 ## Why Apple Silicon?
 
-Apple's M-series chips (M1, M2, M3, M4, and M5) revolutionized what's possible for on-device AI. The key innovation is **unified memory architecture**—CPU, GPU, and Neural Engine all share the same memory pool, eliminating the data transfer bottlenecks that plague traditional systems.
+LLM inference is memory-bound: generating each token requires streaming the model's weights through the processor, so memory capacity and bandwidth matter more than raw compute. Apple's M-series chips (M1 through M5) are unusually well suited to this workload because of their **unified memory architecture**—CPU, GPU, and Neural Engine share one high-bandwidth memory pool, so tensors never cross a PCIe bus and there is no separate VRAM ceiling.
 
-This means large language models can run efficiently without expensive dedicated GPUs. A MacBook, iMac, or iPhone becomes a capable AI workstation.
+This means large language models run efficiently without a dedicated GPU: the same memory that holds the OS and apps holds the model. A MacBook, iMac, or iPhone becomes a capable AI workstation.
 
 ## MLX: Apple's ML Framework
 
-MLX is Apple's array framework for machine learning, purpose-built for Apple Silicon. At WWDC 2025, Apple signaled MLX as a strategic component of their AI ecosystem, with deep integration into macOS and iOS.
+MLX is Apple's open-source array framework for machine learning, purpose-built for Apple Silicon. It pairs a NumPy-like API with **lazy evaluation**—computation graphs are built up and executed only when results are needed—and dispatches work to Metal kernels tuned for Apple GPUs. At WWDC 2025, Apple signaled MLX as a strategic component of their AI ecosystem, with deep integration into macOS and iOS.
 
 ### Key Advantages
 
 - **Unified Memory**: Arrays live in shared memory—operations run on CPU, GPU, or Neural Engine without data copying
-- **Metal GPU Acceleration**: Purpose-built for Apple's Metal framework, maximizing performance on Apple hardware
-- **Native Swift Support**: First-class Swift API makes it perfect for iOS and macOS app development
+- **Metal GPU Acceleration**: Hand-tuned Metal kernels for the operations that dominate transformer inference—attention, matrix multiplication, and quantized arithmetic
+- **Native Swift Support**: The mlx-swift bindings expose the same runtime to iOS and macOS apps—this is what Enigmus builds on
 - **Neural Engine Integration**: On M5 chips, MLX leverages dedicated Neural Accelerators for matrix operations
 
 ### On-Device Benefits
@@ -35,7 +35,7 @@ Running AI locally on Apple devices provides:
 
 ## Supported Models
 
-Enigmus supports leading models optimized for Apple Silicon:
+Enigmus runs open-weight models quantized to 4-bit precision, which puts memory use at roughly half a gigabyte per billion parameters plus overhead for the KV cache—the practical rule of thumb for what fits on a given device. Supported model families are optimized for Apple Silicon:
 
 ### GPT-OSS by OpenAI
 
@@ -59,6 +59,8 @@ Qwen3 features hybrid reasoning (toggle between fast and deep thinking), 128K co
 
 ## Performance on Apple Devices
 
+The binding constraint is unified memory: the quantized weights plus the KV cache—which grows with context length—must fit alongside the OS and other apps. Token throughput then scales primarily with memory bandwidth.
+
 ### Mac (Apple Silicon)
 
 On M1 and newer Macs, Enigmus delivers responsive AI interactions:
@@ -81,12 +83,12 @@ Enigmus brings on-device AI to mobile:
 
 Unlike cloud-based AI services, Enigmus processes everything locally. When asking a question, drafting an email, or analyzing a document:
 
-1. Input stays on the device
-2. The AI model runs on Apple Silicon
-3. The response is generated locally
-4. Nothing is uploaded to external servers
+1. The prompt is tokenized in the app's own memory
+2. The model executes on Apple Silicon via Metal—no server round-trip
+3. Tokens are generated and decoded locally, straight into the interface
+4. Nothing is uploaded—there is no server endpoint to receive it
 
-This architecture ensures privacy by design—data remains on the device at all times.
+This architecture ensures privacy by design—data remains on the device at all times. The [AI and privacy page](/ai-and-privacy) covers why that matters.
 
 ---
 

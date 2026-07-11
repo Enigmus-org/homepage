@@ -4,71 +4,53 @@ description: "Understanding privacy risks in AI systems and how on-device proces
 layout: aurora-article
 heading: AI and
 heading_accent: Privacy
-intro: Privacy risks in AI systems, and how on-device processing addresses them.
+intro: What actually happens to a prompt sent to a cloud AI service — and how on-device inference changes the threat model.
 ---
 
-## Privacy-Sensitive Queries to AI Systems
+## What Leaves the Device with Cloud AI
 
-Certain query types raise significant privacy concerns when interacting with cloud-based AI systems:
+Every query to a cloud-hosted model follows the same path: the full prompt — along with attached documents, conversation history, and client metadata — is serialized, sent over TLS to the provider's servers, tokenized and processed there, and streamed back. Encryption in transit protects the payload from third parties, but not from the provider itself. The plaintext is available server-side, where logging, retention, and downstream use are governed by terms of service rather than by architecture.
 
-1. **Health and Medical Information**: Diagnosis requests, treatment recommendations, or health record access involves confidential medical data.
-2. **Financial Data**: Credit scores, loan history, or transaction details contain sensitive personal information.
-3. **Personal Identifying Information (PII)**: Names, addresses, phone numbers, emails, or social media profiles can enable identity theft or unwanted tracking.
-4. **Legal and Confidential Documents**: Contracts, NDAs, legal correspondence, or proprietary business documents shared with AI services may be stored or used for training.
-5. **Work and Business Communications**: Internal emails, strategic plans, or client information could expose competitive advantages or violate confidentiality agreements.
+Typical server-side handling includes request logging for abuse detection, retention windows measured in weeks or months, human review of sampled conversations for model quality, and — depending on plan and settings — reuse of conversations as training data.
 
-These examples highlight the importance of understanding what data is shared and how it might be used. Queries containing sensitive personal or business information warrant careful consideration of where that data is processed and stored.
+## Privacy-Sensitive Queries
 
-## The Critical Role of Privacy in AI Systems
+Certain query types are particularly exposed when processed on remote servers:
 
-As AI systems become integral to daily life—from personal assistants to decision-making tools—the balance between innovation and individual rights grows increasingly important. Privacy remains a critical consideration that deserves careful examination.
+1. **Health and medical information**: Symptoms, diagnoses, medication lists, or health-record excerpts pasted into a prompt become part of a provider-side log.
+2. **Financial data**: Statements, credit history, tax documents, and transaction details contain sensitive personal information that outlives the session.
+3. **Personal identifying information (PII)**: Names, addresses, phone numbers, and ID numbers — enough to link an otherwise anonymous account to a person.
+4. **Legal and confidential documents**: Contracts, NDAs, and privileged correspondence; sharing them with a third-party service can itself breach confidentiality obligations.
+5. **Work and business communications**: Internal plans, source code, and client data carry trade-secret and compliance exposure when they transit external infrastructure.
 
-### The Importance of Data Protection
+## Profiling and Breach Risk
 
-AI systems require vast amounts of data to learn, improve, and function effectively. This raises legitimate concerns about data protection and how sensitive information might be used or misused. Personal identifiable information (PII)—names, addresses, phone numbers, social media profiles—can be particularly vulnerable when shared with AI services. Even seemingly innocuous data points like browsing history or search queries can reveal sensitive information when analyzed in aggregate.
-
-### The Risks of Data Breaches and Profiling
-
-When personal data flows to AI systems, there's always a risk of misuse or compromise. Advanced algorithms enable companies to create detailed profiles based on behavior, preferences, and demographic information. While this powers targeted advertising, it also raises uncomfortable questions about surveillance capitalism and the commodification of personal information.
-
-### The Threats to Individual Autonomy
-
-As AI systems become more pervasive, there's an increasing risk that individual autonomy will be eroded. When personal data is used without explicit consent or transparency, control over how it's utilized and shared diminishes. This can lead to manipulation by those who exploit sensitive information for commercial or political purposes.
+Conversation logs are a uniquely dense data source. A few months of prompts can reveal health status, financial situation, employer, relationships, and intentions with far higher fidelity than browsing history — each query is an explicit statement of what someone wants to know. That density makes prompt stores valuable for behavioral profiling and attractive targets for breaches. Even without full transcripts, query patterns alone — timestamps, topics, languages — support detailed inference.
 
 ## Regulatory Frameworks
 
-Data protection laws like the General Data Protection Regulation (GDPR) in Europe and the California Consumer Privacy Act (CCPA) in the United States represent steps toward protecting individual privacy rights. However, regulations alone cannot fully address the privacy challenges posed by cloud-based AI systems that process data on remote servers.
+Data protection laws like the GDPR in Europe and the CCPA in the United States constrain how personal data may be collected and processed, and cross-border transfers add data-residency requirements on top. But regulation acts after the fact: it governs what a processor may do with data it already holds. An architecture in which the data never reaches a processor removes the question entirely.
 
 ## Potential Abuse of User Data by Online LLM Providers
 
-Online LLM providers process vast amounts of user queries and conversations, creating significant potential for data misuse:
+Online LLM providers process vast amounts of queries and conversations, creating significant potential for misuse:
 
-1. **Training Data Harvesting**: User conversations may be stored and used to train future AI models without explicit consent or compensation.
-2. **Conversation Logging**: Every prompt and response could be logged indefinitely, creating detailed records of interests, concerns, and private matters.
-3. **Behavioral Analysis**: Query patterns reveal work habits, health concerns, financial situations, and personal relationships that can be analyzed or sold.
-4. **Third-Party Data Sharing**: User data may be shared with partners, advertisers, or acquired by other companies through mergers or data sales.
+1. **Training data harvesting**: Conversations may be stored and folded into fine-tuning or preference-tuning datasets without meaningful consent.
+2. **Conversation logging**: Every prompt and response can be logged indefinitely, creating detailed longitudinal records of interests, concerns, and private matters.
+3. **Behavioral analysis**: Query patterns reveal work habits, health concerns, and financial situations that can be analyzed or sold.
+4. **Third-party data sharing**: Logs may be shared with partners or change hands through acquisitions, taking the accumulated history with them.
 
-## Locally Run AI Solutions and Privacy
+## Where Local Inference Changes the Model
 
-Locally run AI systems are designed to operate without accessing sensitive data from remote servers or cloud storage. All computations and processing happen within the device itself—an approach known as edge computing, where intelligence operates at the edge of the network, closer to the user.
+A locally run LLM inverts the data flow. The model weights are downloaded once — a static, public artifact — and from then on inference happens in-process on the device:
 
-Here's how locally run AI systems preserve privacy:
+1. **Tokenization is local**: Prompts are converted to tokens in the app's own memory, never serialized to a network socket.
+2. **Inference is local**: The runtime executes the model on the device's CPU, GPU, or Neural Engine; no server sees the input, the output, or any intermediate state.
+3. **State is local**: Conversation history and caches live in device storage inside the app sandbox, and can be deleted like any other file.
+4. **Offline by construction**: Once a model is on disk, everything works with networking disabled — the privacy property can be verified, not just promised.
 
-1. **Data minimization**: These systems only process minimal amounts of personal information necessary for functionality.
-2. **Device isolation**: Each device has its own isolated environment where computations occur without external interaction.
-3. **Decentralized architecture**: No central hub controls access to data or processing power.
-4. **User control**: Device owners manage permissions and maintain full ownership of the system.
+## Architecture, Not Policy
 
-By adopting these measures, locally run AI systems minimize the risk of exposing personal information to remote servers, preserving privacy by design.
+The practical difference between the two models is enforcement. A cloud provider's privacy posture is a policy: it can change with an acquisition, a subpoena, or a settings default. An on-device system's privacy posture is a property of the architecture: there is no server to log the prompt, no retention window to configure, and no third party holding the data. For the query categories above, that distinction is the entire threat model.
 
-### AI Running on the Edge
-
-Locally run AI systems are gaining popularity due to their ability to offer greater control and security for those who value data integrity.
-
-Additional aspects of how local AI systems preserve privacy:
-
-1. **On-device inference**: Complex tasks like image recognition or natural language processing execute directly within device memory without sending data to remote servers.
-2. **Transparency and control**: Full visibility into what data the local AI system collects and uses, with the ability to revoke permissions at any time.
-3. **Reduced third-party exposure**: Local processing avoids the security vulnerabilities associated with cloud services.
-
-These advantages highlight the benefits of local AI solutions for enhanced privacy protection and autonomy over personal information.
+This is the approach Enigmus takes — language models running on Apple silicon through the MLX framework, entirely on-device. The [technology page](/technology) covers how that works in practice.
