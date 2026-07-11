@@ -46,6 +46,10 @@
       "url": "/technology"
     },
     {
+      "name": "Search",
+      "url": "/search"
+    },
+    {
       "name": "Privacy Policy",
       "url": "/privacy-policy"
     },
