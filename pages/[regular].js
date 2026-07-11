@@ -1,4 +1,6 @@
 import NotFound from "@layouts/404";
+import AuroraBase from "@layouts/AuroraBase";
+import AuroraDownload from "@layouts/AuroraDownload";
 import Text2Image from "@layouts/Text2Image";
 import Base from "@layouts/Baseof";
 import Contact from "@layouts/Contact";
@@ -10,6 +12,21 @@ const RegularPages = ({ data }) => {
   const { title, meta_title, description, image, noindex, canonical, layout } =
     data.frontmatter;
   const { content } = data;
+
+  // Aurora-redesigned pages use the aurora shell instead of the old chrome
+  if (layout === "aurora-download") {
+    return (
+      <AuroraBase
+        title={title}
+        description={description ? description : content.slice(0, 120)}
+        meta_title={meta_title}
+        noindex={noindex}
+        canonical={canonical}
+      >
+        <AuroraDownload data={data} />
+      </AuroraBase>
+    );
+  }
 
   return (
     <Base
