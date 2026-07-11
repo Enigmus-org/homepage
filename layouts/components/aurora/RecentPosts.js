@@ -20,8 +20,8 @@ const excerpt = (content) => {
 };
 
 // 3-up post grid (design_handoff_aurora_glass RecentPosts.tsx) wired to the
-// markdown posts. The mock's 390 frame shows only two posts, so the third
-// card is hidden below md.
+// markdown posts. Deviation from the mock's 390 frame: all three posts show
+// on mobile, not two.
 const RecentPosts = ({ title, posts }) => (
   <div className="relative flex justify-center px-4 pb-2 pt-5 md:px-14 md:pb-5 md:pt-[60px]">
     <div className="w-full max-w-[1200px]">
@@ -42,9 +42,7 @@ const RecentPosts = ({ title, posts }) => (
           <Link
             key={post.slug}
             href={`/${blog_folder}/${post.slug}`}
-            className={`overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)] [box-shadow:var(--shadow-card)] transition-transform hover:-translate-y-1 md:rounded-[18px] ${
-              i === 2 ? "hidden md:block" : ""
-            }`}
+            className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)] [box-shadow:var(--shadow-card)] transition-transform hover:-translate-y-1 md:rounded-[18px]"
           >
             {post.frontmatter.image ? (
               <ImageFallback

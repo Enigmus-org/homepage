@@ -1,5 +1,6 @@
 // Pill row under the hero chat card (design_handoff_aurora_glass
-// FeatureChips.tsx) with the mock's shorter mobile labels.
+// FeatureChips.tsx) with the mock's shorter mobile labels, sized so all
+// four chips fit one line at typical phone widths.
 const CHIPS = [
   { long: "On-device processing", short: "On-device" },
   { long: "No cloud, no data sharing", short: "No cloud" },
@@ -7,10 +8,10 @@ const CHIPS = [
 ];
 
 const chipBase =
-  "rounded-chip border px-[13px] py-2 text-[12px] md:px-[17px] md:py-[9px] md:text-[13.5px]";
+  "whitespace-nowrap rounded-chip border px-2.5 py-1.5 text-[11px] md:px-[17px] md:py-[9px] md:text-[13.5px]";
 
 const FeatureChips = () => (
-  <div className="mt-[26px] flex flex-wrap justify-center gap-2 md:mt-10 md:gap-3">
+  <div className="mt-[26px] flex flex-wrap justify-center gap-1.5 md:mt-10 md:gap-3">
     {CHIPS.map((chip) => (
       <span
         key={chip.short}
