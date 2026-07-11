@@ -53,6 +53,92 @@
   --aurora-teal: rgba(20, 199, 199, 0.32);
 }
 
+// Typography for aurora long-form pages (layouts/AuroraArticle.js).
+.aurora-content {
+  h2 {
+    @apply mt-10 mb-4 font-display text-[24px] font-bold tracking-[-0.02em] text-[var(--text)] md:text-[28px];
+  }
+
+  h3 {
+    @apply mt-8 mb-3 font-display text-[19px] font-semibold tracking-[-0.01em] text-[var(--text)] md:text-[21px];
+  }
+
+  h4 {
+    @apply mt-6 mb-2.5 font-display text-[17px] font-semibold text-[var(--text)];
+  }
+
+  p {
+    @apply my-4 text-[16px] leading-[1.7] text-[var(--text-muted)];
+  }
+
+  strong {
+    @apply font-semibold text-[var(--text)];
+  }
+
+  a {
+    color: var(--accent-on-bg);
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  ul,
+  ol {
+    @apply my-4 flex flex-col gap-2 pl-5;
+  }
+
+  ul li {
+    @apply list-disc;
+  }
+
+  ol li {
+    @apply list-decimal;
+  }
+
+  li {
+    @apply text-[15.5px] leading-[1.65] text-[var(--text-muted)];
+
+    &::marker {
+      color: var(--accent-on-bg);
+    }
+  }
+
+  em {
+    @apply text-[13.5px] text-[var(--text-faint)];
+  }
+
+  code {
+    @apply rounded bg-[var(--surface)] px-1.5 py-0.5 font-mono text-[14px];
+  }
+
+  hr {
+    @apply my-10 border-[var(--border)];
+  }
+
+  // FAQ accordions (<details>/<summary> in markdown)
+  details {
+    @apply mb-3.5 rounded-[14px] border border-[var(--border)] bg-[var(--surface-solid)] px-5 py-4;
+    box-shadow: var(--shadow-card);
+
+    summary {
+      @apply cursor-pointer font-heading text-[15.5px] font-semibold leading-[1.4] text-[var(--text)];
+
+      &::marker {
+        color: var(--accent-on-bg);
+      }
+    }
+
+    &[open] summary {
+      @apply mb-2;
+    }
+
+    p {
+      @apply text-[14.5px];
+    }
+  }
+}
+
 // Reduced motion — scoped to the aurora animations instead of the handoff's
 // global `* { animation: none }` so existing site behavior is unaffected.
 @media (prefers-reduced-motion: reduce) {

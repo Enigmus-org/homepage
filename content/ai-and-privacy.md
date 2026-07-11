@@ -1,9 +1,10 @@
 ---
 title: AI and Privacy concerns
-image: /images/ai-and-privacy.webp
 description: "Understanding privacy risks in AI systems and how on-device processing addresses them."
-layout: text2image
-
+layout: aurora-article
+heading: AI and
+heading_accent: Privacy
+intro: Privacy risks in AI systems, and how on-device processing addresses them.
 ---
 
 ## Privacy-Sensitive Queries to AI Systems

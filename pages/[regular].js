@@ -1,4 +1,5 @@
 import NotFound from "@layouts/404";
+import AuroraArticle from "@layouts/AuroraArticle";
 import AuroraBase from "@layouts/AuroraBase";
 import AuroraDownload from "@layouts/AuroraDownload";
 import Text2Image from "@layouts/Text2Image";
@@ -14,7 +15,7 @@ const RegularPages = ({ data }) => {
   const { content } = data;
 
   // Aurora-redesigned pages use the aurora shell instead of the old chrome
-  if (layout === "aurora-download") {
+  if (layout === "aurora-download" || layout === "aurora-article") {
     return (
       <AuroraBase
         title={title}
@@ -23,7 +24,11 @@ const RegularPages = ({ data }) => {
         noindex={noindex}
         canonical={canonical}
       >
-        <AuroraDownload data={data} />
+        {layout === "aurora-download" ? (
+          <AuroraDownload data={data} />
+        ) : (
+          <AuroraArticle data={data} />
+        )}
       </AuroraBase>
     );
   }
