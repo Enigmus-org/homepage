@@ -1,13 +1,10 @@
 import config from "@config/config.json";
-import Base from "@layouts/Baseof";
+import AuroraBase from "@layouts/AuroraBase";
+import PostCard from "@layouts/components/aurora/PostCard";
 import dateFormat from "@lib/utils/dateFormat";
-import { markdownify } from "@lib/utils/textConverter";
 import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
 import Link from "next/link";
-import { FaRegCalendar, FaUserAlt } from "react-icons/fa";
-import Post from "./partials/Post";
-import Sidebar from "./partials/Sidebar";
 import shortcodes from "./shortcodes/all";
 const { meta_author } = config.metadata;
 
@@ -16,87 +13,62 @@ const PostSingle = ({
   content,
   mdxContent,
   slug,
-  posts,
-  allCategories,
   relatedPosts,
 }) => {
   let { description, title, date, image, categories } = frontmatter;
   description = description ? description : content.slice(0, 120);
+  const related = relatedPosts.filter((post) => post.slug !== slug);
 
   return (
-    <Base title={title} description={description}>
-      <section className="section single-blog mt-6">
-        <div className="container">
-          <div className="row">
-            <div className="lg:col-8">
-              <article>
-                <div className="relative">
-                  {image && (
-                    <Image
-                      src={image}
-                      height="500"
-                      width="1000"
-                      alt={title}
-                      className="rounded-lg"
-                    />
-                  )}
-                  <ul className="absolute top-3 left-2 flex flex-wrap items-center">
-                    {categories.map((tag, index) => (
-                      <li
-                        className="mx-2 inline-flex h-7 rounded-[35px] bg-primary px-3 text-white"
-                        key={"tag-" + index}
-                      >
-                        <Link
-                          className="capitalize"
-                          href={`/categories/${tag.replace(" ", "-")}`}
-                        >
-                          {tag}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {markdownify(title, "h1", "lg:text-[42px] mt-16")}
-                <ul className="flex items-center space-x-4">
-                  <li>
-                    <Link
-                      className="inline-flex items-center font-secondary text-xs leading-3"
-                      href="/about"
-                    >
-                      <FaUserAlt className="mr-1.5" />
-                      {meta_author}
-                    </Link>
-                  </li>
-                  <li className="inline-flex items-center font-secondary text-xs leading-3">
-                    <FaRegCalendar className="mr-1.5" />
-                    {dateFormat(date)}
-                  </li>
-                </ul>
-                <div className="content mb-16">
-                  <MDXRemote {...mdxContent} components={shortcodes} />
-                </div>
-              </article>
-            </div>
-            <Sidebar
-              posts={posts.filter((post) => post.slug !== slug)}
-              categories={allCategories}
+    <AuroraBase title={title} description={description} image={image}>
+      <article className="relative px-[22px] pb-10 pt-[34px] md:px-14 md:pb-14 md:pt-[60px]">
+        <div className="mx-auto max-w-[760px]">
+          <div className="mb-4 flex flex-wrap justify-center gap-2">
+            {categories.map((tag) => (
+              <Link
+                key={tag}
+                href={`/categories/${tag.replace(" ", "-")}`}
+                className="rounded-md bg-brand/[0.14] px-[9px] py-[5px] font-mono text-[11px] font-medium text-[var(--accent-on-bg)]"
+              >
+                {tag}
+              </Link>
+            ))}
+          </div>
+          <h1 className="mb-4 text-center font-display text-[30px] font-extrabold leading-[1.1] tracking-[-0.02em] text-[var(--text)] md:text-[44px] md:leading-[1.05]">
+            {title}
+          </h1>
+          <div className="mb-8 text-center font-mono text-[12.5px] text-[var(--text-faint)] md:mb-10">
+            {meta_author} · {dateFormat(date)}
+          </div>
+          {image && (
+            <Image
+              src={image}
+              height="500"
+              width="1000"
+              alt={title}
+              className="mb-8 rounded-[18px] border border-[var(--border)] md:mb-10"
             />
+          )}
+          <div className="aurora-content">
+            <MDXRemote {...mdxContent} components={shortcodes} />
           </div>
         </div>
 
-        {/* Related posts */}
-        <div className="container mt-20">
-          <h2 className="section-title">Related Posts</h2>
-          <div className="row mt-16">
-            {relatedPosts.slice(0, 3).map((post, index) => (
-              <div key={"post-" + index} className="mb-12 lg:col-4">
-                <Post post={post} />
-              </div>
-            ))}
+        {/* related posts */}
+        {related.length > 0 && (
+          <div className="mx-auto mt-14 w-full max-w-[1200px] md:mt-20">
+            <h2 className="mb-5 font-display text-[22px] font-bold tracking-[-0.02em] text-[var(--text)] md:mb-[26px] md:text-[28px]">
+              Related posts
+            </h2>
+            <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3 md:gap-5">
+              {related.slice(0, 3).map((post, i) => (
+                <PostCard key={post.slug} post={post} index={i} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </Base>
+        )}
+      </article>
+    </AuroraBase>
   );
 };
 
