@@ -42,6 +42,7 @@ Enigmus runs open-weight models quantized to 4-bit precision, which puts memory 
 Google's open-weight family, released March 2026 under the Apache 2.0 license:
 
 - **Gemma 4 E2B / E4B**: "effective-parameter" models that use Per-Layer Embeddings for efficiency—built for edge deployment, ideal for iPhone and iPad
+- **Gemma 4 12B**: dense multimodal model with an encoder-free architecture—about 6GB of weights at 4-bit, fits comfortably in 16GB of unified memory
 - **Gemma 4 26B A4B**: sparse MoE with only 4B parameters active per token—26B-class quality at small-model speed, for 16GB+ Macs
 - **Gemma 4 31B**: the dense flagship—roughly 16GB of weights at 4-bit, a natural fit for Macs with 32GB+ unified memory
 
@@ -126,11 +127,11 @@ At WWDC 2025, Apple announced deeper MLX integration into macOS and iOS, signali
 
 Enigmus requires **any Mac with Apple Silicon** (M1 or newer) running **macOS 14 Sonoma** or later. The experience scales with the hardware:
 
-- **8GB RAM**: Run compact models like Qwen3-0.6B or Qwen3-1.7B for everyday tasks
-- **16GB RAM**: Run mid-size models like GPT-OSS-20b or Qwen3-14B
-- **32GB+ RAM**: Run larger models with better context handling
-- **64GB+ RAM**: Run large models like Qwen3-32B, Qwen3-Next-80B
-- **128GB+ RAM**: Run the largest models like Qwen3-235B-A22B
+- **8GB RAM**: Compact models like Gemma 4 E4B or Qwen3-1.7B for everyday tasks
+- **16GB RAM**: Gemma 4 12B or the 26B A4B MoE, plus mid-size models like GPT-OSS-20b
+- **32GB+ RAM**: Gemma 4 31B with room for long contexts
+- **64GB+ RAM**: Large models like Qwen3-32B, Qwen3-Next-80B
+- **128GB+ RAM**: The largest models like Qwen3-235B-A22B
 
 The M5 chips with Neural Accelerators provide the fastest inference thanks to dedicated matrix multiplication hardware.
 
@@ -148,40 +149,48 @@ Yes. Enigmus supports **iOS 18+** on devices with sufficient hardware:
 
 A real device is required—iOS Simulators don't support the Metal GPU features MLX requires. For larger models, the "Increased Memory Limit" entitlement must be enabled in device settings.
 
-The Qwen3-0.6B and Qwen3-1.7B models run well on all supported devices, with Qwen3-4B and Qwen3-8B available on high-memory devices.
+The Gemma 4 E2B and E4B models are built specifically for this class of device—Per-Layer Embeddings keep their memory footprint small—and Qwen3-0.6B through Qwen3-4B run well too, with larger options on high-memory devices.
 
 *Sources: [MLX Swift on iOS](https://medium.com/@cetinibrahim/mlx-swift-run-llms-in-ios-apps-8f89c1123588) · [GitHub - ml-explore/mlx-swift](https://github.com/ml-explore/mlx-swift)*
 
 </details>
 
 <details>
-<summary><strong>What is GPT-OSS and how does it compare to ChatGPT?</strong></summary>
+<summary><strong>What is Gemma 4 and why is it good for local AI?</strong></summary>
 
-GPT-OSS is OpenAI's first **open-weight model family** since GPT-2, released in August 2025. It includes two variants:
+Gemma 4 is Google's **open-weight model family**, released in March 2026 under the Apache 2.0 license. The family spans five members: the edge-focused **E2B** and **E4B** effective-parameter models, the dense multimodal **12B**, the sparse **26B A4B** mixture-of-experts, and the dense **31B** flagship.
 
-- **gpt-oss-20b**: 21 billion parameters, fits in 16GB memory
-- **gpt-oss-120b**: 117 billion parameters for high-end systems
+For local deployment it brings several advantages:
 
-Both use a mixture-of-experts (MoE) architecture with 4-bit quantization (MXFP4). The gpt-oss-120b matches or exceeds OpenAI's o4-mini on benchmarks for coding, math, and tool use—running entirely on-device with no API costs or data sharing.
+- **Multimodal**: Text and image input (audio on the small models), with the 12B using a unified, encoder-free architecture
+- **Massive context**: Up to a 256K-token context window
+- **Efficiency by design**: Per-Layer Embeddings on the small models and only 4B active parameters on the 26B A4B
+- **Multilingual**: Over 140 languages
 
-*Sources: [Introducing GPT-OSS | OpenAI](https://openai.com/index/introducing-gpt-oss/) · [GPT-OSS Model Card](https://openai.com/index/gpt-oss-model-card/) · [GitHub - openai/gpt-oss](https://github.com/openai/gpt-oss)*
+*Sources: [Gemma 4 announcement | Google](https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/) · [Gemma 4 model overview](https://ai.google.dev/gemma/docs/core) · [Gemma 4 model card](https://ai.google.dev/gemma/docs/core/model_card_4)*
 
 </details>
 
 <details>
-<summary><strong>What makes Qwen3 special for local AI?</strong></summary>
+<summary><strong>Which Gemma 4 variant fits which device?</strong></summary>
 
-Qwen3, released by Alibaba in April 2025, offers several advantages for local deployment:
+At 4-bit quantization, memory use is roughly half a gigabyte per billion parameters plus the KV cache:
 
-- **Hybrid reasoning**: Toggle between fast responses and deep thinking mode
-- **Efficient variants**: The Qwen3-30B-A3B uses only 3B active parameters while delivering 32B-class performance
-- **Massive context**: 128K token context window (1M tokens in Qwen3-2507)
-- **Multilingual**: Supports 119 languages and dialects
-- **Size range**: From 0.6B (ultra-light) to 32B (full-featured)
+- **E2B / E4B**: iPhone 13+ and iPad—Per-Layer Embeddings keep the working set small
+- **12B**: ~6GB of weights—comfortable in 16GB of unified memory
+- **26B A4B**: ~13GB of weights but only 4B parameters active per token—16GB+ Macs with small-model speed
+- **31B**: ~16GB of weights—best on Macs with 32GB+ unified memory
 
-The compact Qwen3-0.6B and Qwen3-1.7B models work on all supported iOS devices, Qwen3-4B and Qwen3-8B on high-memory devices, while larger variants shine on Mac.
+*Sources: [Gemma 4 12B developer guide](https://developers.googleblog.com/gemma-4-12b-the-developer-guide/) · [google/gemma-4-12B on Hugging Face](https://huggingface.co/google/gemma-4-12B)*
 
-*Sources: [Alibaba Qwen3 Announcement](https://techcrunch.com/2025/04/28/alibaba-unveils-qwen-3-a-family-of-hybrid-ai-reasoning-models/) · [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/Qwen3) · [Qwen on Hugging Face](https://huggingface.co/Qwen)*
+</details>
+
+<details>
+<summary><strong>What other models does Enigmus support?</strong></summary>
+
+Beyond Gemma 4, Enigmus runs OpenAI's **GPT-OSS** family (gpt-oss-20b fits in 16GB; the 117B gpt-oss-120b suits high-memory Macs), both MoE models quantized in MXFP4, and Alibaba's **Qwen3** family—from the 0.6B ultra-light for iPhone up to Qwen3-235B-A22B for 128GB Macs, with hybrid fast/deep reasoning and a 128K context window.
+
+*Sources: [Introducing GPT-OSS | OpenAI](https://openai.com/index/introducing-gpt-oss/) · [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/Qwen3)*
 
 </details>
 
