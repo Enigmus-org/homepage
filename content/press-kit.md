@@ -1,11 +1,10 @@
 ---
 title: Press Kit
 description: "Brand assets and press resources for Enigmus"
-layout: default
-
+layout: aurora-article
+heading: Press Kit
+intro: Enigmus is private, on-device AI for iPhone, iPad, and Mac. The assets below are free to use for editorial, review, or press coverage of the app. The marks should not be modified (no recolors, distortions, or added elements).
 ---
-
-Enigmus is private, on-device AI for iPhone, iPad, and Mac. The assets below are free to use for editorial, review, or press coverage of the app. Please don't modify the marks (no recolors, distortions, or added elements).
 
 ### App icon
 
@@ -26,7 +25,12 @@ The full Enigmus app icon — white lock with chat-bubble keyhole on a blue grad
 
 The lock mark on its own (transparent background) — for use on dark backgrounds, social avatars, embeds.
 
-![Enigmus lock mark](/press/586-lock-mark-white.png)
+<img
+  className="my-5 rounded-2xl bg-ink-800 p-6"
+  src="/press/586-lock-mark-white.png"
+  alt="Enigmus lock mark"
+  width="220"
+/>
 
 - **PNG (586×586, transparent, white fill)** — [/press/586-lock-mark-white.png](/press/586-lock-mark-white.png)
 - **SVG (vector, viewBox 0 0 586 586, single path, white fill)** — [/press/586-lock-mark.svg](/press/586-lock-mark.svg)
@@ -42,7 +46,7 @@ The SVG version is preferred for any digital use — it stays sharp at any size,
 
 ### About Enigmus
 
-Enigmus runs large language models entirely on your device — no accounts, no servers, no telemetry, no network required after the initial model download. Built on Apple's MLX framework, the app uses on-device inference on Apple silicon (iPhone 13+, iPad with M1+, or any Mac with Apple silicon).
+Enigmus runs large language models entirely on the device — no accounts, no servers, no telemetry, no network required after the initial model download. Built on Apple's MLX framework, the app uses on-device inference on Apple silicon (iPhone 13+, iPad with M1+, or any Mac with Apple silicon).
 
 - Website: [enigmus.cc](https://enigmus.cc)
 - Privacy policy: [enigmus.cc/privacy-policy](/privacy-policy)

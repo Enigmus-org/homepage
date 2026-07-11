@@ -112,6 +112,10 @@
     @apply rounded bg-[var(--surface)] px-1.5 py-0.5 font-mono text-[14px];
   }
 
+  img {
+    @apply my-5 h-auto max-w-full rounded-xl;
+  }
+
   hr {
     @apply my-10 border-[var(--border)];
   }
