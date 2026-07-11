@@ -57,8 +57,8 @@ const Hero = ({ banner }) => (
       )}
     </div>
 
-    {/* floating chat card */}
-    <div className="mx-auto max-w-[760px] animate-float md:mt-[52px]">
+    {/* chat card */}
+    <div className="mx-auto max-w-[760px] md:mt-[52px]">
       <ChatCard />
     </div>
 

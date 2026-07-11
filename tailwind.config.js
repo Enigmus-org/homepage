@@ -153,10 +153,6 @@ module.exports = {
           "50%": { transform: "translate(26px,-18px) scale(1.12)" },
           "100%": { transform: "translate(0,0) scale(1)" },
         },
-        floatY: {
-          "0%,100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-9px)" },
-        },
         blink: {
           "0%,100%": { opacity: "1" },
           "50%": { opacity: "0.18" },
@@ -166,7 +162,6 @@ module.exports = {
         aurora: "auroraDrift 20s ease-in-out infinite",
         "aurora-slow": "auroraDrift 26s ease-in-out infinite reverse",
         "aurora-slower": "auroraDrift 30s ease-in-out infinite",
-        float: "floatY 8s ease-in-out infinite",
         blink: "blink 1.1s step-end infinite",
       },
     },
