@@ -12,6 +12,8 @@ const Base = ({
   image,
   noindex,
   canonical,
+  hideHeader,
+  hideFooter,
   children,
 }) => {
   const { meta_image, meta_author, meta_description, meta_keywords, twitter_site, site_name, apple_app_id } = config.metadata;
@@ -102,10 +104,10 @@ const Base = ({
         <meta name="twitter:card" content="summary_large_image" />
         {twitter_site && <meta name="twitter:site" content={twitter_site} />}
       </Head>
-      <Header />
+      {!hideHeader && <Header />}
       {/* main site */}
       <main>{children}</main>
-      <Footer />
+      {!hideFooter && <Footer />}
     </>
   );
 };

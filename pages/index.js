@@ -1,5 +1,7 @@
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
+import AuroraField from "@layouts/components/aurora/AuroraField";
+import AuroraNav from "@layouts/components/aurora/Nav";
 import ImageFallback from "@layouts/components/ImageFallback";
 import Pagination from "@layouts/components/Pagination";
 import Post from "@layouts/partials/Post";
@@ -29,7 +31,18 @@ const Home = ({
   const showPosts = pagination;
 
   return (
-    <Base>
+    <Base hideHeader>
+      {/* Aurora Glass shell — hero lands here in step 4; old sections below
+          are replaced in steps 4-6 */}
+      {/* AuroraField clips its own blobs, so no overflow-hidden here — it
+          would cut off the nav's mobile sheet */}
+      <section className="relative bg-[var(--bg)] pb-16 font-sans text-[var(--text)]">
+        <AuroraField />
+        <div className="relative z-10">
+          <AuroraNav />
+        </div>
+      </section>
+
       {/* Banner */}
       <section className="section banner relative pb-[15px]">
         <ImageFallback
