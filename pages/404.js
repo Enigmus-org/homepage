@@ -1,12 +1,12 @@
 import NotFound from "@layouts/404";
-import Base from "@layouts/Baseof";
+import AuroraBase from "@layouts/AuroraBase";
 import { getRegularPage } from "@lib/contentParser";
 
 const notFound = ({ data }) => {
   return (
-    <Base>
+    <AuroraBase>
       <NotFound data={data} />
-    </Base>
+    </AuroraBase>
   );
 };
 
