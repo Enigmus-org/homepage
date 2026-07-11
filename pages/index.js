@@ -1,6 +1,7 @@
 import config from "@config/config.json";
 import Base from "@layouts/Baseof";
 import AuroraField from "@layouts/components/aurora/AuroraField";
+import AuroraHero from "@layouts/components/aurora/Hero";
 import AuroraNav from "@layouts/components/aurora/Nav";
 import ImageFallback from "@layouts/components/ImageFallback";
 import Pagination from "@layouts/components/Pagination";
@@ -32,69 +33,14 @@ const Home = ({
 
   return (
     <Base hideHeader>
-      {/* Aurora Glass shell — hero lands here in step 4; old sections below
-          are replaced in steps 4-6 */}
-      {/* AuroraField clips its own blobs, so no overflow-hidden here — it
+      {/* Aurora Glass shell — old sections below are replaced in steps 5-6.
+          AuroraField clips its own blobs, so no overflow-hidden here — it
           would cut off the nav's mobile sheet */}
-      <section className="relative bg-[var(--bg)] pb-16 font-sans text-[var(--text)]">
+      <section className="relative bg-[var(--bg)] font-sans text-[var(--text)]">
         <AuroraField />
         <div className="relative z-10">
           <AuroraNav />
-        </div>
-      </section>
-
-      {/* Banner */}
-      <section className="section banner relative pb-[15px]">
-        <ImageFallback
-          className="absolute bottom-0 left-0 z-[-1] w-full"
-          src={"/images/banner-bg-shape.svg"}
-          width={1905}
-          height={295}
-          alt="banner-shape"
-          priority
-        />
-
-        <div className="container">
-          <div className="row flex-wrap-reverse items-center justify-center lg:flex-row">
-            <div className="mt-12 text-center lg:mt-0 lg:text-left lg:col-6">
-              <div className="banner-title">
-                {markdownify(banner.title, "h1")}
-                {markdownify(banner.title_small, "span")}
-              </div>
-              {markdownify(banner.content, "p", "mt-4")}
-              <div className="mt-6 flex flex-col items-center gap-4 lg:items-start">
-                <Link
-                  className="btn btn-primary"
-                  href={banner.button.link}
-                  rel={banner.button.rel}
-                >
-                  {banner.button.label}
-                </Link>
-                {banner.button_mac && (
-                  <Link
-                    className="btn btn-primary"
-                    style={{ backgroundColor: "#6C5CE7" }}
-                    href={banner.button_mac.link}
-                    rel={banner.button_mac.rel}
-                  >
-                    {banner.button_mac.label}
-                  </Link>
-                )}
-              </div>
-            </div>
-            <div className="col-9 lg:col-6">
-              <ImageFallback
-                className="mx-auto object-contain"
-                // css for border-radius: 10%
-                style={{ borderRadius: "10%" }}
-                src={banner.image}
-                width={400}
-                height={400}
-                priority={true}
-                alt="Banner Image"
-              />
-            </div>
-          </div>
+          <AuroraHero banner={banner} />
         </div>
       </section>
 
