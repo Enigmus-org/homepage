@@ -1,41 +1,35 @@
 import config from "@config/config.json";
-import Base from "@layouts/Baseof";
+import AuroraBase from "@layouts/AuroraBase";
+import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";
-import { humanize, markdownify } from "@lib/utils/textConverter";
+import { humanize } from "@lib/utils/textConverter";
 import Link from "next/link";
 const { blog_folder } = config.settings;
-import { getSinglePage } from "@lib/contentParser";
-import { FaFolder } from "react-icons/fa";
 
 const Categories = ({ categories }) => {
   return (
-    <Base title={"categories"}>
-      <section className="section pt-0">
-        {markdownify(
-          "Categories",
-          "h1",
-          "h2 mb-16 bg-theme-light dark:bg-darkmode-theme-dark py-12 text-center lg:text-[55px]"
-        )}
-        <div className="container pt-12 text-center">
-          <ul className="row">
-            {categories.map((category, i) => (
-              <li
-                key={`category-${i}`}
-                className="mt-4 block lg:col-4 xl:col-3"
+    <AuroraBase title={"categories"}>
+      <section className="relative px-[22px] pb-16 pt-[34px] text-center md:px-14 md:pb-24 md:pt-[60px]">
+        <h1 className="mb-6 font-display text-[34px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:mb-8 md:text-[48px]">
+          Categories
+        </h1>
+        <ul className="mx-auto flex max-w-[700px] flex-wrap justify-center gap-3">
+          {categories.map((category, i) => (
+            <li key={`category-${i}`}>
+              <Link
+                href={`/categories/${category.name}`}
+                className="inline-flex items-center gap-2.5 rounded-chip border border-[var(--border)] bg-[var(--surface)] px-5 py-2.5 text-[14.5px] capitalize text-[var(--text-muted)] transition hover:-translate-y-0.5 hover:text-[var(--text)]"
               >
-                <Link
-                  href={`/categories/${category.name}`}
-                  className="flex w-full items-center justify-center rounded-lg bg-theme-light px-4 py-4 font-bold text-dark transition hover:bg-primary hover:text-white  dark:bg-darkmode-theme-dark dark:text-darkmode-light dark:hover:bg-primary dark:hover:text-white"
-                >
-                  <FaFolder className="mr-1.5" />
-                  {humanize(category.name)} ({category.posts})
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+                {humanize(category.name)}
+                <span className="font-mono text-[12px] font-medium text-[var(--accent-on-bg)]">
+                  {category.posts}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
-    </Base>
+    </AuroraBase>
   );
 };
 
