@@ -1,0 +1,64 @@
+// Aurora Glass semantic tokens (design_handoff_aurora_glass/config/globals.css).
+// Variables only — the handoff's global html/body/a rules are intentionally not
+// applied here; the redesigned homepage sets its own background/text from these
+// vars so the rest of the site keeps its current styling.
+
+:root {
+  // Brand
+  --brand: #1fa3fb;
+  --brand-deep: #0d6fd1;
+  --brand-sky: #5ec0ff;
+  --brand-mist: #9fe0ff;
+  --violet: #6d5ef5;
+  --teal: #14c7c7;
+
+  // Semantic — light
+  --bg: #f4f7fc;
+  --surface: rgba(255, 255, 255, 0.72); // glass nav/cards
+  --surface-solid: #ffffff; // post cards
+  --border: rgba(12, 18, 32, 0.1);
+  --border-glass: rgba(255, 255, 255, 0.9);
+  --text: #0c1220;
+  --text-muted: #46506a;
+  --text-dim: #5a6478;
+  --text-faint: #8a93a6;
+  --accent-on-bg: #0d6fd1; // accent text that sits on the page bg
+  --shadow-frame: 0 40px 120px -30px rgba(30, 55, 100, 0.28);
+  --shadow-card: 0 14px 34px -22px rgba(30, 55, 100, 0.4);
+
+  // Aurora alpha (light)
+  --aurora-blue: rgba(31, 163, 251, 0.3);
+  --aurora-violet: rgba(109, 94, 245, 0.22);
+  --aurora-teal: rgba(20, 199, 199, 0.2);
+}
+
+.dark {
+  --bg: #070a12;
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-solid: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-glass: rgba(255, 255, 255, 0.22);
+  --text: #e8ecf5;
+  --text-muted: #aeb6c6;
+  --text-dim: #9aa3b4;
+  --text-faint: #6b7488;
+  --accent-on-bg: #9fe0ff;
+  --shadow-frame: 0 40px 120px -30px rgba(10, 25, 50, 0.6);
+  --shadow-card: 0 14px 34px -22px rgba(0, 0, 0, 0.5);
+
+  --aurora-blue: rgba(31, 163, 251, 0.55);
+  --aurora-violet: rgba(109, 94, 245, 0.4);
+  --aurora-teal: rgba(20, 199, 199, 0.32);
+}
+
+// Reduced motion — scoped to the aurora animations instead of the handoff's
+// global `* { animation: none }` so existing site behavior is unaffected.
+@media (prefers-reduced-motion: reduce) {
+  .animate-aurora,
+  .animate-aurora-slow,
+  .animate-aurora-slower,
+  .animate-float,
+  .animate-blink {
+    animation: none !important;
+  }
+}
