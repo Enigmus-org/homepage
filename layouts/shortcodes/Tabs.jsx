@@ -27,12 +27,12 @@ function Tabs({ children }) {
 
   return (
     <div className="relative">
-      <ul className="mb-0 flex list-none items-center space-x-4 pl-0">
+      <ul className="mb-0 flex list-none flex-row flex-wrap items-center gap-2 pl-0">
         {children.map((item, index) => (
           <li
             key={index}
-            className={` m-0 cursor-pointer rounded px-8 py-3 font-bold  text-dark dark:text-darkmode-light ${
-              index === 0 && "active-tab"
+            className={`m-0 cursor-pointer list-none rounded-[10px] px-5 py-2.5 text-[14px] font-semibold text-[var(--text-muted)] ${
+              index === 0 ? "active-tab" : ""
             }`}
             onClick={(e) => handleChangTab(e, index)}
           >
@@ -41,7 +41,7 @@ function Tabs({ children }) {
         ))}
       </ul>
       <ul
-        className="mt-1 mb-0 list-none rounded bg-theme-light p-6 dark:bg-darkmode-theme-dark"
+        className="mt-2 mb-0 list-none rounded-[14px] border border-[var(--border)] bg-[var(--surface-solid)] p-6 pl-6 [box-shadow:var(--shadow-card)]"
         ref={tabItemsRef}
       >
         {children}

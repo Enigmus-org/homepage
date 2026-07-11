@@ -5,16 +5,19 @@ const Accordion = ({ title, children, className }) => {
 
   return (
     <div
-      className={`rounded border border-border dark:border-darkmode-border ${className}`}
+      className={`mb-3.5 overflow-hidden rounded-[14px] border border-[var(--border)] bg-[var(--surface-solid)] [box-shadow:var(--shadow-card)] ${
+        className || ""
+      }`}
     >
       <button
-        className="relative block w-full bg-theme-light px-4 py-3 text-left text-dark dark:bg-darkmode-theme-dark dark:text-darkmode-light"
+        type="button"
+        className="relative block w-full px-5 py-4 pr-12 text-left font-heading text-[15.5px] font-semibold text-[var(--text)]"
         onClick={() => setShow(!show)}
       >
         {title}
         <svg
-          className={`absolute right-4 top-1/2 m-0 h-4 w-4 -translate-y-1/2 ${
-            show && "rotate-180"
+          className={`absolute right-5 top-1/2 m-0 h-3.5 w-3.5 -translate-y-1/2 text-[var(--text-faint)] transition-transform ${
+            show ? "rotate-180" : ""
           }`}
           x="0px"
           y="0px"
@@ -27,7 +30,11 @@ const Accordion = ({ title, children, className }) => {
           />
         </svg>
       </button>
-      <div className={`px-4 py-3 ${!show && "hidden"}`}>{children}</div>
+      <div
+        className={`px-5 pb-4 text-[var(--text-muted)] ${!show && "hidden"}`}
+      >
+        {children}
+      </div>
     </div>
   );
 };
