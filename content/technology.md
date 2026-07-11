@@ -37,6 +37,12 @@ Running AI locally on Apple devices provides:
 
 Enigmus runs open-weight models quantized to 4-bit precision, which puts memory use at roughly half a gigabyte per billion parameters plus overhead for the KV cache—the practical rule of thumb for what fits on a given device. Supported model families are optimized for Apple Silicon:
 
+### Gemma 4 by Google
+
+Google's open-weight Gemma family, in MLX-quantized builds:
+
+- **Gemma 4 31B**: the flagship of the family—at 4-bit it needs roughly 16GB for weights, making it a natural fit for Macs with 32GB+ unified memory
+
 ### GPT-OSS by OpenAI
 
 OpenAI's first open-weight models since GPT-2, released August 2025:
