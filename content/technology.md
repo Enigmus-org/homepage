@@ -35,19 +35,20 @@ Running AI locally on Apple devices provides:
 
 ## Supported Models
 
-Enigmus runs open-weight models quantized to 4-bit precision, which puts memory use at roughly half a gigabyte per billion parameters plus overhead for the KV cache—the practical rule of thumb for what fits on a given device. Supported model families are optimized for Apple Silicon:
+Enigmus runs open-weight models quantized to 4-bit precision, which puts memory use at roughly half to three-quarters of a gigabyte per billion parameters plus overhead for the KV cache—the practical rule of thumb for what fits on a given device. Supported model families are optimized for Apple Silicon:
 
 ### Gemma 4 by Google
 
 Google's open-weight family, released March 2026 under the Apache 2.0 license:
 
-- **Gemma 4 E2B / E4B**: "effective-parameter" models that use Per-Layer Embeddings for efficiency—built for edge deployment, ideal for iPhone and iPad
-- **Gemma 4 12B**: dense multimodal model with an encoder-free architecture—about 6GB of weights at 4-bit, fits comfortably in 16GB of unified memory
-- **Gemma 4 26B A4B**: sparse MoE with only 4B parameters active per token—26B-class quality at small-model speed, for 16GB+ Macs
-- **Gemma 4 31B**: the dense flagship—roughly 16GB of weights at 4-bit, a natural fit for Macs with 32GB+ unified memory
+- **Gemma 4 E2B / E4B**: "effective-parameter" models that use Per-Layer Embeddings for efficiency—about 2.7–4.0GB (E2B) and 6.0GB (E4B) at 4-bit, built for edge deployment, ideal for iPhone and iPad
+- **Gemma 4 12B**: dense multimodal model with an encoder-free architecture—about 9.0GB of weights at 4-bit, fits comfortably in 16GB of unified memory
+- **Gemma 4 26B A4B**: sparse MoE with only 4B parameters active per token—about 14.9GB of weights at 4-bit for 26B-class quality at small-model speed, for 16GB+ Macs
+- **Gemma 4 31B**: the dense flagship—about 18.1GB of weights at 4-bit, a natural fit for Macs with 32GB+ unified memory
 
 Gemma 4 is multimodal (text and image input), supports a 256K-token context window, and covers 140+ languages.
 
+<!--
 ### GPT-OSS by OpenAI
 
 OpenAI's first open-weight models since GPT-2, released August 2025:
@@ -56,15 +57,16 @@ OpenAI's first open-weight models since GPT-2, released August 2025:
 - **gpt-oss-120b**: 117B parameters for high-memory configurations
 
 Both use mixture-of-experts (MoE) architecture with 4-bit quantization, delivering excellent performance on Apple Silicon.
+-->
 
 ### Qwen3 by Alibaba
 
 Alibaba's hybrid reasoning models, released April 2025:
 
-- **Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B / Qwen3-8B**: Models for iPhone and iPad, with Qwen3-8B for high-memory devices
+- **Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B / Qwen3-8B**: Models for iPhone and iPad—about 1.0GB (1.7B) and 2.3GB (4B) at 4-bit, with Qwen3-8B for high-memory devices
 - **Qwen3-14B / Qwen3-32B**: Full-featured models for Mac
-- **Qwen3-30B-A3B**: Sparse MoE variant—32B-class performance with only 3B parameters active
-- **Qwen3-Next-80B / Qwen3-235B-A22B**: Large models for high-memory Macs (64GB+)
+- **Qwen3-30B-A3B**: Sparse MoE variant—about 16.0GB of weights at 4-bit for 32B-class performance with only 3B parameters active
+- **Qwen3-Next-80B / Qwen3-235B-A22B**: Large models for high-memory Macs (64GB+)—the Next-80B needs about 44.0GB at 4-bit
 
 Qwen3 features hybrid reasoning (toggle between fast and deep thinking), 128K context window, and support for 119 languages.
 
@@ -83,7 +85,7 @@ The binding constraint is unified memory: the quantized weights plus the KV cach
 On M1 and newer Macs, Enigmus delivers responsive AI interactions:
 
 - **M1/M2 (8GB)**: Qwen3-0.6B and Qwen3-1.7B run smoothly for everyday tasks
-- **M1/M2 Pro (16GB+)**: GPT-OSS-20b and Qwen3-14B for advanced use cases
+- **M1/M2 Pro (16GB+)**: Gemma 4 12B and Qwen3-14B for advanced use cases
 - **M3/M4 Max (64GB+)**: Run large models including Qwen3-32B, Qwen3-Next-80B
 - **M3/M4 Max (128GB+)**: Run the largest models including Qwen3-235B-A22B
 - **M5 with Neural Accelerators**: Optimized matrix operations for fastest inference
@@ -128,7 +130,7 @@ At WWDC 2025, Apple announced deeper MLX integration into macOS and iOS, signali
 Enigmus requires **any Mac with Apple Silicon** (M1 or newer) running **macOS 14 Sonoma** or later. The experience scales with the hardware:
 
 - **8GB RAM**: Compact models like Gemma 4 E4B or Qwen3-1.7B for everyday tasks
-- **16GB RAM**: Gemma 4 12B or the 26B A4B MoE, plus mid-size models like GPT-OSS-20b
+- **16GB RAM**: Gemma 4 12B or the 26B A4B MoE for mid-size tasks
 - **32GB+ RAM**: Gemma 4 31B with room for long contexts
 - **64GB+ RAM**: Large models like Qwen3-32B, Qwen3-Next-80B
 - **128GB+ RAM**: The largest models like Qwen3-235B-A22B
@@ -174,12 +176,12 @@ For local deployment it brings several advantages:
 <details>
 <summary><strong>Which Gemma 4 variant fits which device?</strong></summary>
 
-At 4-bit quantization, memory use is roughly half a gigabyte per billion parameters plus the KV cache:
+At 4-bit quantization, memory use runs roughly half to three-quarters of a gigabyte per billion parameters plus the KV cache:
 
-- **E2B / E4B**: iPhone 13+ and iPad—Per-Layer Embeddings keep the working set small
-- **12B**: ~6GB of weights—comfortable in 16GB of unified memory
-- **26B A4B**: ~13GB of weights but only 4B parameters active per token—16GB+ Macs with small-model speed
-- **31B**: ~16GB of weights—best on Macs with 32GB+ unified memory
+- **E2B / E4B**: ~2.7–4.0GB (E2B) and ~6.0GB (E4B)—iPhone 13+ and iPad, Per-Layer Embeddings keep the working set small
+- **12B**: ~9.0GB of weights—comfortable in 16GB of unified memory
+- **26B A4B**: ~14.9GB of weights but only 4B parameters active per token—16GB+ Macs with small-model speed
+- **31B**: ~18.1GB of weights—best on Macs with 32GB+ unified memory
 
 *Sources: [Gemma 4 12B developer guide](https://developers.googleblog.com/gemma-4-12b-the-developer-guide/) · [google/gemma-4-12B on Hugging Face](https://huggingface.co/google/gemma-4-12B)*
 
@@ -188,9 +190,9 @@ At 4-bit quantization, memory use is roughly half a gigabyte per billion paramet
 <details>
 <summary><strong>What other models does Enigmus support?</strong></summary>
 
-Beyond Gemma 4, Enigmus runs OpenAI's **GPT-OSS** family (gpt-oss-20b fits in 16GB; the 117B gpt-oss-120b suits high-memory Macs), both MoE models quantized in MXFP4, and Alibaba's **Qwen3** family—from the 0.6B ultra-light for iPhone up to Qwen3-235B-A22B for 128GB Macs, with hybrid fast/deep reasoning and a 128K context window.
+Beyond Gemma 4, Enigmus runs Alibaba's **Qwen3** family—from the 0.6B ultra-light for iPhone up to Qwen3-235B-A22B for 128GB Macs, with hybrid fast/deep reasoning and a 128K context window.
 
-*Sources: [Introducing GPT-OSS | OpenAI](https://openai.com/index/introducing-gpt-oss/) · [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/Qwen3)*
+*Sources: [GitHub - QwenLM/Qwen3](https://github.com/QwenLM/Qwen3)*
 
 </details>
 
