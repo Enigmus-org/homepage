@@ -1,12 +1,16 @@
+import useOs from "@hooks/useOs";
 import AppStoreButton from "@layouts/components/aurora/AppStoreButton";
 import IPadFrame from "@layouts/components/aurora/IPadFrame";
 
 // Aurora download page: headline + intro from frontmatter, then one glass
 // card per platform with its store button and requirements list, and an
 // iPad device frame showing the app. Rendered inside AuroraBase by
-// pages/[regular].js.
+// pages/[regular].js. On macOS the Mac store button takes the primary style.
 const AuroraDownload = ({ data }) => {
   const { heading, heading_accent, intro, platforms } = data.frontmatter;
+  const isMac = useOs();
+  const macIndex = platforms.findIndex((p) => /mac/i.test(p.store));
+  const primaryIndex = isMac && macIndex !== -1 ? macIndex : 0;
   return (
     <section className="relative px-[22px] pb-6 pt-[34px] text-center md:px-14 md:pb-10 md:pt-[70px]">
       <h1 className="mx-auto mb-4 max-w-[800px] font-display text-[36px] font-extrabold leading-[1.05] tracking-[-0.03em] text-[var(--text)] md:mb-5 md:text-[56px] md:leading-[1.02]">
@@ -36,7 +40,7 @@ const AuroraDownload = ({ data }) => {
                 rel={platform.rel}
                 store={platform.store}
                 mobileLabel={platform.store}
-                variant={i === 0 ? "primary" : "ghost"}
+                variant={i === primaryIndex ? "primary" : "ghost"}
               />
             </div>
             <span className="mt-5 block font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--text-faint)] md:mt-6">
