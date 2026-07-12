@@ -48,7 +48,7 @@ Google's open-weight family, released March 2026 under the Apache 2.0 license:
 
 Gemma 4 is multimodal (text and image input), supports a 256K-token context window, and covers 140+ languages.
 
-<!--
+{/*
 ### GPT-OSS by OpenAI
 
 OpenAI's first open-weight models since GPT-2, released August 2025:
@@ -57,7 +57,7 @@ OpenAI's first open-weight models since GPT-2, released August 2025:
 - **gpt-oss-120b**: 117B parameters for high-memory configurations
 
 Both use mixture-of-experts (MoE) architecture with 4-bit quantization, delivering excellent performance on Apple Silicon.
--->
+*/}
 
 ### Qwen3 by Alibaba
 
