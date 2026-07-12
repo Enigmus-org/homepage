@@ -253,3 +253,21 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 ### Custom video
 
 <Video width="100%" src="https://joy1.videvo.net/videvo_files/video/free/video0467/large_watermarked/_import_61516692993d77.04238324_preview.mp4" />
+
+---
+
+### Device frames
+
+Code-drawn device chassis around real app screenshots. The frame follows the light/dark theme; the screenshot swaps with it via paired light/dark webp assets.
+
+#### MacBook Pro
+
+<MacBookFrame />
+
+#### iPhone
+
+<IPhoneFrame />
+
+#### iPad
+
+<IPadFrame />

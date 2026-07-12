@@ -1,8 +1,10 @@
 import AppStoreButton from "@layouts/components/aurora/AppStoreButton";
+import IPadFrame from "@layouts/components/aurora/IPadFrame";
 
 // Aurora download page: headline + intro from frontmatter, then one glass
-// card per platform with its store button and requirements list. Rendered
-// inside AuroraBase by pages/[regular].js.
+// card per platform with its store button and requirements list, and an
+// iPad device frame showing the app. Rendered inside AuroraBase by
+// pages/[regular].js.
 const AuroraDownload = ({ data }) => {
   const { heading, heading_accent, intro, platforms } = data.frontmatter;
   return (
@@ -54,6 +56,8 @@ const AuroraDownload = ({ data }) => {
           </div>
         ))}
       </div>
+
+      <IPadFrame />
     </section>
   );
 };

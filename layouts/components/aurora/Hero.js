@@ -1,5 +1,6 @@
 import AppStoreButton from "./AppStoreButton";
 import ChatCard from "./ChatCard";
+import DeviceShowcase from "./DeviceShowcase";
 import FeatureChips from "./FeatureChips";
 
 // Centered hero over the aurora field (design_handoff_aurora_glass Hero.tsx).
@@ -63,6 +64,8 @@ const Hero = ({ banner }) => (
     </div>
 
     <FeatureChips />
+
+    <DeviceShowcase />
   </section>
 );
 

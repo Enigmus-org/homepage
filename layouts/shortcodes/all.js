@@ -1,3 +1,6 @@
+import IPadFrame from "@layouts/components/aurora/IPadFrame";
+import IPhoneFrame from "@layouts/components/aurora/IPhoneFrame";
+import MacBookFrame from "@layouts/components/aurora/MacBookFrame";
 import Accordion from "./Accordion";
 import Button from "./Button";
 import Code from "./Code";
@@ -17,7 +20,10 @@ const shortcodes = {
   Notice,
   Code,
   Youtube,
-  RevealEmail
+  RevealEmail,
+  MacBookFrame,
+  IPhoneFrame,
+  IPadFrame
 };
 
 export default shortcodes;
