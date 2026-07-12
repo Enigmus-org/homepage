@@ -51,6 +51,7 @@ npm run lint     # ESLint
 - Tailwind CSS with SCSS in `/styles/`
 - Dark mode via `next-themes`
 - Bootstrap grid compatibility via `tailwind-bootstrap-grid`
+- Design system ("Aurora Glass"): tokens, typography, and component conventions are documented in `docs/style-guide.md`; the `/elements` page is the live visual reference
 
 ## Adding Content
 
