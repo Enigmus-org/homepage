@@ -26,7 +26,8 @@ npm run lint     # ESLint
   - `/content/*.md` - Regular pages (download, technology, ai-and-privacy, etc.)
   - `/content/posts/*.md` - Blog posts
   - `_index.md` files contain list page metadata
-- **Frontmatter**: Supports `title`, `date`, `image`, `categories`, `featured`, `draft`, `layout`
+- **Frontmatter**: Supports `title`, `date`, `image`, `image_alt`, `categories`, `featured`, `draft`, `layout`
+  - Posts: `hero_iphone` (asset base path, e.g. `/images/gemma4-catalogue`) renders the hero inside the iPhone chassis instead of as a wide cover — for portrait app screenshots. It loads `<base>-600.webp` / `<base>-1200.webp`; set `hero_iphone_height` to the 1200-wide variant's pixel height, and keep `image` a landscape cover (it feeds post cards and `og:image`, which is declared 1200×630).
 - **Layouts**: Set via `layout` frontmatter field: `default`, `text2image`, `contact`, `404`
 
 ### Page Routing

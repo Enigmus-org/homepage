@@ -1,5 +1,6 @@
 import config from "@config/config.json";
 import AuroraBase from "@layouts/AuroraBase";
+import IPhoneFrame from "@layouts/components/aurora/IPhoneFrame";
 import PostCard from "@layouts/components/aurora/PostCard";
 import dateFormat from "@lib/utils/dateFormat";
 import { MDXRemote } from "next-mdx-remote";
@@ -15,7 +16,16 @@ const PostSingle = ({
   slug,
   relatedPosts,
 }) => {
-  let { description, title, date, image, categories } = frontmatter;
+  let {
+    description,
+    title,
+    date,
+    image,
+    image_alt,
+    hero_iphone,
+    hero_iphone_height,
+    categories,
+  } = frontmatter;
   description = description ? description : content.slice(0, 120);
   const related = relatedPosts.filter((post) => post.slug !== slug);
 
@@ -40,14 +50,28 @@ const PostSingle = ({
           <div className="mb-8 text-center font-mono text-[12.5px] text-[var(--text-faint)] md:mb-10">
             {meta_author} · {dateFormat(date)}
           </div>
-          {image && (
-            <Image
-              src={image}
-              height="500"
-              width="1000"
-              alt={title}
-              className="mb-8 rounded-[18px] border border-[var(--border)] md:mb-10"
+          {/* A portrait app screenshot reads as a device shot, not a cover:
+              `hero_iphone` (asset base path) puts it in the iPhone chassis at
+              phone scale instead of stretching it across the column. */}
+          {hero_iphone ? (
+            <IPhoneFrame
+              src={hero_iphone}
+              alt={image_alt || title}
+              height={hero_iphone_height}
+              dark={false}
+              sizes="(min-width: 768px) 268px, 230px"
+              className="relative mb-9 w-[230px] md:mb-12 md:w-[268px]"
             />
+          ) : (
+            image && (
+              <Image
+                src={image}
+                height="500"
+                width="1000"
+                alt={image_alt || title}
+                className="mb-8 rounded-[18px] border border-[var(--border)] md:mb-10"
+              />
+            )
           )}
           <div className="aurora-content">
             <MDXRemote {...mdxContent} components={shortcodes} />
