@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5BBFFA"/>
+      <stop offset="0.55" stop-color="#1F8FE8"/>
+      <stop offset="1" stop-color="#0B62C4"/>
+    </linearGradient>
+    <radialGradient id="auroraV" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6D5EF5" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#6D5EF5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="auroraT" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#14C7C7" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#14C7C7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#03203C" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="110" cy="620" rx="500" ry="310" fill="url(#auroraV)"/>
+  <ellipse cx="1120" cy="20" rx="430" ry="270" fill="url(#auroraT)"/>
+
+  <g filter="url(#cardShadow)">
+    <rect x="56" y="56" width="1088" height="518" rx="24" fill="#FFFFFF"/>
+  </g>
+
+  <text x="96" y="116" font-family="Helvetica Neue, Helvetica, Arial" font-size="27" font-weight="700" fill="#0C1220">Decode throughput &#8212; Qwen3-0.6B on iPhone 17 Pro</text>
+  <text x="96" y="148" font-family="Helvetica Neue, Helvetica, Arial" font-size="16" fill="#5A6478">Steady-state tokens per second. Higher is better.</text>
+
+  <g stroke="#E6EBF2" stroke-width="1">
+    <path d="M396 176 V 424"/>
+    <path d="M562 176 V 424"/>
+    <path d="M728 176 V 424"/>
+    <path d="M893 176 V 424"/>
+  </g>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial" font-size="16" fill="#0C1220" text-anchor="end">
+    <text x="376" y="228">Core AI &#183; GPU pipelined</text>
+    <text x="376" y="286">MLX &#183; GPU</text>
+    <text x="376" y="344">Core AI &#183; ANE static-shape</text>
+    <text x="376" y="402">Core ML &#183; ANE</text>
+  </g>
+
+  <g fill="#0D6FD1">
+    <path d="M396 204 H 992 a4 4 0 0 1 4 4 V 236 a4 4 0 0 1 -4 4 H 396 Z"/>
+    <path d="M396 262 H 763 a4 4 0 0 1 4 4 V 294 a4 4 0 0 1 -4 4 H 396 Z"/>
+    <path d="M396 320 H 554 a4 4 0 0 1 4 4 V 352 a4 4 0 0 1 -4 4 H 396 Z"/>
+    <path d="M396 378 H 521 a4 4 0 0 1 4 4 V 410 a4 4 0 0 1 -4 4 H 396 Z"/>
+  </g>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial" font-size="20" font-weight="700" fill="#0C1220">
+    <text x="1012" y="229">181</text>
+    <text x="783" y="287">112</text>
+    <text x="574" y="345">49</text>
+    <text x="541" y="403">39</text>
+  </g>
+
+  <path d="M396 424 H 1104" stroke="#D8DFEA" stroke-width="1"/>
+  <g font-family="Helvetica Neue, Helvetica, Arial" font-size="13" fill="#8A93A6" text-anchor="middle">
+    <text x="396" y="446">0</text>
+    <text x="562" y="446">50</text>
+    <text x="728" y="446">100</text>
+    <text x="893" y="446">150</text>
+  </g>
+  <text x="1104" y="446" text-anchor="end" font-family="Helvetica Neue, Helvetica, Arial" font-size="13" fill="#8A93A6">tok/s</text>
+
+  <text x="96" y="496" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">Core AI&#8217;s GPU engine is ~1.6&#215; MLX once warm &#8212; but only ~1.05&#215; at Qwen3-8B, and ~71 tok/s on its</text>
+  <text x="96" y="518" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">very first generation while kernels compile.</text>
+  <text x="96" y="548" font-family="Helvetica Neue, Helvetica, Arial" font-size="13" fill="#8A93A6">Single independent measurement (apple-silicon-llm-bench, July 2026). Apple publishes no throughput figures.</text>
+</svg>
