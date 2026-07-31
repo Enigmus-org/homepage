@@ -3,6 +3,7 @@ import AuroraBase from "@layouts/AuroraBase";
 import IPhoneFrame from "@layouts/components/aurora/IPhoneFrame";
 import PostCard from "@layouts/components/aurora/PostCard";
 import dateFormat from "@lib/utils/dateFormat";
+import { slugify } from "@lib/utils/textConverter";
 import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,7 +38,7 @@ const PostSingle = ({
             {categories.map((tag) => (
               <Link
                 key={tag}
-                href={`/categories/${tag.replace(" ", "-")}`}
+                href={`/categories/${slugify(tag)}`}
                 className="rounded-md bg-brand/[0.14] px-[9px] py-[5px] font-mono text-[11px] font-medium text-[var(--accent-on-bg)]"
               >
                 {tag}

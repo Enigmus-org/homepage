@@ -2,7 +2,7 @@ import config from "@config/config.json";
 import AuroraBase from "@layouts/AuroraBase";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";
-import { humanize } from "@lib/utils/textConverter";
+import { humanize, slugify } from "@lib/utils/textConverter";
 import Link from "next/link";
 const { blog_folder } = config.settings;
 
@@ -38,18 +38,15 @@ export default Categories;
 export const getStaticProps = () => {
   const posts = getSinglePage(`content/${blog_folder}`);
   const categories = getTaxonomy(`content/${blog_folder}`, "categories");
-  const categoriesWithPostsCount = categories.map((category) => {
-    const filteredPosts = posts.filter((post) =>
-      post.frontmatter.categories.includes(category)
-    );
-    return {
-      name: category,
-      posts: filteredPosts.length,
-    };
-  });
   return {
     props: {
-      categories: categoriesWithPostsCount,
+      // getTaxonomy returns slugs, so post values must be slugified to match.
+      categories: categories.map((category) => ({
+        name: category,
+        posts: posts.filter((post) =>
+          post.frontmatter.categories.some((c) => slugify(c) === category)
+        ).length,
+      })),
     },
   };
 };
