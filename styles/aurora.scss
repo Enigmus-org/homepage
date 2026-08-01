@@ -23,6 +23,8 @@
   --text-dim: #5a6478;
   --text-faint: #8a93a6;
   --accent-on-bg: #0d6fd1; // accent text that sits on the page bg
+  --code-inline-bg: rgba(214, 62, 40, 0.08); // inline `code` — orange on a red wash
+  --code-inline-text: #c2410c;
   --chat-surface: rgba(255, 255, 255, 0.72); // hero chat card interior
   --shadow-frame: 0 40px 120px -30px rgba(30, 55, 100, 0.28);
   --shadow-card: 0 14px 34px -22px rgba(30, 55, 100, 0.4);
@@ -44,6 +46,8 @@
   --text-dim: #9aa3b4;
   --text-faint: #6b7488;
   --accent-on-bg: #9fe0ff;
+  --code-inline-bg: rgba(255, 96, 72, 0.13);
+  --code-inline-text: #ffa657; // the terminal block's flag orange
   --chat-surface: rgba(12, 17, 28, 0.72);
   --shadow-frame: 0 40px 120px -30px rgba(10, 25, 50, 0.6);
   --shadow-card: 0 14px 34px -22px rgba(0, 0, 0, 0.5);
@@ -122,8 +126,18 @@
     @apply italic;
   }
 
+  // Inline code: orange on a gentle red wash, so it separates from both the
+  // muted grey of body copy and the blue of links. Sized in `em` to stay
+  // proportional in list items and headings.
   code {
-    @apply rounded bg-[var(--surface)] px-1.5 py-0.5 font-mono text-[14px];
+    @apply rounded-md px-[0.3em] py-[0.15em] font-mono text-[0.9em] font-medium;
+    background: var(--code-inline-bg);
+    color: var(--code-inline-text);
+  }
+
+  // Inline code inside a link keeps the link's color.
+  a code {
+    color: inherit;
   }
 
   img {
@@ -182,6 +196,63 @@
       @apply text-[13.5px] text-[var(--text-faint)];
     }
   }
+}
+
+// Fenced code blocks as a terminal window (layouts/shortcodes/CodeBlock.jsx).
+// Deliberately dark in both themes — a terminal is dark — and left outside the
+// .aurora-content layer so prose pages get the same treatment. Token colors
+// follow GitHub Dark; `sh-cmd` / `sh-flag` come from the extra shell pass in
+// lib/utils/rehypeShellTokens.js.
+.terminal-block {
+  --term-border: rgba(240, 246, 252, 0.1);
+
+  @apply my-6 overflow-hidden rounded-xl border border-[var(--term-border)] bg-[#0d1117];
+  box-shadow: var(--shadow-card);
+
+  &__bar {
+    @apply flex items-center gap-2 border-b border-[var(--term-border)] bg-[#161b22] px-3.5 py-2.5;
+  }
+
+  // macOS traffic lights: close, minimize, zoom
+  &__dots {
+    @apply flex items-center gap-[6px];
+
+    span {
+      @apply h-[10px] w-[10px] rounded-full;
+    }
+    span:nth-child(1) { background: #ff5f57; }
+    span:nth-child(2) { background: #febc2e; }
+    span:nth-child(3) { background: #28c840; }
+  }
+
+  &__label {
+    @apply ml-auto font-mono text-[11px] tracking-[0.08em] text-[#6e7681];
+  }
+
+  // Thin scrollbar: the long CLI lines overflow the column.
+  pre {
+    @apply overflow-x-auto px-4 py-3.5 text-[13px] leading-[1.7] text-[#e6edf3];
+    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+    scrollbar-width: thin;
+    tab-size: 2;
+
+    &::-webkit-scrollbar { @apply h-[9px]; }
+    &::-webkit-scrollbar-thumb { @apply rounded-full bg-white/[0.16]; }
+  }
+
+  // The inline-code pill must not apply to code inside the block.
+  code {
+    @apply bg-transparent p-0 text-[1em] font-normal text-inherit;
+  }
+
+  // GitHub Dark tokens, one line per color
+  .hljs-comment { color: #8b949e; }
+  .hljs-keyword, .hljs-built_in, .hljs-tag, .hljs-name, .hljs-selector-tag { color: #ff7b72; }
+  .hljs-string { color: #a5d6ff; }
+  .hljs-number, .hljs-literal, .hljs-variable, .hljs-attr, .hljs-attribute, .hljs-meta { color: #79c0ff; }
+  .hljs-title, .hljs-section { color: #d2a8ff; }
+  .hljs-type, .hljs-params, .sh-flag { color: #ffa657; }
+  .sh-cmd { color: #7ee787; }
 }
 
 // Active tab pill (layouts/shortcodes/Tabs.jsx toggles this class). Kept at

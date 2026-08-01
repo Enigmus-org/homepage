@@ -3,7 +3,7 @@ import IPhoneFrame from "@layouts/components/aurora/IPhoneFrame";
 import MacBookFrame from "@layouts/components/aurora/MacBookFrame";
 import Accordion from "./Accordion";
 import Button from "./Button";
-import Code from "./Code";
+import CodeBlock from "./CodeBlock";
 import Notice from "./Notice";
 import RevealEmail from "./RevealEmail";
 import Tab from "./Tab";
@@ -12,13 +12,14 @@ import Video from "./Video";
 import Youtube from "./Youtube";
 
 const shortcodes = {
+  // Lowercase key: an element override, applied to every fenced code block.
+  pre: CodeBlock,
   Button,
   Accordion,
   Video,
   Tab,
   Tabs,
   Notice,
-  Code,
   Youtube,
   RevealEmail,
   MacBookFrame,

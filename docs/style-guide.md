@@ -114,8 +114,15 @@ Layouts: `AuroraArticle` (default for content pages; `heading`/`heading_accent`/
 frontmatter, heading falls back to `title`), `AuroraDownload`, `AuroraContact`, `404`.
 Library (`layouts/components/aurora/`): `Nav`, `AuroraField`, `Hero`, `ChatCard`,
 `AppStoreButton`, `FeatureChips`, `RecentPosts`, `PostCard`, `Pagination`, `Footer`,
-`ThemeToggle`. Shortcodes (`Notice`, `Accordion`, `Button`, `Tabs`, `Code`, media)
+`ThemeToggle`. Shortcodes (`Notice`, `Accordion`, `Button`, `Tabs`, media)
 are styled to match — see `/elements`.
+
+Code: inline `` `code` `` is orange on a gentle red wash (`--code-inline-text` /
+`--code-inline-bg`, the block's flag orange in dark); fenced blocks are a
+terminal window, dark in both themes
+(`CodeBlock` → `.terminal-block`). Highlighting is `rehype-highlight` at build
+time in GitHub Dark colors, plus `lib/utils/rehypeShellTokens.js` for the shell
+commands and flags its bash grammar leaves plain.
 
 ## Theming
 
