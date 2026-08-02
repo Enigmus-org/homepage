@@ -65,12 +65,16 @@ const PostSingle = ({
             />
           ) : (
             image && (
+              // 1200×630 is the cover convention (it doubles as og:image), but
+              // covers vary in ratio, so `w-full h-auto` lets the real one win
+              // — sizing both dimensions in CSS is also what keeps next/image
+              // from warning about a half-modified aspect ratio.
               <Image
                 src={image}
-                height="500"
-                width="1000"
+                width="1200"
+                height="630"
                 alt={image_alt || title}
-                className="mb-8 rounded-[18px] border border-[var(--border)] md:mb-10"
+                className="mb-8 h-auto w-full rounded-[18px] border border-[var(--border)] md:mb-10"
               />
             )
           )}
