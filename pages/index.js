@@ -23,7 +23,7 @@ export default Home;
 export const getStaticProps = async () => {
   const homepage = await getListPage("content/_index.md");
   const { banner, recent_posts } = homepage.frontmatter;
-  const posts = sortByDate(getSinglePage(`content/${blog_folder}`)).slice(0, 3);
+  const posts = sortByDate(getSinglePage(`content/${blog_folder}`)).slice(0, 6);
 
   return {
     props: {
