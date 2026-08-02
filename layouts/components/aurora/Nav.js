@@ -19,11 +19,15 @@ const Nav = () => {
       <div className="flex w-full max-w-[1200px] items-center justify-between rounded-[14px] border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 backdrop-blur-xl lg:rounded-nav lg:py-3 lg:pl-[18px] lg:pr-3.5">
         {/* wordmark */}
         <Link href="/" className="flex items-center gap-[9px] lg:gap-[11px]">
+          {/* `priority` because the wordmark icon is the topmost image on
+              every page — it is what the LCP measurement lands on, so it must
+              not be lazy-loaded. */}
           <Image
             src="/images/enigmus-icon-96.png"
             alt="Enigmus"
             width={32}
             height={32}
+            priority
             className="h-7 w-7 rounded-lg lg:h-8 lg:w-8 lg:rounded-[9px] lg:shadow-[0_4px_16px_rgba(31,163,251,0.35)]"
           />
           <span className="font-heading text-[16px] font-semibold tracking-[-0.02em] text-[var(--text)] lg:text-[18px]">
