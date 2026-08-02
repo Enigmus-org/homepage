@@ -21,7 +21,10 @@ const Nav = () => {
         <Link href="/" className="flex items-center gap-[9px] lg:gap-[11px]">
           {/* `priority` because the wordmark icon is the topmost image on
               every page — it is what the LCP measurement lands on, so it must
-              not be lazy-loaded. */}
+              not be lazy-loaded. The dev-only LCP warning for this file still
+              fires anyway: next/image tracks loading state per URL, and the
+              footer and hero card reuse the same icon lazily, overwriting this
+              entry. Ignore it — those copies cost no extra request. */}
           <Image
             src="/images/enigmus-icon-96.png"
             alt="Enigmus"

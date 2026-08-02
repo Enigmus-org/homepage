@@ -22,16 +22,11 @@ const Footer = () => {
       <div className="mx-auto flex w-full max-w-[1200px] flex-col justify-between gap-8 md:flex-row md:gap-10">
         <div className="max-w-[320px]">
           <div className="mb-3 flex items-center gap-2.5 md:mb-3.5">
-            {/* Same file as the nav wordmark, which loads it eagerly, so
-                there is nothing left to defer here — and next/image tracks
-                loading per URL, so leaving this one lazy would mark the nav's
-                copy lazy too and trip its LCP warning. */}
             <Image
               src="/images/enigmus-icon-96.png"
               alt="Enigmus"
               width={28}
               height={28}
-              loading="eager"
               className="h-[26px] w-[26px] rounded-lg md:h-7 md:w-7"
             />
             <span className="font-heading text-[16px] font-semibold text-[var(--text)]">

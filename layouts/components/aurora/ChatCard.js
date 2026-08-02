@@ -26,14 +26,11 @@ const ChatCard = () => (
       {/* title bar */}
       <div className="flex items-center gap-2 border-b border-[var(--border)] px-[15px] py-3 md:gap-2.5 md:px-5 md:py-[15px]">
         <span className="h-[26px] w-[26px] overflow-hidden rounded-[7px] md:hidden">
-          {/* eager for the same reason as the footer copy: the nav preloads
-              this file, and next/image tracks loading per URL */}
           <Image
             src="/images/enigmus-icon-96.png"
             alt=""
             width={26}
             height={26}
-            loading="eager"
           />
         </span>
         <span className="hidden h-[11px] w-[11px] rounded-full bg-[#ff5f57] md:block" />
