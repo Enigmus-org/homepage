@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Enigmus Blog</title>
+    <link>https://enigmus.cc/posts</link>
+    <atom:link href="https://enigmus.cc/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Writing from Enigmus on local AI — on-device model releases, Apple silicon performance, and the privacy case for running inference locally.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <generator>lib/feedGenerator.js</generator>
+    <image>
+      <url>https://enigmus.cc/images/logo-512.png</url>
+      <title>Enigmus Blog</title>
+      <link>https://enigmus.cc/posts</link>
+    </image>
+    <item>
+      <title>Core AI: a first look at Apple&apos;s new on-device model runtime</title>
+      <link>https://enigmus.cc/posts/apple-core-ai-first-look</link>
+      <guid isPermaLink="true">https://enigmus.cc/posts/apple-core-ai-first-look</guid>
+      <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+      <description>At WWDC 2026 Apple introduced Core AI, a new framework for running machine-learning models on Apple silicon — in Apple&apos;s words, &quot;the inference framework powering on-device Apple Intelligence&quot; — and,…</description>
+      <content:encoded><![CDATA[<p><img src="https://enigmus.cc/images/apple-core-ai-cover.webp" alt="Terminal window titled llm-runner, showing the Core AI commands to export a Qwen3-0.6B checkpoint to an .aimodel bundle, run it with llm-runner, and measure it with llm-benchmark" /></p>
+<p>At WWDC 2026 Apple introduced <a href="https://developer.apple.com/videos/play/wwdc2026/324/">Core AI</a>, a new framework for running machine-learning models on Apple silicon — in Apple&#39;s words, &quot;the inference framework powering on-device Apple Intelligence&quot; — and, alongside it, an open-source repository that turns the framework into a practical local-LLM stack. For anyone shipping on-device language models on Apple platforms, this is the most consequential platform change since MLX appeared. Enigmus runs its inference on <a href="https://github.com/ml-explore/mlx-swift-lm">mlx-swift-lm</a> directly today, and a transition to Core AI is under consideration — but not a quick one, for reasons covered below. This post is a technical first read: what the framework actually is, what is genuinely new, and where it beats or loses to building on MLX&#39;s LM layer directly.</p>
+<h2 id="what-core-ai-is">What Core AI is</h2>
+<p>Core AI is a general inference runtime, not an LLM framework. The press calls it the Core ML successor; Apple&#39;s own docs are more careful — Core ML is not deprecated, and the two are positioned side by side, with Core ML keeping classic model types and Core AI taking &quot;the latest model architectures and inference techniques.&quot; It runs models across CPU, GPU, and Neural Engine, and its central idea is <em>specialization</em>: a <code>.aimodel</code> bundle is a device-independent source representation, exported from PyTorch via <code>torch.export</code> with first-class dynamic shapes. On first load it is compiled for the exact device in two phases — compute is segmented, planned, and optimized, then executable artifacts are generated for the compute units in use — and the result lands in an <code>AIModelCache</code> that can even be shared across apps in an app group. Ahead-of-time compilation via <code>coreai-build</code> shrinks, but does not remove, that first-load cost. There is a dedicated Core AI Debugger app plus Xcode instruments for profiling. Availability is 27.0 on every platform, and every entry is marked beta.</p>
+<p>The LLM layer sits on top, in <a href="https://github.com/apple/coreai-models">apple/coreai-models</a> (BSD-3-Clause, first released June 2026). It contains model export recipes that convert Hugging Face checkpoints into <code>.aimodel</code> bundles, a Swift runtime with four engine strategies — a pipelined GPU engine, a sequential engine, a static-shape engine aimed at the Neural Engine, and a VLM variant — plus KV-cache management, samplers, tool-call parsing, and grammar-constrained generation built on XGrammar (the same constrained-decoding engine MLX adopted, so the two stacks converged there). Export recipes currently cover Gemma 3, GPT-OSS, Mistral, Mixtral, and the Qwen families for LLMs, with a longer tail of vision, audio, and diffusion models.</p>
+<h2 id="what-is-actually-new">What is actually new</h2>
+<p>Three things stand out against the status quo of Core ML on one side and MLX on the other.</p>
+<p><strong>A working Neural Engine path for LLM decode.</strong> Core ML never handled autoregressive decoding well — static shapes, awkward KV-cache state, and limited ANE coverage of the decode loop. Core AI&#39;s static-shape engine targets the ANE directly, and the repository ships explicit transformer-on-ANE authoring rules: keep the whole model resident on the Neural Engine, per-head attention instead of fused SDPA, fp16 only, palettized weights. (Apple never states outright that LLM decode runs on the ANE — the claim is verified at the code level, not in marketing copy.) The one independent benchmark available (<a href="https://github.com/john-rocky/apple-silicon-llm-bench">apple-silicon-llm-bench</a>) measured Qwen3-0.6B decode on an iPhone 17 Pro at 49 tok/s on the ANE via Core AI against 39 tok/s for the legacy Core ML path — not fast in absolute terms, but running decode off the GPU entirely, which matters for sustained workloads and thermals.</p>
+<p><strong>A faster GPU engine for small models.</strong> The same benchmark measured Core AI&#39;s pipelined GPU engine at 181 tok/s steady-state on Qwen3-0.6B (iPhone 17 Pro) against 112 tok/s for MLX — roughly 1.6× once warm. Apple offers no explanation for the gap; the mechanism has to be read out of the engine&#39;s source, which describes a three-stage pipeline with rotated buffers so CPU and GPU work overlap, token sampling (argmax/top-k) executed directly on the GPU via MPSGraph compute shaders instead of round-tripping logits to the CPU, and a growing KV cache with pipelined expansion. The caveats are load-bearing: the first generation pays a cold-start cost (about 71 tok/s while kernels compile and the three-stage pipeline fills), and the advantage collapses as models grow. On an M4 Max the gap is ~2.47× at 0.6B but only ~1.05× at Qwen3-8B, where memory bandwidth rather than compute is the bottleneck — and on the Mac the same source places MLX, not Core AI, on the energy-per-token Pareto frontier. These are single-author numbers with documented session-to-session variance, so they should be read as directional. Apple itself publishes no throughput figures at all.</p>
+<p><strong>One generation API over swappable engines.</strong> The Foundation Models framework shipped in OS 26, but OS 27 adds beta protocols — <code>LanguageModel</code> and <code>LanguageModelExecutor</code> — that let any third-party engine sit behind <code>LanguageModelSession</code>, the same API that drives Apple&#39;s built-in system model. <code>coreai-models</code> ships the reference implementation, and MLX ships its own bridge (<code>MLXFoundationModels</code>). An app can adopt <code>LanguageModelSession</code> as its only generation surface and choose the backend — Apple&#39;s system model, a Core AI <code>.aimodel</code>, or an arbitrary MLX checkpoint — behind one protocol, with structured output and tool calling handled by the framework.</p>
+<h2 id="against-mlx-lm-directly">Against mlx-lm directly</h2>
+<p>Enigmus&#39;s current stack is MLX with mlx-swift-lm on top: the model registry, config decoding, weight loading, and the token loop, pinned to exact revisions. Measured against that, Core AI&#39;s trade-offs look like this.</p>
+<p>In Core AI&#39;s favor:</p>
+<ul>
+<li><strong>First-party runtime.</strong> The engine ships with the OS and is maintained by the platform vendor, with a debugger and profiling instruments. MLX is also Apple-run, but as an open-source project outside the OS, with the app carrying the runtime.</li>
+<li><strong>The ANE is reachable.</strong> MLX runs LLMs on the GPU; Core AI is the only supported route to Neural Engine decode.</li>
+<li><strong>Faster small-model decode on iPhone</strong>, per the numbers above — the regime a phone actually operates in.</li>
+<li><strong>Specialization caching and AOT compilation</strong> — kernel compilation cost is explicit, cacheable, and can be paid at build time rather than first use.</li>
+<li><strong>Constrained decoding, tool-call parsing, and VLM support in the box</strong>, behind the same session API.</li>
+</ul>
+<p>Against it:</p>
+<ul>
+<li><strong>OS 27 or nothing.</strong> Everything above requires iOS/macOS 27 — in public beta as of late July 2026, with general availability expected around September but not officially dated. Even after release, adopting Core AI as the only engine means dropping every user still on OS 26 or earlier and every device that cannot upgrade. This is the single biggest reason a shipping app cannot simply switch, the honest pain point of the whole story — and the loudest complaint in the <a href="https://news.ycombinator.com/item?id=48449665">community discussion</a> too.</li>
+<li><strong>A closed model catalog.</strong> Models must be exported to <code>.aimodel</code> bundles through the repo&#39;s recipes, which cover a short list of architectures. mlx-swift-lm loads thousands of community-quantized checkpoints straight from Hugging Face as safetensors — no export step, no per-model recipe. For an app whose model picker is a catalog of community builds, this gap is structural.</li>
+<li><strong>Export-environment sensitivity.</strong> The benchmark author found the identical export recipe produced artifacts 2.2× slower when run on the macOS 27 beta SDK versus the macOS 26 SDK. Quantization presets also differ by platform (plain INT4 on macOS, palettized 4-bit on iOS), so an exported bundle is not one artifact but a per-platform matrix.</li>
+<li><strong>Beta protocol churn, closed development.</strong> The <code>LanguageModel</code>/<code>LanguageModelExecutor</code> protocols are beta, and <code>coreai-models</code> is not accepting pull requests — issues only. mlx-swift-lm&#39;s development happens in the open at roughly 150 commits per quarter.</li>
+<li><strong>No first-party performance data.</strong> Apple ships an <code>llm-benchmark</code> tool but publishes no numbers; every figure above comes from one independent benchmarker.</li>
+</ul>
+<h2 id="building-a-local-llm-cli-with-core-ai">Building a local-LLM CLI with Core AI</h2>
+<p>A detail worth spelling out: Apple ships Core AI LLM inference as command-line executables. <code>coreai-models</code> declares <code>llm-runner</code> and <code>llm-benchmark</code> as SwiftPM executable targets built on <code>swift-argument-parser</code> — no app bundle, no Xcode project, no entitlements dance. That makes a private, local LLM CLI on a Mac a short exercise:</p>
+<pre><code class="language-bash"># 1. Export a checkpoint to an .aimodel bundle (runs on the dev machine)
+uv run coreai.model.registry --list-models
+uv run coreai.llm.export Qwen/Qwen3-0.6B                 # macOS variant, 4-bit default
+uv run coreai.llm.export Qwen/Qwen3-0.6B --platform iOS  # palettized 4-bit for iPhone
+
+# 2. Run it
+swift run -c release llm-runner \
+  --model path/to/exported_model_folder \
+  --prompt &quot;Summarize the Bell inequality in three sentences.&quot;
+
+# 3. Measure it (512-token prompt, 1024 generated, 5 trials by default)
+swift run -c release llm-benchmark --model path/to/exported_model_folder
+</code></pre>
+<p><code>llm-runner</code>&#39;s flag set doubles as a map of what the stack can do: <code>--json-schema</code> for constrained decoding, <code>--kv-cache-strategy</code>, <code>--warmup</code> for pre-paying kernel compilation, <code>--image</code> for VLM input, and <code>--inference-engine-variant</code> to pick between the pipelined, sequential, and static-shape engines. It prints a performance summary and memory usage on exit.</p>
+<p>A custom CLI is one SwiftPM executable that depends on <code>CoreAILanguageModels</code> and <code>FoundationModels</code>:</p>
+<pre><code class="language-swift">import FoundationModels
+import CoreAILanguageModels
+
+let model = try await CoreAILanguageModel(resourcesAt: modelURL)
+let session = LanguageModelSession(model: model)
+let response = try await session.respond(to: prompt)
+print(response)
+</code></pre>
+<p>(For Apple&#39;s built-in system model there is an even shorter path — macOS 27 preinstalls an <code>fm</code> command-line tool, with a companion Python SDK — but that drives the system Foundation Model only, not custom weights.)</p>
+<p>The privacy read here is unusually auditable. The only network code in the entire <code>coreai-models</code> repository is the Hugging Face download inside the Python export tooling, which runs on the development machine; the Swift runtime contains no networking at all — it loads a local resources folder and generates. The OS-side framework is closed source, so Apple&#39;s &quot;zero server dependencies&quot; claim has to be taken on its word there, but the open-source layer can be checked directly.</p>
+<h2 id="where-enigmus-lands">Where Enigmus lands</h2>
+<p>Enigmus stays on mlx-swift-lm for now. The OS 27 floor alone settles the near term — a privacy app does not abandon its installed base for a beta OS. The catalog question matters just as much: the app&#39;s model picker is built on community MLX checkpoints fetched directly from Hugging Face, and Core AI has no equivalent supply today.</p>
+<p>But the transition is being considered seriously, and the architecture is being shaped for it. The practical reading of the Foundation Models protocols is that the generation layer of an app should become engine-agnostic: adopt <code>LanguageModelSession</code> semantics internally, keep mlx-swift-lm as the backend that ships, and leave the seam where a <code>CoreAILanguageModel</code> could slot in once OS 27 is the floor rather than the ceiling. In the meantime, the numbers worth trusting are the ones measured locally — <code>llm-benchmark</code> exists precisely so that the decision, when it comes, rests on device-measured tokens per second rather than anyone&#39;s blog post. Including this one.</p>
+]]></content:encoded>
+      <category>Core AI</category>
+      <category>MLX</category>
+      <category>CLI</category>
+      <media:content url="https://enigmus.cc/images/apple-core-ai-cover.webp" medium="image" type="image/webp" />
+    </item>
+    <item>
+      <title>Enigmus 1.1.0: Gemma 4 on-device, and a compact text-only checkpoint</title>
+      <link>https://enigmus.cc/posts/enigmus-1-1-0-gemma-4</link>
+      <guid isPermaLink="true">https://enigmus.cc/posts/enigmus-1-1-0-gemma-4</guid>
+      <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Enigmus 1.1.0 adds Google&apos;s Gemma 4 to the model picker across iPhone, iPad, and Mac. As with everything in the app, the new models run locally: the prompt, the generated tokens, and the chat history…</description>
+      <content:encoded><![CDATA[<p><img src="https://enigmus.cc/images/gemma4-catalogue-cover.webp" alt="Enigmus model installer showing the Gemma 4 model catalogue on iPhone" /></p>
+<p>Enigmus 1.1.0 adds Google&#39;s Gemma 4 to the model picker across iPhone, iPad, and Mac. As with everything in the app, the new models run locally: the prompt, the generated tokens, and the chat history stay on the device, and the only network request is the one-time weight download. This post covers what changed under the hood — the runtime the models load into, the full Gemma 4 lineup now available, a compact text-only E2B checkpoint that needed a small configuration fix to run correctly, and three smaller refinements to rendering and downloads.</p>
+<h2 id="the-runtime-mlx-and-mlx-swift-lm">The runtime: MLX and mlx-swift-lm</h2>
+<p>Inference runs on Apple&#39;s <a href="https://github.com/ml-explore/mlx">MLX</a> array framework, which executes the model on the Apple silicon GPU through Metal against the unified memory pool shared with the CPU. Because CPU and GPU address the same memory, weights are not copied across a bus at load time, and the practical ceiling on model size and context length is simply the machine&#39;s RAM.</p>
+<p>The model layer above MLX is <a href="https://github.com/ml-explore/mlx-swift-lm">mlx-swift-lm</a>, the Swift port of <code>mlx-lm</code>. It owns the model registry that maps a checkpoint&#39;s <code>model_type</code> string to a concrete architecture, decodes each repository&#39;s <code>config.json</code> into a typed configuration, loads the safetensors weights, and drives the token-generation loop. Enigmus pins this stack — mlx-swift <code>0.31.4</code> and mlx-swift-lm <code>3.31.4</code> — so that every shipped model is validated against exact revisions rather than a moving dependency. Adding Gemma 4 to the catalog was possible without a dependency bump: mlx-swift-lm <code>3.31.4</code> already registers the <code>gemma4</code> and <code>gemma4_text</code> model types.</p>
+<h2 id="the-gemma-4-family-in-the-picker">The Gemma 4 family in the picker</h2>
+<p>Gemma 4 now spans the full size range in the installer — E2B, E4B, 12B, 26B, and 31B, as OptiQ 4-bit builds, with native context windows of 128K–256K tokens. These are the standard multimodal <code>gemma4</code> checkpoints; the Swift port constructs only the causal-language-model decoder and does not load a vision tower, so they run as ordinary text models.</p>
+<p>Model selection remains bounded by memory. The installer reads available RAM and free storage, lists each build with its on-disk size, marks the largest that fits as recommended, and disables anything that would exceed the memory or storage budget. A phone is pointed at an E2B or E4B build; a Mac with large unified memory can run the 26B or 31B builds. Weights are fetched from Hugging Face&#39;s CDN, the only optional network request in the app.</p>
+<h2 id="a-compact-text-only-e2b-checkpoint">A compact text-only E2B checkpoint</h2>
+<p>Alongside the standard OptiQ builds, 1.1.0 ships a smaller-footprint E2B option: <code>Gemma4-E2B-IT-Text-int4</code>, a natively text-only checkpoint quantized to affine 4-bit at group size 64. It is a ~2.7 GB download against roughly 5.2 GB for the standard E2B build — a meaningful saving on devices where the larger 4-bit weights do not fit. It is offered as the recommended model precisely in that gap: where ~2.7 GB fits but 4.0 GB does not.</p>
+<p>Getting this checkpoint to run correctly required a configuration fix worth describing, because it is a good illustration of how quietly a positional-encoding bug can degrade output. Gemma 4&#39;s text decoder uses a partial rotary embedding: on its full-attention layers, only a fraction of each head&#39;s dimensions are rotated. The correct <code>partial_rotary_factor</code> is <code>0.25</code>, so on the E2B&#39;s full-attention layers (7 of 35, with a 512-dimension global head) exactly 128 dimensions rotate.</p>
+<p>This checkpoint declares its rope parameters <em>nested</em> under a <code>text_config</code> key. The pinned <code>gemma4_text</code> decoder reads rope parameters only from the top level of the config, and when it finds none it falls back to a default <code>partial_rotary_factor</code> of <code>1.0</code> — rotating all 512 dimensions. Every other shape field&#39;s default happened to match the real model, so the checkpoint loaded and produced fluent, coherent text. The damage was invisible at a glance and only surfaced on long-range retrieval: positional error under rotary embeddings grows with token distance, so short replies looked fine while facts that depended on attending across a long context drifted or dropped out.</p>
+<p>Enigmus corrects this at download time with a small, idempotent config shim: for a <code>gemma4_text</code> checkpoint that has a nested <code>text_config.rope_parameters</code> but no top-level copy, it hoists those values verbatim to the top level before the model is loaded. The shim duplicates rather than overrides, so it resolves to the same correct model under the current decoder, under a future upstream fix to the default, and under a future decoder that reads the nested form directly — and it no-ops on any checkpoint that is already published with a flat config. A slow test loads the same weights twice, as published and with the values hoisted, and asserts the corrected build recalls a fact planted ~2,000 tokens back, outside the sliding-attention window, where only the full-attention layers can retrieve it.</p>
+<p>One honest note on positioning: even with the rope fix, this post-training-quantized text checkpoint trades some knowledge recall against the quantization-aware-trained OptiQ builds. Side-by-side, the standard E2B build recalls specific named entities more reliably on hard prompts. The text-only checkpoint is therefore offered as the compact option for tighter memory, not as the quality pick — the standard OptiQ builds remain the default wherever they fit.</p>
+<h2 id="rendering-typeset-math">Rendering: typeset math</h2>
+<p>Equations now render as typeset math rather than raw LaTeX source — both inline and in display blocks, and progressively as a reply streams in, including math inside markdown tables and headings. For models that produce step-by-step derivations this makes the output legible as it arrives rather than after the fact.</p>
+<h2 id="copying-replies">Copying replies</h2>
+<p>Each assistant response now has a copy button that copies the raw markdown, with code blocks and equations preserved as source rather than as rendered output — so a code snippet pastes as code and an equation pastes as LaTeX.</p>
+<h2 id="faster-resumable-downloads">Faster, resumable downloads</h2>
+<p>Model downloads are faster and more reliable, and a paused or interrupted download can now be cleared with a &quot;delete partial&quot; action, which removes the incomplete weights and frees the storage rather than leaving a stalled transfer occupying disk.</p>
+<h2 id="getting-it">Getting it</h2>
+<p>Enigmus 1.1.0 is a free update for the existing app on iPhone (13 or newer), iPad (M1 or newer), and Mac (Apple silicon). The inference engine is identical across all three; the difference is only how much memory each has to spend on a model.</p>
+<p><a href="https://apps.apple.com/us/app/enigmus/id6771532268">Enigmus on the App Store</a></p>
+]]></content:encoded>
+      <category>AI</category>
+      <category>privacy</category>
+      <media:content url="https://enigmus.cc/images/gemma4-catalogue-cover.webp" medium="image" type="image/webp" />
+    </item>
+    <item>
+      <title>Enigmus 1.0 on the Mac: local LLMs on Apple silicon</title>
+      <link>https://enigmus.cc/posts/enigmus-ai-1-0-launch-macos</link>
+      <guid isPermaLink="true">https://enigmus.cc/posts/enigmus-ai-1-0-launch-macos</guid>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Enigmus 1.0 is now on the Mac App Store, alongside the iPhone and iPad build. The architecture is identical: language models run locally, and the prompt, the generated tokens, and the chat history…</description>
+      <content:encoded><![CDATA[<p><img src="https://enigmus.cc/images/launch-mac-hero.webp" alt="Enigmus 1.0 on the Mac: local LLMs on Apple silicon" /></p>
+<p>Enigmus 1.0 is now on the Mac App Store, alongside the iPhone and iPad build. The architecture is identical: language models run locally, and the prompt, the generated tokens, and the chat history stay on the machine. There is no account and no backend. Network access happens only while a model is being downloaded; inference itself runs with the machine offline.</p>
+<p>Inference uses Apple&#39;s <a href="https://github.com/ml-explore/mlx">MLX</a> framework, which runs the model on the Apple silicon GPU through Metal against the unified memory pool shared with the CPU. The models are 4-bit quantized builds of the open-weight Qwen3 family. A Mac&#39;s larger unified memory raises the ceiling on both model size and context length compared to a phone. A small model is bundled in the app, so the first message works before any download. The sections below cover what the Mac build does, one screen at a time.</p>
+<h2 id="local-by-default">Local by default</h2>
+<p>The onboarding screen documents the runtime model up front rather than in a settings pane: conversations are stored on-device, there are no accounts, servers, or telemetry, and the weights are publicly released rather than a proprietary endpoint. These are properties of the design, not switches — with no outbound traffic during inference, there is no server-side log or profile to produce.</p>
+<img src="https://enigmus.cc/images/launch-mac-welcome.webp" alt="Enigmus welcome window on macOS listing three principles: private, local only, open weights" style="max-width:720px;width:100%;display:block;margin:0 auto;border-radius:8px" />
+
+<h2 id="a-desktop-window-with-history-in-the-sidebar">A desktop window, with history in the sidebar</h2>
+<p>On macOS the app is a standard window. Conversation history is held in a local SwiftData store and listed in a searchable sidebar; the active conversation fills the main pane, with keyboard and pointer input. Generation streams token by token from the local model, so throughput is bounded by the GPU rather than a network round-trip, and it proceeds with networking disabled. Output is rendered as markdown — headings, lists, and syntax-highlighted code blocks — and LaTeX is typeset rather than left as source; the screenshot below shows the model deriving Euler&#39;s formula with both inline and display equations. Reasoning-tuned models (Qwen3 4B and larger) emit a separate thinking trace, shown in a collapsible block ahead of the final answer.</p>
+<img src="https://enigmus.cc/images/launch-mac-chat.webp" alt="Enigmus on macOS showing a conversation-history sidebar and a chat rendering Euler's formula with typeset equations" style="max-width:720px;width:100%;display:block;margin:0 auto;border-radius:8px" />
+
+<h2 id="memory-governs-model-selection">Memory governs model selection</h2>
+<p>Both feasibility and throughput are bounded by memory, so the installer is built around the machine&#39;s limits. It reads the available RAM and free storage, lists each model with its on-disk size, marks the largest build that fits the memory budget as recommended, and disables the ones that exceed available RAM or storage. In the screenshot, a 24 GB machine is pointed at an 8B 4-bit build and a 14B build is disabled for insufficient free storage. The catalog spans the bundled model through larger Qwen3 variants, including reasoning-tuned builds. Weights are fetched from Hugging Face&#39;s CDN, the only optional network request in the app.</p>
+<img src="https://enigmus.cc/images/launch-mac-models.webp" alt="Model installer on macOS showing available RAM and free storage, a list of Qwen3 models with sizes, a recommendation, and a disabled model" style="max-width:720px;width:100%;display:block;margin:0 auto;border-radius:8px" />
+
+<h2 id="getting-it">Getting it</h2>
+<p>The Mac build targets Apple silicon (M1 or newer) and runs the same inference engine as the iPhone and iPad release. It is free, with no account.</p>
+<p><a href="https://apps.apple.com/us/app/enigmus/id6771532268?platform=mac">Download Enigmus on the Mac App Store</a></p>
+]]></content:encoded>
+      <category>AI</category>
+      <category>privacy</category>
+      <media:content url="https://enigmus.cc/images/launch-mac-hero.webp" medium="image" type="image/webp" />
+    </item>
+    <item>
+      <title>Enigmus 1.0: local LLMs on iPhone and iPad</title>
+      <link>https://enigmus.cc/posts/enigmus-1-0-launch</link>
+      <guid isPermaLink="true">https://enigmus.cc/posts/enigmus-1-0-launch</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
+      <description>Enigmus 1.0 is out on the App Store for iPhone and iPad. It runs large language models entirely on the device — the prompt, the generated tokens, and the chat history never leave the hardware. There…</description>
+      <content:encoded><![CDATA[<p><img src="https://enigmus.cc/images/launch-hero.webp" alt="Enigmus 1.0: local LLMs on iPhone and iPad" /></p>
+<p>Enigmus 1.0 is out on the App Store for iPhone and iPad. It runs large language models entirely on the device — the prompt, the generated tokens, and the chat history never leave the hardware. There is no account to create and no server to talk to. The only time the app touches the network is when a new model is downloaded; after that, it works in airplane mode.</p>
+<p>Inference runs on Apple&#39;s <a href="https://github.com/ml-explore/mlx">MLX</a> framework, which executes on the Apple silicon GPU and the unified memory shared with the CPU. The models are 4-bit quantized builds of the open-weight Qwen3 family, which keeps memory use low enough that a phone can hold a useful model resident and still leave room for the rest of the system. A small model ships inside the app, so there is something to talk to within seconds of the first launch — no download gate before the first message. The sections below walk through what 1.0 actually does, one screen at a time.</p>
+<h2 id="local-by-default">Local by default</h2>
+<p>The first launch states the constraints up front rather than burying them in a settings screen: conversations stay on the device, there are no accounts or servers or telemetry, and the models are publicly released open weights rather than a proprietary endpoint. These aren&#39;t toggles that can be switched off later — they&#39;re a consequence of the architecture. With nothing leaving the device, there is no log to leak and no profile to build.</p>
+<img src="https://enigmus.cc/images/launch-privacy.webp" alt="Enigmus onboarding screen listing three principles: private, local only, open weights" style="max-width:300px;width:100%;display:block;margin:0 auto" />
+
+<h2 id="a-chat-that-works-with-the-radios-off">A chat that works with the radios off</h2>
+<p>The chat itself is a normal multi-turn conversation — ask a question, follow up, change direction — except that each reply is generated locally and streams in token by token as the model produces it. Because nothing is round-tripping to a data center, the latency is whatever the device&#39;s GPU can manage, and it keeps working with Wi-Fi and cellular fully disabled. Past conversations are kept in a local SwiftData store, so history persists between sessions without ever being synced anywhere.</p>
+<img src="https://enigmus.cc/images/launch-chat.webp" alt="A multi-turn chat in Enigmus continuing a short story" style="max-width:300px;width:100%;display:block;margin:0 auto" />
+
+<h2 id="picking-a-model-the-device-can-actually-run">Picking a model the device can actually run</h2>
+<p>On-device inference lives or dies by memory, so the model installer is built around it. It reads the available RAM and pairs each model in the list with its on-disk size, marks the largest one that comfortably fits as recommended, and greys out the ones that would not — a 30B model is simply unavailable on a phone that can&#39;t hold it. The catalog ranges from the tiny bundled model up through larger Qwen3 variants pulled from Hugging Face, including reasoning-tuned builds. Downloads come from Hugging Face&#39;s public CDN, the one piece of optional network traffic in the app.</p>
+<img src="https://enigmus.cc/images/launch-models.webp" alt="Model installer showing available RAM and a list of Qwen3 models with sizes and a recommendation" style="max-width:300px;width:100%;display:block;margin:0 auto" />
+
+<h2 id="measuring-before-committing">Measuring before committing</h2>
+<p>Different models trade quality for speed and memory in ways that depend on the specific device, so 1.0 includes a benchmark that runs a model and reports the numbers that matter: load time, the memory the model occupies versus what the system has, and throughput split into prompt processing and generation-only tokens per second. It&#39;s a quick way to find out whether a given model is fast enough to be pleasant on a particular iPhone or iPad before settling on it for daily use.</p>
+<img src="https://enigmus.cc/images/launch-benchmark.webp" alt="Benchmark results showing load time, model memory, total memory, and tokens per second" style="max-width:300px;width:100%;display:block;margin:0 auto" />
+
+<h2 id="markdown-code-and-real-math">Markdown, code, and real math</h2>
+<p>Replies render as formatted markdown rather than a wall of plain text — headings, lists, and syntax-highlighted code blocks — and LaTeX is typeset properly instead of being left as raw <code>\(</code> source. The screenshot below is the model working through Euler&#39;s formula, with both inline expressions and display equations laid out as actual math. Reasoning-capable models (Qwen3 4B and up) also show their thinking in a collapsible section before the final answer, which makes it easier to see how a conclusion was reached.</p>
+<img src="https://enigmus.cc/images/launch-math.webp" alt="Enigmus rendering Euler's formula with typeset inline and display equations" style="max-width:300px;width:100%;display:block;margin:0 auto" />
+
+<h2 id="dark-mode-and-bigger-screens">Dark mode and bigger screens</h2>
+<p>Enigmus follows the system appearance, so the same conversation reflows into a dark theme without any fiddling. The layout also adapts beyond the phone: on iPad and Mac it spreads into a wider arrangement with keyboard and pointer support, and a handful of cosmetic settings — tint color, fonts, and haptics — are there for anyone who wants to adjust them.</p>
+<img src="https://enigmus.cc/images/launch-dark-mode.webp" alt="The same Enigmus chat shown in dark mode" style="max-width:300px;width:100%;display:block;margin:0 auto" />
+
+<h2 id="getting-it">Getting it</h2>
+<p>Enigmus 1.0 requires an iPhone 13 or newer (A15 Bionic or later) or an iPad with an M1 chip or newer. The Mac build is close behind. It&#39;s free, with no account.</p>
+<p><a href="https://apps.apple.com/us/app/enigmus/id6771532268">Download Enigmus on the App Store</a></p>
+]]></content:encoded>
+      <category>AI</category>
+      <category>privacy</category>
+      <media:content url="https://enigmus.cc/images/launch-hero.webp" medium="image" type="image/webp" />
+    </item>
+    <item>
+      <title>Why Privacy in AI Matters More Than Ever</title>
+      <link>https://enigmus.cc/posts/privacy-in-ai-matters</link>
+      <guid isPermaLink="true">https://enigmus.cc/posts/privacy-in-ai-matters</guid>
+      <pubDate>Sat, 02 Nov 2024 05:00:00 GMT</pubDate>
+      <description>As AI becomes deeply integrated into daily life, a critical question emerges: what happens to all the data these systems consume? From voice assistants to recommendation algorithms, modern AI is…</description>
+      <content:encoded><![CDATA[<p><img src="https://enigmus.cc/images/ai-and-privacy.webp" alt="Why Privacy in AI Matters More Than Ever" /></p>
+<p>As AI becomes deeply integrated into daily life, a critical question emerges: what happens to all the data these systems consume? From voice assistants to recommendation algorithms, modern AI is built on vast amounts of personal information. Understanding the privacy implications isn&#39;t optional anymore—it&#39;s essential.</p>
+<h2 id="why-privacy-matters">Why Privacy Matters</h2>
+<p>Privacy in AI isn&#39;t just about keeping secrets. It&#39;s about maintaining control over digital identity. AI systems process everything from browsing patterns to biometric data, creating detailed profiles that reveal far more than any single data point would suggest.</p>
+<p>The scale is staggering. A typical large language model trains on hundreds of billions of data points. Interactions with cloud-based AI services often become part of that training data—whether users realize it or not.</p>
+<h3 id="the-real-risks">The Real Risks</h3>
+<p><strong>Data Exposure</strong>: Centralized AI services create attractive targets. A single breach can expose millions of conversations, queries, and personal details simultaneously.</p>
+<p><strong>Inference Attacks</strong>: Even anonymized data can be de-anonymized. AI itself can reconstruct personal information from seemingly harmless metadata.</p>
+<p><strong>Model Memorization</strong>: Large language models can inadvertently memorize and reproduce sensitive information from their training data, including private conversations and personal details.</p>
+<p><strong>Behavioral Profiling</strong>: Continuous interaction with AI services generates behavioral patterns that can predict decisions, preferences, and vulnerabilities.</p>
+<h2 id="the-local-alternative">The Local Alternative</h2>
+<p>The architecture of AI deployment matters enormously for privacy. When AI runs locally on a device:</p>
+<ul>
+<li>Data never leaves the hardware</li>
+<li>No server logs capture queries</li>
+<li>No third party can access conversations</li>
+<li>Users maintain complete control over what the model sees</li>
+</ul>
+<p>This isn&#39;t about having something to hide. It&#39;s about the principle that thoughts, questions, and creative explorations belong to the individual.</p>
+<h2 id="privacy-first-ai">Privacy-First AI</h2>
+<p>AI capability and strong privacy aren&#39;t mutually exclusive. On-device processing through frameworks like Apple&#39;s MLX demonstrates that language models can run entirely locally, respecting the boundary between private digital life and external servers.</p>
+<p>The future of AI should enhance human capability without compromising human autonomy.</p>
+]]></content:encoded>
+      <category>privacy</category>
+      <category>AI</category>
+      <media:content url="https://enigmus.cc/images/ai-and-privacy.webp" medium="image" type="image/webp" />
+    </item>
+  </channel>
+</rss>
