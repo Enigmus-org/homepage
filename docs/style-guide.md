@@ -113,8 +113,8 @@ Shells: `AuroraBase` (SEO head + aurora field + nav + footer) wraps every page.
 Layouts: `AuroraArticle` (default for content pages; `heading`/`heading_accent`/`intro`
 frontmatter, heading falls back to `title`), `AuroraDownload`, `AuroraContact`, `404`.
 Library (`layouts/components/aurora/`): `Nav`, `AuroraField`, `Hero`, `ChatCard`,
-`AppStoreButton`, `FeatureChips`, `RecentPosts`, `PostCard`, `Pagination`, `Footer`,
-`ThemeToggle`. Shortcodes (`Notice`, `Accordion`, `Button`, `Tabs`, media)
+`AppStoreButton`, `FeatureChips`, `RecentPosts`, `PostCard`, `Pagination`,
+`SubscribeFeed` (blog-index feed panel), `Footer`, `ThemeToggle`. Shortcodes (`Notice`, `Accordion`, `Button`, `Tabs`, media)
 are styled to match — see `/elements`.
 
 Code: inline `` `code` `` is orange on a gentle red wash (`--code-inline-text` /

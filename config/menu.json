@@ -17,6 +17,10 @@
       "url": "/technology"
     },
     {
+      "name": "Blog",
+      "url": "/posts"
+    },
+    {
       "name": "Pages",
       "url": "",
       "hasChildren": true,
@@ -44,6 +48,10 @@
     {
       "name": "Technology",
       "url": "/technology"
+    },
+    {
+      "name": "Blog and RSS",
+      "url": "/posts"
     },
     {
       "name": "Search",

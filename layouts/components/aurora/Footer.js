@@ -11,8 +11,8 @@ import Link from "next/link";
 // desktop, flat wrap row on mobile like the mock's 390 frame), the config
 // blurb, social icons, and the copyright line.
 const COLUMNS = [
-  { heading: "Product", links: menu.footer.slice(0, 5) },
-  { heading: "Company", links: menu.footer.slice(5) },
+  { heading: "Product", links: menu.footer.slice(0, 6) },
+  { heading: "Company", links: menu.footer.slice(6) },
 ];
 
 const Footer = () => {

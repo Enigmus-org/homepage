@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Enigmus - Private AI, Locally",
-    "base_url": "/",
+    "base_url": "https://enigmus.cc",
     "favicon": "/images/favicon.png",
     "logo": "/images/logo-512.png",
     "logo_white": "/images/logo-512-light.png",

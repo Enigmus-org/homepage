@@ -1,12 +1,14 @@
 import config from "@config/config.json";
 import Link from "next/link";
 import PostCard from "./PostCard";
+import SubscribeFeed from "./SubscribeFeed";
 
 const { blog_folder } = config.settings;
 
 // 3-up post grid (design_handoff_aurora_glass RecentPosts.tsx) wired to the
-// markdown posts, two rows deep — pages/index.js passes the six most recent.
-// Deviation from the mock's 390 frame: every post shows on mobile, not two.
+// markdown posts, two rows deep — pages/index.js passes the six most recent,
+// with the feed panel closing the section. Deviation from the mock's 390
+// frame: every post shows on mobile, not two.
 const RecentPosts = ({ title, posts }) => (
   <div className="relative flex justify-center px-4 pb-2 pt-5 md:px-14 md:pb-5 md:pt-[60px]">
     <div className="w-full max-w-[1200px]">
@@ -27,6 +29,7 @@ const RecentPosts = ({ title, posts }) => (
           <PostCard key={post.slug} post={post} index={i} />
         ))}
       </div>
+      <SubscribeFeed className="mt-7 md:mt-10" />
     </div>
   </div>
 );

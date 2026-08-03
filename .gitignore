@@ -42,3 +42,7 @@ yarn-error.log*
 
 # Playwright MCP screenshots
 .playwright-mcp/
+
+# generated feeds (lib/feedGenerator.js)
+/public/feed.xml
+/public/feed.json

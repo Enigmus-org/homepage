@@ -5,9 +5,10 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "node lib/jsonGenerator.js && next dev",
-    "build": "node lib/jsonGenerator.js && next build",
-    "export": "node lib/jsonGenerator.js && next build && touch out/.nojekyll && echo 'enigmus.cc' > out/CNAME",
+    "generate": "node lib/jsonGenerator.js && node lib/feedGenerator.js",
+    "dev": "npm run generate && next dev",
+    "build": "npm run generate && next build",
+    "export": "npm run generate && next build && touch out/.nojekyll && echo 'enigmus.cc' > out/CNAME",
     "lint": "next lint",
     "start": "next start"
   },

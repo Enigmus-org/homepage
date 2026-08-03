@@ -30,6 +30,21 @@ const Base = ({
         {/* canonical url */}
         {canonical && <link rel="canonical" href={canonical} itemProp="url" />}
 
+        {/* feed autodiscovery — readers resolve the blog feed from any page,
+            so pasting enigmus.cc into a reader is enough to subscribe */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${site_name} Blog`}
+          href={`${base_url}/feed.xml`}
+        />
+        <link
+          rel="alternate"
+          type="application/feed+json"
+          title={`${site_name} Blog`}
+          href={`${base_url}/feed.json`}
+        />
+
         {/* iOS Smart App Banner (shows in Safari on iOS) */}
         {apple_app_id && (
           <meta name="apple-itunes-app" content={`app-id=${apple_app_id}`} />

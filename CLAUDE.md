@@ -25,7 +25,7 @@ npm run lint     # ESLint
 - **Content files**: Markdown with YAML frontmatter in `/content/`
   - `/content/*.md` - Regular pages (download, technology, ai-and-privacy, etc.)
   - `/content/posts/*.md` - Blog posts
-  - `_index.md` files contain list page metadata
+  - `_index.md` files contain list page metadata. `content/posts/_index.md` also drives the blog index `intro` (subtitle) and `description` (meta description + feed channel description)
 - **Frontmatter**: Supports `title`, `date`, `image`, `image_alt`, `categories`, `featured`, `draft`, `layout`
   - Posts: `hero_iphone` (asset base path, e.g. `/images/gemma4-catalogue`) renders the hero inside the iPhone chassis instead of as a wide cover — for portrait app screenshots. It loads `<base>-600.webp` / `<base>-1200.webp`; set `hero_iphone_height` to the 1200-wide variant's pixel height, and keep `image` a landscape cover (it feeds post cards and `og:image`, which is declared 1200×630).
 - **Layouts**: Set via `layout` frontmatter field: `default`, `text2image`, `contact`, `404`
@@ -39,6 +39,7 @@ npm run lint     # ESLint
 - `/lib/contentParser.js` - Core content loading: `getListPage()`, `getSinglePage()`, `getRegularPage()`
 - `/lib/taxonomyParser.js` - Category/tag extraction
 - `/lib/jsonGenerator.js` - Pre-build script generating search JSON
+- `/lib/feedGenerator.js` - Pre-build script generating `public/feed.xml` (RSS 2.0, full post HTML in `content:encoded`) and `public/feed.json` (JSON Feed 1.1); both are build artifacts and gitignored. Runs with jsonGenerator via `npm run generate`
 - `/layouts/` - Page layouts and reusable components
 - `/config/` - Site configuration (config.json, menu.json, theme.json, social.json)
 
@@ -68,6 +69,8 @@ draft: false
 ---
 Content here...
 ```
+
+Posts also ship in the RSS/JSON feeds as full HTML. `feedGenerator` translates the inline `style={{...}}` form used for sized screenshots, but MDX shortcodes (`Notice`, `Youtube`, …) have no feed equivalent — using one in a post prints a build warning and would reach readers as raw text.
 
 **New page**: Create `/content/your-page.md` with `layout: text2image` or `layout: contact` in frontmatter.
 
