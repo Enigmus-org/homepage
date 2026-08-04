@@ -1,0 +1,4 @@
+# build output — `eslint .` would otherwise lint the exported site's own
+# JS chunks along with the source
+out/
+.next/

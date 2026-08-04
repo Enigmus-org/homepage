@@ -9,7 +9,7 @@
     "dev": "npm run generate && next dev",
     "build": "npm run generate && next build",
     "export": "npm run generate && next build && touch out/.nojekyll && echo 'enigmus.cc' > out/CNAME",
-    "lint": "next lint",
+    "lint": "eslint . --ext .js,.jsx",
     "start": "next start"
   },
   "dependencies": {
