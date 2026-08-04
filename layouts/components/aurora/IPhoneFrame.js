@@ -22,11 +22,13 @@ const IPhoneFrame = ({
   sizes = "(min-width: 768px) 264px, 226px",
   dark = true,
 }) => {
+  // `alt` is passed on each element rather than spread with the rest:
+  // jsx-a11y/alt-text cannot see attributes arriving through a spread and
+  // reports them as missing.
   const img = {
     sizes,
     width: 1200,
     height,
-    alt,
     loading: "lazy",
     decoding: "async",
   };
@@ -50,12 +52,14 @@ const IPhoneFrame = ({
         <img
           {...shot(src, "")}
           {...img}
+          alt={alt}
           className={`!my-0 w-full !rounded-none ${dark ? "dark:hidden" : ""}`}
         />
         {dark && (
           <img
             {...shot(src, "-dark")}
             {...img}
+            alt={alt}
             className="!my-0 hidden w-full !rounded-none dark:block"
           />
         )}
