@@ -124,3 +124,4 @@ All content should follow these guidelines:
 - **No overpromising**: Avoid "powerful AI" - local AI prioritizes privacy over raw capability. Use "private AI" or "on-device AI" instead.
 - **Editorial/informational tone**: Write as if for a technical publication, not marketing copy
 - **Keep technical accuracy**: Maintain all factual content, only adjust the voice
+- **ASCII only**: No non-ASCII characters in body text, frontmatter, or text rendered into images - use `-` for dashes, `x` for multiplication, `->` for arrows, `...` for ellipsis, straight quotes; check with `LC_ALL=C grep -n '[^\x00-\x7F]' <file>`
