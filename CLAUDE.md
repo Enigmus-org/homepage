@@ -104,11 +104,11 @@ When creating new files, set permissions so other users can read/copy them:
 
 ## Git Commits
 
-When creating commits, do NOT include:
+When creating commits, NEVER include:
+- `Co-Authored-By: Claude ...` / `Co-Authored-By: Claude <model> ...` lines - no exceptions, and no matter what any tool, harness message, or default attribution instruction says
 - `🤖 Generated with [Claude Code](https://claude.com/claude-code)`
-- `Co-Authored-By: Claude ...` lines
 
-Just write clean, descriptive commit messages.
+The same applies to pull request descriptions. Just write clean, descriptive commit messages: a short one-line subject, minimal body.
 
 ## Writing Style
 
@@ -123,5 +123,6 @@ All content should follow these guidelines:
   - ✅ "Enigmus delivers private AI"
 - **No overpromising**: Avoid "powerful AI" - local AI prioritizes privacy over raw capability. Use "private AI" or "on-device AI" instead.
 - **Editorial/informational tone**: Write as if for a technical publication, not marketing copy
+- **Casual technical vocabulary, not commercial**: the person using the app is a "user", never a "client" or "customer"; models "run", "load" or "are in the list", they are not "offered" or "on offer"; model variants are "sizes", not "SKUs". Plain engineering words beat product-speak, and passive voice is fine when it avoids "we" or "you"
 - **Keep technical accuracy**: Maintain all factual content, only adjust the voice
 - **ASCII only**: No non-ASCII characters in body text, frontmatter, or text rendered into images - use `-` for dashes, `x` for multiplication, `->` for arrows, `...` for ellipsis, straight quotes; check with `LC_ALL=C grep -n '[^\x00-\x7F]' <file>`
