@@ -70,7 +70,9 @@ draft: false
 Content here...
 ```
 
-Posts also ship in the RSS/JSON feeds as full HTML. `feedGenerator` translates the inline `style={{...}}` form used for sized screenshots, but MDX shortcodes (`Notice`, `Youtube`, …) have no feed equivalent — using one in a post prints a build warning and would reach readers as raw text.
+Inline app screenshots belong in a device frame, like the rest of the site: `<IPhoneFrame src="/images/<base>" alt="..." height={<1200-wide height>} dark={false} className="relative mb-10 mt-2 w-[240px] md:w-[280px]" />` loads `<base>-600.webp` / `<base>-1200.webp`, and `<IPadFrame src="/images/<base>" alt="..." dark={false} className="relative mx-auto mb-10 mt-2 w-[300px] md:w-[420px]" />` loads `<base>-450.webp` / `<base>-900.webp`. Both need screenshots with transparent rounded display corners. Keep the iPad widths at 300px / 420px: its chassis metrics are fixed pixels drawn for those two sizes.
+
+Posts also ship in the RSS/JSON feeds as full HTML. `feedGenerator` translates the inline `style={{...}}` form used for sized screenshots, plus `IPhoneFrame` and `IPadFrame`, which become a plain `<img>` of the screenshot they wrap. Other MDX shortcodes (`Notice`, `Youtube`, ...) have no feed equivalent - using one in a post prints a build warning and would reach readers as raw text.
 
 **New page**: Create `/content/your-page.md` with `layout: text2image` or `layout: contact` in frontmatter.
 
@@ -125,4 +127,4 @@ All content should follow these guidelines:
 - **Editorial/informational tone**: Write as if for a technical publication, not marketing copy
 - **Casual technical vocabulary, not commercial**: the person using the app is a "user", never a "client" or "customer"; models "run", "load" or "are in the list", they are not "offered" or "on offer"; model variants are "sizes", not "SKUs". Plain engineering words beat product-speak, and passive voice is fine when it avoids "we" or "you"
 - **Keep technical accuracy**: Maintain all factual content, only adjust the voice
-- **ASCII only**: No non-ASCII characters in body text, frontmatter, or text rendered into images - use `-` for dashes, `x` for multiplication, `->` for arrows, `...` for ellipsis, straight quotes; check with `LC_ALL=C grep -n '[^\x00-\x7F]' <file>`
+- **ASCII only**: No non-ASCII characters in body text, frontmatter, or text rendered into images - use `-` for dashes, `x` for multiplication, `->` for arrows, `...` for ellipsis, straight quotes; check with `LC_ALL=C grep -n '[^\x00-\x7F]' <file>`. This applies to source files too: any line added or rewritten in a component or script, including alt text and comments, stays ASCII (older files still carry em-dashes; do not reintroduce them)
