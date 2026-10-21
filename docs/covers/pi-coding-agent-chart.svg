@@ -30,47 +30,38 @@
   <text x="84" y="142" font-family="Helvetica Neue, Helvetica, Arial" font-size="21" fill="#5A6478">Agent instructions and tool definitions, plus a two-word prompt. Sent again on every turn.</text>
 
   <g stroke="#E6EBF2" stroke-width="1.5">
-    <path d="M577.5 172 V 488"/>
-    <path d="M705 172 V 488"/>
-    <path d="M832.5 172 V 488"/>
-    <path d="M960 172 V 488"/>
+    <path d="M577.5 172 V 460"/>
+    <path d="M705 172 V 460"/>
+    <path d="M832.5 172 V 460"/>
+    <path d="M960 172 V 460"/>
   </g>
 
   <g font-family="Helvetica Neue, Helvetica, Arial" font-size="23" fill="#0C1220" text-anchor="end">
-    <text x="430" y="205">Pi alone</text>
-    <text x="430" y="257">Pi + pi-lean-edit</text>
-    <text x="430" y="309">Pi + pi-fff (override)</text>
-    <text x="430" y="361">Pi + pi-lens</text>
-    <text x="430" y="413">Pi + all three</text>
-    <text x="430" y="465" fill="#46506A">opencode (default)</text>
+    <text x="430" y="221">Pi alone</text>
+    <text x="430" y="321">Pi + pi-fff (override)</text>
+    <text x="430" y="421" fill="#46506A">opencode (default)</text>
   </g>
 
   <g fill="#0D6FD1">
-    <path d="M450 180 H 547.9 a4 4 0 0 1 4 4 V 210 a4 4 0 0 1 -4 4 H 450 Z"/>
-    <path d="M450 232 H 595.4 a4 4 0 0 1 4 4 V 262 a4 4 0 0 1 -4 4 H 450 Z"/>
-    <path d="M450 284 H 615.5 a4 4 0 0 1 4 4 V 314 a4 4 0 0 1 -4 4 H 450 Z"/>
-    <path d="M450 336 H 746.9 a4 4 0 0 1 4 4 V 366 a4 4 0 0 1 -4 4 H 450 Z"/>
-    <path d="M450 388 H 861.9 a4 4 0 0 1 4 4 V 418 a4 4 0 0 1 -4 4 H 450 Z"/>
+    <path d="M450 190 H 547.9 a4 4 0 0 1 4 4 V 232 a4 4 0 0 1 -4 4 H 450 Z"/>
+    <path d="M450 290 H 615.5 a4 4 0 0 1 4 4 V 332 a4 4 0 0 1 -4 4 H 450 Z"/>
   </g>
-  <path d="M450 440 H 919.9 a4 4 0 0 1 4 4 V 470 a4 4 0 0 1 -4 4 H 450 Z" fill="#8A93A6"/>
+  <path d="M450 390 H 919.9 a4 4 0 0 1 4 4 V 432 a4 4 0 0 1 -4 4 H 450 Z" fill="#8A93A6"/>
 
   <g font-family="Helvetica Neue, Helvetica, Arial" font-size="24" font-weight="700" fill="#0C1220">
-    <text x="566" y="206">1,599<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">4 tools</tspan></text>
-    <text x="613" y="258">2,343<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">4 tools</tspan></text>
-    <text x="634" y="310">2,659<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">6 tools</tspan></text>
-    <text x="765" y="362">4,720<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">12 tools</tspan></text>
-    <text x="880" y="414">6,524<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">14 tools</tspan></text>
-    <text x="938" y="466" fill="#46506A">7,434<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">10 tools</tspan></text>
+    <text x="566" y="222">1,599<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">4 tools</tspan></text>
+    <text x="634" y="322">2,659<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">6 tools</tspan></text>
+    <text x="938" y="422" fill="#46506A">7,434<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">10 tools</tspan></text>
   </g>
 
-  <path d="M450 488 H 960" stroke="#D8DFEA" stroke-width="1.5"/>
+  <path d="M450 460 H 960" stroke="#D8DFEA" stroke-width="1.5"/>
   <g font-family="Helvetica Neue, Helvetica, Arial" font-size="18" fill="#8A93A6" text-anchor="middle">
-    <text x="450" y="516">0</text>
-    <text x="577.5" y="516">2,000</text>
-    <text x="705" y="516">4,000</text>
-    <text x="832.5" y="516">6,000</text>
-    <text x="960" y="516">8,000</text>
+    <text x="450" y="488">0</text>
+    <text x="577.5" y="488">2,000</text>
+    <text x="705" y="488">4,000</text>
+    <text x="832.5" y="488">6,000</text>
+    <text x="960" y="488">8,000</text>
   </g>
 
-  <text x="84" y="566" font-family="Helvetica Neue, Helvetica, Arial" font-size="18" fill="#46506A">Pi 1.3.0 and opencode 1.19.0, same two-file project, measured at the Enigmus server on an M1 Pro.</text>
+  <text x="84" y="566" font-family="Helvetica Neue, Helvetica, Arial" font-size="18" fill="#46506A">Pi 1.3.0, pi-fff 0.11.0 and opencode 1.19.0, same two-file project, measured at the Enigmus server on an M1 Pro.</text>
 </svg>
