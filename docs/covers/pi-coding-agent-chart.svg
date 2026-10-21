@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5BBFFA"/>
+      <stop offset="0.55" stop-color="#1F8FE8"/>
+      <stop offset="1" stop-color="#0B62C4"/>
+    </linearGradient>
+    <radialGradient id="auroraV" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6D5EF5" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#6D5EF5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="auroraT" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#14C7C7" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#14C7C7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#03203C" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="110" cy="620" rx="500" ry="310" fill="url(#auroraV)"/>
+  <ellipse cx="1120" cy="20" rx="430" ry="270" fill="url(#auroraT)"/>
+
+  <g filter="url(#cardShadow)">
+    <rect x="40" y="36" width="1120" height="558" rx="24" fill="#FFFFFF"/>
+  </g>
+
+  <text x="84" y="104" font-family="Helvetica Neue, Helvetica, Arial" font-size="34" font-weight="700" fill="#0C1220">First request to a local Qwen 3.5 9B</text>
+  <text x="84" y="142" font-family="Helvetica Neue, Helvetica, Arial" font-size="21" fill="#5A6478">Agent instructions and tool definitions, plus a two-word prompt. Sent again on every turn.</text>
+
+  <g stroke="#E6EBF2" stroke-width="1.5">
+    <path d="M577.5 172 V 460"/>
+    <path d="M705 172 V 460"/>
+    <path d="M832.5 172 V 460"/>
+    <path d="M960 172 V 460"/>
+  </g>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial" font-size="23" fill="#0C1220" text-anchor="end">
+    <text x="430" y="221">Pi alone</text>
+    <text x="430" y="321">Pi + pi-fff (override)</text>
+    <text x="430" y="421" fill="#46506A">opencode (default)</text>
+  </g>
+
+  <g fill="#0D6FD1">
+    <path d="M450 190 H 547.9 a4 4 0 0 1 4 4 V 232 a4 4 0 0 1 -4 4 H 450 Z"/>
+    <path d="M450 290 H 615.5 a4 4 0 0 1 4 4 V 332 a4 4 0 0 1 -4 4 H 450 Z"/>
+  </g>
+  <path d="M450 390 H 919.9 a4 4 0 0 1 4 4 V 432 a4 4 0 0 1 -4 4 H 450 Z" fill="#8A93A6"/>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial" font-size="24" font-weight="700" fill="#0C1220">
+    <text x="566" y="222">1,599<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">4 tools</tspan></text>
+    <text x="634" y="322">2,659<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">6 tools</tspan></text>
+    <text x="938" y="422" fill="#46506A">7,434<tspan dx="12" font-size="19" font-weight="400" fill="#5A6478">10 tools</tspan></text>
+  </g>
+
+  <path d="M450 460 H 960" stroke="#D8DFEA" stroke-width="1.5"/>
+  <g font-family="Helvetica Neue, Helvetica, Arial" font-size="18" fill="#8A93A6" text-anchor="middle">
+    <text x="450" y="488">0</text>
+    <text x="577.5" y="488">2,000</text>
+    <text x="705" y="488">4,000</text>
+    <text x="832.5" y="488">6,000</text>
+    <text x="960" y="488">8,000</text>
+  </g>
+
+  <text x="84" y="566" font-family="Helvetica Neue, Helvetica, Arial" font-size="18" fill="#46506A">Pi 1.3.0, pi-fff 0.11.0 and opencode 1.19.0, same two-file project, measured at the Enigmus server on an M1 Pro.</text>
+</svg>
