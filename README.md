@@ -62,7 +62,7 @@ npm run export
 /lib/            # Content parsing utilities
 /public/         # Static assets (favicon, logos, press kit, OG images)
 /public/press/   # Press kit assets, served at /press/*
-/docs/           # Internal reference docs (App Store listing copy, not published)
+/docs/           # Internal reference docs (style guide, App Store listing copy; not published)
 ```
 
 See [CLAUDE.md](CLAUDE.md) for content pipeline internals (`[regular].js` routing, layouts, frontmatter, taxonomy parsing).
@@ -121,40 +121,50 @@ cwebp -q 88 hero.png -o public/images/launch-hero.webp
 
 The `[single].js` layout forces a 2:1 header, so the hero is landscape and the portrait screenshots are only used inline in the post body.
 
-## Color Guide
+## Design System
 
-### Brand Blues (from logo)
+The site follows the Enigmus WebUI: flat neutral surfaces, hairline borders,
+one text family, and the Enigmus blue used gently. No gradients, glass, glow
+or decorative motion. The full guide (every token, type scale, component and
+rule) is [docs/style-guide.md](docs/style-guide.md); the `/elements` page is
+the live visual reference.
 
-| Color | Hex | RGB |
-|-------|-----|-----|
-| Primary Blue | `#1FA3FB` | rgb(31, 163, 251) |
-| Dark Blue | `#0872E3` | rgb(8, 114, 227) |
+**Principles**
 
-### Text Colors (Apple-style)
+- Borders separate, shadows almost never do. Flat fills only.
+- The brand blue appears as a pale wash behind the nav and homepage hero,
+  hairlines, icons, small dots and accent text - never as a large fill.
+- Primary buttons are solid text-color on page-color (black on light, light
+  grey on dark); secondary buttons are white surfaces with a hairline.
+- Inter Variable for all text, IBM Plex Mono for dates, labels and code.
 
-| Color | Hex | RGB |
-|-------|-----|-----|
-| Black (Primary) | `#1D1D1F` | rgb(29, 29, 31) |
-| Dark Gray | `#424245` | rgb(66, 66, 69) |
-| Gray | `#86868B` | rgb(134, 134, 139) |
-| Light Gray | `#D2D2D7` | rgb(210, 210, 215) |
+**Brand blues** (from the app icon)
 
-### Backgrounds
+| Token | Hex | Use |
+| :-- | :-- | :-- |
+| `brand` | `#1FA3FB` | dots, icons, send button, hairlines (not text on white) |
+| `brand-deep` | `#0D6FD1` | accent text and brand buttons on light |
+| `brand-sky` | `#5EC0FF` | accent text on dark |
 
-| Color | Hex | RGB |
-|-------|-----|-----|
-| White | `#FFFFFF` | rgb(255, 255, 255) |
-| Off-White | `#FBFBFD` | rgb(251, 251, 253) |
-| Light Surface | `#F5F5F7` | rgb(245, 245, 247) |
+**Semantic colors** (CSS variables in `styles/aurora.scss`, swapped by the `.dark` class)
 
-### Dark Mode
+| Variable | Light | Dark |
+| :-- | :-- | :-- |
+| `--bg` | `#F5F6F8` | `#0B0B0B` |
+| `--surface` | `#FFFFFF` | `#141414` |
+| `--border` | `rgba(0,0,0,.09)` | `rgba(255,255,255,.08)` |
+| `--text` | `#121212` | `#E8E8E8` |
+| `--text-muted` | `#3D3D3D` | `#BDBDBD` |
+| `--text-faint` | `#858A93` | `#707070` |
+| `--brand-wash` | `#EEF6FD` | `#0C141D` |
+| `--brand-line` | `rgba(31,163,251,.28)` | `rgba(94,192,255,.22)` |
 
-| Color | Hex | RGB |
-|-------|-----|-----|
-| Black BG | `#000000` | rgb(0, 0, 0) |
-| Dark Surface | `#1C1C1E` | rgb(28, 28, 30) |
-| Dark Gray BG | `#2C2C2E` | rgb(44, 44, 46) |
-| Light Text | `#F5F5F7` | rgb(245, 245, 247) |
+**Building blocks** (`layouts/components/aurora/`)
+
+- `DeviceFrames` - minimal iPhone, iPad and Mac frames around real
+  screenshots, sized in `cqw` so any width keeps the proportions
+- `PostList` - the dated post list used on every listing page
+- `Hero`, `AppWindow`, `Features`, `DeviceShowcase` - the homepage
 
 ## License
 
