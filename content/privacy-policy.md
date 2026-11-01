@@ -5,7 +5,7 @@ layout: aurora-article
 heading: Privacy Policy
 ---
 
-Effective Date: 2026-05-17
+Effective Date: 2026-11-01
 
 Enigmus ("we", "us", "our") is operated by RevoBolic LLC. This Privacy Policy explains what information the Enigmus app and the enigmus.cc website handle, and what we do — and do not do — with it.
 
@@ -13,7 +13,9 @@ The short version: **Enigmus runs entirely on your device. We do not collect, tr
 
 ### The Enigmus App
 
-**On-device processing.** All chat inference runs locally on your iPhone, iPad, or Mac using Apple's MLX framework. Your prompts, the model's responses, and your conversation history never leave your device.
+**On-device processing.** All chat inference runs locally on your iPhone, iPad, or Mac using Apple's MLX framework. Your prompts, the model's responses, and your conversation history never leave your device unless you turn on the LLM Server.
+
+**LLM Server (optional, off by default).** While it is on, other apps on your device can send prompts to the loaded model; with Allow Network Access, so can devices on your local network, including through the app's web chat. Requests go directly between your devices, never to us. The server has no password, so allow network access only on networks you trust. Its log stays in memory and is cleared when the app quits. The web chat saves its conversations in the browser that opened it.
 
 **No accounts.** Enigmus does not require sign-up, sign-in, or any personal information to use.
 
@@ -24,12 +26,13 @@ The short version: **Enigmus runs entirely on your device. We do not collect, tr
 - Conversation history (chat threads and messages), via Apple's SwiftData
 - App preferences (theme, tint color, font, haptics), via UserDefaults
 - Downloaded language models, in the app's Application Support directory (excluded from iCloud backup)
+- MetricKit diagnostics (when and how the app last closed), never sent to us
 
 You can delete this data at any time by clearing chat threads in the app, uninstalling Enigmus, or resetting onboarding (which removes downloaded models).
 
 **Model downloads.** A default language model is bundled with the app. If you choose to download additional models, the app fetches them directly from the public [Hugging Face](https://huggingface.co) MLX Community repositories. When you initiate a download, Hugging Face will receive a standard HTTPS request from your device (including your IP address) as required for any web download. We do not control or receive this data. Review Hugging Face's privacy policy for their practices. No download happens unless you tap to start one.
 
-**Permissions.** Enigmus does not request access to your photos, contacts, location, camera, microphone, or files outside its own sandbox. The app's PrivacyInfo manifest declares the use of `UserDefaults` (for settings) and the `DiskSpace` API (to check available space before downloading a model) — both are local operations with no external transmission.
+**Permissions.** Enigmus does not request access to your photos, contacts, location, camera, microphone, or files outside its own sandbox. Local Network access is used only by the LLM Server. The app's PrivacyInfo manifest declares the use of `UserDefaults` (for settings) and the `DiskSpace` API (to check available space before downloading a model) - both are local operations with no external transmission.
 
 ### The Enigmus Website (enigmus.cc)
 
