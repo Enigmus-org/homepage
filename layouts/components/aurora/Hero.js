@@ -1,75 +1,51 @@
 import useOs from "@hooks/useOs";
 import AppStoreButton from "./AppStoreButton";
-import ChatCard from "./ChatCard";
-import DeviceShowcase from "./DeviceShowcase";
-import FeatureChips from "./FeatureChips";
+import AppWindow from "./AppWindow";
 
-// Centered hero over the aurora field (design_handoff_aurora_glass Hero.tsx).
-// Copy follows the approved mock (which mirrors the live site's message);
-// store links come from content/_index.md banner frontmatter.
-// On macOS the Mac App Store button takes the primary style.
+// Homepage hero on the same flat brand wash as the nav: copy and store links
+// beside the drawn app window, stacked below lg. Store links come from the
+// content/_index.md banner frontmatter; on macOS the Mac App Store button
+// takes the primary style.
 const Hero = ({ banner }) => {
   const isMac = useOs();
   return (
-    <section className="relative px-[22px] pb-[30px] pt-[34px] text-center md:px-14 md:pb-10 md:pt-[78px]">
-      {/* status pill */}
-      <div className="mb-[22px] inline-flex items-center gap-2 rounded-chip border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 font-mono text-[11px] font-medium text-[var(--accent-on-bg)] md:mb-7 md:gap-[9px] md:px-[15px] md:py-[7px] md:text-[13px] md:tracking-[0.04em]">
-        <span className="h-1.5 w-1.5 rounded-full bg-brand shadow-[0_0_10px_#1FA3FB] md:h-[7px] md:w-[7px]" />
-        <span className="hidden md:inline">
-          Powered by Apple MLX · 100% on-device
-        </span>
-        <span className="md:hidden">Apple MLX · on-device</span>
+    <section className="border-b border-[var(--brand-line)] bg-[var(--brand-wash)]">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-4 py-12 md:px-8 md:py-16 lg:grid-cols-[420px_1fr] lg:gap-14 lg:py-[72px]">
+        <div>
+          <p className="mb-4 flex items-center gap-2 text-[13px] text-[var(--text-faint)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#10b981]" />
+            Runs on Apple MLX, fully on-device
+          </p>
+          <h1 className="text-[40px] font-bold leading-[1.05] tracking-[-0.03em] md:text-[48px]">
+            Private AI, locally.
+          </h1>
+          <p className="mb-7 mt-[18px] text-[16px] leading-[1.65] text-[var(--text-muted)]">
+            Private AI for Mac, iPhone, and iPad - powered by Apple&apos;s MLX
+            framework. All data stays private and secure through local
+            processing on-device. Free and built for privacy.
+          </p>
+          <div className="flex flex-wrap gap-2.5">
+            <AppStoreButton
+              href={banner.button.link}
+              rel={banner.button.rel}
+              label="App Store"
+              primary={!isMac}
+            />
+            {banner.button_mac && (
+              <AppStoreButton
+                href={banner.button_mac.link}
+                rel={banner.button_mac.rel}
+                label="Mac App Store"
+                primary={isMac}
+              />
+            )}
+          </div>
+          <p className="mt-6 text-[12.5px] text-[var(--text-faint)]">
+            Free. No account. iOS 18+, macOS 14+.
+          </p>
+        </div>
+        <AppWindow />
       </div>
-
-      {/* headline */}
-      <h1 className="mx-auto mb-4 max-w-[900px] font-display text-[44px] font-extrabold leading-none tracking-[-0.03em] text-[var(--text)] md:mb-[22px] md:text-[82px] md:leading-[0.98] md:tracking-[-0.04em]">
-        Private AI,
-        <br />
-        <span className="bg-brand-text-light bg-clip-text text-transparent dark:bg-brand-text">
-          locally.
-        </span>
-      </h1>
-
-      <p className="mx-auto mb-[26px] max-w-[600px] text-[15.5px] leading-[1.55] text-[var(--text-muted)] md:mb-[34px] md:text-[18.5px] md:leading-[1.6]">
-        Private AI for Mac, iPhone, and iPad — powered by Apple&rsquo;s MLX
-        framework.{" "}
-        <span className="hidden md:inline">
-          All data stays private and secure through local processing on-device.
-        </span>
-        <span className="md:hidden">All processing runs on-device.</span>{" "}
-        <span className="font-semibold text-[var(--text)]">
-          Free and built for privacy.
-        </span>
-      </p>
-
-      {/* download buttons */}
-      <div className="mb-[30px] flex flex-col gap-[11px] md:mb-3.5 md:flex-row md:justify-center md:gap-3.5">
-        <AppStoreButton
-          href={banner.button.link}
-          rel={banner.button.rel}
-          store="App Store"
-          mobileLabel="Download — App Store"
-          variant={isMac ? "ghost" : "primary"}
-        />
-        {banner.button_mac && (
-          <AppStoreButton
-            href={banner.button_mac.link}
-            rel={banner.button_mac.rel}
-            store="Mac App Store"
-            mobileLabel="Mac App Store"
-            variant={isMac ? "primary" : "ghost"}
-          />
-        )}
-      </div>
-
-      {/* chat card */}
-      <div className="mx-auto max-w-[760px] md:mt-[52px]">
-        <ChatCard />
-      </div>
-
-      <FeatureChips />
-
-      <DeviceShowcase />
     </section>
   );
 };

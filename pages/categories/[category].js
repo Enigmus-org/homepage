@@ -1,6 +1,6 @@
 import config from "@config/config.json";
 import AuroraBase from "@layouts/AuroraBase";
-import PostCard from "@layouts/components/aurora/PostCard";
+import PostList from "@layouts/components/aurora/PostList";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";
 import { humanize, slugify } from "@lib/utils/textConverter";
@@ -8,23 +8,17 @@ import { sortByDate } from "@lib/utils/sortFunctions";
 const { blog_folder } = config.settings;
 
 // category page
-const Category = ({ postsByCategories, category }) => {
+const Category = ({ postsByCategories, name }) => {
   return (
-    <AuroraBase title={humanize(category)}>
-      <section className="relative px-[22px] pb-10 pt-[34px] md:px-14 md:pb-16 md:pt-[60px]">
-        <div className="mx-auto w-full max-w-[1200px]">
-          <p className="text-center font-mono text-[12px] font-medium uppercase tracking-[0.1em] text-[var(--accent-on-bg)]">
-            Category
-          </p>
-          <h1 className="mb-8 mt-2 text-center font-display text-[34px] font-extrabold capitalize tracking-[-0.03em] text-[var(--text)] md:mb-12 md:text-[48px]">
-            {humanize(category)}
-          </h1>
-          <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3 md:gap-5">
-            {postsByCategories.map((post, i) => (
-              <PostCard key={post.slug} post={post} index={i} />
-            ))}
-          </div>
-        </div>
+    <AuroraBase title={name}>
+      <section className="mx-auto max-w-[1200px] px-4 py-12 md:px-8 md:py-16">
+        <p className="font-mono text-[12px] font-medium uppercase tracking-[0.1em] text-[var(--accent-on-bg)]">
+          Category
+        </p>
+        <h1 className="mt-2 text-[36px] font-bold leading-[1.1] tracking-[-0.03em] md:text-[44px]">
+          {name}
+        </h1>
+        <PostList posts={postsByCategories} withExcerpt className="mt-8" />
       </section>
     </AuroraBase>
   );
@@ -54,10 +48,19 @@ export const getStaticProps = ({ params }) => {
     )
   );
 
+  // The label as written in frontmatter, first letter raised: humanizing
+  // the slug mangles acronyms ("mlx" -> "Mlx").
+  const label =
+    posts
+      .flatMap((post) => post.frontmatter.categories)
+      .find((category) => slugify(category) === params.category) ||
+    humanize(params.category);
+  const name = label[0].toUpperCase() + label.slice(1);
+
   return {
     props: {
       postsByCategories: filterPosts,
-      category: params.category,
+      name,
     },
   };
 };

@@ -1,15 +1,25 @@
-// iPhone-over-MacBook duo under the hero feature chips: MacBook as the main
-// piece with the iPhone overlapping its lower-left corner, bases on one
-// line. The pair scales as a single composition at every width — no
-// breakpoint-dependent layout.
-import IPhoneFrame from "./IPhoneFrame";
-import MacBookFrame from "./MacBookFrame";
+import { IPadFrame, IPhoneFrame, MacBookFrame } from "./DeviceFrames";
 
+// Mac, iPad and iPhone as one group: the Mac centered, the iPad and iPhone
+// standing in front of its lower corners on a shared baseline. Widths are
+// percentages of the row, so the group scales as one piece at every width.
 const DeviceShowcase = () => (
-  <div className="relative z-0 mx-auto mt-9 max-w-[760px] md:mt-14">
-    <MacBookFrame className="mt-0" />
-    <IPhoneFrame className="absolute -left-[3%] bottom-0 z-10 w-[24%]" />
-  </div>
+  <section className="mx-auto max-w-[1040px] px-4 pt-14 md:px-8 md:pt-20">
+    <div className="relative">
+      <MacBookFrame
+        className="w-[74%]"
+        sizes="(min-width: 1040px) 720px, 70vw"
+      />
+      <IPadFrame
+        className="absolute bottom-0 left-0 w-[23%]"
+        sizes="(min-width: 1040px) 230px, 23vw"
+      />
+      <IPhoneFrame
+        className="absolute bottom-0 right-[3%] w-[11.5%]"
+        sizes="(min-width: 1040px) 120px, 12vw"
+      />
+    </div>
+  </section>
 );
 
 export default DeviceShowcase;

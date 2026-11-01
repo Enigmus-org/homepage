@@ -1,5 +1,5 @@
 import config from "@config/config.json";
-import { ibmPlexMono, sora } from "@lib/fonts";
+import { ibmPlexMono } from "@lib/fonts";
 import { JsonContext } from "context/state";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
@@ -44,7 +44,6 @@ const App = ({ Component, pageProps }) => {
       </Head>
       <style jsx global>{`
         :root {
-          --font-sora: ${sora.style.fontFamily};
           --font-ibm-plex-mono: ${ibmPlexMono.style.fontFamily};
         }
       `}</style>

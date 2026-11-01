@@ -1,6 +1,6 @@
 import useOs from "@hooks/useOs";
 import AppStoreButton from "@layouts/components/aurora/AppStoreButton";
-import IPadFrame from "@layouts/components/aurora/IPadFrame";
+import { IPadFrame } from "@layouts/components/aurora/DeviceFrames";
 
 // Aurora download page: headline + intro from frontmatter, then one glass
 // card per platform with its store button and requirements list, and an
@@ -38,9 +38,8 @@ const AuroraDownload = ({ data }) => {
               <AppStoreButton
                 href={platform.link}
                 rel={platform.rel}
-                store={platform.store}
-                mobileLabel={platform.store}
-                variant={i === primaryIndex ? "primary" : "ghost"}
+                label={platform.store}
+                primary={i === primaryIndex}
               />
             </div>
             <span className="mt-5 block font-mono text-[11px] font-medium uppercase tracking-[0.1em] text-[var(--text-faint)] md:mt-6">

@@ -1,5 +1,5 @@
 import AuroraBase from "@layouts/AuroraBase";
-import PostCard from "@layouts/components/aurora/PostCard";
+import PostList from "@layouts/components/aurora/PostList";
 import { slugify } from "@lib/utils/textConverter";
 import { useSearchContext } from "context/state";
 import { useRouter } from "next/router";
@@ -54,11 +54,7 @@ const SearchPage = () => {
             />
           </div>
           {searchResults.length > 0 ? (
-            <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3 md:gap-5">
-              {searchResults.map((post, i) => (
-                <PostCard key={post.slug} post={post} index={i} />
-              ))}
-            </div>
+            <PostList posts={searchResults} withExcerpt />
           ) : (
             keyword && (
               <div className="mx-auto max-w-md rounded-[18px] border border-[var(--border)] bg-[var(--surface-solid)] p-10 text-center text-[15.5px] text-[var(--text-muted)] [box-shadow:var(--shadow-card)]">

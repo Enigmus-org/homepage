@@ -1,11 +1,9 @@
-// Apple glyph + download label (design_handoff_aurora_glass AppStoreButton.tsx).
-// Desktop shows the two-line store badge layout, mobile a single-line label,
-// per the mock's 1440/390 frames.
+// Store link with the Apple glyph; `primary` is the solid style.
 const AppleGlyph = () => (
   <svg
     viewBox="0 0 384 512"
-    width="18"
-    height="18"
+    width="15"
+    height="15"
     fill="currentColor"
     aria-hidden="true"
   >
@@ -13,25 +11,19 @@ const AppleGlyph = () => (
   </svg>
 );
 
-const AppStoreButton = ({ href, rel, store, mobileLabel, variant }) => {
-  const styles =
-    variant === "primary"
-      ? "bg-brand-btn text-white shadow-btn-brand"
-      : "border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] backdrop-blur-[10px] dark:border-white/[0.14] dark:bg-white/[0.06]";
-  return (
-    <a
-      href={href}
-      rel={rel}
-      className={`flex items-center justify-center gap-2.5 rounded-btn p-[15px] transition-transform hover:-translate-y-0.5 md:justify-start md:px-6 ${styles}`}
-    >
-      <AppleGlyph />
-      <span className="text-[15px] font-semibold md:hidden">{mobileLabel}</span>
-      <span className="hidden text-left leading-[1.1] md:block">
-        <span className="block text-[10.5px] opacity-80">Download on the</span>
-        <span className="block text-[16px] font-semibold">{store}</span>
-      </span>
-    </a>
-  );
-};
+const AppStoreButton = ({ href, rel, label, primary }) => (
+  <a
+    href={href}
+    rel={rel}
+    className={`inline-flex h-11 items-center gap-2 rounded-[10px] border px-4 text-[14px] font-medium transition-colors ${
+      primary
+        ? "border-[var(--text)] bg-[var(--text)] text-[var(--bg)] hover:opacity-90"
+        : "border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:border-[var(--text-faint)]"
+    }`}
+  >
+    <AppleGlyph />
+    {label}
+  </a>
+);
 
 export default AppStoreButton;

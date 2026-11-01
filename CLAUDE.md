@@ -53,7 +53,7 @@ npm run lint     # ESLint
 - Tailwind CSS with SCSS in `/styles/`
 - Dark mode via `next-themes`
 - Bootstrap grid compatibility via `tailwind-bootstrap-grid`
-- Design system ("Aurora Glass"): tokens, typography, and component conventions are documented in `docs/style-guide.md`; the `/elements` page is the live visual reference
+- Design system (flat, WebUI-style, with the Enigmus blue used gently - no gradients or glow): tokens, typography, and component conventions are documented in `docs/style-guide.md`; the `/elements` page is the live visual reference
 
 ## Adding Content
 
@@ -70,7 +70,7 @@ draft: false
 Content here...
 ```
 
-Inline app screenshots belong in a device frame, like the rest of the site: `<IPhoneFrame src="/images/<base>" alt="..." height={<1200-wide height>} dark={false} className="relative mb-10 mt-2 w-[240px] md:w-[280px]" />` loads `<base>-600.webp` / `<base>-1200.webp`, and `<IPadFrame src="/images/<base>" alt="..." dark={false} className="relative mx-auto mb-10 mt-2 w-[300px] md:w-[420px]" />` loads `<base>-450.webp` / `<base>-900.webp`. Both need screenshots with transparent rounded display corners. Keep the iPad widths at 300px / 420px: its chassis metrics are fixed pixels drawn for those two sizes.
+Inline app screenshots belong in a device frame, like the rest of the site: `<IPhoneFrame src="/images/<base>" alt="..." height={<1200-wide height>} dark={false} className="relative mb-10 mt-2 w-[240px] md:w-[280px]" />` loads `<base>-600.webp` / `<base>-1200.webp`, and `<IPadFrame src="/images/<base>" alt="..." dark={false} className="relative mx-auto mb-10 mt-2 w-[300px] md:w-[420px]" />` loads `<base>-450.webp` / `<base>-900.webp`. Both need screenshots with transparent rounded display corners. All three frames (`IPhoneFrame`, `IPadFrame`, `MacBookFrame`, in `layouts/components/aurora/DeviceFrames.js`) are sized in `cqw`, so any width keeps the proportions.
 
 Posts also ship in the RSS/JSON feeds as full HTML. `feedGenerator` translates the inline `style={{...}}` form used for sized screenshots, plus `IPhoneFrame` and `IPadFrame`, which become a plain `<img>` of the screenshot they wrap. Other MDX shortcodes (`Notice`, `Youtube`, ...) have no feed equivalent - using one in a post prints a build warning and would reach readers as raw text.
 

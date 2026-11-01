@@ -13,7 +13,7 @@ const NotFound = ({ data }) => {
         {markdownify(content, "div", "aurora-content")}
         <Link
           href="/"
-          className="mt-8 inline-flex items-center rounded-[11px] bg-brand-btn px-[18px] py-[11px] text-[14px] font-semibold text-white shadow-[0_6px_20px_rgba(31,163,251,0.4)] transition-transform hover:-translate-y-px"
+          className="mt-8 inline-flex items-center rounded-[11px] bg-brand-deep px-[18px] py-[11px] text-[14px] font-semibold text-white hover:opacity-90"
         >
           Back to the homepage
         </Link>

@@ -258,7 +258,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 ### Device frames
 
-Code-drawn device chassis around real app screenshots. The frame follows the light/dark theme; the screenshot swaps with it via paired light/dark webp assets.
+Minimal code-drawn frames around real app screenshots: a flat bezel with a hairline edge, sized in `cqw` so any width keeps the proportions. The screenshot swaps with the light/dark theme via paired webp assets.
 
 #### MacBook Pro
 

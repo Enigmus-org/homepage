@@ -5,107 +5,79 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
-// Floating glass navigation bar (design_handoff_aurora_glass Nav.tsx).
-// Links come from config/menu.json main menu; dropdown entries are omitted —
-// the mock nav is a flat four-link row. The desktop link row needs ~1000px to
-// fit, so it appears at lg (992px), not md — tablets get the hamburger.
+// Full-width top bar on the flat brand wash, like the WebUI header. Links
+// come from the config/menu.json main menu (dropdown entries omitted). The
+// link row needs ~1000px, so it appears at lg; smaller widths get a sheet.
 const Nav = () => {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
+  const { asPath } = useRouter();
   const links = menu.main.filter((item) => !item.hasChildren);
+  const link = (item, size) => (
+    <Link
+      key={item.name}
+      href={item.url}
+      onClick={() => setOpen(false)}
+      className={`whitespace-nowrap rounded-lg border ${size} ${
+        asPath === item.url
+          ? "border-[var(--border)] bg-[var(--surface)] text-[var(--text)]"
+          : "border-transparent hover:text-[var(--text)]"
+      }`}
+    >
+      {item.name}
+    </Link>
+  );
 
   return (
-    <div className="relative flex justify-center px-4 pt-2.5 lg:px-14 lg:pt-[26px]">
-      <div className="flex w-full max-w-[1200px] items-center justify-between rounded-[14px] border border-[var(--border)] bg-[var(--surface)] px-3 py-2.5 backdrop-blur-xl lg:rounded-nav lg:py-3 lg:pl-[18px] lg:pr-3.5">
-        {/* wordmark */}
-        <Link href="/" className="flex items-center gap-[9px] lg:gap-[11px]">
-          {/* `priority` because the wordmark icon is the topmost image on
-              every page — it is what the LCP measurement lands on, so it must
-              not be lazy-loaded. The dev-only LCP warning for this file still
-              fires anyway: next/image tracks loading state per URL, and the
-              footer and hero card reuse the same icon lazily, overwriting this
-              entry. Ignore it — those copies cost no extra request. */}
+    <header className="relative border-b border-[var(--brand-line)] bg-[var(--brand-wash)]">
+      <div className="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-4 md:px-8">
+        {/* `priority`: the icon is the topmost image on every page, so it is
+            what the LCP measurement lands on and must not be lazy-loaded. */}
+        <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/images/enigmus-icon-96.png"
-            alt="Enigmus"
-            width={32}
-            height={32}
+            alt=""
+            width={28}
+            height={28}
             priority
-            className="h-7 w-7 rounded-lg lg:h-8 lg:w-8 lg:rounded-[9px] lg:shadow-[0_4px_16px_rgba(31,163,251,0.35)]"
+            className="h-7 w-7 rounded-[8px]"
           />
-          <span className="font-heading text-[16px] font-semibold tracking-[-0.02em] text-[var(--text)] lg:text-[18px]">
+          <span className="text-[12px] font-semibold uppercase tracking-[0.2em]">
             Enigmus
           </span>
         </Link>
 
-        {/* links — desktop only; smaller widths use the hamburger sheet */}
-        <nav className="hidden items-center gap-[30px] text-[14.5px] text-[var(--text-muted)] lg:flex">
-          {links.map((item) => (
-            <Link
-              key={item.name}
-              href={item.url}
-              className={`whitespace-nowrap ${
-                router.asPath === item.url
-                  ? "text-[var(--text)]"
-                  : "transition-colors hover:text-[var(--text)]"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <nav className="hidden gap-1 text-[14px] text-[var(--text-dim)] lg:flex">
+          {links.map((item) => link(item, "px-2.5 py-1.5"))}
         </nav>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-1.5">
           <ThemeToggle />
           <Link
             href="/download"
-            className="hidden items-center gap-2.5 whitespace-nowrap rounded-[11px] bg-brand-btn px-[18px] py-[11px] text-[14px] font-semibold text-white shadow-[0_6px_20px_rgba(31,163,251,0.4)] transition-transform hover:-translate-y-px lg:flex"
+            className="hidden h-9 items-center rounded-[10px] bg-[var(--text)] px-4 text-[13.5px] font-medium text-[var(--bg)] hover:opacity-90 lg:flex"
           >
-            Get Enigmus
+            Download
           </Link>
           <button
             type="button"
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen(!open)}
-            className="flex flex-col gap-1 p-1.5 lg:hidden"
+            className="grid h-9 w-9 place-items-center rounded-[10px] text-[var(--text-dim)] lg:hidden"
           >
-            <span className="h-[2px] w-[18px] rounded-[2px] bg-[var(--text-muted)]" />
-            <span className="h-[2px] w-[18px] rounded-[2px] bg-[var(--text-muted)]" />
-            <span className="h-[2px] w-[18px] rounded-[2px] bg-[var(--text-muted)]" />
+            <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+              <path d={open ? "M6 6l12 12M18 6 6 18" : "M4 7h16M4 12h16M4 17h16"} />
+            </svg>
           </button>
         </div>
       </div>
 
-      {/* mobile/tablet sheet */}
       {open && (
-        // opaque glass: surface tint layered over the page bg so content
-        // behind the sheet can't bleed through
-        <div className="absolute inset-x-4 top-full z-50 mt-2 rounded-[14px] border border-[var(--border)] p-4 [background:linear-gradient(var(--surface),var(--surface)),linear-gradient(var(--bg),var(--bg))] lg:hidden">
-          <nav className="flex flex-col gap-1 text-[15px] text-[var(--text-muted)]">
-            {links.map((item) => (
-              <Link
-                key={item.name}
-                href={item.url}
-                onClick={() => setOpen(false)}
-                className={`rounded-lg px-3 py-2.5 ${
-                  router.asPath === item.url ? "text-[var(--text)]" : ""
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-          <Link
-            href="/download"
-            onClick={() => setOpen(false)}
-            className="mt-3 flex items-center justify-center rounded-[11px] bg-brand-btn px-[18px] py-[11px] text-[14px] font-semibold text-white shadow-[0_6px_20px_rgba(31,163,251,0.4)]"
-          >
-            Get Enigmus
-          </Link>
-        </div>
+        <nav className="absolute inset-x-4 top-full z-50 mt-2 flex flex-col gap-1 rounded-[14px] border border-[var(--border)] bg-[var(--surface)] p-2 text-[15px] text-[var(--text-dim)] shadow-[0_12px_32px_-16px_rgba(0,0,0,0.3)] lg:hidden">
+          {links.map((item) => link(item, "px-3 py-2.5"))}
+        </nav>
       )}
-    </div>
+    </header>
   );
 };
 

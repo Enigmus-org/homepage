@@ -1,20 +1,15 @@
 import Base from "@layouts/Baseof";
-import AuroraField from "@layouts/components/aurora/AuroraField";
 import AuroraFooter from "@layouts/components/aurora/Footer";
 import AuroraNav from "@layouts/components/aurora/Nav";
 
-// Aurora Glass page shell: Baseof's SEO head without the old chrome, plus the
-// aurora background, glass nav, and footer. AuroraField clips its own blobs,
-// so no overflow-hidden here — it would cut off the nav's mobile sheet.
+// Page shell: Baseof's SEO head without the old chrome, plus the nav and
+// footer on the flat page background.
 const AuroraBase = ({ children, ...seo }) => (
   <Base {...seo}>
-    <section className="relative bg-[var(--bg)] font-sans text-[var(--text)]">
-      <AuroraField />
-      <div className="relative z-10">
-        <AuroraNav />
-        {children}
-        <AuroraFooter />
-      </div>
+    <section className="bg-[var(--bg)] font-sans text-[var(--text)]">
+      <AuroraNav />
+      {children}
+      <AuroraFooter />
     </section>
   </Base>
 );

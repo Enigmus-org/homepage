@@ -1,37 +1,26 @@
 import config from "@config/config.json";
 import Link from "next/link";
-import PostCard from "./PostCard";
+import PostList from "./PostList";
 import SubscribeFeed from "./SubscribeFeed";
 
 const { blog_folder } = config.settings;
 
-// 3-up post grid (design_handoff_aurora_glass RecentPosts.tsx) wired to the
-// markdown posts, two rows deep — pages/index.js passes the six most recent,
-// with the feed panel closing the section. Deviation from the mock's 390
-// frame: every post shows on mobile, not two.
+// Homepage recent posts: the dated list, closed by the feed panel.
+// pages/index.js passes the six most recent.
 const RecentPosts = ({ title, posts }) => (
-  <div className="relative flex justify-center px-4 pb-2 pt-5 md:px-14 md:pb-5 md:pt-[60px]">
-    <div className="w-full max-w-[1200px]">
-      <div className="mb-4 flex items-end justify-between md:mb-[26px]">
-        <h2 className="font-display text-[22px] font-bold tracking-[-0.02em] text-[var(--text)] md:text-[30px]">
-          {title}
-        </h2>
-        <Link
-          href={`/${blog_folder}`}
-          className="font-mono text-[12px] font-medium text-[var(--accent-on-bg)] dark:text-[#8B93A7] md:text-[13px]"
-        >
-          <span className="hidden md:inline">View all →</span>
-          <span className="md:hidden">All →</span>
-        </Link>
-      </div>
-      <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3 md:gap-5">
-        {posts.map((post, i) => (
-          <PostCard key={post.slug} post={post} index={i} />
-        ))}
-      </div>
-      <SubscribeFeed className="mt-7 md:mt-10" />
+  <section className="mx-auto max-w-[1200px] px-4 py-14 md:px-8 md:py-20">
+    <div className="mb-4 flex items-baseline justify-between">
+      <h2 className="text-[20px] font-semibold tracking-[-0.01em]">{title}</h2>
+      <Link
+        href={`/${blog_folder}`}
+        className="text-[13px] text-[var(--text-faint)] hover:text-[var(--text)]"
+      >
+        All posts -&gt;
+      </Link>
     </div>
-  </div>
+    <PostList posts={posts} />
+    <SubscribeFeed className="mt-10" />
+  </section>
 );
 
 export default RecentPosts;
