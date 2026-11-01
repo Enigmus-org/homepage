@@ -42,9 +42,10 @@ export const getStaticPaths = () => {
 // category page data
 export const getStaticProps = ({ params }) => {
   const posts = sortByDate(getSinglePage(`content/${blog_folder}`));
+  // Exact slug match: a substring test put "Core AI" posts under "ai".
   const filterPosts = posts.filter((post) =>
-    post.frontmatter.categories.find((category) =>
-      slugify(category).includes(params.category)
+    post.frontmatter.categories.some(
+      (category) => slugify(category) === params.category
     )
   );
 
