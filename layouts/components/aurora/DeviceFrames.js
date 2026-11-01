@@ -62,7 +62,7 @@ export const IPhoneFrame = frame({
 });
 
 export const IPadFrame = frame({
-  bezel: "rounded-[6cqw] p-[2.8cqw]",
+  bezel: "rounded-[5.2cqw] p-[1.96cqw]",
   widths: [450, 900],
   src: "/images/home-ipad",
   alt: "Enigmus for iPad - the welcome screen: private, local-only, open model weights",
@@ -73,7 +73,7 @@ export const IPadFrame = frame({
 });
 
 export const MacBookFrame = frame({
-  bezel: "mx-[2.5cqw] rounded-t-[2.6cqw] rounded-b-[0.5cqw] p-[1.6cqw]",
+  bezel: "mx-[2.5cqw] rounded-t-[2.1cqw] rounded-b-[0.5cqw] p-[1.12cqw]",
   screen: "!rounded-[0.8cqw]",
   base: (
     <div className="h-[1.6cqw] rounded-b-[1.2cqw] rounded-t-[0.3cqw] bg-[#d4d7dc] dark:bg-[#2a2d32]" />

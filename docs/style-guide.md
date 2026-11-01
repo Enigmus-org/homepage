@@ -92,8 +92,10 @@ utilities on elements inside content always win.
 `IPadFrame` and `MacBookFrame`: a flat `#111214` bezel with a hairline ring,
 no buttons, notch or shading; the Mac adds a flat keyboard-deck bar. Every
 metric is in `cqw`, so a frame keeps its proportions at any width - callers
-set width and spacing through `className`. `DeviceShowcase` places all three
-as one group (Mac centered, iPad and iPhone in front of its lower corners).
+set width and spacing through `className`. `DeviceShowcase` gives each device
+its own column on a hairline grid (iPhone, iPad, Mac, in order of memory): a
+screenshot of what differs there, then the same spec rows for each - RAM,
+model budget, largest model, default for new chats - and a caption.
 
 ## Motion
 
