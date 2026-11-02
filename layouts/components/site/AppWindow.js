@@ -7,13 +7,7 @@ import Icon from "./Icon";
 // context counter; the sidebar is hidden on phones, which keep the first.
 // Like the app, the thread opens scrolled to its latest message when it is
 // taller than the window (narrow widths only).
-const THINKING =
-  "M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z";
-
-const TOOLS = [
-  "M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm4 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm12 8-5-5-9 9", // image
-  "M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2", // audio
-];
+const THINKING = "M13 2 3 14h9l-1 8 10-12h-9l1-8z"; // lightning
 
 // Each message is [from, text]; a reply may carry a thinking time in seconds.
 const CHATS = [
@@ -158,9 +152,6 @@ const AppWindow = () => {
             Type a message...
           </span>
           <div className="mt-2.5 flex items-center gap-3 text-[var(--text-faint)]">
-            {TOOLS.map((d) => (
-              <Icon key={d} d={d} className="h-3.5 w-3.5" />
-            ))}
             <Icon
               d={THINKING}
               className={`h-3.5 w-3.5 ${chat.thinking ? "text-brand" : ""}`}

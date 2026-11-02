@@ -133,8 +133,8 @@ chat items are buttons: each swaps in its own thread, model and context count.
 | Thread | Padding 20, gap 14, 13.5px / 1.6; scrolls (hidden scrollbar) and opens at the latest message when taller than the window |
 | User bubble | Right-aligned, radius 14, padding 14 x 8, `bg-brand/10`, `border-brand/25`, text `#0B5FB3` / `#D6EFFF` |
 | Assistant reply | No bubble: plain `--text-muted`, max-width 90% |
-| Thinking | Above a reply: 12px sparkle + 11.5px `--text-faint` ("Thought for 6s"); the composer's sparkle tool turns `brand` while thinking is on |
-| Composer | Inset 16 from sides and bottom; `--surface`, hairline, radius 14, padding 12 x 10/8; 13px faint placeholder; toolbar (gap 12) of 14px tool icons, a mono 11px context counter pushed right, send button |
+| Thinking | Above a reply: 12px lightning + 11.5px `--text-faint` ("Thought for 6s"); the composer's lightning toggle turns `brand` while thinking is on |
+| Composer | Inset 16 from sides and bottom; `--surface`, hairline, radius 14, padding 12 x 10/8; 13px faint placeholder; toolbar (gap 12) of the 14px lightning thinking toggle, a mono 11px context counter pushed right, send button |
 | Send | 26px circle, `brand` fill, white 12px up-arrow at stroke 2.4 |
 | A11y | `role="figure"` + a descriptive `aria-label`; chat items `aria-pressed`; thread `aria-live="polite"`; New Chat and composer `aria-hidden` |
 
