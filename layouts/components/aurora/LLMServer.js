@@ -116,9 +116,14 @@ const LLMServer = () => (
         className="w-full max-w-[640px]"
       />
       <div className="min-w-0">
-        <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.08em] text-[var(--text-faint)]">
-          OpenAI-compatible API
-        </p>
+        <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <span className="rounded-[6px] border border-[var(--brand-line)] bg-[var(--brand-wash)] px-2 py-0.5 text-[12px] font-medium text-[var(--accent-on-bg)]">
+            New in Enigmus 1.3
+          </span>
+          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-[var(--text-faint)]">
+            OpenAI-compatible API
+          </p>
+        </div>
         <h2 className="text-[20px] font-semibold tracking-[-0.01em]">
           LLM Server for macOS and iOS
         </h2>
