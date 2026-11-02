@@ -58,12 +58,12 @@ const DEVICES = [
       ["New chats", "Thinking"],
     ],
     caption:
-      "New chats think by default, since a Mac decodes fast enough to afford it. The LLM Server keeps serving the loaded model to other apps with Enigmus in the background; on iPhone and iPad, locking the screen or switching apps pauses it.",
+      "New chats think by default, since a Mac decodes fast enough to afford it. Every row from Qwen 3.6 27B up needs more memory than any iPhone or iPad has, so those sizes run only on a Mac.",
     frame: (
       <MacBookFrame
-        src="/images/home-mac-server"
+        src="/images/home-mac-chat"
         height={1150}
-        alt="Enigmus on Mac - the LLM Server settings, active on port 31415"
+        alt="Enigmus on Mac - a chat about Euler's formula, with the Think chip in the message bar"
         sizes="340px"
         className="w-full max-w-[340px]"
       />

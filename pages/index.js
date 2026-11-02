@@ -3,6 +3,7 @@ import AuroraBase from "@layouts/AuroraBase";
 import DeviceShowcase from "@layouts/components/aurora/DeviceShowcase";
 import Features from "@layouts/components/aurora/Features";
 import AuroraHero from "@layouts/components/aurora/Hero";
+import LLMServer from "@layouts/components/aurora/LLMServer";
 import AuroraRecentPosts from "@layouts/components/aurora/RecentPosts";
 import { getListPage, getSinglePage } from "@lib/contentParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
@@ -14,6 +15,7 @@ const Home = ({ banner, posts, recent_posts }) => {
       <AuroraHero banner={banner} />
       <Features />
       <DeviceShowcase />
+      <LLMServer />
       {recent_posts.enable && (
         <AuroraRecentPosts title={recent_posts.title} posts={posts} />
       )}

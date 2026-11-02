@@ -114,7 +114,9 @@ Shells: `AuroraBase` (SEO head + nav + footer) wraps every page.
 Layouts: `AuroraArticle` (default for content pages; `heading`/`heading_accent`/`intro`
 frontmatter, heading falls back to `title`), `AuroraDownload`, `AuroraContact`, `404`.
 Homepage: `Hero` (copy + `AppStoreButton`s + `AppWindow`), `Features`,
-`DeviceShowcase`, `RecentPosts` (`PostList` + `SubscribeFeed`).
+`DeviceShowcase`, `LLMServer` (Mac frame + `curl` in a terminal block, a
+flat request diagram, a hairline row of use cases), `RecentPosts` (`PostList` +
+`SubscribeFeed`).
 Post listings (homepage, blog index, category, search, a post's related
 posts) all use `PostList`: one hairline row per post with date, title and
 categories, plus an optional excerpt.
