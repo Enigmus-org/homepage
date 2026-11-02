@@ -3,7 +3,7 @@ import { plainify } from "@lib/utils/textConverter";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-// SEO head + main wrapper; page chrome (nav/footer) comes from AuroraBase.
+// SEO head + main wrapper; page chrome (nav/footer) comes from PageShell.
 const Base = ({
   title,
   meta_title,

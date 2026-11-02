@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-// Glass pagination for aurora blog listings. Page 1 is /posts; later pages
-// live at /page/N (existing route scheme).
+// Pagination for blog listings. Page 1 is /posts; later pages live at
+// /page/N (existing route scheme).
 const pageHref = (page) => (page === 1 ? "/posts" : `/page/${page}`);
 
 const btnBase =

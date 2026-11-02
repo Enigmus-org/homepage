@@ -1,7 +1,6 @@
 ---
 title: Technology for Private AI on Apple Devices
 description: "Enigmus delivers private, on-device AI for Mac, iPhone, and iPad using Apple's MLX framework. By leveraging Apple Silicon's unified memory architecture and Metal GPU acceleration, all processing happens locally—data never leaves the device."
-layout: aurora-article
 heading: Private AI, Powered by
 heading_accent: Apple Silicon
 intro: Enigmus is built exclusively for Apple platforms, leveraging MLX—Apple's machine learning framework—to deliver private AI on Mac, iPhone, and iPad. By running entirely on-device, data never leaves the hardware.

@@ -1,6 +1,6 @@
 // Fenced code blocks (```bash) render as a terminal window: a title bar with
 // traffic lights and the language label, then the highlighted body on a dark
-// canvas in both themes (`.terminal-block` in styles/aurora.scss). Registered
+// canvas in both themes (`.terminal-block` in styles/design.scss). Registered
 // as the `pre` element override in shortcodes/all.js, so every fenced block on
 // the site gets the chrome. Highlighting happens at build time
 // (lib/utils/mdxParser.js) — nothing is shipped to the browser for it.

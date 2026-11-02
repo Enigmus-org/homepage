@@ -1,5 +1,5 @@
 import config from "@config/config.json";
-import AuroraBase from "@layouts/AuroraBase";
+import PageShell from "@layouts/PageShell";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";
 import { humanize, slugify } from "@lib/utils/textConverter";
@@ -8,7 +8,7 @@ const { blog_folder } = config.settings;
 
 const Categories = ({ categories }) => {
   return (
-    <AuroraBase title={"categories"}>
+    <PageShell title={"categories"}>
       <section className="relative px-[22px] pb-16 pt-[34px] text-center md:px-14 md:pb-24 md:pt-[60px]">
         <h1 className="mb-6 font-display text-[34px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:mb-8 md:text-[48px]">
           Categories
@@ -29,7 +29,7 @@ const Categories = ({ categories }) => {
           ))}
         </ul>
       </section>
-    </AuroraBase>
+    </PageShell>
   );
 };
 

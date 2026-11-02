@@ -146,7 +146,7 @@ the live visual reference.
 | `brand-deep` | `#0D6FD1` | accent text and brand buttons on light |
 | `brand-sky` | `#5EC0FF` | accent text on dark |
 
-**Semantic colors** (CSS variables in `styles/aurora.scss`, swapped by the `.dark` class)
+**Semantic colors** (CSS variables in `styles/design.scss`, swapped by the `.dark` class)
 
 | Variable | Light | Dark |
 | :-- | :-- | :-- |
@@ -159,7 +159,7 @@ the live visual reference.
 | `--brand-wash` | `#EEF6FD` | `#0C141D` |
 | `--brand-line` | `rgba(31,163,251,.28)` | `rgba(94,192,255,.22)` |
 
-**Building blocks** (`layouts/components/aurora/`)
+**Building blocks** (`layouts/components/site/`)
 
 - `DeviceFrames` - minimal iPhone, iPad and Mac frames around real
   screenshots, sized in `cqw` so any width keeps the proportions

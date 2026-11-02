@@ -1,6 +1,5 @@
 ---
 title: "Elements"
-layout: "aurora-article"
 heading: "Elements"
 draft: false
 ---

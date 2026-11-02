@@ -1,7 +1,7 @@
 ---
 title: Enigmus AI - Download
 description: "Download Enigmus for iPhone, iPad, and Mac on the App Store. Private AI powered by Apple's MLX framework—data never leaves the device."
-layout: aurora-download
+layout: download
 heading: Download
 heading_accent: Enigmus
 intro: Enigmus is available on the App Store for iPhone, iPad, and Mac. Built exclusively for Apple platforms, it uses MLX and Apple silicon to run private, on-device AI.

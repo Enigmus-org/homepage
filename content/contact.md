@@ -1,7 +1,7 @@
 ---
 title: "Contact Enigmus"
 description: "press, security disclosures, or just to say hi."
-layout: "aurora-contact"
+layout: contact
 heading: "Contact"
 heading_accent: "Enigmus"
 intro: "Feedback and suggestions, press, security disclosures, or just to say hi."

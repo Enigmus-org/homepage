@@ -63,7 +63,7 @@ module.exports = {
           "theme-light": theme.colors.darkmode.theme_color.theme_light,
           "theme-dark": theme.colors.darkmode.theme_color.theme_dark,
         },
-        // Enigmus brand blues (app icon) and legacy Aurora palette
+        // Enigmus brand blues (app icon) and the older accent palette
         brand: {
           DEFAULT: "#1FA3FB",
           deep: "#0D6FD1",

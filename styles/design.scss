@@ -1,4 +1,4 @@
-// Semantic tokens for every page wrapped in AuroraBase. The palette follows
+// Semantic tokens for every page wrapped in PageShell. The palette follows
 // the Enigmus WebUI: flat neutral surfaces and hairline borders, with the
 // brand blue kept to a light wash, a hairline, icons and accent text.
 // No gradients, glass or glow.
@@ -44,10 +44,10 @@
   --shadow-card: none;
 }
 
-// Typography for aurora long-form pages (layouts/AuroraArticle.js).
+// Typography for long-form pages (layouts/ArticleLayout.js).
 // :where() keeps these rules at zero specificity so Tailwind utility classes
 // on elements inside the content (e.g. shortcode markup) always win.
-:where(.aurora-content) {
+:where(.page-content) {
   h1 {
     @apply mt-10 mb-4 font-display text-[30px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:text-[34px];
   }
@@ -187,7 +187,7 @@
 
 // Fenced code blocks as a terminal window (layouts/shortcodes/CodeBlock.jsx).
 // Deliberately dark in both themes — a terminal is dark — and left outside the
-// .aurora-content layer so prose pages get the same treatment. Token colors
+// .page-content layer so prose pages get the same treatment. Token colors
 // follow GitHub Dark; `sh-cmd` / `sh-flag` come from the extra shell pass in
 // lib/utils/rehypeShellTokens.js.
 .terminal-block {
@@ -244,7 +244,7 @@
 
 // Active tab pill (layouts/shortcodes/Tabs.jsx toggles this class). Kept at
 // full specificity so it overrides the tab items' utility text color.
-.aurora-content .active-tab {
+.page-content .active-tab {
   background: var(--brand-deep);
   @apply text-white;
 }

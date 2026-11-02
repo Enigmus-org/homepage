@@ -10,7 +10,7 @@ const NotFound = ({ data }) => {
         <h1 className="mb-2 font-display text-[72px] font-extrabold leading-none tracking-[-0.04em] text-brand-deep dark:text-brand md:text-[104px]">
           404
         </h1>
-        {markdownify(content, "div", "aurora-content")}
+        {markdownify(content, "div", "page-content")}
         <Link
           href="/"
           className="mt-8 inline-flex items-center rounded-[11px] bg-brand-deep px-[18px] py-[11px] text-[14px] font-semibold text-white hover:opacity-90"

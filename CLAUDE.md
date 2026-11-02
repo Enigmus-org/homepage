@@ -28,7 +28,7 @@ npm run lint     # ESLint
   - `_index.md` files contain list page metadata. `content/posts/_index.md` also drives the blog index `intro` (subtitle) and `description` (meta description + feed channel description)
 - **Frontmatter**: Supports `title`, `date`, `image`, `image_alt`, `categories`, `featured`, `draft`, `layout`
   - Posts: `hero_iphone` (asset base path, e.g. `/images/gemma4-catalogue`) renders the hero inside the iPhone chassis instead of as a wide cover — for portrait app screenshots. It loads `<base>-600.webp` / `<base>-1200.webp`; set `hero_iphone_height` to the 1200-wide variant's pixel height, and keep `image` a landscape cover (it feeds post cards and `og:image`, which is declared 1200×630).
-- **Layouts**: Set via `layout` frontmatter field: `default`, `text2image`, `contact`, `404`
+- **Layouts**: Set via the `layout` frontmatter field: omit it for the default article layout (`ArticleLayout`), or use `download`, `contact`, `404`. Every page is wrapped in `PageShell` (SEO head + nav + footer)
 
 ### Page Routing
 - `pages/[regular].js` - Renders pages from `/content/*.md`, selects layout based on frontmatter
@@ -70,11 +70,11 @@ draft: false
 Content here...
 ```
 
-Inline app screenshots belong in a device frame, like the rest of the site: `<IPhoneFrame src="/images/<base>" alt="..." height={<1200-wide height>} dark={false} className="relative mb-10 mt-2 w-[240px] md:w-[280px]" />` loads `<base>-600.webp` / `<base>-1200.webp`, and `<IPadFrame src="/images/<base>" alt="..." dark={false} className="relative mx-auto mb-10 mt-2 w-[300px] md:w-[420px]" />` loads `<base>-450.webp` / `<base>-900.webp`. Both need screenshots with transparent rounded display corners. All three frames (`IPhoneFrame`, `IPadFrame`, `MacBookFrame`, in `layouts/components/aurora/DeviceFrames.js`) are sized in `cqw`, so any width keeps the proportions.
+Inline app screenshots belong in a device frame, like the rest of the site: `<IPhoneFrame src="/images/<base>" alt="..." height={<1200-wide height>} dark={false} className="relative mb-10 mt-2 w-[240px] md:w-[280px]" />` loads `<base>-600.webp` / `<base>-1200.webp`, and `<IPadFrame src="/images/<base>" alt="..." dark={false} className="relative mx-auto mb-10 mt-2 w-[300px] md:w-[420px]" />` loads `<base>-450.webp` / `<base>-900.webp`. Both need screenshots with transparent rounded display corners. All three frames (`IPhoneFrame`, `IPadFrame`, `MacBookFrame`, in `layouts/components/site/DeviceFrames.js`) are sized in `cqw`, so any width keeps the proportions.
 
 Posts also ship in the RSS/JSON feeds as full HTML. `feedGenerator` translates the inline `style={{...}}` form used for sized screenshots, plus `IPhoneFrame` and `IPadFrame`, which become a plain `<img>` of the screenshot they wrap. Other MDX shortcodes (`Notice`, `Youtube`, ...) have no feed equivalent - using one in a post prints a build warning and would reach readers as raw text.
 
-**New page**: Create `/content/your-page.md` with `layout: text2image` or `layout: contact` in frontmatter.
+**New page**: Create `/content/your-page.md`; it renders with the default article layout, or set `layout: contact` / `layout: download` in frontmatter.
 
 ## Visual Testing
 

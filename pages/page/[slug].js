@@ -1,8 +1,8 @@
 import config from "@config/config.json";
-import AuroraBase from "@layouts/AuroraBase";
-import AuroraPagination from "@layouts/components/aurora/Pagination";
-import PostList from "@layouts/components/aurora/PostList";
-import SubscribeFeed from "@layouts/components/aurora/SubscribeFeed";
+import PageShell from "@layouts/PageShell";
+import Pagination from "@layouts/components/site/Pagination";
+import PostList from "@layouts/components/site/PostList";
+import SubscribeFeed from "@layouts/components/site/SubscribeFeed";
 import { getListPage, getSinglePage } from "@lib/contentParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { slugify } from "@lib/utils/textConverter";
@@ -27,7 +27,7 @@ const BlogPagination = ({
   const isFirstPage = currentPage === 1;
 
   return (
-    <AuroraBase title={title} description={description}>
+    <PageShell title={title} description={description}>
       <section className="mx-auto max-w-[1200px] px-4 py-12 md:px-8 md:py-16">
         <h1 className="text-[36px] font-bold leading-[1.1] tracking-[-0.03em] md:text-[44px]">
           {title}
@@ -56,9 +56,9 @@ const BlogPagination = ({
         )}
 
         <PostList posts={currentPosts} withExcerpt className="mt-6" />
-        <AuroraPagination currentPage={currentPage} totalPages={totalPages} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
       </section>
-    </AuroraBase>
+    </PageShell>
   );
 };
 

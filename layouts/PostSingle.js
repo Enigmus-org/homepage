@@ -1,7 +1,7 @@
 import config from "@config/config.json";
-import AuroraBase from "@layouts/AuroraBase";
-import { IPhoneFrame } from "@layouts/components/aurora/DeviceFrames";
-import PostList from "@layouts/components/aurora/PostList";
+import PageShell from "@layouts/PageShell";
+import { IPhoneFrame } from "@layouts/components/site/DeviceFrames";
+import PostList from "@layouts/components/site/PostList";
 import dateFormat from "@lib/utils/dateFormat";
 import { slugify } from "@lib/utils/textConverter";
 import { MDXRemote } from "next-mdx-remote";
@@ -31,7 +31,7 @@ const PostSingle = ({
   const related = relatedPosts.filter((post) => post.slug !== slug);
 
   return (
-    <AuroraBase title={title} description={description} image={image}>
+    <PageShell title={title} description={description} image={image}>
       <article className="relative px-[22px] pb-10 pt-[34px] md:px-14 md:pb-14 md:pt-[60px]">
         <div className="mx-auto max-w-[760px]">
           <div className="mb-4 flex flex-wrap justify-center gap-2">
@@ -78,7 +78,7 @@ const PostSingle = ({
               />
             )
           )}
-          <div className="aurora-content">
+          <div className="page-content">
             <MDXRemote {...mdxContent} components={shortcodes} />
           </div>
         </div>
@@ -93,7 +93,7 @@ const PostSingle = ({
           </div>
         )}
       </article>
-    </AuroraBase>
+    </PageShell>
   );
 };
 

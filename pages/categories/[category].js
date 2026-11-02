@@ -1,6 +1,6 @@
 import config from "@config/config.json";
-import AuroraBase from "@layouts/AuroraBase";
-import PostList from "@layouts/components/aurora/PostList";
+import PageShell from "@layouts/PageShell";
+import PostList from "@layouts/components/site/PostList";
 import { getSinglePage } from "@lib/contentParser";
 import { getTaxonomy } from "@lib/taxonomyParser";
 import { humanize, slugify } from "@lib/utils/textConverter";
@@ -10,7 +10,7 @@ const { blog_folder } = config.settings;
 // category page
 const Category = ({ postsByCategories, name }) => {
   return (
-    <AuroraBase title={name}>
+    <PageShell title={name}>
       <section className="mx-auto max-w-[1200px] px-4 py-12 md:px-8 md:py-16">
         <p className="font-mono text-[12px] font-medium uppercase tracking-[0.1em] text-[var(--accent-on-bg)]">
           Category
@@ -20,7 +20,7 @@ const Category = ({ postsByCategories, name }) => {
         </h1>
         <PostList posts={postsByCategories} withExcerpt className="mt-8" />
       </section>
-    </AuroraBase>
+    </PageShell>
   );
 };
 

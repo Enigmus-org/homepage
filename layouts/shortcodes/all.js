@@ -2,7 +2,7 @@ import {
   IPadFrame,
   IPhoneFrame,
   MacBookFrame,
-} from "@layouts/components/aurora/DeviceFrames";
+} from "@layouts/components/site/DeviceFrames";
 import Accordion from "./Accordion";
 import Button from "./Button";
 import CodeBlock from "./CodeBlock";

@@ -8,14 +8,11 @@ reference is the `/elements` page, which renders every element and shortcode.
 
 Where it lives in code:
 
-- `styles/aurora.scss` - semantic CSS variables (light/dark) + `.aurora-content` typography
+- `styles/design.scss` - semantic CSS variables (light/dark) + `.page-content` typography
 - `tailwind.config.js` - `theme.extend` tokens (brand colors, fonts, radii)
-- `layouts/components/aurora/` - the component library
-- `layouts/Aurora*.js` - page shells and layouts
+- `layouts/components/site/` - the component library
+- `layouts/PageShell.js`, `layouts/*Layout.js` - page shell and layouts
 - `lib/fonts.js` - webfont loading
-
-(The `aurora` names are historical; the Aurora Glass look they once described
-is gone.)
 
 ## Colors
 
@@ -27,7 +24,7 @@ Brand palette (Tailwind names), taken from the app icon:
 | `brand-deep` | `#0D6FD1` | accent text and filled brand buttons on light (5:1 on white) |
 | `brand-sky` | `#5EC0FF` | accent text on dark |
 
-Semantic CSS variables (swap on `.dark`, set in `styles/aurora.scss`):
+Semantic CSS variables (swap on `.dark`, set in `styles/design.scss`):
 
 | Variable | Light | Dark |
 | :-- | :-- | :-- |
@@ -69,12 +66,12 @@ Key scales:
 - Homepage H1: 40px mobile / 48px desktop, weight 700, tracking -0.03em
 - Section headings: 20px, weight 600
 - Body: 16px / 1.65; small copy 12.5-13.5px
-- Long-form content: styled by `.aurora-content` (p 16px/1.7, li 15.5px, h2 24->28px)
+- Long-form content: styled by `.page-content` (p 16px/1.7, li 15.5px, h2 24->28px)
 
 Headings take `var(--text)` from the global rule in `styles/base.scss`, in
 both themes.
 
-`.aurora-content` uses `:where()` so its rules have zero specificity - Tailwind
+`.page-content` uses `:where()` so its rules have zero specificity - Tailwind
 utilities on elements inside content always win.
 
 ## Shape and depth
@@ -88,7 +85,7 @@ utilities on elements inside content always win.
 
 ## Device frames
 
-`layouts/components/aurora/DeviceFrames.js` exports `IPhoneFrame`,
+`layouts/components/site/DeviceFrames.js` exports `IPhoneFrame`,
 `IPadFrame` and `MacBookFrame`: a flat `#111214` bezel with a hairline ring,
 no buttons, notch or shading; the Mac adds a flat keyboard-deck bar. Every
 metric is in `cqw`, so a frame keeps its proportions at any width - callers
@@ -110,9 +107,10 @@ None beyond color and opacity transitions on hover. Respect
 
 ## Components
 
-Shells: `AuroraBase` (SEO head + nav + footer) wraps every page.
-Layouts: `AuroraArticle` (default for content pages; `heading`/`heading_accent`/`intro`
-frontmatter, heading falls back to `title`), `AuroraDownload`, `AuroraContact`, `404`.
+Shells: `PageShell` (SEO head + nav + footer) wraps every page.
+Layouts: `ArticleLayout` (default for content pages, no `layout` field; `heading`/
+`heading_accent`/`intro` frontmatter, heading falls back to `title`),
+`DownloadLayout` (`layout: download`), `ContactLayout` (`layout: contact`), `404`.
 Homepage: `Hero` (copy + `AppStoreButton`s + `AppWindow`), `Features`,
 `DeviceShowcase`, `LLMServer` (Mac frame + `curl` in a terminal block, a
 flat request diagram, a hairline row of use cases), `RecentPosts` (`PostList` +
@@ -120,7 +118,7 @@ flat request diagram, a hairline row of use cases), `RecentPosts` (`PostList` +
 Post listings (homepage, blog index, category, search, a post's related
 posts) all use `PostList`: one hairline row per post with date, title and
 categories, plus an optional excerpt.
-Library (`layouts/components/aurora/`): `Nav`, `Footer`, `ThemeToggle`, `Icon`,
+Library (`layouts/components/site/`): `Nav`, `Footer`, `ThemeToggle`, `Icon`,
 `PostList`, `Pagination`, `DeviceFrames`. Shortcodes (`Notice`, `Accordion`,
 `Button`, `Tabs`, media) are styled to match - see `/elements`.
 

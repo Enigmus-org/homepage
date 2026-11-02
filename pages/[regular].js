@@ -1,25 +1,25 @@
 import NotFound from "@layouts/404";
-import AuroraArticle from "@layouts/AuroraArticle";
-import AuroraBase from "@layouts/AuroraBase";
-import AuroraContact from "@layouts/AuroraContact";
-import AuroraDownload from "@layouts/AuroraDownload";
+import ArticleLayout from "@layouts/ArticleLayout";
+import ContactLayout from "@layouts/ContactLayout";
+import DownloadLayout from "@layouts/DownloadLayout";
+import PageShell from "@layouts/PageShell";
 import { getRegularPage, getSinglePage } from "@lib/contentParser";
 
 const layouts = {
-  "aurora-download": AuroraDownload,
-  "aurora-contact": AuroraContact,
+  download: DownloadLayout,
+  contact: ContactLayout,
   404: NotFound,
 };
 
-// for all regular pages — aurora-article is the default layout
+// for all regular pages - ArticleLayout is the default layout
 const RegularPages = ({ data }) => {
   const { title, meta_title, description, noindex, canonical, layout } =
     data.frontmatter;
   const { content } = data;
-  const Layout = layouts[layout] || AuroraArticle;
+  const Layout = layouts[layout] || ArticleLayout;
 
   return (
-    <AuroraBase
+    <PageShell
       title={title}
       description={description ? description : content.slice(0, 120)}
       meta_title={meta_title}
@@ -27,7 +27,7 @@ const RegularPages = ({ data }) => {
       canonical={canonical}
     >
       <Layout data={data} />
-    </AuroraBase>
+    </PageShell>
   );
 };
 export default RegularPages;
