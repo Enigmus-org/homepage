@@ -7,6 +7,9 @@
 // widths it lists and, when `dark` is set, swaps in the `-dark-*` pair via
 // the theme class. iPhone and iPad screenshots carry their own transparent
 // rounded display corners; the bezel behind them completes the shape.
+// Keep each bezel's outer radius at screen corner + padding so the band stays
+// even around the curve (screen corners: iPhone 14.2% of the screenshot's
+// width, iPad 3.0%, Mac 0.8cqw set in CSS).
 
 const BEZEL =
   "bg-[#111214] ring-1 ring-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_24px_48px_-28px_rgba(0,0,0,0.4)] dark:ring-white/15 dark:shadow-none";
@@ -51,7 +54,7 @@ const frame = ({ bezel, screen = "!rounded-none", base = null, ...defaults }) =>
 };
 
 export const IPhoneFrame = frame({
-  bezel: "rounded-[14cqw] p-[2.4cqw]",
+  bezel: "rounded-[15.26cqw] p-[1.44cqw]",
   widths: [600, 1200],
   src: "/images/home-iphone",
   alt: "Enigmus for iPhone - a chat about Euler's formula, processed on-device",
@@ -62,7 +65,7 @@ export const IPhoneFrame = frame({
 });
 
 export const IPadFrame = frame({
-  bezel: "rounded-[5.2cqw] p-[1.96cqw]",
+  bezel: "rounded-[4.14cqw] p-[1.18cqw]",
   widths: [450, 900],
   src: "/images/home-ipad",
   alt: "Enigmus for iPad - the welcome screen: private, local-only, open model weights",
@@ -73,7 +76,7 @@ export const IPadFrame = frame({
 });
 
 export const MacBookFrame = frame({
-  bezel: "mx-[2.5cqw] rounded-t-[2.1cqw] rounded-b-[0.5cqw] p-[1.12cqw]",
+  bezel: "mx-[2.5cqw] rounded-t-[1.47cqw] rounded-b-[0.5cqw] p-[0.67cqw]",
   screen: "!rounded-[0.8cqw]",
   base: (
     <div className="h-[1.6cqw] rounded-b-[1.2cqw] rounded-t-[0.3cqw] bg-[#d4d7dc] dark:bg-[#2a2d32]" />
