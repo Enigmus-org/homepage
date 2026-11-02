@@ -59,23 +59,6 @@
   img + em {
     @apply -mt-4 block text-center text-gray-500;
   }
-  blockquote {
-    & > p {
-      @apply relative text-2xl text-black;
-      &::after,
-      &::before {
-        @apply absolute inline-block h-5 w-5 bg-[url('/images/quote.svg')] bg-[length:20px_20px] bg-no-repeat content-[''] lg:h-8 lg:w-8 lg:bg-[length:32px_32px];
-      }
-
-      &::before {
-        @apply -left-10 top-0 lg:-left-10;
-      }
-
-      &::after {
-        @apply bottom-0 right-0 rotate-180;
-      }
-    }
-  }
 }
 
 //banner
@@ -186,31 +169,6 @@ footer .socials {
   img {
     width: 100%;
     height: auto;
-  }
-}
-
-.single-blog {
-  blockquote {
-    @apply px-12 lg:px-[105px];
-
-    & > p {
-      @apply lg:text-[24px];
-      @apply relative text-2xl text-black;
-      &::after,
-      &::before {
-        @apply absolute inline-block h-8 w-8 bg-[url('/images/quote.svg')] bg-[length:32px_32px] bg-no-repeat content-[''];
-      }
-
-      &::before {
-        @apply left-0 top-0;
-        @apply -left-10 lg:-left-12;
-      }
-
-      &::after {
-        @apply bottom-0 right-0 rotate-180;
-        @apply -right-10 lg:-right-8;
-      }
-    }
   }
 }
 
