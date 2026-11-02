@@ -13,8 +13,7 @@ const DEVICES = [
     specs: [
       ["RAM", "4-12 GB"],
       ["Model budget", "1.7-8 GB"],
-      ["Largest model", "Gemma 4 E4B (12 GB)"],
-      ["New chats", "Fast"],
+      ["Largest model", "Gemma 4 E4B", "on a 12 GB device"],
     ],
     caption:
       "New chats start in fast mode. At phone decode speeds a reasoning preamble would be most of the wait for a first reply, so thinking is one tap away instead of the default.",
@@ -34,8 +33,7 @@ const DEVICES = [
     specs: [
       ["RAM", "8-16 GB"],
       ["Model budget", "5-10.7 GB"],
-      ["Largest model", "Gemma 4 12B (16 GB)"],
-      ["New chats", "Fast"],
+      ["Largest model", "Gemma 4 12B", "on a 16 GB device"],
     ],
     caption:
       "The model list is sorted by size and checks every row against the device's RAM. On a 12 GB iPad, Gemma 4 E4B is the largest that fits; Gemma 4 12B and everything above it is greyed out as Not enough RAM.",
@@ -54,8 +52,7 @@ const DEVICES = [
     specs: [
       ["RAM", "8 GB and up"],
       ["Model budget", "5 GB and up"],
-      ["Largest model", "Qwen 3.5 122B-A10B (128 GB)"],
-      ["New chats", "Thinking"],
+      ["Largest model", "Qwen 3.5 122B-A10B", "on a 128 GB device"],
     ],
     caption:
       "New chats think by default, since a Mac decodes fast enough to afford it. Every row from Qwen 3.6 27B up needs more memory than any iPhone or iPad has, so those sizes run only on a Mac.",
@@ -98,13 +95,23 @@ const DeviceShowcase = () => (
             </span>
           </div>
           <dl className="mt-3 border-t border-[var(--border)] text-[13px]">
-            {specs.map(([label, value]) => (
+            {specs.map(([label, value, note]) => (
               <div
                 key={label}
                 className="flex justify-between gap-4 border-b border-[var(--border)] py-2"
               >
-                <dt className="text-[var(--text-faint)]">{label}</dt>
-                <dd className="text-right font-medium">{value}</dd>
+                <dt className="shrink-0 text-[var(--text-faint)]">{label}</dt>
+                <dd className="text-right font-medium">
+                  {value}
+                  {note && (
+                    <>
+                      {" "}
+                      <span className="whitespace-nowrap font-normal text-[var(--text-faint)]">
+                        {note}
+                      </span>
+                    </>
+                  )}
+                </dd>
               </div>
             ))}
           </dl>

@@ -188,7 +188,7 @@ with a hairline ring, no buttons, notch or shading; the Mac adds a flat
 keyboard bar. Sized in `cqw`, so any width keeps the proportions; callers set
 width and spacing via `className`. `DeviceShowcase` gives each device a column
 on a hairline grid (iPhone, iPad, Mac, by memory): a screenshot, the same spec
-rows (RAM, model budget, largest model, default for new chats), a caption.
+rows (RAM, model budget, largest model), a caption.
 
 Code: inline `` `code` `` is `--code-inline-text` on `--code-inline-bg`.
 Fenced blocks are a terminal window, dark in both themes (`CodeBlock` ->
