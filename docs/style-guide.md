@@ -118,23 +118,25 @@ take `var(--text)` from `styles/base.scss`.
 
 ## Chat view (`AppWindow`)
 
-A static mock of the app, and the pattern for any new UI. Values in px.
+A mock of the app, and the pattern for any new UI. Values in px. The three
+chat items are buttons: each swaps in its own thread, model and context count.
 
 | Part | Spec |
 | :-- | :-- |
 | Window | Grid, radius 14, 1px `--brand-line`, canvas `--bg`, height 380 -> 440 (`md`); the hero-window shadow in light |
 | Sidebar | 180px column from `sm`, hidden below; `--brand-wash`, right hairline, padding 10, gap 6, text 11.5 |
 | New Chat | `--surface`, hairline, radius 10, 8 vertical padding, `--text-dim`, 12px plus icon |
-| Chat item | Radius 10, padding 10 x 8, title + 10px `--text-faint` time; active = `--surface` + `--border`, others transparent border |
+| Chat item | Button, radius 10, padding 10 x 8, title + 10px `--text-faint` time; active = `--surface` + `--border` + `--text`, others transparent border + `--text-dim`, hover `--text` |
 | Top bar | `--surface`, bottom hairline, padding 14 x 10; model picker left, status right |
 | Model picker | Radius 9, hairline, padding 10 x 6, 12.5px; 6px `brand` dot, model name, 12px faint chevron |
 | Status | 6px `#10B981` dot + 11px `--text-faint` ("Offline") |
-| Thread | Padding 20, gap 14, 13.5px / 1.6 |
+| Thread | Padding 20, gap 14, 13.5px / 1.6; scrolls (hidden scrollbar) and opens at the latest message when taller than the window |
 | User bubble | Right-aligned, radius 14, padding 14 x 8, `bg-brand/10`, `border-brand/25`, text `#0B5FB3` / `#D6EFFF` |
 | Assistant reply | No bubble: plain `--text-muted`, max-width 90% |
+| Thinking | Above a reply: 12px sparkle + 11.5px `--text-faint` ("Thought for 6s"); the composer's sparkle tool turns `brand` while thinking is on |
 | Composer | Inset 16 from sides and bottom; `--surface`, hairline, radius 14, padding 12 x 10/8; 13px faint placeholder; toolbar (gap 12) of 14px tool icons, a mono 11px context counter pushed right, send button |
 | Send | 26px circle, `brand` fill, white 12px up-arrow at stroke 2.4 |
-| A11y | `role="img"` + a descriptive `aria-label` |
+| A11y | `role="figure"` + a descriptive `aria-label`; chat items `aria-pressed`; thread `aria-live="polite"`; New Chat and composer `aria-hidden` |
 
 The rest of the site reuses these parts:
 
