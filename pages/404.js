@@ -1,12 +1,12 @@
 import NotFound from "@layouts/404";
-import AuroraBase from "@layouts/AuroraBase";
+import PageShell from "@layouts/PageShell";
 import { getRegularPage } from "@lib/contentParser";
 
 const notFound = ({ data }) => {
   return (
-    <AuroraBase>
+    <PageShell>
       <NotFound data={data} />
-    </AuroraBase>
+    </PageShell>
   );
 };
 

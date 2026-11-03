@@ -1,7 +1,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-// Aurora Glass light/dark switch (design_handoff_aurora_glass ThemeToggle.tsx)
+// Light/dark switch: a borderless icon button, as in the WebUI header
 const ThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -14,7 +14,7 @@ const ThemeToggle = () => {
       aria-label="Toggle theme"
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="grid h-9 w-9 place-items-center rounded-btn border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] backdrop-blur-md"
+      className="grid h-9 w-9 place-items-center rounded-[10px] text-[var(--text-dim)] transition-colors hover:bg-[var(--surface)] hover:text-[var(--text)]"
     >
       {isDark ? (
         <svg

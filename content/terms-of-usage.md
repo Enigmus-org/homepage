@@ -1,7 +1,6 @@
 ---
 title: Terms of Use
 description: "Terms of use for the Enigmus app and website"
-layout: aurora-article
 heading: Terms of Use
 ---
 

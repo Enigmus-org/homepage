@@ -1,9 +1,9 @@
 import RevealEmail from "@shortcodes/RevealEmail";
 
-// Aurora contact page: heading + intro from frontmatter and a glass card
-// with the obfuscated reveal-email control. Rendered inside AuroraBase by
+// Contact page: heading + intro from frontmatter and a card with the
+// obfuscated reveal-email control. Rendered inside PageShell by
 // pages/[regular].js.
-const AuroraContact = ({ data }) => {
+const ContactLayout = ({ data }) => {
   const { heading, heading_accent, intro, email_d, email_o } =
     data.frontmatter;
   return (
@@ -33,4 +33,4 @@ const AuroraContact = ({ data }) => {
   );
 };
 
-export default AuroraContact;
+export default ContactLayout;

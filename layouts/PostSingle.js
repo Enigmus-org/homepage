@@ -1,7 +1,7 @@
 import config from "@config/config.json";
-import AuroraBase from "@layouts/AuroraBase";
-import IPhoneFrame from "@layouts/components/aurora/IPhoneFrame";
-import PostCard from "@layouts/components/aurora/PostCard";
+import PageShell from "@layouts/PageShell";
+import { IPhoneFrame } from "@layouts/components/site/DeviceFrames";
+import PostList from "@layouts/components/site/PostList";
 import dateFormat from "@lib/utils/dateFormat";
 import { slugify } from "@lib/utils/textConverter";
 import { MDXRemote } from "next-mdx-remote";
@@ -31,7 +31,7 @@ const PostSingle = ({
   const related = relatedPosts.filter((post) => post.slug !== slug);
 
   return (
-    <AuroraBase title={title} description={description} image={image}>
+    <PageShell title={title} description={description} image={image}>
       <article className="relative px-[22px] pb-10 pt-[34px] md:px-14 md:pb-14 md:pt-[60px]">
         <div className="mx-auto max-w-[760px]">
           <div className="mb-4 flex flex-wrap justify-center gap-2">
@@ -78,26 +78,22 @@ const PostSingle = ({
               />
             )
           )}
-          <div className="aurora-content">
+          <div className="page-content">
             <MDXRemote {...mdxContent} components={shortcodes} />
           </div>
         </div>
 
         {/* related posts */}
         {related.length > 0 && (
-          <div className="mx-auto mt-14 w-full max-w-[1200px] md:mt-20">
-            <h2 className="mb-5 font-display text-[22px] font-bold tracking-[-0.02em] text-[var(--text)] md:mb-[26px] md:text-[28px]">
+          <div className="mx-auto mt-14 max-w-[760px] md:mt-20">
+            <h2 className="mb-4 text-[20px] font-semibold tracking-[-0.01em]">
               Related posts
             </h2>
-            <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3 md:gap-5">
-              {related.slice(0, 3).map((post, i) => (
-                <PostCard key={post.slug} post={post} index={i} />
-              ))}
-            </div>
+            <PostList posts={related.slice(0, 3)} />
           </div>
         )}
       </article>
-    </AuroraBase>
+    </PageShell>
   );
 };
 

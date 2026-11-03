@@ -1,11 +1,11 @@
 import shortcodes from "@shortcodes/all";
 import { MDXRemote } from "next-mdx-remote";
 
-// Aurora long-form content page: display heading (optional brand-blue
+// Long-form content page: display heading (optional brand-blue
 // accent) and intro from frontmatter, then the markdown body styled by the
-// .aurora-content typography layer (styles/aurora.scss). Rendered inside
-// AuroraBase by pages/[regular].js.
-const AuroraArticle = ({ data }) => {
+// .page-content typography layer (styles/design.scss). Rendered inside
+// PageShell by pages/[regular].js.
+const ArticleLayout = ({ data }) => {
   const { heading = data.frontmatter.title, heading_accent, intro } =
     data.frontmatter;
   return (
@@ -24,7 +24,7 @@ const AuroraArticle = ({ data }) => {
             {intro}
           </p>
         )}
-        <div className="aurora-content mt-8 md:mt-12">
+        <div className="page-content mt-8 md:mt-12">
           <MDXRemote {...data.mdxContent} components={shortcodes} />
         </div>
       </div>
@@ -32,4 +32,4 @@ const AuroraArticle = ({ data }) => {
   );
 };
 
-export default AuroraArticle;
+export default ArticleLayout;

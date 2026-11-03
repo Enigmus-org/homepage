@@ -1,7 +1,6 @@
 ---
 title: AI and Privacy concerns
 description: "Understanding privacy risks in AI systems and how on-device processing addresses them."
-layout: aurora-article
 heading: AI and
 heading_accent: Privacy
 intro: What actually happens to a prompt sent to a cloud AI service — and how on-device inference changes the threat model.

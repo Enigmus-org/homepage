@@ -6,10 +6,9 @@ import { markdownify } from "@lib/utils/textConverter";
 import Image from "next/image";
 import Link from "next/link";
 
-// Aurora footer (design_handoff_aurora_glass Footer.tsx), data-driven so no
-// existing footer content is lost: all menu.json footer links (two columns on
-// desktop, flat wrap row on mobile like the mock's 390 frame), the config
-// blurb, social icons, and the copyright line.
+// Site footer, data-driven so no existing footer content is lost: all
+// menu.json footer links (two columns on desktop, a flat wrap row on
+// mobile), the config blurb, social icons, and the copyright line.
 const COLUMNS = [
   { heading: "Product", links: menu.footer.slice(0, 6) },
   { heading: "Company", links: menu.footer.slice(6) },
