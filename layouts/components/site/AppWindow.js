@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Icon from "./Icon";
 
 // The hero's drawn app window: a mock of the Enigmus chat UI (conversation
-// list, model picker, thread, composer), styled like the WebUI. The three
+// list, model picker, thread, composer), styled like the WebUI. The four
 // conversations in the sidebar are buttons that swap the thread, model and
 // context counter; the sidebar is hidden on phones, which keep the first.
 // Like the app, the thread opens scrolled to its latest message when it is
@@ -12,8 +12,10 @@ import Icon from "./Icon";
 // counter stays in mono.
 const CHAT_FONT = "/fonts/instrument-sans-latin-wght-normal.woff2";
 const THINKING = "M13 2 3 14h9l-1 8 10-12h-9l1-8z"; // lightning
+const COPY = "M9 9h11v11H9zM5 15H4V4h11v1"; // two stacked sheets
 
 // Each message is [from, text]; a reply may carry a thinking time in seconds.
+// A reply's text can also be a list of paragraphs and { lang, code } blocks.
 const CHATS = [
   {
     title: "NDA clause summary",
@@ -58,10 +60,71 @@ const CHATS = [
       ],
     ],
   },
+  {
+    title: "Fibonacci in Python",
+    when: "last week",
+    model: "Gemma 4 26B",
+    ctx: "318/8.2k",
+    messages: [
+      ["user", "Write the first 5 elements of the Fibonacci series in Python."],
+      [
+        "model",
+        [
+          "Each number is the sum of the two before it:",
+          {
+            lang: "python",
+            code: "a, b = 0, 1\nfor _ in range(5):\n    print(a)\n    a, b = b, a + b",
+          },
+        ],
+      ],
+    ],
+  },
 ];
 
 const Dot = ({ className }) => (
   <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${className}`} />
+);
+
+// Just enough Python highlighting for the mock, with highlight.js class names
+// so the terminal block's GitHub Dark colors apply (posts are highlighted at
+// build time instead).
+const TOKEN =
+  /\b(for|in|def|return|if|else|while)\b|\b(print|range|len)\b|\b(\d+)\b/g;
+const TOKEN_CLASS = ["hljs-keyword", "hljs-built_in", "hljs-number"];
+
+const highlight = (code) => {
+  const out = [];
+  let last = 0;
+  for (const m of code.matchAll(TOKEN)) {
+    out.push(code.slice(last, m.index));
+    out.push(
+      <span
+        key={m.index}
+        className={TOKEN_CLASS[m.slice(1).findIndex(Boolean)]}
+      >
+        {m[0]}
+      </span>
+    );
+    last = m.index + m[0].length;
+  }
+  out.push(code.slice(last));
+  return out;
+};
+
+// Code in a reply: the site's terminal block in its compact form - language
+// and copy icon in the bar, no traffic lights.
+const Code = ({ lang, code }) => (
+  <div className="terminal-block terminal-block--compact">
+    <div className="terminal-block__bar">
+      <span className="font-mono text-[10.5px] tracking-[0.08em] text-[#6e7681]">
+        {lang}
+      </span>
+      <Icon d={COPY} className="ml-auto h-3 w-3 text-[#6e7681]" />
+    </div>
+    <pre>
+      <code>{highlight(code)}</code>
+    </pre>
+  </div>
 );
 
 const AppWindow = () => {
@@ -140,26 +203,31 @@ const AppWindow = () => {
             tabIndex={0}
             className="flex min-h-0 flex-1 flex-col gap-3.5 overflow-y-auto p-5 text-[13.5px] leading-[1.6] [scrollbar-width:none]"
           >
-            {chat.messages.map(([from, text, thought]) =>
+            {chat.messages.map(([from, text, thought], i) =>
               from === "user" ? (
                 <span
-                  key={text}
+                  key={i}
                   className="self-end rounded-[14px] border border-brand/25 bg-brand/10 px-3.5 py-2 text-[#0b5fb3] dark:text-[#d6efff]"
                 >
                   {text}
                 </span>
               ) : (
-                <div
-                  key={text}
-                  className="max-w-[90%] text-[var(--text-muted)]"
-                >
+                <div key={i} className="max-w-[90%] text-[var(--text-muted)]">
                   {thought && (
                     <span className="mb-1.5 flex items-center gap-1.5 text-[11.5px] text-[var(--text-faint)]">
                       <Icon d={THINKING} className="h-3 w-3" />
                       Thought for {thought}s
                     </span>
                   )}
-                  {text}
+                  {[]
+                    .concat(text)
+                    .map((part, j) =>
+                      typeof part === "string" ? (
+                        <p key={j}>{part}</p>
+                      ) : (
+                        <Code key={j} {...part} />
+                      )
+                    )}
                 </div>
               )
             )}

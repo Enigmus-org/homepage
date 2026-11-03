@@ -241,6 +241,20 @@
   .hljs-title, .hljs-section { color: #d2a8ff; }
   .hljs-type, .hljs-params, .sh-flag { color: #ffa657; }
   .sh-cmd { color: #7ee787; }
+
+  // Compact form for code inside a chat reply (AppWindow): smaller type and
+  // padding, no shadow. Listed after the rules above so it wins the ties.
+  &--compact {
+    @apply my-2.5 rounded-[10px] shadow-none last:mb-0;
+
+    .terminal-block__bar {
+      @apply px-3 py-1.5;
+    }
+
+    pre {
+      @apply px-3 py-2.5 text-[11.5px] leading-[1.65];
+    }
+  }
 }
 
 // Active tab pill (layouts/shortcodes/Tabs.jsx toggles this class). Kept at
