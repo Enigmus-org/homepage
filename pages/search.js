@@ -1,5 +1,5 @@
-import AuroraBase from "@layouts/AuroraBase";
-import PostCard from "@layouts/components/aurora/PostCard";
+import PageShell from "@layouts/PageShell";
+import PostList from "@layouts/components/site/PostList";
 import { slugify } from "@lib/utils/textConverter";
 import { useSearchContext } from "context/state";
 import { useRouter } from "next/router";
@@ -37,7 +37,7 @@ const SearchPage = () => {
     : [];
 
   return (
-    <AuroraBase title="Search">
+    <PageShell title="Search">
       <section className="relative px-[22px] pb-10 pt-[34px] md:px-14 md:pb-16 md:pt-[60px]">
         <div className="mx-auto w-full max-w-[1200px]">
           <h1 className="mb-6 text-center font-display text-[34px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:mb-8 md:text-[48px]">
@@ -54,11 +54,7 @@ const SearchPage = () => {
             />
           </div>
           {searchResults.length > 0 ? (
-            <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3 md:gap-5">
-              {searchResults.map((post, i) => (
-                <PostCard key={post.slug} post={post} index={i} />
-              ))}
-            </div>
+            <PostList posts={searchResults} withExcerpt />
           ) : (
             keyword && (
               <div className="mx-auto max-w-md rounded-[18px] border border-[var(--border)] bg-[var(--surface-solid)] p-10 text-center text-[15.5px] text-[var(--text-muted)] [box-shadow:var(--shadow-card)]">
@@ -68,7 +64,7 @@ const SearchPage = () => {
           )}
         </div>
       </section>
-    </AuroraBase>
+    </PageShell>
   );
 };
 

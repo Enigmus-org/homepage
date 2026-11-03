@@ -1,7 +1,6 @@
 ---
 title: Privacy Policy
 description: "Privacy policy for the Enigmus app and website"
-layout: aurora-article
 heading: Privacy Policy
 ---
 

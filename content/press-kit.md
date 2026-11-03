@@ -1,7 +1,6 @@
 ---
 title: Press Kit
 description: "Brand assets and press resources for Enigmus"
-layout: aurora-article
 heading: Press Kit
 intro: Enigmus is private, on-device AI for iPhone, iPad, and Mac. The assets below are free to use for editorial, review, or press coverage of the app. The marks should not be modified (no recolors, distortions, or added elements).
 ---

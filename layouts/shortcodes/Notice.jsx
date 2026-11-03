@@ -1,4 +1,4 @@
-// Aurora glass notice with a type-colored accent. Colors are set inline
+// Notice card with a type-colored accent. Colors are set inline
 // because they vary per type and Tailwind can't compile dynamic classes.
 const TYPE_COLORS = {
   note: "#1FA3FB",

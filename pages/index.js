@@ -1,19 +1,25 @@
 import config from "@config/config.json";
-import AuroraBase from "@layouts/AuroraBase";
-import AuroraHero from "@layouts/components/aurora/Hero";
-import AuroraRecentPosts from "@layouts/components/aurora/RecentPosts";
+import PageShell from "@layouts/PageShell";
+import DeviceShowcase from "@layouts/components/site/DeviceShowcase";
+import Features from "@layouts/components/site/Features";
+import Hero from "@layouts/components/site/Hero";
+import LLMServer from "@layouts/components/site/LLMServer";
+import RecentPosts from "@layouts/components/site/RecentPosts";
 import { getListPage, getSinglePage } from "@lib/contentParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
 const { blog_folder } = config.settings;
 
 const Home = ({ banner, posts, recent_posts }) => {
   return (
-    <AuroraBase>
-      <AuroraHero banner={banner} />
+    <PageShell>
+      <Hero banner={banner} />
+      <Features />
+      <DeviceShowcase />
+      <LLMServer />
       {recent_posts.enable && (
-        <AuroraRecentPosts title={recent_posts.title} posts={posts} />
+        <RecentPosts title={recent_posts.title} posts={posts} />
       )}
-    </AuroraBase>
+    </PageShell>
   );
 };
 

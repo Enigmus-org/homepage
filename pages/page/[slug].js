@@ -1,8 +1,8 @@
 import config from "@config/config.json";
-import AuroraBase from "@layouts/AuroraBase";
-import AuroraPagination from "@layouts/components/aurora/Pagination";
-import PostCard from "@layouts/components/aurora/PostCard";
-import SubscribeFeed from "@layouts/components/aurora/SubscribeFeed";
+import PageShell from "@layouts/PageShell";
+import Pagination from "@layouts/components/site/Pagination";
+import PostList from "@layouts/components/site/PostList";
+import SubscribeFeed from "@layouts/components/site/SubscribeFeed";
 import { getListPage, getSinglePage } from "@lib/contentParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { slugify } from "@lib/utils/textConverter";
@@ -27,47 +27,38 @@ const BlogPagination = ({
   const isFirstPage = currentPage === 1;
 
   return (
-    <AuroraBase title={title} description={description}>
-      <section className="relative px-[22px] pb-10 pt-[34px] md:px-14 md:pb-16 md:pt-[60px]">
-        <div className="mx-auto w-full max-w-[1200px]">
-          <h1 className="mb-4 text-center font-display text-[34px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:mb-5 md:text-[48px]">
-            {title}
-          </h1>
+    <PageShell title={title} description={description}>
+      <section className="mx-auto max-w-[1200px] px-4 py-12 md:px-8 md:py-16">
+        <h1 className="text-[36px] font-bold leading-[1.1] tracking-[-0.03em] md:text-[44px]">
+          {title}
+        </h1>
 
-          {isFirstPage && intro && (
-            <p className="mx-auto mb-7 max-w-[620px] text-center text-[15.5px] leading-[1.6] text-[var(--text-muted)] md:mb-9 md:text-[17.5px]">
-              {intro}
-            </p>
-          )}
+        {isFirstPage && intro && (
+          <p className="mt-3 max-w-[640px] text-[16px] leading-[1.65] text-[var(--text-muted)]">
+            {intro}
+          </p>
+        )}
 
-          {isFirstPage && <SubscribeFeed className="mb-8 md:mb-10" />}
+        {isFirstPage && <SubscribeFeed className="mt-8 md:mx-0" />}
 
-          {isFirstPage && categories.length > 0 && (
-            <nav
-              aria-label="Post categories"
-              className="mb-7 flex flex-wrap justify-center gap-2.5 md:mb-9"
-            >
-              {categories.map((category) => (
-                <Link
-                  key={category.slug}
-                  href={`/categories/${category.slug}`}
-                  className="rounded-chip border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 text-[13px] capitalize text-[var(--text-muted)] transition hover:-translate-y-0.5 hover:text-[var(--text)]"
-                >
-                  {category.name}
-                </Link>
-              ))}
-            </nav>
-          )}
-
-          <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3 md:gap-5">
-            {currentPosts.map((post, i) => (
-              <PostCard key={post.slug} post={post} index={i} />
+        {isFirstPage && categories.length > 0 && (
+          <nav aria-label="Post categories" className="mt-8 flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <Link
+                key={category.slug}
+                href={`/categories/${category.slug}`}
+                className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-[13px] capitalize text-[var(--text-dim)] transition-colors hover:border-[var(--text-faint)] hover:text-[var(--text)]"
+              >
+                {category.name}
+              </Link>
             ))}
-          </div>
-          <AuroraPagination currentPage={currentPage} totalPages={totalPages} />
-        </div>
+          </nav>
+        )}
+
+        <PostList posts={currentPosts} withExcerpt className="mt-6" />
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
       </section>
-    </AuroraBase>
+    </PageShell>
   );
 };
 

@@ -5,11 +5,11 @@
       <stop offset="0.55" stop-color="#1F8FE8"/>
       <stop offset="1" stop-color="#0B62C4"/>
     </linearGradient>
-    <radialGradient id="auroraV" cx="0.5" cy="0.5" r="0.5">
+    <radialGradient id="washV" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#6D5EF5" stop-opacity="0.55"/>
       <stop offset="1" stop-color="#6D5EF5" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="auroraT" cx="0.5" cy="0.5" r="0.5">
+    <radialGradient id="washT" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#14C7C7" stop-opacity="0.42"/>
       <stop offset="1" stop-color="#14C7C7" stop-opacity="0"/>
     </radialGradient>
@@ -22,8 +22,8 @@
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <ellipse cx="150" cy="600" rx="520" ry="330" fill="url(#auroraV)"/>
-  <ellipse cx="1090" cy="40" rx="460" ry="300" fill="url(#auroraT)"/>
+  <ellipse cx="150" cy="600" rx="520" ry="330" fill="url(#washV)"/>
+  <ellipse cx="1090" cy="40" rx="460" ry="300" fill="url(#washT)"/>
 
   <text x="72" y="92" font-family="Helvetica Neue, Helvetica, Arial" font-size="46" font-weight="700" fill="#FFFFFF">One API, three engines</text>
   <text x="72" y="128" font-family="Helvetica Neue, Helvetica, Arial" font-size="19" fill="#FFFFFF" fill-opacity="0.82">Apple&#8217;s Foundation Models protocols make the inference engine a swappable backend</text>

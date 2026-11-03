@@ -5,11 +5,11 @@
       <stop offset="0.55" stop-color="#1F8FE8"/>
       <stop offset="1" stop-color="#0B62C4"/>
     </linearGradient>
-    <radialGradient id="auroraV" cx="0.5" cy="0.5" r="0.5">
+    <radialGradient id="washV" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#6D5EF5" stop-opacity="0.5"/>
       <stop offset="1" stop-color="#6D5EF5" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="auroraT" cx="0.5" cy="0.5" r="0.5">
+    <radialGradient id="washT" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#14C7C7" stop-opacity="0.4"/>
       <stop offset="1" stop-color="#14C7C7" stop-opacity="0"/>
     </radialGradient>
@@ -23,8 +23,8 @@
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <ellipse cx="120" cy="620" rx="520" ry="320" fill="url(#auroraV)"/>
-  <ellipse cx="1110" cy="30" rx="440" ry="280" fill="url(#auroraT)"/>
+  <ellipse cx="120" cy="620" rx="520" ry="320" fill="url(#washV)"/>
+  <ellipse cx="1110" cy="30" rx="440" ry="280" fill="url(#washT)"/>
 
   <text x="90" y="80" font-family="Helvetica Neue, Helvetica, Arial" font-size="42" font-weight="700" fill="#FFFFFF">A local LLM in three commands</text>
 
