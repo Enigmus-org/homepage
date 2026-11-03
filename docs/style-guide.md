@@ -160,7 +160,7 @@ chat items are buttons: each swaps in its own thread, model and context count.
 | Thread | Padding 20, gap 14, 13.5px / 1.6; scrolls (hidden scrollbar) and opens at the latest message when taller than the window |
 | User bubble | Right-aligned, radius 14, padding 14 x 8, `bg-brand/10`, `border-brand/25`, text `#0B5FB3` / `#D6EFFF` |
 | Assistant reply | No bubble: plain `--text-muted`, max-width 90% |
-| Code in a reply | The terminal block in compact form (`terminal-block--compact`): no traffic lights, radius 10, bar padding 12 x 6 with the mono 10.5px language and a 12px copy icon, body mono 11.5px / 1.65 in the GitHub Dark token colors; no bottom margin when it ends the reply |
+| Code in a reply | The terminal block in compact form (`terminal-block--compact`): no traffic lights, radius 10, bar padding 12 x 6 with the mono 10.5px language and a 12px copy icon, body mono 11.5px / 1.65; no bottom margin when it ends the reply. Light: the user bubble's blue - fill `bg-brand/10`, border `border-brand/25`, bar at the tag tint (`brand/14`) - with text `#262734` and the token colors of Xcode's Midnight Light theme (keywords `#604BE2`, built-ins and types `#2962DE`, numbers `#B0336A`, project names `#367B8C`). Dark: the terminal colors and GitHub Dark tokens |
 | Thinking | Above a reply: 12px lightning + 11.5px `--text-faint` ("Thought for 6s"); the composer's lightning toggle turns `brand` while thinking is on |
 | Composer | Inset 16 from sides and bottom; `--surface`, hairline, radius 14, padding 12 x 10/8; 13px faint placeholder; toolbar (gap 12) of the 14px lightning thinking toggle, a mono 11px context counter pushed right, send button |
 | Send | 26px circle, `brand` fill, white 12px up-arrow at stroke 2.4 |

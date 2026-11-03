@@ -244,6 +244,9 @@
 
   // Compact form for code inside a chat reply (AppWindow): smaller type and
   // padding, no shadow. Listed after the rules above so it wins the ties.
+  // The light theme swaps the terminal for the user bubble's blue (fill
+  // brand/10, border brand/25, bar at the tag tint, brand/14) with the token
+  // colors of Xcode's Midnight Light theme; the dark theme keeps the terminal.
   &--compact {
     @apply my-2.5 rounded-[10px] shadow-none last:mb-0;
 
@@ -253,6 +256,27 @@
 
     pre {
       @apply px-3 py-2.5 text-[11.5px] leading-[1.65];
+    }
+
+    html:not(.dark) & {
+      --term-border: rgb(31 163 251 / 0.25);
+      background: rgb(31 163 251 / 0.1);
+
+      // 0.045 over the box's 0.1 adds up to the 0.14 tag tint.
+      .terminal-block__bar { background: rgb(31 163 251 / 0.045); }
+      pre { color: #262734; }
+
+      // Xcode roles: keywords, system names (built-ins, types), project
+      // names, declarations, attributes, numbers. Strings and comments use
+      // Xcode's defaults, as the theme sample shows neither.
+      .hljs-keyword, .hljs-literal, .hljs-tag, .hljs-name, .hljs-selector-tag { color: #604be2; }
+      .hljs-built_in, .hljs-type, .sh-cmd { color: #2962de; }
+      .hljs-title, .hljs-section { color: #367b8c; }
+      .hljs-params, .hljs-variable, .hljs-attr, .hljs-attribute, .sh-flag { color: #285f6c; }
+      .hljs-meta { color: #1105ea; }
+      .hljs-number { color: #b0336a; }
+      .hljs-string { color: #c41a16; }
+      .hljs-comment { color: #5d6c79; }
     }
   }
 }
