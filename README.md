@@ -136,7 +136,8 @@ the live visual reference.
   hairlines, icons, small dots and accent text - never as a large fill.
 - Primary buttons are solid text-color on page-color (black on light, light
   grey on dark); secondary buttons are white surfaces with a hairline.
-- Inter Variable for all text, IBM Plex Mono for dates, labels and code.
+- SF Pro (system font, Inter fallback) for all text, Instrument Sans in the
+  chat view, IBM Plex Mono for dates, labels and code; all self-hosted.
 
 **Brand blues** (from the app icon)
 

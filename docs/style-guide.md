@@ -12,8 +12,7 @@ Code:
 - `tailwind.config.js` - brand colors, font families, breakpoints
 - `layouts/PageShell.js`, `layouts/*Layout.js` - page shell and layouts
 - `layouts/components/site/` - components; `AppWindow.js` is the reference
-- `lib/fonts.js` - IBM Plex Mono loading
-- `styles/fonts.scss`, `public/fonts/` - self-hosted Inter (the SF Pro fallback) and Instrument Sans
+- `styles/fonts.scss`, `public/fonts/` - the self-hosted webfonts: Inter (the SF Pro fallback), Instrument Sans, IBM Plex Mono
 
 ## Principles
 
@@ -80,7 +79,8 @@ Buttons:
 
 ## Typography
 
-All faces ship with the site; no page loads a font from a CDN.
+Every webfont is a file in this repo: nothing comes from Google Fonts or a
+CDN, neither in the browser nor at build time.
 
 - **SF Pro** (`font-sans`, also `font-display`, `font-heading`) - all text but
   the chat view and labels. Apple's license rules out self-hosting, so the
@@ -92,11 +92,11 @@ All faces ship with the site; no page loads a font from a CDN.
 - **Instrument Sans** (`font-chat`) - the chat view only; 29 KB, preloaded by
   `AppWindow`.
 - **IBM Plex Mono** 400/500/600 (`font-mono`) - labels, dates, counters, code;
-  `next/font` in `lib/fonts.js`, exposed as `--font-ibm-plex-mono`
+  15 KB per weight
 
-Inter and Instrument Sans are latin woff2 subsets (Fontsource, OFL) in
-`public/fonts/`, declared in `styles/fonts.scss`. The apps run only on Apple
-platforms, where SF Pro is always present, so the fallback is web-only.
+Inter, Instrument Sans and IBM Plex Mono are latin woff2 subsets (Fontsource,
+OFL) in `public/fonts/`, declared in `styles/fonts.scss`. The apps run only on
+Apple platforms, where SF Pro is always present, so the fallback is web-only.
 
 Tracking: text up to 17px takes none; headings take -0.007em (24-28px),
 -0.01em (19-56px) or -0.015em (72px and up). These are not apple.com's CSS

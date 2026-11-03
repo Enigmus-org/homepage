@@ -1,5 +1,4 @@
 import config from "@config/config.json";
-import { ibmPlexMono } from "@lib/fonts";
 import { JsonContext } from "context/state";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
@@ -41,11 +40,6 @@ const App = ({ Component, pageProps }) => {
 
         <link key="manifest" rel="manifest" href="/site.webmanifest"/>
       </Head>
-      <style jsx global>{`
-        :root {
-          --font-ibm-plex-mono: ${ibmPlexMono.style.fontFamily};
-        }
-      `}</style>
       <ThemeProvider
         attribute="class"
         defaultTheme={default_theme}
