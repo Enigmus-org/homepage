@@ -109,11 +109,21 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
-        // One text family: Inter Variable covers display, heading and body
-        // (as in the WebUI); IBM Plex Mono for labels (see lib/fonts.js)
+        // Inter Variable for UI, headings and cards (as in the WebUI); IBM
+        // Plex Mono for labels (see lib/fonts.js)
         display: ["'Inter Variable'", "system-ui", "sans-serif"],
         heading: ["'Inter Variable'", "system-ui", "sans-serif"],
         sans: ["'Inter Variable'", "system-ui", "sans-serif"],
+        // SF Pro for the hero and prose text. Its license rules out
+        // self-hosting, so these name the copy built into Apple systems; no
+        // system-ui here, which would pick Segoe UI or Roboto elsewhere.
+        // Other systems get Inter: Inter Display for the hero
+        // (styles/fonts.scss, fetched only there), the already loaded Inter
+        // Variable for prose.
+        "sf-display": ["-apple-system", "BlinkMacSystemFont", "'Inter Display'", "sans-serif"],
+        "sf-text": ["-apple-system", "BlinkMacSystemFont", "'Inter Variable'", "sans-serif"],
+        // The chat view (AppWindow); styles/fonts.scss
+        chat: ["'Instrument Sans'", "sans-serif"],
         mono: ["var(--font-ibm-plex-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: {

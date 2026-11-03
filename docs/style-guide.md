@@ -2,8 +2,8 @@
 
 The design system of enigmus.cc, taken from the Enigmus WebUI. The reference is
 the hero chat window (`AppWindow`): every surface, control and type size on the
-site derives from it. Flat neutral surfaces, 1px hairlines, one text family,
-the Enigmus blue used gently. No gradients, glass, glow or decorative motion.
+site derives from it. Flat neutral surfaces, 1px hairlines, a small set of
+faces, the Enigmus blue used gently. No gradients, glass, glow or decorative motion.
 `/elements` renders every element and shortcode.
 
 Code:
@@ -12,7 +12,8 @@ Code:
 - `tailwind.config.js` - brand colors, font families, breakpoints
 - `layouts/PageShell.js`, `layouts/*Layout.js` - page shell and layouts
 - `layouts/components/site/` - components; `AppWindow.js` is the reference
-- `lib/fonts.js` - webfont loading
+- `lib/fonts.js` - IBM Plex Mono loading
+- `styles/fonts.scss`, `public/fonts/` - self-hosted Inter Display and Instrument Sans
 
 ## Principles
 
@@ -79,28 +80,48 @@ Buttons:
 
 ## Typography
 
-- **Inter Variable** (`font-sans`, `font-display`, `font-heading`) - all text but
-  labels; `@fontsource-variable/inter`, imported in `pages/_app.js`
+All faces ship with the site; no page loads a font from a CDN.
+
+- **SF Pro** (`font-sf-display`, `font-sf-text`) - hero headline and subtitle,
+  prose running text. Apple's license rules out self-hosting, so the stacks
+  name the copy built into macOS and iOS (`-apple-system`,
+  `BlinkMacSystemFont`), which picks its Text or Display design by size.
+  Tracking follows apple.com, and the fallbacks keep it:
+  - `font-sf-display` falls back to **Inter Display** (Inter's optical-size
+    axis, 71 KB), fetched only on systems without SF Pro.
+  - `font-sf-text` falls back to the Inter Variable the site already loads.
+- **Instrument Sans** (`font-chat`) - the chat view only; 29 KB, preloaded by
+  `AppWindow`.
+- **Inter Variable** (`font-sans`, `font-display`, `font-heading`) - everything
+  else: nav, UI, page and prose headings, cards; `@fontsource-variable/inter`,
+  imported in `pages/_app.js`
 - **IBM Plex Mono** 400/500/600 (`font-mono`) - labels, dates, counters, code;
   `next/font` in `lib/fonts.js`, exposed as `--font-ibm-plex-mono`
 
-| Role | Size / line-height | Weight, tracking |
-| :-- | :-- | :-- |
-| Hero H1 | 40 -> 48px / 1.05 | 700, -0.03em |
-| Page H1 | 34 -> 52px (contact, download 36 -> 56) / 1.05 -> 1.02 | 800, -0.03em |
-| Section H2 | 20px | 600, -0.01em |
-| Card title | 14-15px | 600 |
-| Body | 16px / 1.65 | 400 |
-| UI text | 13-15px (nav 14, post titles 15/500) | 400-500 |
-| Chat message | 13.5px / 1.6 | 400 |
-| Meta | 10-12.5px | 400 |
-| Label | mono 11px, uppercase, `--text-faint` | 500, 0.1em |
-| Wordmark | 12px, uppercase | 600, 0.2em |
+Inter Display and Instrument Sans are latin woff2 subsets (Fontsource, OFL) in
+`public/fonts/`, declared in `styles/fonts.scss`. The apps run only on Apple
+platforms, where SF Pro is always present, so the fallbacks are web-only.
+
+| Role | Face | Size / line-height | Weight, tracking |
+| :-- | :-- | :-- | :-- |
+| Hero H1 | SF Pro | 40 -> 48px / 1.05 | 600, -0.003em |
+| Hero subtitle | SF Pro | 16px / 1.65 | 400, -0.02em |
+| Page H1 | Inter | 34 -> 52px (contact, download 36 -> 56) / 1.05 -> 1.02 | 800, -0.03em |
+| Section H2 | Inter | 20px | 600, -0.01em |
+| Card title | Inter | 14-15px | 600 |
+| Body | Inter | 16px / 1.65 | 400 |
+| Prose text | SF Pro | p 16px / 1.7, li 15.5px / 1.65, td 14.5px | 400, -0.022em (td -0.016em) |
+| UI text | Inter | 13-15px (nav 14, post titles 15/500) | 400-500 |
+| Chat view | Instrument Sans | messages 13.5px / 1.6, UI 10-12.5px | 400 |
+| Meta | Inter | 10-12.5px | 400 |
+| Label | IBM Plex Mono | 11px, uppercase, `--text-faint` | 500, 0.1em |
+| Wordmark | Inter | 12px, uppercase | 600, 0.2em |
 
 Prose (`.page-content`): p 16px/1.7, li 15.5px/1.65, h1 30 -> 34, h2 24 -> 28,
-h3 19 -> 21, h4 17, h5 15.5, h6 14. Its rules sit in `:where()` (zero
-specificity), so Tailwind utilities inside content always win. All headings
-take `var(--text)` from `styles/base.scss`.
+h3 19 -> 21, h4 17, h5 15.5, h6 14. Running text (p, li, td) is SF Pro
+(`font-sf-text`), headings Inter; inline code resets the tracking. Its rules
+sit in `:where()` (zero specificity), so Tailwind utilities inside content
+always win. All headings take `var(--text)` from `styles/base.scss`.
 
 ## Shape, depth, layout
 
@@ -124,6 +145,7 @@ chat items are buttons: each swaps in its own thread, model and context count.
 | Part | Spec |
 | :-- | :-- |
 | Window | Grid, radius 14, 1px `--brand-line`, canvas `--bg`, height 380 -> 440 (`md`); the hero-window shadow in light |
+| Type | Instrument Sans (`font-chat` on the window), default tracking; the context counter stays mono. The site parts below reuse shapes and colors, not this face |
 | Sidebar | 180px column from `sm`, hidden below; `--brand-wash`, right hairline, padding 10, gap 6, text 11.5 |
 | New Chat | `--surface`, hairline, radius 10, 8 vertical padding, `--text-dim`, 12px plus icon |
 | Chat item | Button, radius 10, padding 10 x 8, title + 10px `--text-faint` time; active = `--surface` + `--border` + `--text`, others transparent border + `--text-dim`, hover `--text` |
