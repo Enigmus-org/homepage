@@ -9,13 +9,69 @@
     <atom:link href="https://enigmus.cc/feed.xml" rel="self" type="application/rss+xml" />
     <description>Writing from Enigmus on local AI — on-device model releases, Apple silicon performance, and the privacy case for running inference locally.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Sep 2026 12:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2026 12:00:00 GMT</lastBuildDate>
     <generator>lib/feedGenerator.js</generator>
     <image>
       <url>https://enigmus.cc/images/logo-512.png</url>
       <title>Enigmus Blog</title>
       <link>https://enigmus.cc/posts</link>
     </image>
+    <item>
+      <title>Enigmus 1.2, part 2: read-aloud, Gemma 4 thinking, and per-model sampling</title>
+      <link>https://enigmus.cc/posts/enigmus-1-2-read-aloud-gemma-4-thinking</link>
+      <guid isPermaLink="true">https://enigmus.cc/posts/enigmus-1-2-read-aloud-gemma-4-thinking</guid>
+      <pubDate>Sun, 27 Sep 2026 12:00:00 GMT</pubDate>
+      <description>Enigmus runs open-weight language models entirely on device, on iPhone, iPad and Mac, with MLX Swift doing the inference. The 1.2 release post covered the new models and the memory work. This one…</description>
+      <content:encoded><![CDATA[<p><img src="https://enigmus.cc/images/enigmus-1-2-continued-cover.webp" alt="The Enigmus chat screen on iPhone: a reply explaining Euler&apos;s formula with typeset equations, and under it the copy button, the play button that reads the reply aloud, and the reply&apos;s decode rate" /></p>
+<p>Enigmus runs open-weight language models entirely on device, on iPhone, iPad and Mac, with MLX Swift doing the inference. The <a href="https://enigmus.cc/posts/enigmus-1-2-qwen-3-5-and-memory">1.2 release post</a> covered the new models and the memory work. This one covers what it left out: replies read aloud, how Gemma 4 marks its thinking, and the sampling and thinking budgets that now differ per model.</p>
+<h2 id="1-speech-follows-the-rendered-reply-not-the-raw-markdown">1. Speech follows the rendered reply, not the raw markdown</h2>
+<p>Every finished reply now has a play button next to the copy button, as in the screenshot at the top. It reads the reply on device with <code>AVSpeechSynthesizer</code>, and the interesting part is what gets read.</p>
+<p>Model output is markdown written for the eye, so most of the work was deciding what it should sound like. The spoken text comes from the same CommonMark parse that draws the bubble, via MarkdownUI&#39;s <code>renderPlainText()</code>, not from a second stripper that would drift from what is on screen. That renderer is wrong for speech in predictable ways: it prints code blocks verbatim, keeps table pipes, and leaves bare URLs to be spelled out. A pass before the parse replaces each fenced code block with its language (&quot;Python code block.&quot;), so the listener knows what was skipped. A rule table after the parse reads each table row as a short list, drops the divider row, and cuts bare URLs down to the host, at the cost of any path that mattered.</p>
+<p>Math is where the order of passes matters. CommonMark treats a backslash before any ASCII punctuation as an escape, so <code>\(x\)</code> leaves the parser as a plain <code>(x)</code> and silently stops being math. Bracket-delimited math is therefore normalized before the parse. Math spans then go through an ordered rewrite table with a guard: if any of <code>\ { } ^ _ &amp; |</code> survives it, the span is read as the single word &quot;equation&quot;. <code>$E = mc^2$</code> reads as expected, an <code>align</code> environment becomes one word, and raw TeX is never spoken.</p>
+<p>Pacing has to be added too, because nothing in the text provides it. The synthesizer reads a newline as a space and ends a sentence at a full stop only when a capital follows, so a lowercase list runs together however it is punctuated. Each rendered line is therefore its own utterance, with a <code>postUtteranceDelay</code> of 0.25 s after a line and 0.5 s after a paragraph.</p>
+<p>On iPhone and iPad, the audio session runs as <code>ambient</code>, the only category that both obeys the Silent switch and leaves other apps&#39; music playing. The trade-off is that it cannot duck, so speech plays over music instead of lowering it. Calls, Siri and alarms pause playback, which resumes only if the system reports <code>.shouldResume</code>.</p>
+<p>Voice quality is the ceiling. A stock install has only compact voices, Enhanced and Premium voices are a manual download, and Siri&#39;s voices are closed to third-party apps. Enigmus starts from the system voice and only upgrades it, skipping novelty voices like Zarvox that sit in the same tier. The language guess from <code>NLLanguageRecognizer</code> is trusted only at 40 characters or more and above 0.85 confidence: a voice in the wrong language is worse than no guess.</p>
+<h2 id="2-gemma-4-thinks-and-treats-the-toggle-as-a-hint">2. Gemma 4 thinks, and treats the toggle as a hint</h2>
+<p>Since 1.2 the thinking toggle also works on Gemma 4. Most of the work went into finding out how Gemma marks its reasoning, and the answer came from probing the models, not from reading their templates. Every Gemma 4 model uses the same three markers:</p>
+<ul>
+<li><code>&lt;|think|&gt;</code> in the system turn allows reasoning. It is a directive, not a block opener.</li>
+<li><code>&lt;|channel&gt;thought</code> opens the reasoning block.</li>
+<li><code>&lt;channel|&gt;</code> closes it.</li>
+</ul>
+<p>These match Google&#39;s <a href="https://ai.google.dev/gemma/docs/core/prompt-formatting-gemma4">prompt-formatting documentation for Gemma 4</a>. The chat templates around them do not agree with each other: three variants, differing on tool calls and on when past reasoning is re-rendered. So the markers live once per family in a <code>ThinkingDialect</code>, and the templates stay in the model repositories.</p>
+<p>The structural difference from Qwen is who opens the block. Qwen 3.5&#39;s template writes <code>&lt;think&gt;</code> into the prompt, so the model starts inside its reasoning and the engine inserts the opener into the stream for the display to split on. Gemma emits <code>&lt;|channel&gt;thought</code> itself, so its dialect sets <code>modelOpensBlock</code> and nothing is inserted. As with Qwen, <code>enable_thinking</code> defaults to off, so turning thinking off sends the same prompt as leaving it unset.</p>
+<p>On the smallest Gemma model, E2B at 2.7 GB, a greedy run of &quot;What is 2 + 2? Answer briefly.&quot; with thinking on produced 89 tokens in one pass, trimmed where marked:</p>
+<pre><code class="language-text">&lt;|channel&gt;thought
+Thinking Process:
+1.  **Analyze the Request:** The user is asking a simple arithmetic question ...
+4.  **Final Output Generation.**&lt;channel|&gt;4
+</code></pre>
+<p>Thinking on does not guarantee a block, though. At the shipped sampling settings, the same model answered &quot;What is 2 + 2?&quot; with a bare <code>4</code>, while &quot;Explain in one sentence why the sky is blue&quot; opened a block first. These are single runs, not a systematic test. Google documents the opposite case: larger Gemma models occasionally reason with thinking off. The flag is a hint in both directions, so the parser waits for an opener instead of assuming one, and a reply without a block is an ordinary answer.</p>
+<h2 id="3-sampling-follows-the-model">3. Sampling follows the model</h2>
+<img src="https://enigmus.cc/images/enigmus-1-2-continued-generation-900.webp" alt="The chats settings page on an iPad with customize generation switched on: temperature 0.60, top-p 0.95, top-k 20 and max tokens 4096, the values of the bundled Qwen 3.5 0.8B model, with a reset to model default button under the sliders" style="max-width:420px;width:100%;display:block;margin:0 auto" />
+
+<p>Up to 1.1, every model was sampled at temperature 0.5, a value none of the vendors publish. In 1.2 each model carries its own sampling per thinking mode, taken from the vendor wherever one is published:</p>
+<ul>
+<li><strong>Gemma 4</strong>: temperature 1.0, top-p 0.95, top-k 64 in both modes, from the <code>generation_config.json</code> in Google&#39;s repositories and the MLX builds.</li>
+<li><strong>Qwen 3.6</strong>: temperature 1.0, top-p 0.95, top-k 20 in both modes, from its repositories&#39; <code>generation_config.json</code>.</li>
+<li><strong>Qwen 3.5</strong>: the smaller repositories ship no generation config. Thinking uses temperature 0.6, top-p 0.95, top-k 20 from the 122B&#39;s config; fast mode uses 0.7, 0.8 and 20, the model card&#39;s general non-thinking preset.</li>
+</ul>
+<p>The Qwen model cards list several presets, so some choice was unavoidable. One value is Enigmus&#39;s own: a repetition penalty of 1.1 against reasoning loops. The loops only showed up on the small models, but the penalty covers every Qwen 3.5 and 3.6 model, 27B and 35B included, since they are one family.</p>
+<p>Switching models never carries sampling over: <code>applySampling</code> resets every field the new model does not set before applying its own. The optional override on the chats settings page, off by default, is a <code>GenerationOverride</code> that replaces only the fields it exposes, so a model&#39;s repetition penalty survives it. Turning it on seeds the sliders from the current model, hence 0.60, 0.95 and 20 for the bundled 0.8B in the screenshot. Turning it off returns every chat to the model&#39;s own values from the next reply.</p>
+<h2 id="4-thinking-has-a-budget-and-the-smallest-one-was-measured">4. Thinking has a budget, and the smallest one was measured</h2>
+<p>The other per-model setting is <code>maxThinkingTokens</code>. Qwen 3.5 caps reasoning at 64 tokens on the bundled 0.8B, 256 on the 2B, 512 on the 4B and 1,024 on the 9B. The 122B and both Qwen 3.6 models only fit on a Mac and are uncapped. So is every Gemma 4 model, phone-sized ones included, because Gemma 4 does not run away the way the small Qwen 3.5 models do.</p>
+<p>At the budget, the block is closed and the same messages go out again with thinking off, so an answer always comes back, for the price of one extra prefill. Biasing the model toward its closing tag was tried first and failed: on the 0.8B, three of six chat prompts reasoned on to the 1,500-token limit and the scratch work surfaced as the reply. Leaving it uncapped fails too: the same model never closes its reasoning on &quot;explain recursion&quot; or &quot;write a haiku&quot;.</p>
+<p>The 64 was measured, not picked. A budget only helps when the model closes its reasoning within it; otherwise the answer comes from the retry either way. Over the 49 prompts of Enigmus&#39;s quality battery, run with the app&#39;s default system prompt, the 0.8B closed within 64 tokens on 6. Budgets of 100 and 160 add none, and 256 adds two, at four times the reasoning on the other 41.</p>
+<p>The same battery also shows the limit of the idea. Its scoring runs send no system prompt, and without one the model reasons longer: no prompt closed within 100 tokens and only three within 256, so nearly every answer came from the retry. Scores at budgets from 32 to 256 ranged from 27 to 33 of 49, against 32 with thinking off, all within the battery&#39;s noise of about six points. On the bundled model, thinking at these budgets adds latency and no measurable quality, which is why new conversations on iPhone and iPad start in fast mode. Budgets for the larger models have not been measured yet.</p>
+<h2 id="getting-it">Getting it</h2>
+<p>Everything here shipped in Enigmus 1.2.2, a free update for iPhone (13 or newer), iPad (M1 or newer) and Mac (Apple silicon).</p>
+<p><a href="https://apps.apple.com/us/app/enigmus/id6771532268">Enigmus on the App Store, for iPhone and iPad</a></p>
+<p><a href="https://apps.apple.com/us/app/enigmus/id6771532268?platform=mac">Enigmus on the Mac App Store</a></p>
+]]></content:encoded>
+      <category>AI</category>
+      <category>MLX</category>
+      <media:content url="https://enigmus.cc/images/enigmus-1-2-continued-cover.webp" medium="image" type="image/webp" />
+    </item>
     <item>
       <title>Enigmus 1.2: Qwen 3.5 and 3.6, and memory handling improvements</title>
       <link>https://enigmus.cc/posts/enigmus-1-2-qwen-3-5-and-memory</link>
