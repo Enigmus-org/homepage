@@ -10,7 +10,7 @@ const Categories = ({ categories }) => {
   return (
     <PageShell title={"categories"}>
       <section className="relative px-[22px] pb-16 pt-[34px] text-center md:px-14 md:pb-24 md:pt-[60px]">
-        <h1 className="mb-6 font-display text-[34px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:mb-8 md:text-[48px]">
+        <h1 className="mb-6 font-display text-[34px] font-semibold tracking-[-0.01em] text-[var(--text)] md:mb-8 md:text-[48px]">
           Categories
         </h1>
         <ul className="mx-auto flex max-w-[700px] flex-wrap justify-center gap-3">

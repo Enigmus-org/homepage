@@ -3,11 +3,12 @@
 // text on the page renders in it, so a fallback costs nothing where the
 // first face in its stack is installed.
 
-// Inter's optical-size cut (opsz axis; the Display design from 32px). Only
-// the fallback in font-sf-display (tailwind.config.js) for systems without
-// SF Pro; Apple devices never fetch it.
+// Inter with its optical-size axis (text design at body sizes, Display from
+// 32px), like the SF Pro it stands in for. Only the fallback in the site's
+// stack (tailwind.config.js) for systems without SF Pro; Apple devices never
+// fetch it.
 @font-face {
-  font-family: "Inter Display";
+  font-family: "Inter";
   src: url("/fonts/inter-latin-opsz-normal.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;

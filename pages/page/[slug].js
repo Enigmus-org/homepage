@@ -29,7 +29,7 @@ const BlogPagination = ({
   return (
     <PageShell title={title} description={description}>
       <section className="mx-auto max-w-[1200px] px-4 py-12 md:px-8 md:py-16">
-        <h1 className="text-[36px] font-bold leading-[1.1] tracking-[-0.03em] md:text-[44px]">
+        <h1 className="text-[36px] font-semibold leading-[1.1] tracking-[-0.01em] md:text-[44px]">
           {title}
         </h1>
 

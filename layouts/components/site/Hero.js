@@ -5,8 +5,7 @@ import AppWindow from "./AppWindow";
 // Homepage hero on the same flat brand wash as the nav: copy and store links
 // beside the drawn app window, stacked below lg. Store links come from the
 // content/_index.md banner frontmatter; on macOS the Mac App Store button
-// takes the primary style. Headline and subtitle are set in SF Pro at
-// apple.com's tracking (font-sf-display; Inter Display off Apple systems).
+// takes the primary style.
 const Hero = ({ banner }) => {
   const isMac = useOs();
   return (
@@ -17,10 +16,10 @@ const Hero = ({ banner }) => {
             <span className="h-1.5 w-1.5 rounded-full bg-[#10b981]" />
             Runs on Apple MLX, fully on-device
           </p>
-          <h1 className="font-sf-display text-[40px] font-semibold leading-[1.05] tracking-[-0.003em] md:text-[48px]">
+          <h1 className="text-[40px] font-semibold leading-[1.05] tracking-[-0.01em] md:text-[48px]">
             Private AI, locally.
           </h1>
-          <p className="mb-7 mt-[18px] font-sf-display text-[16px] leading-[1.65] tracking-[-0.02em] text-[var(--text-muted)]">
+          <p className="mb-7 mt-[18px] text-balance text-[16px] leading-[1.65] text-[var(--text-muted)]">
             Private AI for Mac, iPhone, and iPad - powered by Apple&apos;s MLX
             framework. All data stays private and secure through local
             processing on-device. Free and built for privacy.

@@ -5,7 +5,6 @@ import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { useEffect } from "react";
 import TagManager from "react-gtm-module";
-import "@fontsource-variable/inter";
 import "styles/style.scss";
 
 const App = ({ Component, pageProps }) => {

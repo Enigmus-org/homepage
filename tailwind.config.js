@@ -8,19 +8,11 @@ let h4 = h5 * font_scale;
 let h3 = h4 * font_scale;
 let h2 = h3 * font_scale;
 let h1 = h2 * font_scale;
-let fontPrimary, fontPrimaryType, fontSecondary, fontSecondaryType;
-if (theme.fonts.font_family.primary) {
-  fontPrimary = theme.fonts.font_family.primary
-    .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
-  fontPrimaryType = theme.fonts.font_family.primary_type;
-}
-if (theme.fonts.font_family.secondary) {
-  fontSecondary = theme.fonts.font_family.secondary
-    .replace(/\+/g, " ")
-    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
-  fontSecondaryType = theme.fonts.font_family.secondary_type;
-}
+// SF Pro, the Apple system face, for all text but the chat view and mono
+// labels. Its license rules out self-hosting, so the stack names the copy
+// built into Apple systems; no system-ui, which would pick Segoe UI or Roboto
+// elsewhere. Other systems get Inter (styles/fonts.scss), fetched only there.
+const SANS = ["-apple-system", "BlinkMacSystemFont", "'Inter'", "sans-serif"];
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -107,21 +99,13 @@ module.exports = {
         h6: h6 + "rem",
       },
       fontFamily: {
-        primary: [fontPrimary, fontPrimaryType],
-        secondary: [fontSecondary, fontSecondaryType],
-        // Inter Variable for UI, headings and cards (as in the WebUI); IBM
-        // Plex Mono for labels (see lib/fonts.js)
-        display: ["'Inter Variable'", "system-ui", "sans-serif"],
-        heading: ["'Inter Variable'", "system-ui", "sans-serif"],
-        sans: ["'Inter Variable'", "system-ui", "sans-serif"],
-        // SF Pro for the hero and prose text. Its license rules out
-        // self-hosting, so these name the copy built into Apple systems; no
-        // system-ui here, which would pick Segoe UI or Roboto elsewhere.
-        // Other systems get Inter: Inter Display for the hero
-        // (styles/fonts.scss, fetched only there), the already loaded Inter
-        // Variable for prose.
-        "sf-display": ["-apple-system", "BlinkMacSystemFont", "'Inter Display'", "sans-serif"],
-        "sf-text": ["-apple-system", "BlinkMacSystemFont", "'Inter Variable'", "sans-serif"],
+        // One stack for every role; primary/secondary are the old theme's
+        // names, still used by styles/base.scss
+        primary: SANS,
+        secondary: SANS,
+        display: SANS,
+        heading: SANS,
+        sans: SANS,
         // The chat view (AppWindow); styles/fonts.scss
         chat: ["'Instrument Sans'", "sans-serif"],
         mono: ["var(--font-ibm-plex-mono)", "ui-monospace", "monospace"],

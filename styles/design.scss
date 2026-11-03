@@ -49,11 +49,11 @@
 // on elements inside the content (e.g. shortcode markup) always win.
 :where(.page-content) {
   h1 {
-    @apply mt-10 mb-4 font-display text-[30px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:text-[34px];
+    @apply mt-10 mb-4 font-display text-[30px] font-semibold tracking-[-0.01em] text-[var(--text)] md:text-[34px];
   }
 
   h2 {
-    @apply mt-10 mb-4 font-display text-[24px] font-bold tracking-[-0.02em] text-[var(--text)] md:text-[28px];
+    @apply mt-10 mb-4 font-display text-[24px] font-semibold tracking-[-0.007em] text-[var(--text)] md:text-[28px];
   }
 
   h3 {
@@ -72,10 +72,8 @@
     @apply mt-5 mb-2 font-display text-[14px] font-semibold text-[var(--text-muted)];
   }
 
-  // Running text (p, li, td) in SF Pro at apple.com's tracking; Inter where
-  // SF Pro is missing. Headings stay in Inter.
   p {
-    @apply my-4 font-sf-text text-[16px] leading-[1.7] tracking-[-0.022em] text-[var(--text-muted)];
+    @apply my-4 text-[16px] leading-[1.7] text-[var(--text-muted)];
   }
 
   strong {
@@ -104,7 +102,7 @@
   }
 
   li {
-    @apply font-sf-text text-[15.5px] leading-[1.65] tracking-[-0.022em] text-[var(--text-muted)];
+    @apply text-[15.5px] leading-[1.65] text-[var(--text-muted)];
 
     &::marker {
       color: var(--accent-on-bg);
@@ -118,7 +116,7 @@
   // Inline code: orange on a gentle red wash, so it separates from both the
   // muted grey of body copy and the blue of links. Sized in `em` to stay
   // proportional in list items and headings. Mono drops the tracking it
-  // would inherit from the text around it.
+  // would inherit from a heading.
   code {
     @apply rounded-md px-[0.3em] py-[0.15em] font-mono text-[0.9em] font-medium tracking-normal;
     background: var(--code-inline-bg);
@@ -153,7 +151,7 @@
   }
 
   td {
-    @apply border-b border-[var(--border)] px-4 py-3 font-sf-text text-[14.5px] tracking-[-0.016em] text-[var(--text-muted)];
+    @apply border-b border-[var(--border)] px-4 py-3 text-[14.5px] text-[var(--text-muted)];
   }
 
   hr {

@@ -30,12 +30,6 @@
     }
   },
   "fonts": {
-    "font_family": {
-      "primary": "'Inter Variable'",
-      "primary_type": "sans-serif",
-      "secondary": "'Inter Variable'",
-      "secondary_type": "sans-serif"
-    },
     "font_size": {
       "base": "18",
       "scale": "1.150"

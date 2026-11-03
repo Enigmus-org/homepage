@@ -13,7 +13,7 @@ Code:
 - `layouts/PageShell.js`, `layouts/*Layout.js` - page shell and layouts
 - `layouts/components/site/` - components; `AppWindow.js` is the reference
 - `lib/fonts.js` - IBM Plex Mono loading
-- `styles/fonts.scss`, `public/fonts/` - self-hosted Inter Display and Instrument Sans
+- `styles/fonts.scss`, `public/fonts/` - self-hosted Inter (the SF Pro fallback) and Instrument Sans
 
 ## Principles
 
@@ -82,46 +82,51 @@ Buttons:
 
 All faces ship with the site; no page loads a font from a CDN.
 
-- **SF Pro** (`font-sf-display`, `font-sf-text`) - hero headline and subtitle,
-  prose running text. Apple's license rules out self-hosting, so the stacks
-  name the copy built into macOS and iOS (`-apple-system`,
+- **SF Pro** (`font-sans`, also `font-display`, `font-heading`) - all text but
+  the chat view and labels. Apple's license rules out self-hosting, so the
+  stack names the copy built into macOS and iOS (`-apple-system`,
   `BlinkMacSystemFont`), which picks its Text or Display design by size.
-  Tracking follows apple.com, and the fallbacks keep it:
-  - `font-sf-display` falls back to **Inter Display** (Inter's optical-size
-    axis, 71 KB), fetched only on systems without SF Pro.
-  - `font-sf-text` falls back to the Inter Variable the site already loads.
+  Systems without it fall back to **Inter** (with its optical-size axis, so
+  it also switches to its Display design at large sizes; 71 KB), which Apple
+  devices never fetch.
 - **Instrument Sans** (`font-chat`) - the chat view only; 29 KB, preloaded by
   `AppWindow`.
-- **Inter Variable** (`font-sans`, `font-display`, `font-heading`) - everything
-  else: nav, UI, page and prose headings, cards; `@fontsource-variable/inter`,
-  imported in `pages/_app.js`
 - **IBM Plex Mono** 400/500/600 (`font-mono`) - labels, dates, counters, code;
   `next/font` in `lib/fonts.js`, exposed as `--font-ibm-plex-mono`
 
-Inter Display and Instrument Sans are latin woff2 subsets (Fontsource, OFL) in
+Inter and Instrument Sans are latin woff2 subsets (Fontsource, OFL) in
 `public/fonts/`, declared in `styles/fonts.scss`. The apps run only on Apple
-platforms, where SF Pro is always present, so the fallbacks are web-only.
+platforms, where SF Pro is always present, so the fallback is web-only.
 
-| Role | Face | Size / line-height | Weight, tracking |
-| :-- | :-- | :-- | :-- |
-| Hero H1 | SF Pro | 40 -> 48px / 1.05 | 600, -0.003em |
-| Hero subtitle | SF Pro | 16px / 1.65 | 400, -0.02em |
-| Page H1 | Inter | 34 -> 52px (contact, download 36 -> 56) / 1.05 -> 1.02 | 800, -0.03em |
-| Section H2 | Inter | 20px | 600, -0.01em |
-| Card title | Inter | 14-15px | 600 |
-| Body | Inter | 16px / 1.65 | 400 |
-| Prose text | SF Pro | p 16px / 1.7, li 15.5px / 1.65, td 14.5px | 400, -0.022em (td -0.016em) |
-| UI text | Inter | 13-15px (nav 14, post titles 15/500) | 400-500 |
-| Chat view | Instrument Sans | messages 13.5px / 1.6, UI 10-12.5px | 400 |
-| Meta | Inter | 10-12.5px | 400 |
-| Label | IBM Plex Mono | 11px, uppercase, `--text-faint` | 500, 0.1em |
-| Wordmark | Inter | 12px, uppercase | 600, 0.2em |
+Tracking: text up to 17px takes none; headings take -0.007em (24-28px),
+-0.01em (19-56px) or -0.015em (72px and up). These are not apple.com's CSS
+values: apple.com sets web-font copies of SF Pro, while the system copy
+already applies SF Pro's built-in size-specific tracking, so apple.com's
+values on top would track twice (body text about 5% tighter than apple.com).
+The values here match apple.com's rendered line widths within about 1% from 14px
+up (measured in Firefox on macOS); smaller UI text runs 2-4% wider than
+apple.com's, which it is left at for legibility.
+
+| Role | Size / line-height | Weight, tracking |
+| :-- | :-- | :-- |
+| Hero H1 | 40 -> 48px / 1.05 | 600, -0.01em |
+| Page H1 | 34 -> 52px (contact, download 36 -> 56; blog index, category 36 -> 44; post 30 -> 44) / 1.05 -> 1.02 | 600, -0.01em |
+| 404 code | 72 -> 104px | 600, -0.015em |
+| Section H2 | 20px | 600, -0.01em |
+| Card title | 14-15px | 600 |
+| Body (hero subtitle, page intros) | 15.5 -> 17.5px / 1.6-1.65 | 400 |
+| Prose text | p 16px / 1.7, li 15.5px / 1.65, td 14.5px | 400 |
+| UI text | 13-15px (nav 14, post titles 15/500) | 400-500 |
+| Chat view (Instrument Sans) | messages 13.5px / 1.6, UI 10-12.5px | 400 |
+| Meta | 10-12.5px | 400 |
+| Label (IBM Plex Mono) | 11px, uppercase, `--text-faint` | 500, 0.1em |
+| Wordmark | 12px, uppercase | 600, 0.2em |
 
 Prose (`.page-content`): p 16px/1.7, li 15.5px/1.65, h1 30 -> 34, h2 24 -> 28,
-h3 19 -> 21, h4 17, h5 15.5, h6 14. Running text (p, li, td) is SF Pro
-(`font-sf-text`), headings Inter; inline code resets the tracking. Its rules
-sit in `:where()` (zero specificity), so Tailwind utilities inside content
-always win. All headings take `var(--text)` from `styles/base.scss`.
+h3 19 -> 21, h4 17, h5 15.5, h6 14; all headings 600. Inline code resets the
+tracking it would inherit from a heading. Its rules sit in `:where()` (zero
+specificity), so Tailwind utilities inside content always win. All headings
+take `var(--text)` from `styles/base.scss`.
 
 ## Shape, depth, layout
 
