@@ -7,22 +7,22 @@ intro: Enigmus is private, on-device AI for iPhone, iPad, and Mac. The assets be
 
 ### App icon
 
-The full Enigmus app icon — white lock with chat-bubble keyhole on a blue gradient, iOS-style rounded square. Transparent outside the rounded square so it sits cleanly on any background.
+The full Enigmus app icon - white lock with chat-bubble keyhole on a blue gradient, iOS-style rounded square. Transparent outside the rounded square so it sits cleanly on any background.
 
 ![Enigmus app icon](/press/enigmus-app-icon-512.png)
 
-- **PNG (1024×1024, transparent)** — [/press/enigmus-app-icon-1024.png](/press/enigmus-app-icon-1024.png)
-- **PNG (512×512, transparent)** — [/press/enigmus-app-icon-512.png](/press/enigmus-app-icon-512.png)
-- **PNG (256×256, transparent)** — [/press/enigmus-app-icon-256.png](/press/enigmus-app-icon-256.png)
-- **PNG (128×128, transparent)** — [/press/enigmus-app-icon-128.png](/press/enigmus-app-icon-128.png)
-- **PNG (64×64, transparent)** — [/press/enigmus-app-icon-64.png](/press/enigmus-app-icon-64.png)
-- **PNG (32×32, transparent)** — [/press/enigmus-app-icon-32.png](/press/enigmus-app-icon-32.png)
-- **PNG (16×16, transparent)** — [/press/enigmus-app-icon-16.png](/press/enigmus-app-icon-16.png)
-- **PNG (1024×1024, opaque, legacy)** — [/press/1024-app-icon.png](/press/1024-app-icon.png)
+- **PNG (1024x1024, transparent)** - [/press/enigmus-app-icon-1024.png](/press/enigmus-app-icon-1024.png)
+- **PNG (512x512, transparent)** - [/press/enigmus-app-icon-512.png](/press/enigmus-app-icon-512.png)
+- **PNG (256x256, transparent)** - [/press/enigmus-app-icon-256.png](/press/enigmus-app-icon-256.png)
+- **PNG (128x128, transparent)** - [/press/enigmus-app-icon-128.png](/press/enigmus-app-icon-128.png)
+- **PNG (64x64, transparent)** - [/press/enigmus-app-icon-64.png](/press/enigmus-app-icon-64.png)
+- **PNG (32x32, transparent)** - [/press/enigmus-app-icon-32.png](/press/enigmus-app-icon-32.png)
+- **PNG (16x16, transparent)** - [/press/enigmus-app-icon-16.png](/press/enigmus-app-icon-16.png)
+- **PNG (1024x1024, opaque, legacy)** - [/press/1024-app-icon.png](/press/1024-app-icon.png)
 
 ### Lock mark
 
-The lock mark on its own (transparent background) — for use on dark backgrounds, social avatars, embeds.
+The lock mark on its own (transparent background) - for use on dark backgrounds, social avatars, embeds.
 
 <img
   className="my-5 rounded-2xl bg-[#0C111C] p-6"
@@ -31,10 +31,10 @@ The lock mark on its own (transparent background) — for use on dark background
   width="220"
 />
 
-- **PNG (586×586, transparent, white fill)** — [/press/586-lock-mark-white.png](/press/586-lock-mark-white.png)
-- **SVG (vector, viewBox 0 0 586 586, single path, white fill)** — [/press/586-lock-mark.svg](/press/586-lock-mark.svg)
+- **PNG (586x586, transparent, white fill)** - [/press/586-lock-mark-white.png](/press/586-lock-mark-white.png)
+- **SVG (vector, viewBox 0 0 586 586, single path, white fill)** - [/press/586-lock-mark.svg](/press/586-lock-mark.svg)
 
-The SVG version is preferred for any digital use — it stays sharp at any size, and the white fill can be re-colored in CSS via `fill` or `color`.
+The SVG version is preferred for any digital use - it stays sharp at any size, and the white fill can be re-colored in CSS via `fill` or `color`.
 
 ### Usage guidelines
 
@@ -45,7 +45,7 @@ The SVG version is preferred for any digital use — it stays sharp at any size,
 
 ### About Enigmus
 
-Enigmus runs large language models entirely on the device — no accounts, no servers, no telemetry, no network required after the initial model download. Built on Apple's MLX framework, the app uses on-device inference on Apple silicon (iPhone 13+, iPad with M1+, or any Mac with Apple silicon).
+Enigmus runs large language models entirely on the device - no accounts, no servers, no telemetry, no network required after the initial model download. Built on Apple's MLX framework, the app uses on-device inference on Apple silicon (iPhone 13+, iPad with M1+, or any Mac with Apple silicon).
 
 - Website: [enigmus.cc](https://enigmus.cc)
 - Privacy policy: [enigmus.cc/privacy-policy](/privacy-policy)

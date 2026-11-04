@@ -26,7 +26,7 @@
     <rect x="56" y="56" width="1088" height="518" rx="24" fill="#FFFFFF"/>
   </g>
 
-  <text x="96" y="116" font-family="Helvetica Neue, Helvetica, Arial" font-size="27" font-weight="700" fill="#0C1220">Decode throughput &#8212; Qwen3-0.6B on iPhone 17 Pro</text>
+  <text x="96" y="116" font-family="Helvetica Neue, Helvetica, Arial" font-size="27" font-weight="700" fill="#0C1220">Decode throughput - Qwen3-0.6B on iPhone 17 Pro</text>
   <text x="96" y="148" font-family="Helvetica Neue, Helvetica, Arial" font-size="16" fill="#5A6478">Steady-state tokens per second. Higher is better.</text>
 
   <g stroke="#E6EBF2" stroke-width="1">
@@ -37,10 +37,10 @@
   </g>
 
   <g font-family="Helvetica Neue, Helvetica, Arial" font-size="16" fill="#0C1220" text-anchor="end">
-    <text x="376" y="228">Core AI &#183; GPU pipelined</text>
-    <text x="376" y="286">MLX &#183; GPU</text>
-    <text x="376" y="344">Core AI &#183; ANE static-shape</text>
-    <text x="376" y="402">Core ML &#183; ANE</text>
+    <text x="376" y="228">Core AI - GPU pipelined</text>
+    <text x="376" y="286">MLX - GPU</text>
+    <text x="376" y="344">Core AI - ANE static-shape</text>
+    <text x="376" y="402">Core ML - ANE</text>
   </g>
 
   <g fill="#0D6FD1">
@@ -66,7 +66,7 @@
   </g>
   <text x="1104" y="446" text-anchor="end" font-family="Helvetica Neue, Helvetica, Arial" font-size="13" fill="#8A93A6">tok/s</text>
 
-  <text x="96" y="496" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">Core AI&#8217;s GPU engine is ~1.6&#215; MLX once warm &#8212; but only ~1.05&#215; at Qwen3-8B, and ~71 tok/s on its</text>
+  <text x="96" y="496" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">Core AI's GPU engine is ~1.6x MLX once warm - but only ~1.05x at Qwen3-8B, and ~71 tok/s on its</text>
   <text x="96" y="518" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">very first generation while kernels compile.</text>
   <text x="96" y="548" font-family="Helvetica Neue, Helvetica, Arial" font-size="13" fill="#8A93A6">Single independent measurement (apple-silicon-llm-bench, July 2026). Apple publishes no throughput figures.</text>
 </svg>

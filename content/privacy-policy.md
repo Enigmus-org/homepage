@@ -6,7 +6,7 @@ heading: Privacy Policy
 
 Effective Date: 2026-11-01
 
-Enigmus ("we", "us", "our") is operated by RevoBolic LLC. This Privacy Policy explains what information the Enigmus app and the enigmus.cc website handle, and what we do — and do not do — with it.
+Enigmus ("we", "us", "our") is operated by RevoBolic LLC. This Privacy Policy explains what information the Enigmus app and the enigmus.cc website handle, and what we do - and do not do - with it.
 
 The short version: **Enigmus runs entirely on your device. We do not collect, transmit, store, or sell your conversations or personal information. Enigmus has no user accounts and no servers that receive your data.**
 
@@ -45,8 +45,8 @@ Enigmus is not directed at children under 13 and we do not knowingly collect any
 
 We do not share, sell, or transfer any user data to third parties, because we do not have any user data. The only third-party interactions are:
 
-- Apple (App Store distribution, system services such as iCloud backup if enabled — covered by Apple's privacy practices)
-- Hugging Face (only if you initiate a model download — covered by Hugging Face's privacy policy)
+- Apple (App Store distribution, system services such as iCloud backup if enabled - covered by Apple's privacy practices)
+- Hugging Face (only if you initiate a model download - covered by Hugging Face's privacy policy)
 
 ### Changes to This Policy
 

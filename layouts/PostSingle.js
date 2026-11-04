@@ -49,7 +49,7 @@ const PostSingle = ({
             {title}
           </h1>
           <div className="mb-8 text-center font-mono text-[12.5px] text-[var(--text-faint)] md:mb-10">
-            {meta_author} · {dateFormat(date)}
+            {meta_author} / {dateFormat(date)}
           </div>
           {/* A portrait app screenshot reads as a device shot, not a cover:
               `hero_iphone` (asset base path) puts it in the iPhone chassis at
@@ -65,9 +65,9 @@ const PostSingle = ({
             />
           ) : (
             image && (
-              // 1200×630 is the cover convention (it doubles as og:image), but
-              // covers vary in ratio, so `w-full h-auto` lets the real one win
-              // — sizing both dimensions in CSS is also what keeps next/image
+              // 1200x630 is the cover convention (it doubles as og:image), but
+              // covers vary in ratio, so `w-full h-auto` lets the real one win -
+              // sizing both dimensions in CSS is also what keeps next/image
               // from warning about a half-modified aspect ratio.
               <Image
                 src={image}

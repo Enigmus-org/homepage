@@ -76,7 +76,7 @@ These Terms are governed by and construed under the laws of the **State of Wyomi
 
 ### Binding Arbitration; Class Action Waiver
 
-**Please read this section carefully — it affects your legal rights.**
+**Please read this section carefully - it affects your legal rights.**
 
 Any dispute, claim, or controversy arising out of or relating to these Terms or the Service (a "Dispute") shall be resolved by **binding individual arbitration** administered by the American Arbitration Association (AAA) under its Consumer Arbitration Rules, rather than in court, except that you or we may bring an individual claim in small-claims court if it qualifies. The arbitration shall be conducted in Wyoming or, at your election, by telephone or written submissions. The arbitrator's decision shall be final and binding. Judgment on the award may be entered in any court of competent jurisdiction.
 

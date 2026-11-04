@@ -3,7 +3,7 @@
 // canvas in both themes (`.terminal-block` in styles/design.scss). Registered
 // as the `pre` element override in shortcodes/all.js, so every fenced block on
 // the site gets the chrome. Highlighting happens at build time
-// (lib/utils/mdxParser.js) — nothing is shipped to the browser for it.
+// (lib/utils/mdxParser.js) - nothing is shipped to the browser for it.
 //
 // `copy` adds a copy button to the bar that copies the block's text as shown.
 // MDX never passes it, so it is opt-in for components (the homepage curl);

@@ -23,7 +23,7 @@ const BlogPagination = ({
   const { title, intro, description } = postIndex.frontmatter;
   const totalPages = Math.ceil(posts.length / pagination);
   // Intro, subscribe strip, and category chips belong to the canonical first
-  // page only — repeated on /page/2+ they would dilute it.
+  // page only - repeated on /page/2+ they would dilute it.
   const isFirstPage = currentPage === 1;
 
   return (

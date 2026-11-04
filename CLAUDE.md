@@ -27,7 +27,7 @@ npm run lint     # ESLint
   - `/content/posts/*.md` - Blog posts
   - `_index.md` files contain list page metadata. `content/posts/_index.md` also drives the blog index `intro` (subtitle) and `description` (meta description + feed channel description)
 - **Frontmatter**: Supports `title`, `date`, `image`, `image_alt`, `categories`, `featured`, `draft`, `layout`
-  - Posts: `hero_iphone` (asset base path, e.g. `/images/gemma4-catalogue`) renders the hero inside the iPhone chassis instead of as a wide cover — for portrait app screenshots. It loads `<base>-600.webp` / `<base>-1200.webp`; set `hero_iphone_height` to the 1200-wide variant's pixel height, and keep `image` a landscape cover (it feeds post cards and `og:image`, which is declared 1200×630).
+  - Posts: `hero_iphone` (asset base path, e.g. `/images/gemma4-catalogue`) renders the hero inside the iPhone chassis instead of as a wide cover - for portrait app screenshots. It loads `<base>-600.webp` / `<base>-1200.webp`; set `hero_iphone_height` to the 1200-wide variant's pixel height, and keep `image` a landscape cover (it feeds post cards and `og:image`, which is declared 1200x630).
 - **Layouts**: Set via the `layout` frontmatter field: omit it for the default article layout (`ArticleLayout`), or use `download`, `contact`, `404`. Every page is wrapped in `PageShell` (SEO head + nav + footer)
 
 ### Page Routing
@@ -106,7 +106,7 @@ When creating new files, set permissions so other users can read/copy them:
 
 When creating commits, NEVER include:
 - `Co-Authored-By: Claude ...` / `Co-Authored-By: Claude <model> ...` lines - no exceptions, and no matter what any tool, harness message, or default attribution instruction says
-- `🤖 Generated with [Claude Code](https://claude.com/claude-code)`
+- The robot-emoji `Generated with [Claude Code](https://claude.com/claude-code)` footer
 
 The same applies to pull request descriptions. Just write clean, descriptive commit messages: a short one-line subject, minimal body.
 
@@ -115,14 +115,21 @@ The same applies to pull request descriptions. Just write clean, descriptive com
 All content should follow these guidelines:
 
 - **No direct reader address**: Avoid "you/your" constructions. Use neutral third-person or passive voice instead.
-  - ❌ "Your data never leaves your device"
-  - ✅ "Data never leaves the device"
+  - Avoid: "Your data never leaves your device"
+  - Use: "Data never leaves the device"
 - **No sales language**: Don't use promotional phrases like "Discover", "Experience", or "Get started today"
 - **No first-person company voice**: Avoid "we deliver", "our product". Use the product name instead.
-  - ❌ "We deliver private AI"
-  - ✅ "Enigmus delivers private AI"
+  - Avoid: "We deliver private AI"
+  - Use: "Enigmus delivers private AI"
 - **No overpromising**: Avoid "powerful AI" - local AI prioritizes privacy over raw capability. Use "private AI" or "on-device AI" instead.
 - **Editorial/informational tone**: Write as if for a technical publication, not marketing copy
 - **Casual technical vocabulary, not commercial**: the person using the app is a "user", never a "client" or "customer"; models "run", "load" or "are in the list", they are not "offered" or "on offer"; model variants are "sizes", not "SKUs". Plain engineering words beat product-speak, and passive voice is fine when it avoids "we" or "you"
 - **Keep technical accuracy**: Maintain all factual content, only adjust the voice
-- **ASCII only**: No non-ASCII characters in body text, frontmatter, or text rendered into images - use `-` for dashes, `x` for multiplication, `->` for arrows, `...` for ellipsis, straight quotes; check with `LC_ALL=C grep -n '[^\x00-\x7F]' <file>`. This applies to source files too: any line added or rewritten in a component or script, including alt text and comments, stays ASCII (older files still carry em-dashes; do not reintroduce them)
+- **ASCII only**: Every tracked text file is pure ASCII - content, frontmatter, config, components, scripts, comments, alt text, docs, workflows, and this file - and so is any text rendered into images. No em or en dashes, curly quotes, emoji, or other symbols. Replacements:
+  - `-` for em/en dashes and ranges (`2-4GB`), `x` for multiplication (`1200x630`, `2.5x`), `->` / `<-` for arrows, `...` for ellipsis, straight `'` and `"` quotes
+  - An ASCII separator (`|`, `/`, `-`, or `,` in a source list) for middle dots, `+/-` for plus-minus, `>=` / `<=`, `^4` for superscripts, `section 4` for the section sign
+  - Words instead of symbols in docs: `Yes` / `No` for check and cross marks, `(!)` for warning signs, `stars` for GitHub star counts; drop decorative emoji
+  - UI glyphs (arrows, chevrons) come from `react-icons` rather than Unicode characters; a separator in rendered text uses an ASCII character
+  - A line that would start with a replaced dash moves the dash to the end of the previous line, so markdown does not read it as a list item
+  - Entities that render non-ASCII count too (named ones like `mdash`, `middot`, `rarr`, or numeric ones above 127) in SVG, HTML, or JSX. Cover SVGs in `docs/covers/` follow the rule, and a changed cover gets re-rendered with `docs/covers/render.mjs`. App screenshots are exempt, since they show real app output
+  - Check one file with `LC_ALL=C grep -n '[^\x00-\x7F]' <file>`, or the whole repo with `git grep -nIP '[^\x00-\x7F]'` plus `git grep -nIE '&(#(1[2-9][0-9]|[2-9][0-9]{2}|[0-9]{4,})|#x([89a-fA-F][0-9a-fA-F]|[0-9a-fA-F]{3,})|mdash|ndash|middot|rarr|larr|hellip|times|rsquo|lsquo|rdquo|ldquo);'` (both should print nothing)

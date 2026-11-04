@@ -18,7 +18,7 @@ const variants = {
 
 const [which, out] = process.argv.slice(2);
 if (which && !variants[which]) {
-  console.error(`unknown variant "${which}" — expected one of: ${Object.keys(variants).join(", ")}`);
+  console.error(`unknown variant "${which}" - expected one of: ${Object.keys(variants).join(", ")}`);
   process.exit(1);
 }
 
