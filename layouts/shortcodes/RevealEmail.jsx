@@ -33,7 +33,7 @@ function RevealEmail({ d, o }) {
 
   return (
     <span className="inline-flex items-center gap-2 align-middle">
-      <code className="font-mono font-bold">{email}</code>
+      <code className="font-mono font-medium">{email}</code>
       <button
         type="button"
         onClick={copy}

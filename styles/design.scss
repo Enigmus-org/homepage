@@ -4,16 +4,8 @@
 // No gradients, glass or glow.
 
 :root {
-  // Brand
-  --brand: #1fa3fb;
-  --brand-deep: #0d6fd1;
-  --brand-sky: #5ec0ff;
-  --brand-mist: #9fe0ff;
-
-  // Semantic - light
   --bg: #f5f6f8;
   --surface: #ffffff;
-  --surface-solid: #ffffff;
   --border: rgba(0, 0, 0, 0.09);
   --text: #121212;
   --text-muted: #3d3d3d;
@@ -30,7 +22,6 @@
 .dark {
   --bg: #0b0b0b;
   --surface: #141414;
-  --surface-solid: #141414;
   --border: rgba(255, 255, 255, 0.08);
   --text: #e8e8e8;
   --text-muted: #bdbdbd;
@@ -44,32 +35,33 @@
   --shadow-card: none;
 }
 
-// Typography for long-form pages (layouts/ArticleLayout.js).
-// :where() keeps these rules at zero specificity so Tailwind utility classes
-// on elements inside the content (e.g. shortcode markup) always win.
+// Typography for long-form pages (ArticleLayout, PostSingle); headings take
+// their weight and color from base.scss. :where() keeps these rules at zero
+// specificity so Tailwind utility classes on elements inside the content
+// (e.g. shortcode markup) always win.
 :where(.page-content) {
   h1 {
-    @apply mt-10 mb-4 font-display text-[30px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:text-[34px];
+    @apply mt-10 mb-4 text-[30px] tracking-[-0.01em] md:text-[34px];
   }
 
   h2 {
-    @apply mt-10 mb-4 font-display text-[24px] font-bold tracking-[-0.02em] text-[var(--text)] md:text-[28px];
+    @apply mt-10 mb-4 text-[24px] tracking-[-0.007em] md:text-[28px];
   }
 
   h3 {
-    @apply mt-8 mb-3 font-display text-[19px] font-semibold tracking-[-0.01em] text-[var(--text)] md:text-[21px];
+    @apply mt-8 mb-3 text-[19px] tracking-[-0.01em] md:text-[21px];
   }
 
   h4 {
-    @apply mt-6 mb-2.5 font-display text-[17px] font-semibold text-[var(--text)];
+    @apply mt-6 mb-2.5 text-[17px];
   }
 
   h5 {
-    @apply mt-5 mb-2 font-display text-[15.5px] font-semibold text-[var(--text)];
+    @apply mt-5 mb-2 text-[15.5px];
   }
 
   h6 {
-    @apply mt-5 mb-2 font-display text-[14px] font-semibold text-[var(--text-muted)];
+    @apply mt-5 mb-2 text-[14px] text-[var(--text-muted)];
   }
 
   p {
@@ -77,7 +69,7 @@
   }
 
   strong {
-    @apply font-semibold text-[var(--text)];
+    color: var(--text);
   }
 
   a {
@@ -115,9 +107,10 @@
 
   // Inline code: orange on a gentle red wash, so it separates from both the
   // muted grey of body copy and the blue of links. Sized in `em` to stay
-  // proportional in list items and headings.
+  // proportional in list items and headings. Mono drops the tracking it
+  // would inherit from a heading.
   code {
-    @apply rounded-md px-[0.3em] py-[0.15em] font-mono text-[0.9em] font-medium;
+    @apply rounded-md px-[0.3em] py-[0.15em] font-mono text-[0.9em] font-medium tracking-normal;
     background: var(--code-inline-bg);
     color: var(--code-inline-text);
   }
@@ -138,7 +131,7 @@
 
   blockquote {
     @apply my-6 rounded-[14px] border border-[var(--border)] bg-[var(--surface)] px-5 py-1;
-    border-left: 3px solid var(--brand);
+    border-left: 3px solid theme("colors.brand.DEFAULT");
   }
 
   table {
@@ -159,11 +152,11 @@
 
   // FAQ accordions (<details>/<summary> in markdown)
   details {
-    @apply mb-3.5 rounded-[14px] border border-[var(--border)] bg-[var(--surface-solid)] px-5 py-4;
+    @apply mb-3.5 rounded-[14px] border border-[var(--border)] bg-[var(--surface)] px-5 py-4;
     box-shadow: var(--shadow-card);
 
     summary {
-      @apply cursor-pointer font-heading text-[15.5px] font-semibold leading-[1.4] text-[var(--text)];
+      @apply cursor-pointer text-[15.5px] font-semibold leading-[1.4] text-[var(--text)];
 
       &::marker {
         color: var(--accent-on-bg);
@@ -240,11 +233,48 @@
   .hljs-title, .hljs-section { color: #d2a8ff; }
   .hljs-type, .hljs-params, .sh-flag { color: #ffa657; }
   .sh-cmd { color: #7ee787; }
+
+  // Compact form for code inside a chat reply (AppWindow): smaller type and
+  // padding, no shadow. Listed after the rules above so it wins the ties.
+  // The light theme swaps the terminal for the user bubble's blue (fill
+  // brand/10, border brand/25, bar at the tag tint, brand/14) with the token
+  // colors of Xcode's Midnight Light theme; the dark theme keeps the terminal.
+  &--compact {
+    @apply my-2.5 rounded-[10px] shadow-none last:mb-0;
+
+    .terminal-block__bar {
+      @apply px-3 py-1.5;
+    }
+
+    pre {
+      @apply px-3 py-2.5 text-[11.5px] leading-[1.65];
+    }
+
+    html:not(.dark) & {
+      --term-border: rgb(31 163 251 / 0.25);
+      background: rgb(31 163 251 / 0.1);
+
+      // 0.045 over the box's 0.1 adds up to the 0.14 tag tint.
+      .terminal-block__bar { background: rgb(31 163 251 / 0.045); }
+      pre { color: #262734; }
+
+      // Xcode roles: keywords, system names (built-ins, types), project
+      // names, declarations, attributes, numbers. Strings and comments use
+      // Xcode's defaults, as the theme sample shows neither.
+      .hljs-keyword, .hljs-literal, .hljs-tag, .hljs-name, .hljs-selector-tag { color: #604be2; }
+      .hljs-built_in, .hljs-type, .sh-cmd { color: #2962de; }
+      .hljs-title, .hljs-section { color: #367b8c; }
+      .hljs-params, .hljs-variable, .hljs-attr, .hljs-attribute, .sh-flag { color: #285f6c; }
+      .hljs-meta { color: #1105ea; }
+      .hljs-number { color: #b0336a; }
+      .hljs-string { color: #c41a16; }
+      .hljs-comment { color: #5d6c79; }
+    }
+  }
 }
 
 // Active tab pill (layouts/shortcodes/Tabs.jsx toggles this class). Kept at
 // full specificity so it overrides the tab items' utility text color.
 .page-content .active-tab {
-  background: var(--brand-deep);
-  @apply text-white;
+  @apply bg-brand-deep text-white;
 }

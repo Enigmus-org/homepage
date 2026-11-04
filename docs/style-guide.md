@@ -1,49 +1,45 @@
 # Enigmus Style Guide
 
-The design system of enigmus.cc, taken from the Enigmus WebUI. The reference is
-the hero chat window (`AppWindow`): every surface, control and type size on the
-site derives from it. Flat neutral surfaces, 1px hairlines, one text family,
-the Enigmus blue used gently. No gradients, glass, glow or decorative motion.
-`/elements` renders every element and shortcode.
+The design system of enigmus.cc, taken from the Enigmus WebUI. The hero chat
+window (`AppWindow`) is the reference: every surface, control and type size
+derives from it. `/elements` renders every element and shortcode; copy rules
+are in `CLAUDE.md`.
 
-Code:
-
-- `styles/design.scss` - CSS variables (light/dark), `.page-content` prose, `.terminal-block`
-- `tailwind.config.js` - brand colors, font families, breakpoints
-- `layouts/PageShell.js`, `layouts/*Layout.js` - page shell and layouts
-- `layouts/components/site/` - components; `AppWindow.js` is the reference
-- `lib/fonts.js` - webfont loading
+| File | Holds |
+| :-- | :-- |
+| `styles/base.scss` | 18px root font size (rem utilities scale from it), body, heading defaults |
+| `styles/design.scss` | CSS variables (light/dark), `.page-content` prose, `.terminal-block` |
+| `styles/fonts.scss`, `public/fonts/` | the self-hosted fallback fonts |
+| `tailwind.config.js` | brand colors, font stacks, breakpoints |
+| `layouts/PageShell.js`, `layouts/*Layout.js` | page shell and layouts |
+| `layouts/components/site/` | components |
 
 ## Principles
 
-- **Three surface levels**, separated by 1px hairlines, not shadows: canvas
-  `--bg`; chrome `--brand-wash` (nav, hero, chat sidebar); raised `--surface`
-  (bars, active items, composer, cards).
-- **Selection is a surface, not a color**: the active item gets `--surface` +
-  a `--border` hairline; inactive items keep a transparent border, so nothing
-  shifts.
+- **Flat**: no gradients, glass, glow or decorative motion. Hover changes
+  color or opacity only.
+- **Three surfaces**, split by 1px hairlines, not shadows: canvas `--bg`;
+  chrome `--brand-wash` (nav, hero, chat sidebar); raised `--surface` (bars,
+  active items, composer, cards).
+- **Selection is a surface, not a color**: the active item gets `--surface`
+  and a `--border` hairline; inactive items keep a transparent border, so
+  nothing shifts.
 - **Four text steps**: `--text` titles, `--text-muted` body, `--text-dim`
-  secondary UI, `--text-faint` meta, placeholders, idle icons.
-- **Blue in small doses**: wash, hairlines, icons, 6px dots, one filled control
-  (the send button).
+  secondary UI, `--text-faint` meta, placeholders and idle icons.
+- **Blue in small doses**: wash, hairlines, icons, links, 6px dots and one
+  filled control (the send button); never a large fill.
 - **Mono only** for labels, dates, counters and code.
 
 ## Colors
 
-Brand (Tailwind names, from the app icon):
-
-| Token | Value | Use |
-| :-- | :-- | :-- |
-| `brand` | `#1FA3FB` | dots, icons, send button, tints - never text on white (2.7:1) |
-| `brand-deep` | `#0D6FD1` | accent text, filled content buttons on light (5:1 on white) |
-| `brand-sky` | `#5EC0FF` | accent text on dark |
-
-CSS variables (`styles/design.scss`, swapped by `.dark`):
+Brand, from the app icon: `brand` `#1FA3FB` for dots, icons, the send button
+and tints (never text on white, 2.7:1); `brand-deep` `#0D6FD1` for accent text
+and filled buttons on light. Accent text on dark is `--accent-on-bg`.
 
 | Variable | Light | Dark |
 | :-- | :-- | :-- |
 | `--bg` | `#F5F6F8` | `#0B0B0B` |
-| `--surface` / `--surface-solid` | `#FFFFFF` | `#141414` |
+| `--surface` | `#FFFFFF` | `#141414` |
 | `--border` | `rgba(0,0,0,.09)` | `rgba(255,255,255,.08)` |
 | `--text` | `#121212` | `#E8E8E8` |
 | `--text-muted` | `#3D3D3D` | `#BDBDBD` |
@@ -56,159 +52,111 @@ CSS variables (`styles/design.scss`, swapped by `.dark`):
 | `--code-inline-text` | `#C2410C` | `#FFA657` |
 | `--shadow-card` | `0 1px 2px rgba(0,0,0,.04)` | `none` |
 
-Fixed colors, the same in both themes unless noted: status green `#10B981`;
-user-bubble text `#0B5FB3` (dark `#D6EFFF`); device bezel `#111214`; terminal
-`#0D1117` body, `#161B22` bar.
+Fixed colors, the same in both themes: status green `#10B981`, user-bubble text `#0B5FB3`
+(dark `#D6EFFF`), device bezel `#111214`, terminal `#0D1117` with a `#161B22`
+bar.
 
-Where the blue goes:
-
-- `--brand-wash` + `--brand-line` bottom border: nav bar, homepage hero, chat
-  sidebar. Flat fills only.
-- `--accent-on-bg`: feature icons, prose links, list markers, hover on titles.
-- `brand`: dots, send button, user bubble (`bg-brand/10`, `border-brand/25`),
-  tag tint (`bg-brand/[0.14]`), blockquote left rule.
-
-Buttons:
-
-- Primary: fill `--text`, label `--bg`; hover opacity .9.
-- Secondary: `--surface` + `--border`; hover border `--text-faint`.
-- Content (shortcode `Button`, 404, active page in pagination): `bg-brand-deep`,
-  white, radius 11px (pagination 10px).
-- Icon button: 36px square, radius 10px, `--text-dim`; hover `--surface` fill.
-- Heights: store buttons 44px (14px/500), nav Download 36px (13.5px/500).
+Buttons: primary `--text` fill with a `--bg` label; secondary `--surface` with
+a `--border` hairline; content buttons (shortcode `Button`, 404, active page)
+`bg-brand-deep` with white text; icon buttons 36px square, `--text-dim`.
 
 ## Typography
 
-- **Inter Variable** (`font-sans`, `font-display`, `font-heading`) - all text but
-  labels; `@fontsource-variable/inter`, imported in `pages/_app.js`
-- **IBM Plex Mono** 400/500/600 (`font-mono`) - labels, dates, counters, code;
-  `next/font` in `lib/fonts.js`, exposed as `--font-ibm-plex-mono`
+Both faces are Apple's system fonts, which can't be self-hosted. Each has a
+self-hosted fallback (a Fontsource latin woff2, OFL) that Apple's browsers
+never download. Nothing comes from Google Fonts or a CDN.
 
-| Role | Size / line-height | Weight, tracking |
+| Stack | Use | Fallback |
 | :-- | :-- | :-- |
-| Hero H1 | 40 -> 48px / 1.05 | 700, -0.03em |
-| Page H1 | 34 -> 52px (contact, download 36 -> 56) / 1.05 -> 1.02 | 800, -0.03em |
-| Section H2 | 20px | 600, -0.01em |
-| Card title | 14-15px | 600 |
-| Body | 16px / 1.65 | 400 |
-| UI text | 13-15px (nav 14, post titles 15/500) | 400-500 |
-| Chat message | 13.5px / 1.6 | 400 |
-| Meta | 10-12.5px | 400 |
-| Label | mono 11px, uppercase, `--text-faint` | 500, 0.1em |
-| Wordmark | 12px, uppercase | 600, 0.2em |
+| SF Pro (`-apple-system`, `BlinkMacSystemFont`) - `font-sans` | all text | Inter, optical-size axis, 71 KB |
+| SF Mono (`ui-monospace`, WebKit only) - `font-mono` | labels, dates, counters, code | IBM Plex Mono 400/500, 15 KB each, used by Firefox and probably Chrome |
 
-Prose (`.page-content`): p 16px/1.7, li 15.5px/1.65, h1 30 -> 34, h2 24 -> 28,
-h3 19 -> 21, h4 17, h5 15.5, h6 14. Its rules sit in `:where()` (zero
-specificity), so Tailwind utilities inside content always win. All headings
-take `var(--text)` from `styles/base.scss`.
+Keep mono at weight 400 or 500. Tracking: none up to 17px; headings -0.007em
+(24-28px), -0.01em (19-56px), -0.015em (72px and up). Never copy apple.com's
+letter-spacing: it is for web-font copies of SF Pro, and the system copy
+already applies its own size-specific tracking.
 
-## Shape, depth, layout
+| Role | Size / line-height (px) | Weight, tracking |
+| :-- | :-- | :-- |
+| Hero H1 | 40 -> 48 / 1.05 | 600, -0.01em |
+| Page H1 | 34 -> 52 (contact, download 36 -> 56; blog, category 36 -> 44; post 30 -> 44) | 600, -0.01em |
+| 404 code | 72 -> 104 | 600, -0.015em |
+| Section H2 | 20 | 600, -0.01em |
+| Card title | 14-15 | 600 |
+| Body (hero subtitle, page intros) | 15.5 -> 17.5 / 1.6-1.65 | 400 |
+| Prose | p 16 / 1.7, li 15.5 / 1.65, td 14.5; h1 30 -> 34, h2 24 -> 28, h3 19 -> 21, h4 17, h5 15.5, h6 14 | 400; headings 600 |
+| UI text | 13-15 (nav 14, post titles 15 / 500) | 400-500 |
+| Chat view | messages 13.5 / 1.6, UI 10-12.5 | 400 |
+| Meta | 10-12.5 | 400 |
+| Label | mono 11, uppercase, `--text-faint` | 500, 0.1em |
+| Wordmark | 12, uppercase | 600, 0.2em |
 
-- Radii: 6px tags; 8px nav links; 9-10px chips, buttons, list items; 11px
-  content buttons; 14px windows, panels, bubbles, composer, accordions; 18px
-  page cards and post hero images; full for dots and the send button.
-- Shadows, all light-mode only except the last: `--shadow-card` (cards,
-  accordions, tabs); hero window `0 24px 48px -28px rgba(13,111,209,.35)`;
-  device bezels `0 1px 2px rgba(0,0,0,.06), 0 24px 48px -28px rgba(0,0,0,.4)`;
-  mobile nav sheet `0 12px 32px -16px rgba(0,0,0,.3)`.
-- Hairline grids: a 1px `gap` over a `--border` background instead of per-cell
-  borders (homepage fact row, device showcase).
-- Layout: 1200px container, 16px gutters (32px from `md`); 56px nav; 760px
-  prose column; homepage sections 56 -> 80px apart.
+Prose rules (`.page-content`) sit in `:where()`, so Tailwind utilities inside
+content always win.
+
+## Shape and layout
+
+- Radii: 6 tags; 8 nav links; 9-10 chips, buttons, list items; 11 content
+  buttons; 14 windows, bubbles, composer, accordions; 18 page cards and post
+  hero images.
+- Shadows in light mode only: `--shadow-card` on cards, accordions and tabs, a
+  soft drop under the hero window and device bezels. The mobile nav sheet
+  keeps its shadow in dark.
+- Hairline grids: a 1px `gap` over a `--border` background, not per-cell
+  borders.
+- Layout: 1200px container, 16px gutters (32 from `md`), 56px nav, 760px prose
+  column, homepage sections 56 -> 80px apart.
+- Breakpoints: `sm` 540 (chat sidebar), `md` 768 (content layouts), `lg` 992
+  (nav links, two-column hero), `xl` 1280.
+- Icons (`Icon`): one path on a 24px grid, stroke 1.8, round caps, no fill,
+  `currentColor`; 12px in chips and buttons, 14px in toolbars, 16px alone.
 
 ## Chat view (`AppWindow`)
 
-A mock of the app, and the pattern for any new UI. Values in px. The three
-chat items are buttons: each swaps in its own thread, model and context count.
+A mock of the app and the pattern for new UI; exact values are in the
+component. The four chat items are buttons that swap the thread, model and
+context count.
 
-| Part | Spec |
-| :-- | :-- |
-| Window | Grid, radius 14, 1px `--brand-line`, canvas `--bg`, height 380 -> 440 (`md`); the hero-window shadow in light |
-| Sidebar | 180px column from `sm`, hidden below; `--brand-wash`, right hairline, padding 10, gap 6, text 11.5 |
-| New Chat | `--surface`, hairline, radius 10, 8 vertical padding, `--text-dim`, 12px plus icon |
-| Chat item | Button, radius 10, padding 10 x 8, title + 10px `--text-faint` time; active = `--surface` + `--border` + `--text`, others transparent border + `--text-dim`, hover `--text` |
-| Top bar | `--surface`, bottom hairline, padding 14 x 10; model picker left, status right |
-| Model picker | Radius 9, hairline, padding 10 x 6, 12.5px; 6px `brand` dot, model name, 12px faint chevron |
-| Status | 6px `#10B981` dot + 11px `--text-faint` ("Offline") |
-| Thread | Padding 20, gap 14, 13.5px / 1.6; scrolls (hidden scrollbar) and opens at the latest message when taller than the window |
-| User bubble | Right-aligned, radius 14, padding 14 x 8, `bg-brand/10`, `border-brand/25`, text `#0B5FB3` / `#D6EFFF` |
-| Assistant reply | No bubble: plain `--text-muted`, max-width 90% |
-| Thinking | Above a reply: 12px lightning + 11.5px `--text-faint` ("Thought for 6s"); the composer's lightning toggle turns `brand` while thinking is on |
-| Composer | Inset 16 from sides and bottom; `--surface`, hairline, radius 14, padding 12 x 10/8; 13px faint placeholder; toolbar (gap 12) of the 14px lightning thinking toggle, a mono 11px context counter pushed right, send button |
-| Send | 26px circle, `brand` fill, white 12px up-arrow at stroke 2.4 |
-| A11y | `role="figure"` + a descriptive `aria-label`; chat items `aria-pressed`; thread `aria-live="polite"`; New Chat and composer `aria-hidden` |
+| Part | Look | Reused by |
+| :-- | :-- | :-- |
+| Window | radius 14, `--brand-line` border, `--bg` canvas | - |
+| Sidebar | `--brand-wash`, from `sm` | nav bar (wash, `--brand-line` bottom) |
+| Chat item | radius 10; active `--surface` + `--border` | active nav link; `PostList` rows |
+| Status | 6px green dot, `--text-faint` "Offline" | hero eyebrow |
+| Model picker | hairline chip, 6px `brand` dot | tags, chips |
+| User bubble | radius 14, `bg-brand/10`, `border-brand/25`, bubble text color | - |
+| Reply | no bubble, `--text-muted`, max 90% wide | - |
+| Composer | `--surface`, hairline, radius 14 | cards, accordions, blockquotes, mobile nav sheet |
+| Send | 26px `brand` circle, white arrow | - |
 
-The rest of the site reuses these parts:
+A11y: `role="figure"` with an `aria-label`, chat items `aria-pressed`, thread
+`aria-live="polite"`, decorative parts `aria-hidden`.
 
-| Site element | Chat-view part |
-| :-- | :-- |
-| Nav | Top bar on the wash: `--brand-wash`, `--brand-line` bottom, 14px `--text-dim` links, radius 8; active link styled like the active chat item |
-| Hero eyebrow | Status: 6px green dot + 13px `--text-faint` |
-| `PostList` rows | Chat items as hairline rows: mono 12.5px date, 15px/500 title (hover `--accent-on-bg`), 11px tags at radius 6 |
-| Cards, accordions, blockquotes | Composer: `--surface`, hairline, radius 14 (page cards 18) |
-| Tags, chips | Model picker: hairline, small radius, 11-12.5px |
-| Mobile nav sheet | Composer surface, radius 14, plus the sheet shadow |
+## Code
 
-## Icons
-
-`Icon` (`layouts/components/site/Icon.js`): one path on a 24px grid, stroke 1.8,
-round caps and joins, `currentColor`, no fill. Sizes: 12px inside chips and
-buttons, 14px in toolbars, 16px standalone. The send arrow uses stroke 2.4.
-
-## Interaction and motion
-
-Hover changes color only: text to `--text` or `--accent-on-bg`, icon buttons
-gain `--surface`, primary buttons drop to opacity .9, secondary borders darken
-to `--text-faint`. No motion beyond color/opacity transitions; respect
-`prefers-reduced-motion` if anything animated is added.
-
-## Breakpoints
-
-`sm` 540, `md` 768, `lg` 992, `xl` 1280. Content layouts switch at `md`; the
-nav link row and the two-column hero appear at `lg`; the chat sidebar appears
-at `sm`.
+- Inline: `--code-inline-text` on `--code-inline-bg`.
+- Fenced (`CodeBlock` -> `.terminal-block`): a terminal window, dark in both
+  themes, with traffic lights, a mono language label and GitHub Dark tokens
+  (`rehype-highlight`, plus `lib/utils/rehypeShellTokens.js` for shell commands
+  and flags).
+- In a chat reply (`.terminal-block--compact`): smaller, no traffic lights; in
+  light mode the user bubble's blue with Xcode Midnight Light tokens.
 
 ## Components
 
-- Shell: `PageShell` (SEO head + nav + footer) wraps every page.
-- Layouts: `ArticleLayout` (default, no `layout` field; `heading`,
-  `heading_accent`, `intro` frontmatter, heading falls back to `title`),
-  `DownloadLayout` (`layout: download`), `ContactLayout` (`layout: contact`), `404`.
+- `PageShell` (SEO head, nav, footer) wraps every page. Layouts:
+  `ArticleLayout` (default; `heading`, `heading_accent`, `intro` frontmatter),
+  `DownloadLayout`, `ContactLayout`, `404`.
 - Homepage: `Hero` (copy, `AppStoreButton`s, `AppWindow`), `Features`,
-  `DeviceShowcase`, `LLMServer` (Mac frame + `curl` terminal block, request
-  diagram, hairline row of use cases), `RecentPosts` (`PostList` + `SubscribeFeed`).
-- Post listings (homepage, blog index, category, search, related posts) all use
-  `PostList`: one hairline row per post, optional excerpt.
-- Library: `Nav`, `Footer`, `ThemeToggle`, `Icon`, `PostList`, `Pagination`,
-  `DeviceFrames`. Shortcodes (`Notice`, `Accordion`, `Button`, `Tabs`, media)
-  follow the same rules; see `/elements`.
-
-Device frames: `IPhoneFrame`, `IPadFrame`, `MacBookFrame` - flat `#111214` bezel
-with a hairline ring, no buttons, notch or shading; the Mac adds a flat
-keyboard bar. Sized in `cqw`, so any width keeps the proportions; callers set
-width and spacing via `className`. `DeviceShowcase` gives each device a column
-on a hairline grid (iPhone, iPad, Mac, by memory): a screenshot, the same spec
-rows (RAM, model budget, largest model), a caption.
-
-Code: inline `` `code` `` is `--code-inline-text` on `--code-inline-bg`.
-Fenced blocks are a terminal window, dark in both themes (`CodeBlock` ->
-`.terminal-block`): traffic lights, mono language label, GitHub Dark colors via
-`rehype-highlight` at build time, plus `lib/utils/rehypeShellTokens.js` for the
-commands and flags its bash grammar leaves plain.
+  `DeviceShowcase`, `LLMServer`, `RecentPosts`.
+- Every post listing uses `PostList`: one hairline row per post.
+- Device frames (`IPhoneFrame`, `IPadFrame`, `MacBookFrame`): flat bezel with a
+  hairline ring, no buttons or notch, sized in `cqw`; callers set the width.
+- Shortcodes (`Notice`, `Accordion`, `Button`, `Tabs`, media) follow the same
+  rules.
 
 ## Theming
 
-`next-themes`, `attribute="class"`, `default_theme: "system"`
-(`config/config.json`); with no system preference it resolves to light.
-Theme-dependent values go through the CSS variables; only the fixed colors
-listed above are hardcoded.
-
-Leftovers from the previous theme - Tailwind `violet`, `teal`, `ink`, `paper`,
-`slate`, `graphite`, the `borderRadius` set (`card`, `panel`, `nav`, `btn`,
-`chip`) and the `config/theme.json` colors (`bg-body`, `darkmode-*`) - are not
-part of this system; new work uses the variables and values above.
-
-## Writing style
-
-Copy rules (no direct reader address, no sales language, editorial tone) live in
-`CLAUDE.md` and apply to all site content.
+`next-themes`, `attribute="class"`, `default_theme: "system"`; light when the
+system has no preference. Tailwind carries only the brand colors and the two
+font stacks; everything else uses its defaults or the CSS variables.

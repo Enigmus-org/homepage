@@ -5,13 +5,13 @@ const Accordion = ({ title, children, className }) => {
 
   return (
     <div
-      className={`mb-3.5 overflow-hidden rounded-[14px] border border-[var(--border)] bg-[var(--surface-solid)] [box-shadow:var(--shadow-card)] ${
+      className={`mb-3.5 overflow-hidden rounded-[14px] border border-[var(--border)] bg-[var(--surface)] [box-shadow:var(--shadow-card)] ${
         className || ""
       }`}
     >
       <button
         type="button"
-        className="relative block w-full px-5 py-4 pr-12 text-left font-heading text-[15.5px] font-semibold text-[var(--text)]"
+        className="relative block w-full px-5 py-4 pr-12 text-left text-[15.5px] font-semibold text-[var(--text)]"
         onClick={() => setShow(!show)}
       >
         {title}

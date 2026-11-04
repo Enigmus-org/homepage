@@ -40,7 +40,7 @@ const SearchPage = () => {
     <PageShell title="Search">
       <section className="relative px-[22px] pb-10 pt-[34px] md:px-14 md:pb-16 md:pt-[60px]">
         <div className="mx-auto w-full max-w-[1200px]">
-          <h1 className="mb-6 text-center font-display text-[34px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:mb-8 md:text-[48px]">
+          <h1 className="mb-6 text-center text-[34px] font-semibold tracking-[-0.01em] text-[var(--text)] md:mb-8 md:text-[48px]">
             Search
           </h1>
           <div className="mb-8 flex justify-center md:mb-12">
@@ -50,14 +50,14 @@ const SearchPage = () => {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Search posts by title, category, or content"
               aria-label="Search posts"
-              className="w-full max-w-md rounded-[14px] border border-[var(--border)] bg-[var(--surface)] px-5 py-3 text-[15px] text-[var(--text)] backdrop-blur-md placeholder:text-[var(--text-faint)] focus:border-brand/60 focus:outline-none"
+              className="w-full max-w-md rounded-[14px] border border-[var(--border)] bg-[var(--surface)] px-5 py-3 text-[15px] leading-6 text-[var(--text)] backdrop-blur-md placeholder:text-[var(--text-faint)] focus:border-brand/60 focus:outline-none"
             />
           </div>
           {searchResults.length > 0 ? (
             <PostList posts={searchResults} withExcerpt />
           ) : (
             keyword && (
-              <div className="mx-auto max-w-md rounded-[18px] border border-[var(--border)] bg-[var(--surface-solid)] p-10 text-center text-[15.5px] text-[var(--text-muted)] [box-shadow:var(--shadow-card)]">
+              <div className="mx-auto max-w-md rounded-[18px] border border-[var(--border)] bg-[var(--surface)] p-10 text-center text-[15.5px] text-[var(--text-muted)] [box-shadow:var(--shadow-card)]">
                 No results found
               </div>
             )

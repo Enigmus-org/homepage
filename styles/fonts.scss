@@ -1,0 +1,35 @@
+// Self-hosted faces, served from public/fonts/: latin subsets from the
+// Fontsource npm packages, SIL OFL 1.1. A browser fetches a face only when
+// text on the page renders in it, so a fallback costs nothing where the
+// first face in its stack is installed.
+
+// Inter with its optical-size axis (text design at body sizes, Display from
+// 32px), like the SF Pro it stands in for. Only the fallback in the site's
+// stack (tailwind.config.js) for systems without SF Pro; Apple devices never
+// fetch it.
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-latin-opsz-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// IBM Plex Mono: the font-mono fallback for browsers that do not resolve
+// ui-monospace (SF Mono), i.e. outside WebKit. Static weights, 400 and 500
+// only: keep mono text at font-normal or font-medium, as a heavier request
+// gets a synthesized bold.
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

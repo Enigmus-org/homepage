@@ -16,10 +16,10 @@ const Hero = ({ banner }) => {
             <span className="h-1.5 w-1.5 rounded-full bg-[#10b981]" />
             Runs on Apple MLX, fully on-device
           </p>
-          <h1 className="text-[40px] font-bold leading-[1.05] tracking-[-0.03em] md:text-[48px]">
+          <h1 className="text-[40px] font-semibold leading-[1.05] tracking-[-0.01em] md:text-[48px]">
             Private AI, locally.
           </h1>
-          <p className="mb-7 mt-[18px] text-[16px] leading-[1.65] text-[var(--text-muted)]">
+          <p className="mb-7 mt-[18px] text-balance text-[16px] leading-[1.65] text-[var(--text-muted)]">
             Private AI for Mac, iPhone, and iPad - powered by Apple&apos;s MLX
             framework. All data stays private and secure through local
             processing on-device. Free and built for privacy.

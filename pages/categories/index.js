@@ -10,7 +10,7 @@ const Categories = ({ categories }) => {
   return (
     <PageShell title={"categories"}>
       <section className="relative px-[22px] pb-16 pt-[34px] text-center md:px-14 md:pb-24 md:pt-[60px]">
-        <h1 className="mb-6 font-display text-[34px] font-extrabold tracking-[-0.03em] text-[var(--text)] md:mb-8 md:text-[48px]">
+        <h1 className="mb-6 text-[34px] font-semibold tracking-[-0.01em] text-[var(--text)] md:mb-8 md:text-[48px]">
           Categories
         </h1>
         <ul className="mx-auto flex max-w-[700px] flex-wrap justify-center gap-3">
@@ -18,7 +18,7 @@ const Categories = ({ categories }) => {
             <li key={`category-${i}`}>
               <Link
                 href={`/categories/${category.name}`}
-                className="inline-flex items-center gap-2.5 rounded-chip border border-[var(--border)] bg-[var(--surface)] px-5 py-2.5 text-[14.5px] capitalize text-[var(--text-muted)] transition hover:-translate-y-0.5 hover:text-[var(--text)]"
+                className="inline-flex items-center gap-2.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-5 py-2.5 text-[14.5px] capitalize text-[var(--text-muted)] transition hover:-translate-y-0.5 hover:text-[var(--text)]"
               >
                 {humanize(category.name)}
                 <span className="font-mono text-[12px] font-medium text-[var(--accent-on-bg)]">

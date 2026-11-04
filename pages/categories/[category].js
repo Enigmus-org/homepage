@@ -15,7 +15,7 @@ const Category = ({ postsByCategories, name }) => {
         <p className="font-mono text-[12px] font-medium uppercase tracking-[0.1em] text-[var(--accent-on-bg)]">
           Category
         </p>
-        <h1 className="mt-2 text-[36px] font-bold leading-[1.1] tracking-[-0.03em] md:text-[44px]">
+        <h1 className="mt-2 text-[36px] font-semibold leading-[1.1] tracking-[-0.01em] md:text-[44px]">
           {name}
         </h1>
         <PostList posts={postsByCategories} withExcerpt className="mt-8" />
