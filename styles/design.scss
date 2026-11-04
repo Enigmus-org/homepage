@@ -179,7 +179,7 @@
 }
 
 // Fenced code blocks as a terminal window (layouts/shortcodes/CodeBlock.jsx).
-// Deliberately dark in both themes — a terminal is dark — and left outside the
+// Deliberately dark in both themes - a terminal is dark - and left outside the
 // .page-content layer so prose pages get the same treatment. Token colors
 // follow GitHub Dark; `sh-cmd` / `sh-flag` come from the extra shell pass in
 // lib/utils/rehypeShellTokens.js.

@@ -13,13 +13,13 @@ Inference uses Apple's [MLX](https://github.com/ml-explore/mlx) framework, which
 
 ## Local by default
 
-The onboarding screen documents the runtime model up front rather than in a settings pane: conversations are stored on-device, there are no accounts, servers, or telemetry, and the weights are publicly released rather than a proprietary endpoint. These are properties of the design, not switches — with no outbound traffic during inference, there is no server-side log or profile to produce.
+The onboarding screen documents the runtime model up front rather than in a settings pane: conversations are stored on-device, there are no accounts, servers, or telemetry, and the weights are publicly released rather than a proprietary endpoint. These are properties of the design, not switches - with no outbound traffic during inference, there is no server-side log or profile to produce.
 
 <img src="/images/launch-mac-welcome.webp" alt="Enigmus welcome window on macOS listing three principles: private, local only, open weights" style={{maxWidth: '720px', width: '100%', display: 'block', margin: '0 auto', borderRadius: '8px'}} />
 
 ## A desktop window, with history in the sidebar
 
-On macOS the app is a standard window. Conversation history is held in a local SwiftData store and listed in a searchable sidebar; the active conversation fills the main pane, with keyboard and pointer input. Generation streams token by token from the local model, so throughput is bounded by the GPU rather than a network round-trip, and it proceeds with networking disabled. Output is rendered as markdown — headings, lists, and syntax-highlighted code blocks — and LaTeX is typeset rather than left as source; the screenshot below shows the model deriving Euler's formula with both inline and display equations. Reasoning-tuned models (Qwen3 4B and larger) emit a separate thinking trace, shown in a collapsible block ahead of the final answer.
+On macOS the app is a standard window. Conversation history is held in a local SwiftData store and listed in a searchable sidebar; the active conversation fills the main pane, with keyboard and pointer input. Generation streams token by token from the local model, so throughput is bounded by the GPU rather than a network round-trip, and it proceeds with networking disabled. Output is rendered as markdown - headings, lists, and syntax-highlighted code blocks - and LaTeX is typeset rather than left as source; the screenshot below shows the model deriving Euler's formula with both inline and display equations. Reasoning-tuned models (Qwen3 4B and larger) emit a separate thinking trace, shown in a collapsible block ahead of the final answer.
 
 <img src="/images/launch-mac-chat.webp" alt="Enigmus on macOS showing a conversation-history sidebar and a chat rendering Euler's formula with typeset equations" style={{maxWidth: '720px', width: '100%', display: 'block', margin: '0 auto', borderRadius: '8px'}} />
 

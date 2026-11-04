@@ -1,6 +1,6 @@
 ---
 title: Enigmus AI - Download
-description: "Download Enigmus for iPhone, iPad, and Mac on the App Store. Private AI powered by Apple's MLX framework—data never leaves the device."
+description: "Download Enigmus for iPhone, iPad, and Mac on the App Store. Private AI powered by Apple's MLX framework - data never leaves the device."
 layout: download
 heading: Download
 heading_accent: Enigmus

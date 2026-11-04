@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 
 // Pagination for blog listings. Page 1 is /posts; later pages live at
 // /page/N (existing route scheme).
@@ -22,7 +23,7 @@ const Pagination = ({ currentPage, totalPages }) => {
           aria-label="Previous page"
           className={btnGlass}
         >
-          ←
+          <IoArrowBack aria-hidden="true" />
         </Link>
       )}
       {pages.map((page) =>
@@ -46,7 +47,7 @@ const Pagination = ({ currentPage, totalPages }) => {
           aria-label="Next page"
           className={btnGlass}
         >
-          →
+          <IoArrowForward aria-hidden="true" />
         </Link>
       )}
     </nav>

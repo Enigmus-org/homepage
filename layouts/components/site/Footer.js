@@ -43,7 +43,7 @@ const Footer = () => {
           />
         </div>
 
-        {/* link columns — desktop */}
+        {/* link columns - desktop */}
         <div className="hidden gap-14 text-[13.5px] text-[var(--text-muted)] md:flex">
           {COLUMNS.map((col) => (
             <div key={col.heading} className="flex flex-col gap-[11px]">
@@ -63,7 +63,7 @@ const Footer = () => {
           ))}
         </div>
 
-        {/* flat link row — mobile */}
+        {/* flat link row - mobile */}
         <div className="flex flex-wrap justify-center gap-x-[18px] gap-y-3 text-[13px] text-[var(--text-muted)] md:hidden">
           {menu.footer.map((item) => (
             <Link key={item.name} href={item.url}>

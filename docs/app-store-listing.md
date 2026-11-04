@@ -15,17 +15,17 @@ Chat with local LLMs that run entirely on your device. No accounts, no internet 
 
 ## Description
 
-Enigmus runs large language models entirely on your device. Conversations never leave your iPhone, iPad, or Mac — no accounts, no servers, no network required after the initial model download.
+Enigmus runs large language models entirely on your device. Conversations never leave your iPhone, iPad, or Mac - no accounts, no servers, no network required after the initial model download.
 
 Hardware requirements: iPhone 13 or newer (A15 Bionic or later), iPad with M1 chip or newer, or any Mac with Apple silicon.
 
 ### Features
 
-- Ships with a small bundled LLM model — chat within seconds of first launch, no download required.
+- Ships with a small bundled LLM model - chat within seconds of first launch, no download required.
 - Download additional open-weight models from Hugging Face: Larger Qwen3 variants. The picker recommends models that fit your device's available memory.
 - Streaming responses with markdown and code-block rendering.
 - Reasoning-capable models (Qwen3 4B and up) show their thinking before the final answer.
-- Local chat history backed by SwiftData — conversations stay on the device.
+- Local chat history backed by SwiftData - conversations stay on the device.
 - Adaptive layout for iPhone, iPad, and Mac, with keyboard and pointer support on the larger screens.
 - Customize tint color, fonts, and haptics in Settings.
 

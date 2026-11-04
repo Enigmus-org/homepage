@@ -26,7 +26,7 @@
   <ellipse cx="1090" cy="40" rx="460" ry="300" fill="url(#washT)"/>
 
   <text x="72" y="92" font-family="Helvetica Neue, Helvetica, Arial" font-size="46" font-weight="700" fill="#FFFFFF">One API, three engines</text>
-  <text x="72" y="128" font-family="Helvetica Neue, Helvetica, Arial" font-size="19" fill="#FFFFFF" fill-opacity="0.82">Apple&#8217;s Foundation Models protocols make the inference engine a swappable backend</text>
+  <text x="72" y="128" font-family="Helvetica Neue, Helvetica, Arial" font-size="19" fill="#FFFFFF" fill-opacity="0.82">Apple's Foundation Models protocols make the inference engine a swappable backend</text>
 
   <g filter="url(#pillShadow)">
     <rect x="330" y="172" width="540" height="66" rx="16" fill="#0B1220"/>
@@ -57,17 +57,17 @@
   <text x="100" y="382" font-family="Helvetica Neue, Helvetica, Arial" font-size="21" font-weight="600" fill="#0C1220">Apple system model</text>
   <text x="100" y="414" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">Built in, nothing to download</text>
   <text x="100" y="440" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">Private Cloud Compute variant</text>
-  <text x="100" y="480" font-family="Menlo, monospace" font-size="13" fill="#0D6FD1">shipped &#183; OS 26+</text>
+  <text x="100" y="480" font-family="Menlo, monospace" font-size="13" fill="#0D6FD1">shipped - OS 26+</text>
 
   <text x="488" y="382" font-family="Helvetica Neue, Helvetica, Arial" font-size="21" font-weight="600" fill="#0C1220">Core AI bundle</text>
   <text x="488" y="414" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">GPU pipelined engine</text>
   <text x="488" y="440" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">ANE static-shape engine</text>
-  <text x="488" y="480" font-family="Menlo, monospace" font-size="13" fill="#0D6FD1">.aimodel &#183; OS 27 beta</text>
+  <text x="488" y="480" font-family="Menlo, monospace" font-size="13" fill="#0D6FD1">.aimodel - OS 27 beta</text>
 
   <text x="876" y="382" font-family="Helvetica Neue, Helvetica, Arial" font-size="21" font-weight="600" fill="#0C1220">MLX checkpoint</text>
   <text x="876" y="414" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">Any Hugging Face model</text>
   <text x="876" y="440" font-family="Helvetica Neue, Helvetica, Arial" font-size="15" fill="#46506A">via MLXFoundationModels</text>
-  <text x="876" y="480" font-family="Menlo, monospace" font-size="13" fill="#0D6FD1">safetensors &#183; OS 27 beta</text>
+  <text x="876" y="480" font-family="Menlo, monospace" font-size="13" fill="#0D6FD1">safetensors - OS 27 beta</text>
 
   <text x="72" y="566" font-family="Helvetica Neue, Helvetica, Arial" font-size="17" fill="#FFFFFF" fill-opacity="0.78">Enigmus runs on MLX today. The seam above is what a transition to Core AI would use.</text>
 </svg>

@@ -30,7 +30,7 @@ const Base = ({
         {/* canonical url */}
         {canonical && <link rel="canonical" href={canonical} itemProp="url" />}
 
-        {/* feed autodiscovery — readers resolve the blog feed from any page,
+        {/* feed autodiscovery - readers resolve the blog feed from any page,
             so pasting enigmus.cc into a reader is enough to subscribe */}
         <link
           rel="alternate"

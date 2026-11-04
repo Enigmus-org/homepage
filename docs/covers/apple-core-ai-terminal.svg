@@ -36,21 +36,21 @@
   <circle cx="118" cy="135" r="6.5" fill="#FF5F57"/>
   <circle cx="140" cy="135" r="6.5" fill="#FEBC2E"/>
   <circle cx="162" cy="135" r="6.5" fill="#28C840"/>
-  <text x="600" y="140" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial" font-size="14" fill="#6B7488">llm-runner &#8212; Core AI</text>
+  <text x="600" y="140" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial" font-size="14" fill="#6B7488">llm-runner - Core AI</text>
 
   <g font-family="Menlo, monospace" font-size="17" xml:space="preserve">
-    <text x="120" y="196" fill="#6B7488"># export a checkpoint &#8212; runs on the dev machine</text>
+    <text x="120" y="196" fill="#6B7488"># export a checkpoint - runs on the dev machine</text>
     <text x="120" y="226"><tspan fill="#5FCB7F">$ </tspan><tspan fill="#E8ECF5">uv run coreai.llm.export Qwen/Qwen3-0.6B</tspan></text>
     <text x="120" y="256"><tspan fill="#5FCB7F">$ </tspan><tspan fill="#E8ECF5">uv run coreai.llm.export Qwen/Qwen3-0.6B </tspan><tspan fill="#9FE0FF">--platform iOS</tspan></text>
 
-    <text x="120" y="316" fill="#6B7488"># run it &#8212; no app bundle, no network</text>
+    <text x="120" y="316" fill="#6B7488"># run it - no app bundle, no network</text>
     <text x="120" y="346"><tspan fill="#5FCB7F">$ </tspan><tspan fill="#E8ECF5">swift run -c release llm-runner \</tspan></text>
     <text x="164" y="376"><tspan fill="#9FE0FF">--model</tspan><tspan fill="#E8ECF5"> Qwen3-0.6B.aimodel \</tspan></text>
     <text x="164" y="406"><tspan fill="#9FE0FF">--prompt</tspan><tspan fill="#E8ECF5"> "Explain a one-time pad."</tspan></text>
 
     <text x="120" y="466" fill="#6B7488"># measure it before betting on it</text>
-    <text x="120" y="496"><tspan fill="#5FCB7F">$ </tspan><tspan fill="#E8ECF5">swift run -c release llm-benchmark </tspan><tspan fill="#9FE0FF">--model</tspan><tspan fill="#E8ECF5"> Qwen3-0.6B.aimodel</tspan><tspan fill="#5EC0FF"> &#9613;</tspan></text>
+    <text x="120" y="496"><tspan fill="#5FCB7F">$ </tspan><tspan fill="#E8ECF5">swift run -c release llm-benchmark </tspan><tspan fill="#9FE0FF">--model</tspan><tspan fill="#E8ECF5"> Qwen3-0.6B.aimodel</tspan><tspan fill="#5EC0FF" font-weight="700"> |</tspan></text>
   </g>
 
-  <text x="90" y="590" font-family="Helvetica Neue, Helvetica, Arial" font-size="17" fill="#FFFFFF" fill-opacity="0.8">Core AI ships LLM inference as command-line executables &#183; requires iOS / macOS 27</text>
+  <text x="90" y="590" font-family="Helvetica Neue, Helvetica, Arial" font-size="17" fill="#FFFFFF" fill-opacity="0.8">Core AI ships LLM inference as command-line executables - requires iOS / macOS 27</text>
 </svg>

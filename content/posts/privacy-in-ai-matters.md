@@ -7,13 +7,13 @@ featured: true
 draft: false
 ---
 
-As AI becomes deeply integrated into daily life, a critical question emerges: what happens to all the data these systems consume? From voice assistants to recommendation algorithms, modern AI is built on vast amounts of personal information. Understanding the privacy implications isn't optional anymore—it's essential.
+As AI becomes deeply integrated into daily life, a critical question emerges: what happens to all the data these systems consume? From voice assistants to recommendation algorithms, modern AI is built on vast amounts of personal information. Understanding the privacy implications isn't optional anymore - it's essential.
 
 ## Why Privacy Matters
 
 Privacy in AI isn't just about keeping secrets. It's about maintaining control over digital identity. AI systems process everything from browsing patterns to biometric data, creating detailed profiles that reveal far more than any single data point would suggest.
 
-The scale is staggering. A typical large language model trains on hundreds of billions of data points. Interactions with cloud-based AI services often become part of that training data—whether users realize it or not.
+The scale is staggering. A typical large language model trains on hundreds of billions of data points. Interactions with cloud-based AI services often become part of that training data - whether users realize it or not.
 
 ### The Real Risks
 
