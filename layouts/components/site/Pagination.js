@@ -30,7 +30,7 @@ const Pagination = ({ currentPage, totalPages }) => {
           <span
             key={page}
             aria-current="page"
-            className={`${btnBase} border-transparent bg-brand-deep font-semibold text-white`}
+            className={`${btnBase} border-transparent bg-brand-deep font-medium text-white`}
           >
             {page}
           </span>

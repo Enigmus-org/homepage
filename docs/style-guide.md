@@ -91,7 +91,7 @@ CDN, neither in the browser nor at build time.
   devices never fetch.
 - **Instrument Sans** (`font-chat`) - the chat view only; 29 KB, preloaded by
   `AppWindow`.
-- **IBM Plex Mono** 400/500/600 (`font-mono`) - labels, dates, counters, code;
+- **IBM Plex Mono** 400/500 (`font-mono`) - labels, dates, counters, code;
   15 KB per weight
 
 Inter, Instrument Sans and IBM Plex Mono are latin woff2 subsets (Fontsource,

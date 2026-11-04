@@ -15,8 +15,9 @@
   font-display: swap;
 }
 
-// IBM Plex Mono (font-mono): labels, dates, counters, code. Static weights;
-// a heavier request (font-bold) renders at 600.
+// IBM Plex Mono (font-mono): labels, dates, counters, code. Static weights,
+// 400 and 500 only: keep mono text at font-normal or font-medium, as a
+// heavier request gets a synthesized bold.
 @font-face {
   font-family: "IBM Plex Mono";
   src: url("/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
@@ -28,13 +29,6 @@
   font-family: "IBM Plex Mono";
   src: url("/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
   font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "IBM Plex Mono";
-  src: url("/fonts/ibm-plex-mono-latin-600-normal.woff2") format("woff2");
-  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
