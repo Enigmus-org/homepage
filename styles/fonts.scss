@@ -15,9 +15,10 @@
   font-display: swap;
 }
 
-// IBM Plex Mono (font-mono): labels, dates, counters, code. Static weights,
-// 400 and 500 only: keep mono text at font-normal or font-medium, as a
-// heavier request gets a synthesized bold.
+// IBM Plex Mono: the font-mono fallback for browsers that do not resolve
+// ui-monospace (SF Mono), i.e. outside WebKit. Static weights, 400 and 500
+// only: keep mono text at font-normal or font-medium, as a heavier request
+// gets a synthesized bold.
 @font-face {
   font-family: "IBM Plex Mono";
   src: url("/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");

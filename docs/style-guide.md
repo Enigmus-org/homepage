@@ -12,7 +12,7 @@ Code:
 - `tailwind.config.js` - brand colors, font families, breakpoints
 - `layouts/PageShell.js`, `layouts/*Layout.js` - page shell and layouts
 - `layouts/components/site/` - components; `AppWindow.js` is the reference
-- `styles/fonts.scss`, `public/fonts/` - the self-hosted webfonts: Inter (the SF Pro fallback), IBM Plex Mono
+- `styles/fonts.scss`, `public/fonts/` - the self-hosted webfonts: Inter (the SF Pro fallback), IBM Plex Mono (the SF Mono fallback)
 
 ## Principles
 
@@ -89,8 +89,11 @@ CDN, neither in the browser nor at build time.
   Systems without it fall back to **Inter** (with its optical-size axis, so
   it also switches to its Display design at large sizes; 71 KB), which Apple
   devices never fetch.
-- **IBM Plex Mono** 400/500 (`font-mono`) - labels, dates, counters, code;
-  15 KB per weight
+- **SF Mono** (`font-mono`) - labels, dates, counters, code. Also the system
+  copy, named by `ui-monospace`, which only WebKit resolves (Safari, every
+  iOS browser). Firefox (checked) and, as far as known, Chrome skip it and
+  use **IBM Plex Mono** 400/500 (15 KB per weight). The two look nearly the
+  same at these sizes: SF Mono runs about 3% wider and slashes its zero.
 
 Inter and IBM Plex Mono are latin woff2 subsets (Fontsource,
 OFL) in `public/fonts/`, declared in `styles/fonts.scss`. The apps run only on
@@ -117,7 +120,7 @@ apple.com's, which it is left at for legibility.
 | UI text | 13-15px (nav 14, post titles 15/500) | 400-500 |
 | Chat view | messages 13.5px / 1.6, UI 10-12.5px | 400 |
 | Meta | 10-12.5px | 400 |
-| Label (IBM Plex Mono) | 11px, uppercase, `--text-faint` | 500, 0.1em |
+| Label (mono) | 11px, uppercase, `--text-faint` | 500, 0.1em |
 | Wordmark | 12px, uppercase | 600, 0.2em |
 
 Prose (`.page-content`): p 16px/1.7, li 15.5px/1.65, h1 30 -> 34, h2 24 -> 28,

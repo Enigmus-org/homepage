@@ -106,8 +106,10 @@ module.exports = {
         display: SANS,
         heading: SANS,
         sans: SANS,
-        // Labels, dates, counters, code; styles/fonts.scss
-        mono: ["'IBM Plex Mono'", "ui-monospace", "monospace"],
+        // Labels, dates, counters, code: SF Mono where ui-monospace resolves
+        // (WebKit: Safari, every iOS browser), the self-hosted IBM Plex Mono
+        // elsewhere (styles/fonts.scss)
+        mono: ["ui-monospace", "'IBM Plex Mono'", "monospace"],
       },
       borderRadius: {
         card: "26px",
