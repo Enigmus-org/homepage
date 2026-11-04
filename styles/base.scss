@@ -1,9 +1,13 @@
+// 18px root: every rem-based utility on the site (spacing, sizes) scales
+// from it.
 html {
-  @apply text-base;
+  font-size: 18px;
 }
 
 body {
-  @apply bg-body font-primary font-normal leading-relaxed text-text dark:bg-darkmode-body dark:text-darkmode-light;
+  @apply leading-relaxed;
+  background: var(--bg);
+  color: var(--text);
 }
 
 h1,
@@ -12,35 +16,10 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-secondary font-semibold leading-tight text-[var(--text)];
+  @apply font-semibold leading-tight text-[var(--text)];
 }
 
-h1,
-.h1 {
-  @apply text-h1-sm md:text-h1;
-}
-
-h2,
-.h2 {
-  @apply text-h2-sm md:text-h2;
-}
-
-h3,
-.h3 {
-  @apply text-h3-sm md:text-h3;
-}
-
-h4,
-.h4 {
-  @apply text-h4;
-}
-
-h5,
-.h5 {
-  @apply text-h5;
-}
-
-h6,
-.h6 {
-  @apply text-h6;
+b,
+strong {
+  @apply font-semibold;
 }

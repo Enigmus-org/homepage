@@ -7,6 +7,7 @@ are in `CLAUDE.md`.
 
 | File | Holds |
 | :-- | :-- |
+| `styles/base.scss` | 18px root font size (rem utilities scale from it), body, heading defaults |
 | `styles/design.scss` | CSS variables (light/dark), `.page-content` prose, `.terminal-block` |
 | `styles/fonts.scss`, `public/fonts/` | the self-hosted fallback fonts |
 | `tailwind.config.js` | brand colors, font stacks, breakpoints |
@@ -33,12 +34,12 @@ are in `CLAUDE.md`.
 
 Brand, from the app icon: `brand` `#1FA3FB` for dots, icons, the send button
 and tints (never text on white, 2.7:1); `brand-deep` `#0D6FD1` for accent text
-and filled buttons on light; `brand-sky` `#5EC0FF` for accent text on dark.
+and filled buttons on light. Accent text on dark is `--accent-on-bg`.
 
 | Variable | Light | Dark |
 | :-- | :-- | :-- |
 | `--bg` | `#F5F6F8` | `#0B0B0B` |
-| `--surface` / `--surface-solid` | `#FFFFFF` | `#141414` |
+| `--surface` | `#FFFFFF` | `#141414` |
 | `--border` | `rgba(0,0,0,.09)` | `rgba(255,255,255,.08)` |
 | `--text` | `#121212` | `#E8E8E8` |
 | `--text-muted` | `#3D3D3D` | `#BDBDBD` |
@@ -157,7 +158,5 @@ A11y: `role="figure"` with an `aria-label`, chat items `aria-pressed`, thread
 ## Theming
 
 `next-themes`, `attribute="class"`, `default_theme: "system"`; light when the
-system has no preference. Leftovers from the previous theme are not part of
-this system: Tailwind `violet`, `teal`, `ink`, `paper`, `slate`, `graphite`,
-the `borderRadius` set (`card`, `panel`, `nav`, `btn`, `chip`) and the
-`config/theme.json` colors.
+system has no preference. Tailwind carries only the brand colors and the two
+font stacks; everything else uses its defaults or the CSS variables.

@@ -41,7 +41,7 @@ function Tabs({ children }) {
         ))}
       </ul>
       <ul
-        className="mt-2 mb-0 list-none rounded-[14px] border border-[var(--border)] bg-[var(--surface-solid)] p-6 pl-6 [box-shadow:var(--shadow-card)]"
+        className="mt-2 mb-0 list-none rounded-[14px] border border-[var(--border)] bg-[var(--surface)] p-6 pl-6 [box-shadow:var(--shadow-card)]"
         ref={tabItemsRef}
       >
         {children}

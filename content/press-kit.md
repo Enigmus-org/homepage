@@ -25,7 +25,7 @@ The full Enigmus app icon — white lock with chat-bubble keyhole on a blue grad
 The lock mark on its own (transparent background) — for use on dark backgrounds, social avatars, embeds.
 
 <img
-  className="my-5 rounded-2xl bg-ink-800 p-6"
+  className="my-5 rounded-2xl bg-[#0C111C] p-6"
   src="/press/586-lock-mark-white.png"
   alt="Enigmus lock mark"
   width="220"

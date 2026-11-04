@@ -41,18 +41,16 @@ npm run lint     # ESLint
 - `/lib/jsonGenerator.js` - Pre-build script generating search JSON
 - `/lib/feedGenerator.js` - Pre-build script generating `public/feed.xml` (RSS 2.0, full post HTML in `content:encoded`) and `public/feed.json` (JSON Feed 1.1); both are build artifacts and gitignored. Runs with jsonGenerator via `npm run generate`
 - `/layouts/` - Page layouts and reusable components
-- `/config/` - Site configuration (config.json, menu.json, theme.json, social.json)
+- `/config/` - Site configuration (config.json, menu.json, social.json)
 
 ### Configuration
 - `/config/config.json` - Site metadata, pagination (6 posts), widget settings
 - `/config/menu.json` - Navigation structure (main/footer menus)
-- `/config/theme.json` - Colors and typography
 - `next.config.js` - Has `output: 'export'` for static generation
 
 ### Styling
-- Tailwind CSS with SCSS in `/styles/`
+- Tailwind CSS (no plugins) with SCSS in `/styles/`; colors and fonts live in `styles/design.scss` and `tailwind.config.js`
 - Dark mode via `next-themes`
-- Bootstrap grid compatibility via `tailwind-bootstrap-grid`
 - Design system (flat, WebUI-style, with the Enigmus blue used gently - no gradients or glow): tokens, typography, and component conventions are documented in `docs/style-guide.md`; the `/elements` page is the live visual reference
 
 ## Adding Content

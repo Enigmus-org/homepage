@@ -7,7 +7,7 @@ const NotFound = ({ data }) => {
   return (
     <section className="relative flex min-h-[55vh] items-center justify-center px-[22px] py-16 text-center md:px-14">
       <div>
-        <h1 className="mb-2 font-display text-[72px] font-semibold leading-none tracking-[-0.015em] text-brand-deep dark:text-brand md:text-[104px]">
+        <h1 className="mb-2 text-[72px] font-semibold leading-none tracking-[-0.015em] text-brand-deep dark:text-brand md:text-[104px]">
           404
         </h1>
         {markdownify(content, "div", "page-content")}

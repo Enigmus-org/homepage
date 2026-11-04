@@ -28,7 +28,7 @@ const Footer = () => {
               height={28}
               className="h-[26px] w-[26px] rounded-lg md:h-7 md:w-7"
             />
-            <span className="font-heading text-[16px] font-semibold text-[var(--text)]">
+            <span className="text-[16px] font-semibold text-[var(--text)]">
               Enigmus
             </span>
           </div>

@@ -61,7 +61,7 @@ const SubscribeFeed = ({ className = "" }) => {
       </div>
 
       <div className="flex items-center justify-between gap-3 border-t border-[var(--border)] px-5 py-2.5 md:px-6">
-        <code className="overflow-x-auto whitespace-nowrap font-mono text-[12px] text-[var(--text-dim)] scrollbar-none md:text-[12.5px]">
+        <code className="overflow-x-auto whitespace-nowrap font-mono text-[12px] text-[var(--text-dim)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:text-[12.5px]">
           {RSS_URL}
         </code>
         <button

@@ -45,7 +45,7 @@ const PostSingle = ({
               </Link>
             ))}
           </div>
-          <h1 className="mb-4 text-center font-display text-[30px] font-semibold leading-[1.1] tracking-[-0.01em] text-[var(--text)] md:text-[44px] md:leading-[1.05]">
+          <h1 className="mb-4 text-center text-[30px] font-semibold leading-[1.1] tracking-[-0.01em] text-[var(--text)] md:text-[44px] md:leading-[1.05]">
             {title}
           </h1>
           <div className="mb-8 text-center font-mono text-[12.5px] text-[var(--text-faint)] md:mb-10">

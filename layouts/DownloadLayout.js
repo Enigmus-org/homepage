@@ -13,7 +13,7 @@ const DownloadLayout = ({ data }) => {
   const primaryIndex = isMac && macIndex !== -1 ? macIndex : 0;
   return (
     <section className="relative px-[22px] pb-6 pt-[34px] text-center md:px-14 md:pb-10 md:pt-[70px]">
-      <h1 className="mx-auto mb-4 max-w-[800px] font-display text-[36px] font-semibold leading-[1.05] tracking-[-0.01em] text-[var(--text)] md:mb-5 md:text-[56px] md:leading-[1.02]">
+      <h1 className="mx-auto mb-4 max-w-[800px] text-[36px] font-semibold leading-[1.05] tracking-[-0.01em] text-[var(--text)] md:mb-5 md:text-[56px] md:leading-[1.02]">
         {heading}{" "}
         {heading_accent && (
           <span className="text-brand-deep dark:text-brand">
@@ -29,9 +29,9 @@ const DownloadLayout = ({ data }) => {
         {platforms.map((platform, i) => (
           <div
             key={platform.name}
-            className="rounded-[18px] border border-[var(--border)] bg-[var(--surface-solid)] p-6 [box-shadow:var(--shadow-card)] md:p-7"
+            className="rounded-[18px] border border-[var(--border)] bg-[var(--surface)] p-6 [box-shadow:var(--shadow-card)] md:p-7"
           >
-            <h2 className="mb-4 text-center font-heading text-[19px] font-semibold text-[var(--text)] dark:text-white md:mb-5 md:text-[20px]">
+            <h2 className="mb-4 text-center text-[19px] font-semibold text-[var(--text)] dark:text-white md:mb-5 md:text-[20px]">
               {platform.name}
             </h2>
             <div className="flex justify-center">

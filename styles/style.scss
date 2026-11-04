@@ -8,13 +8,3 @@
   @import "base";
   @import "design";
 }
-
-@layer components {
-  @import "components";
-  @import "navigation";
-  @import "buttons";
-}
-
-@layer utilities {
-  @import "utilities";
-}
