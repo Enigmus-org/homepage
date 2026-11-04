@@ -12,7 +12,7 @@ Code:
 - `tailwind.config.js` - brand colors, font families, breakpoints
 - `layouts/PageShell.js`, `layouts/*Layout.js` - page shell and layouts
 - `layouts/components/site/` - components; `AppWindow.js` is the reference
-- `styles/fonts.scss`, `public/fonts/` - the self-hosted webfonts: Inter (the SF Pro fallback), Instrument Sans, IBM Plex Mono
+- `styles/fonts.scss`, `public/fonts/` - the self-hosted webfonts: Inter (the SF Pro fallback), IBM Plex Mono
 
 ## Principles
 
@@ -83,18 +83,16 @@ Every webfont is a file in this repo: nothing comes from Google Fonts or a
 CDN, neither in the browser nor at build time.
 
 - **SF Pro** (`font-sans`, also `font-display`, `font-heading`) - all text but
-  the chat view and labels. Apple's license rules out self-hosting, so the
+  labels and code, the chat view included. Apple's license rules out self-hosting, so the
   stack names the copy built into macOS and iOS (`-apple-system`,
   `BlinkMacSystemFont`), which picks its Text or Display design by size.
   Systems without it fall back to **Inter** (with its optical-size axis, so
   it also switches to its Display design at large sizes; 71 KB), which Apple
   devices never fetch.
-- **Instrument Sans** (`font-chat`) - the chat view only; 29 KB, preloaded by
-  `AppWindow`.
 - **IBM Plex Mono** 400/500 (`font-mono`) - labels, dates, counters, code;
   15 KB per weight
 
-Inter, Instrument Sans and IBM Plex Mono are latin woff2 subsets (Fontsource,
+Inter and IBM Plex Mono are latin woff2 subsets (Fontsource,
 OFL) in `public/fonts/`, declared in `styles/fonts.scss`. The apps run only on
 Apple platforms, where SF Pro is always present, so the fallback is web-only.
 
@@ -117,7 +115,7 @@ apple.com's, which it is left at for legibility.
 | Body (hero subtitle, page intros) | 15.5 -> 17.5px / 1.6-1.65 | 400 |
 | Prose text | p 16px / 1.7, li 15.5px / 1.65, td 14.5px | 400 |
 | UI text | 13-15px (nav 14, post titles 15/500) | 400-500 |
-| Chat view (Instrument Sans) | messages 13.5px / 1.6, UI 10-12.5px | 400 |
+| Chat view | messages 13.5px / 1.6, UI 10-12.5px | 400 |
 | Meta | 10-12.5px | 400 |
 | Label (IBM Plex Mono) | 11px, uppercase, `--text-faint` | 500, 0.1em |
 | Wordmark | 12px, uppercase | 600, 0.2em |
@@ -150,7 +148,7 @@ chat items are buttons: each swaps in its own thread, model and context count.
 | Part | Spec |
 | :-- | :-- |
 | Window | Grid, radius 14, 1px `--brand-line`, canvas `--bg`, height 380 -> 440 (`md`); the hero-window shadow in light |
-| Type | Instrument Sans (`font-chat` on the window), default tracking; the context counter stays mono. The site parts below reuse shapes and colors, not this face |
+| Type | SF Pro like the rest of the site, default tracking; the context counter and code are mono |
 | Sidebar | 180px column from `sm`, hidden below; `--brand-wash`, right hairline, padding 10, gap 6, text 11.5 |
 | New Chat | `--surface`, hairline, radius 10, 8 vertical padding, `--text-dim`, 12px plus icon |
 | Chat item | Button, radius 10, padding 10 x 8, title + 10px `--text-faint` time; active = `--surface` + `--border` + `--text`, others transparent border + `--text-dim`, hover `--text` |

@@ -106,8 +106,6 @@ module.exports = {
         display: SANS,
         heading: SANS,
         sans: SANS,
-        // The chat view (AppWindow); styles/fonts.scss
-        chat: ["'Instrument Sans'", "sans-serif"],
         // Labels, dates, counters, code; styles/fonts.scss
         mono: ["'IBM Plex Mono'", "ui-monospace", "monospace"],
       },
