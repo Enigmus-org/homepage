@@ -240,7 +240,7 @@
   // brand/10, border brand/25, bar at the tag tint, brand/14) with the token
   // colors of Xcode's Midnight Light theme; the dark theme keeps the terminal.
   &--compact {
-    @apply my-2.5 rounded-[10px] shadow-none last:mb-0;
+    @apply my-0 rounded-[10px] shadow-none;
 
     .terminal-block__bar {
       @apply px-3 py-1.5;
