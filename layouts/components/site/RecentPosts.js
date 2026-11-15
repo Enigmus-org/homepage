@@ -7,13 +7,14 @@ import SubscribeFeed from "./SubscribeFeed";
 
 const { blog_folder } = config.settings;
 
-// The newest post as a card over the list: date, title, the post's opening
-// and its tags, plus the post's `hero_iphone` screenshot in a small iPhone
-// frame when it has one. Posts without one get the same card, text only.
+// The newest post as a card over the list, on the nav and hero's blue wash:
+// date, title, the post's opening and its tags, plus the post's `hero_iphone`
+// screenshot in a small iPhone frame when it has one. Posts without one get
+// the same card, text only.
 const LeadPost = ({ slug, frontmatter: post, content }) => (
   <Link
     href={`/${blog_folder}/${slug}`}
-    className="group mb-6 flex items-center justify-between gap-5 rounded-[14px] border border-[var(--border)] bg-[var(--surface)] px-5 py-5 transition-colors hover:border-[var(--text-faint)] md:gap-8 md:px-7 md:py-6"
+    className="group mb-6 flex items-center justify-between gap-5 rounded-[14px] border border-[var(--brand-line)] bg-[var(--brand-wash)] px-5 py-5 transition-colors hover:border-brand/50 md:gap-8 md:px-7 md:py-6"
   >
     <span className="block min-w-0 max-w-[720px] flex-1">
       <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
