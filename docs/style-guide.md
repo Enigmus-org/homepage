@@ -86,7 +86,7 @@ already applies its own size-specific tracking.
 | Body (hero subtitle, page intros) | 15.5 -> 17.5 / 1.6-1.65 | 400 |
 | Prose | p 16 / 1.7, li 15.5 / 1.65, td 14.5; h1 30 -> 34, h2 24 -> 28, h3 19 -> 21, h4 17, h5 15.5, h6 14 | 400; headings 600 |
 | UI text | 13-15 (nav 14, post titles 15 / 500) | 400-500 |
-| Chat view | messages 13.5 / 1.6, UI 10-12.5 | 400 |
+| Chat view | messages 15 / 1.4, chat items 14.4 and 12.65 (the Mac app's +15%), UI 10-13 | 400 |
 | Meta | 10-12.5 | 400 |
 | Label | mono 11, uppercase, `--text-faint` | 500, 0.1em |
 | Wordmark | 12, uppercase | 600, 0.2em |
@@ -97,8 +97,8 @@ content always win.
 ## Shape and layout
 
 - Radii: 6 tags; 8 nav links; 9-10 chips, buttons, list items; 11 content
-  buttons; 14 windows, bubbles, composer, accordions; 18 page cards and post
-  hero images.
+  buttons; 14 bubbles, composer, accordions; 18 page cards and post hero
+  images; 26 the hero window.
 - Shadows in light mode only: `--shadow-card` on cards, accordions and tabs, a
   soft drop under the hero window and device bezels. The mobile nav sheet
   keeps its shadow in dark.
@@ -109,27 +109,32 @@ content always win.
 - Breakpoints: `sm` 540 (chat sidebar), `md` 768 (content layouts), `lg` 992
   (nav links, two-column hero), `xl` 1280.
 - Icons (`Icon`): one path on a 24px grid, stroke 1.8, round caps, no fill,
-  `currentColor`; 12px in chips and buttons, 14px in toolbars, 16px alone.
+  `currentColor`; 12px in chips and buttons, 15px in toolbars, 16px alone.
 
 ## Chat view (`AppWindow`)
 
 A mock of the app and the pattern for new UI; exact values are in the
-component. The four chat items are buttons that swap the thread, model and
-context count.
+component, which draws the Mac app at its own sizes, messages and chat items
+15% larger. The five chat items are buttons that swap the thread, thinking
+chip and context count, each short enough to fit without scrolling. The
+composer's two chips open menus, as in the app: Fast or Think for the chat,
+and the model, app-wide.
 
 | Part | Look | Reused by |
 | :-- | :-- | :-- |
-| Window | radius 14, `--brand-line` border, `--bg` canvas | - |
-| Sidebar | `--brand-wash`, from `sm` | nav bar (wash, `--brand-line` bottom) |
-| Chat item | radius 10; active `--surface` + `--border` | active nav link; `PostList` rows |
-| Status | 6px green dot, `--text-faint` "Offline" | hero eyebrow |
-| Model picker | hairline chip, 6px `brand` dot | tags, chips |
+| Window | radius 26, `--border` frame with the app's `--brand-line` ring 3px inside, `--bg` canvas | - |
+| Sidebar | `--brand-wash`, from `sm`: traffic lights, search field, LLM Server box, chat items | nav bar (wash, `--brand-line` bottom) |
+| Chat item | radius 10, title `--text`, date `--text-dim`, `--border` hairlines between items; hover `--surface` at 60%; active `--surface` + `--border`; no hairline beside either | active nav link; `PostList` rows |
+| Server box | a raised chat item: 6px green dot, "Active" and the port in `--text-faint`; the same dot on the toolbar's server icon | hero eyebrow dot |
+| Toolbar | `--surface`, no hairline, centered `--text-dim` title and icons | - |
+| Model picker | hairline chip, 6px `brand` dot, `brand` hairline on hover; its menu is a `--surface` card with a `brand` check | tags, chips |
+| Thinking chip | opens the model picker's menu with Fast and Think. Fast: gold bolt, `--text-dim`, `--bg` pill and `--text` on hover; Think: `--brand-wash` pill, `--accent-on-bg`, `bg-brand/[0.14]` on hover | - |
 | User bubble | radius 14, `bg-brand/10`, `border-brand/25`, bubble text color | - |
-| Reply | no bubble, `--text-muted`, max 90% wide | - |
+| Reply | no bubble, `--text-muted`, max 90% wide; copy, play and tok/s under it in `--text-dim` | - |
 | Composer | `--surface`, hairline, radius 14 | cards, accordions, blockquotes, mobile nav sheet |
-| Send | 26px `brand` circle, white arrow | - |
+| Send | 26px `brand` circle, white arrow, half opacity while the field is empty | - |
 
-A11y: `role="figure"` with an `aria-label`, chat items `aria-pressed`, thread
+A11y: `role="figure"` with an `aria-label`, chat items `aria-pressed`, thinking chip labeled with its mode, menus `role="menu"` with `menuitemradio` options, thread
 `aria-live="polite"`, decorative parts `aria-hidden`.
 
 ## Code
