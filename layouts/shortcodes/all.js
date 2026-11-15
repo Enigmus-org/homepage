@@ -3,6 +3,7 @@ import {
   IPhoneFrame,
   MacBookFrame,
 } from "@layouts/components/site/DeviceFrames";
+import WebUISketch from "@layouts/components/site/WebUISketch";
 import Accordion from "./Accordion";
 import Button from "./Button";
 import CodeBlock from "./CodeBlock";
@@ -26,7 +27,8 @@ const shortcodes = {
   RevealEmail,
   MacBookFrame,
   IPhoneFrame,
-  IPadFrame
+  IPadFrame,
+  WebUISketch
 };
 
 export default shortcodes;

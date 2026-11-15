@@ -39,14 +39,14 @@ The switch is off at every launch. On iPhone and iPad the server also runs only 
 
 ## Serving the web UI to other devices
 
-<IPhoneFrame
+<WebUISketch
   src="/images/enigmus-1-3-web-chat"
   alt="The Enigmus web UI in a phone-width browser, served by the app: the bundled Qwen 3.5 0.8B model selected at the top, the prompt Write a haiku about autumn rain, a three-line reply, and token counts of 20 in and 22 out"
-  dark={false}
-  className="relative mx-auto mb-10 mt-2 w-[240px] md:w-[280px]"
+  address="http://192.168.1.20:31415"
+  className="mb-10 mt-2"
 />
 
-The same port also serves a web UI, the chat page shown above at phone width. It is a set of static files bundled in Enigmus, it fetches nothing from the internet, and it talks to the `/v1` API like any other client. On a Mac, one button opens it in the default browser.
+The same port also serves a web UI, the chat page on the iPhone in the sketch above. It is a set of static files bundled in Enigmus, it fetches nothing from the internet, and it talks to the `/v1` API like any other client. On a Mac, one button opens it in the default browser.
 
 By default the server listens on `127.0.0.1`, so only apps on the same device can reach it. Allow Network Access rebinds it to `0.0.0.0`, which opens it to the local network. The page then shows the device's Wi-Fi address and a QR code for the web UI, so a phone can scan the code and chat with the model on a Mac.
 
