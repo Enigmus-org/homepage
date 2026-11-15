@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const { blog_folder } = config.settings;
 
-const excerpt = (content, max = 150) => {
+export const excerpt = (content, max = 150) => {
   const text = plainify(content);
   if (text.length <= max) return text;
   return text.slice(0, max).replace(/\s+\S*$/, "") + "...";
